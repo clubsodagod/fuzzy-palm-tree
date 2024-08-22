@@ -47,7 +47,7 @@ h6 {
 .app-ctn {
   overflow-y: auto;
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   scroll-snap-type: y proximity; /* Enable vertical snap scrolling */
   overflow-y: auto;   
   scroll-behavior: smooth;
@@ -64,7 +64,7 @@ h6 {
   scroll-snap-align: start;  
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   pointer-events: all;
@@ -110,7 +110,7 @@ div.footer {
 
 .three-scene {
   position: absolute;
-  height: 100vh;
+  height: 100dvh;
 }
 
 
@@ -226,7 +226,7 @@ h6.hero-h6#blog{
 
 
 .three-scene {
-  height: 100vh;
+  height: 100dvh;
   position: absolute;
   width: 100%;
   pointer-events: none;
@@ -238,7 +238,7 @@ h6.hero-h6#blog{
 
 /* blog card */
 blog-card-html-wrapper {
-  height: 100vh;
+  height: 100dvh;
 }
 div.blog-card-wrapper#three-object {
   width: 50vw;

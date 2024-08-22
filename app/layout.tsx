@@ -30,6 +30,8 @@ useEffect(() => {
 
   window.addEventListener('resize', setBodyHeight);
   setBodyHeight(); // Initial call
+  console.log(window.innerHeight);
+  
 
   return () => {
     window.removeEventListener('resize', setBodyHeight);
