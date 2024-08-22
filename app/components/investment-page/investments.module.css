@@ -1,13 +1,17 @@
 
 div.pageWrapper {
-    min-height: 100vh;
+    height: 100vh;
     width: 100%;
     margin: 0;
     display: flex;
     flex-direction: column;
-    padding-block: 10vh 3vh;
+    padding-block: 10vh 0;
     padding-inline: 6vw;
     justify-content: space-between;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow-y: hidden;
 
     @media screen and (min-width:769px) {
         text-align: center;

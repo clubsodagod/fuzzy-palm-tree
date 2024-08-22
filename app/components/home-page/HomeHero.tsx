@@ -24,18 +24,18 @@ const HomeHero = () => {
                             src='/temporary/images/maliek-davis-home.jpg' 
                             className={`${styles.ftImg}`} 
                             id='home' alt=''  
-                            initial={{
-                                opacity: 0,
-                                y:25,
-                            }}
-                            whileInView={{opacity:1,
-                                y:0,
-                                transition:{
-                                    duration:1,
-                                    delay:2.4,
-                                },
-                            }}
-                            exit={{opacity:0}}
+                            // initial={{
+                            //     opacity: 0,
+                            //     y:25,
+                            // }}
+                            // whileInView={{opacity:1,
+                            //     // y:0,
+                            //     transition:{
+                            //         duration:1,
+                            //         delay:2.4,
+                            //     },
+                            // }}
+                            // exit={{opacity:0}}
                             
                         />
                     </div>

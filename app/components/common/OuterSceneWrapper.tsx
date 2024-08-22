@@ -10,11 +10,11 @@ const OuterSceneWrapper:React.FC<{
     id,
 }) => {
     return (
-        <section className={`outerSceneWrapper `} id='home'>  
             <AnimatePresence>
-                {children}
+                <section className={`outerSceneWrapper `} id='home'>  
+                        {children}
+                </section>
             </AnimatePresence>
-        </section>
     )
 }
 

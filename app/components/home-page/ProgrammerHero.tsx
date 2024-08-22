@@ -17,12 +17,13 @@ const ProgrammerHero = () => {
                 <ProgrammerScene />
 
             {/* Readable Information */}
-                <PageWrapper id='programmer'>
+                <PageWrapper id='programmer' key={'something differet'}>
 
             {/* Top Text box */}
                     <motion.div
                     className='text-box'
                     id='home' 
+                    key={2}
                     >
                         <motion.h3
                         className={`${styles.heroH3}`}
