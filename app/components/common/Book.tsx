@@ -107,11 +107,11 @@ const pageMaterials = [
     }),
 ];
 
-pages.forEach((page) => {
-    useTexture.preload(`/textures/${page.front}.jpg`);
-    useTexture.preload(`/textures/${page.back}.jpg`);
-    useTexture.preload(`/textures/book-cover-roughness.jpg`);
-})
+// pages.forEach((page) => {
+//     useTexture.preload(`/textures/${page.front}.jpg`);
+//     useTexture.preload(`/textures/${page.back}.jpg`);
+//     useTexture.preload(`/textures/book-cover-roughness.jpg`);
+// })
 
 const Page = ({number, front, back, ...props}:any) => {
     const [picture, picture2, pictureRoughness] = useTexture([

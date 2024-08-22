@@ -60,7 +60,7 @@
         margin-top: 10vh;
     }
     @media screen and (min-width:1024px) {
-        margin-top: 5vh;
+        /* margin-top: 5vh; */
         font-size: 5.5rem;
     }
 }
@@ -134,7 +134,3 @@
     margin: 0;
 }  
 
-
-.pageWrapper,#investments {
-    padding-block: 10vh 3vh;
-}

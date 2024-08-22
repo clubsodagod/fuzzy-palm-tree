@@ -24,27 +24,29 @@ const HomeHero = () => {
                             src='/temporary/images/maliek-davis-home.jpg' 
                             className={`${styles.ftImg}`} 
                             id='home' alt=''  
-                            // initial={{
-                            //     opacity: 0,
-                            //     y:25,
-                            // }}
-                            // whileInView={{opacity:1,
-                            //     // y:0,
-                            //     transition:{
-                            //         duration:1,
-                            //         delay:2.4,
-                            //     },
-                            // }}
-                            // exit={{opacity:0}}
+                            initial={{
+                                opacity: 0,
+                                y:-200,
+                            }}
+                            whileInView={{opacity:1,
+                                y:0,
+                                transition:{
+                                    duration:1,
+                                    delay:2.4,
+                                },
+                            }}
+                            exit={{opacity:0}}
                             
                         />
                     </div>
-                    <HomeScene />  
+                    <section className='three-scene'>
+                        <HomeScene />
+                    </section>
                     <PageWrapper
                     id='home'
                     >
 
-                            <motion.div className={`'text-box ${styles.textBox}`} id='home' >
+                            <motion.div className={`${styles.textBox}`} id='home' >
                                 <motion.h1 
                                     className={`hero-h1 ${styles.heroH1}`} 
                                     id='home'
@@ -83,7 +85,7 @@ const HomeHero = () => {
                             
 
                             <div
-                            className={`hero-button-group ${styles.btnGroup}`}  id='home'
+                            className={`${styles.btnGroup}`}  id='home'
                             >
                                 <ExpandCircleDownOutlinedIcon className={`hero-auto-scroll-btn ${styles.autoScrollBtn}`} id={'home'} />
                             </div>                

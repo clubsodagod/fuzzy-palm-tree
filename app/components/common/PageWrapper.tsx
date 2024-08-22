@@ -14,19 +14,6 @@ const PageWrapper:React.FC<{
     return (
         <motion.div
         className={`${styles.pageWrapper}`}
-        id={id?id:""}
-        initial={{
-            opacity:0,
-            y:50,
-        }}
-        whileInView={{
-            opacity:1,
-            y:0,
-            transition:{
-                duration: 1,
-                delay:0.6,
-            }
-        }}
         >
             {children}
         </motion.div>

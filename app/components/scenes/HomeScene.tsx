@@ -45,9 +45,10 @@ const HomeScene = () => {
                     
                         
 
-                        <motion.group  position={[0,0,0]}
-                                    scale={scale}
-                                    position-x={x}
+                        <motion.group  
+                        position={[0,0,0]}
+                                    // scale={scale}
+                                    // position-x={x}
                                     initial={{opacity:0}}
                                     animate={{
                                         opacity:1,
