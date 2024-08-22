@@ -14,7 +14,11 @@ body {
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
-  height:100vh;
+}
+@supports (height: 100dvh) {
+  body {
+    height: 100dvh;
+  }
 }
 h1,h2,h3,h4,h5,h6,p {
   margin: 0;
@@ -48,6 +52,12 @@ h6 {
   overflow-y: auto;   
   scroll-behavior: smooth;
   background-color: black;
+}
+
+@supports (height: 100dvh) {
+  .app-ctn {
+    height: 100dvh;
+  }
 }
 
 .outerSceneWrapper {
