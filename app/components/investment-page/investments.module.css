@@ -6,7 +6,7 @@
     margin: 0;
     display: flex;
     flex-direction: column;
-    /* padding-inline: 6vw; */
+    padding-inline: 6vw;
     justify-content: space-between;
     position: relative;
     top: 0;
