@@ -1,0 +1,52 @@
+
+div.pageWrapper {
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    padding-block: 10vh 3vh;
+    padding-inline: 10vw;
+    justify-content: space-between;
+
+    @media screen and (min-width:769px) {
+        text-align: center;
+    }
+
+    @media screen and (min-width:769px) and (max-width:1024px) {
+        padding-inline: 20vw;
+        padding-block: 20vh;
+    }
+    @media screen and (min-width:1025px) {
+        padding-block: 10vh 15vh;
+    }
+
+}
+
+.topTextCtn {
+
+    @media screen and (min-width:769px) {
+        text-align: center;
+    }
+    @media screen and (max-width:768px) and (max-width:1024px) {
+    }
+}
+
+h1.investHeader {
+    @media screen and (min-width:769px) {
+        font-size: 1rem;
+    }
+
+}
+
+.txtBtnCtn {
+
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width:769px) {
+        text-align: center;
+    }
+    @media screen and (min-width:769px) and (max-width:1024px) {
+    }
+}

@@ -1,0 +1,38 @@
+/* Scrollable Arrow Container */
+
+
+.scrollableCtnWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+}
+
+.childWrapper {
+    width: 100%;
+}
+
+.leftArrowCtn, .rightArrowCtn {
+    position: absolute;
+}
+
+.leftArrowCtn {
+    left: 24vw;
+}
+.rightArrowCtn {
+    right: 24vw;
+}
+
+.leftArrow,.rightArrow {
+    color: white;
+    font-size: 4rem;
+}
+
+.leftArrow {
+    rotate: 90deg;
+}
+
+.rightArrow {
+    rotate: -90deg;
+}
+

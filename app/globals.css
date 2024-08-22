@@ -1,33 +1,310 @@
-@tailwind base;
+/* @tailwind base; */
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
 
+body, html {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  height:100vh;
+}
+h1,h2,h3,h4,h5,h6,p {
+  margin: 0;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+h1 {
+  font-size: 3.5rem;
+}
+h2 {
+  font-size: 3.0rem;
+}
+h3 {
+  font-size: 2.5rem;
+}
+h4 {
+  font-size: 2rem;
+}
+h5 {
+  font-size: 1.25rem;
+}
+h6 {
+  font-size: 1.15rem;
+}
+
+
+.app-ctn {
+  overflow-y: auto;
+  width: 100%;
+  height: 100vh;
+  scroll-snap-type: y proximity; /* Enable vertical snap scrolling */
+  overflow-y: scroll;   
+  scroll-behavior: smooth;
+  /* background-color: black; */
+  display: flex;
+  flex-direction: column;
+}
+
+.outerSceneWrapper {
+  scroll-snap-align: start;  
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-end;
+  align-self: flex-end;
+  background-color: black;
+  pointer-events: all;
+}
+.learn-more-btn {
+  font-size: 0.75rem;
+  line-height: 2;
+  border-radius: 25px;
+  pointer-events: all;
+}
+
+.partnership-btn {
+  font-size: 0.75rem;
+  line-height: 2;
+  border-radius: 25px;
+  pointer-events: all;
+}
+
+section.page-wrapper {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding-inline: 6vw;
+}
+
+footer.footer {
+  width: 100%;
+  margin-top: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3vw;
+}
+
+div.footer {
+  padding-block: 1vh;
+}
+.footer-icon {
+  font-size: 2rem;
+}
+.text#footer {
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+/* Home page CSS */
+
+.three-scene#home {
+  position: absolute;
+  height: 100vh;
+}
+
+
+section.page-background#home, .page-background#investments {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background: #000;
+  
+}
+
+.page-wrapper#home{
+  display: flex;
+  flex-direction: column;
+  padding-block: 10vh 3vh;
+}
+
+
+.img-wrapper#img-maliek_home{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  z-index: 0;
+
+  @media screen and (min-width:768px) and (max-width:1024px) {
+    justify-content: center;
+    align-items: center;
   }
+  @media screen and (min-width:1024px) {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* Investments Hero & Page */
+
+/* hero */
+.page-wrapper#investments {
+  padding-block: 10vh 3vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.hero-h3#investments {
+  font-size: 4rem;
+  z-index: 1;
+  color: white;
+
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    text-align: center;
+  }
+}
+
+.hero-h6#investments {
+  color: white;
+
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    text-align: center;
+  }
+}
+
+.hero-p-btn-ctn#investments {
+
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    text-align: center;
+    margin-bottom: 15vh;
+    padding-inline: 17.5vw;
+  }
+}
+
+.hero-p#investments {
+  color:white;
+
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    text-align: center;
+  }
+}
+
+
+
+/* Programmer Hero & Page */
+
+section.page-wrapper#programmer {
+  height: 100vh;
+  padding-block: 10vh 6vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #000;
+  color: white;
+  /* background: -webkit-linear-gradient(45deg, #78ffd6, #a8ff78);
+  background: linear-gradient(45deg #78ffd6, #a8ff78); */
+  
+}
+
+
+/* Blog Hero &  Page */
+
+h1.hero-h1#blog{
+  color: white;
+  line-height: 0.9;
+}
+h6.hero-h6#blog{
+  color: white;
+  margin-top: 2vh;
+  /* line-height: 1; */
+}
+
+
+.three-scene {
+  height: 100vh;
+  position: absolute;
+  width: 100%;
+  pointer-events: none;
+}
+
+
+
+
+
+/* blog card */
+blog-card-html-wrapper {
+  height: 100vh;
+}
+div.blog-card-wrapper#three-object {
+  width: 50vw;
+  height: 142vh;
+
+  @media screen and (max-width:720px) {
+    width: 225vw;
+    border-radius: 10px;
+    height: 139vh;
+  }
+}
+
+div.blog-card-ctn#three-object {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  @media screen and (max-width:780px) {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+div.blog-card-top-ctn#three-object {
+  display: flex;
+  flex-direction: column;
+  gap: 1;
+  height: 45%;
+  padding: 1%;
+}
+
+div.blog-card-author-ctn#three-object {
+  display: flex;
+  flex-direction: row;
+  gap: 2.5%;
+  justify-content: center;
+}
+
+div.blog-card-author-credentials-ctn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+h3.blog-card-h3#three-object {
+  color: white;
+}
+
+img.blog-card-feat-img {
+  height: 40vh;
+  width: 100%;
+  border-top-left-radius: 35px;
+  border-top-right-radius: 35px;
+  object-fit: cover;
+}
+
+img.blog-card-author-img {
+  border-radius: 50%;
+  height: 10vh;
+  width: 10vh;
+  object-fit: cover;
+}
+
+div.blog-card-bottom-ctn {
+  height: 100%;
 }
