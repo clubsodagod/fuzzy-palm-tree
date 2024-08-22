@@ -12,7 +12,7 @@ import * as THREE from 'three'
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
-import { useFrame } from '@react-three/fiber'
+import { GroupProps, useFrame } from '@react-three/fiber'
 import {motion} from 'framer-motion-3d'
 
 type GLTFResult = GLTF & {
@@ -29,7 +29,7 @@ type GLTFResult = GLTF & {
 export default function MoneyBag(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('/3d-objects/money-bag/moneyBag-transformed.glb') as GLTFResult
 
-  const group = useRef<THREE.Group>(null);
+  const group = useRef<THREE.Group>(null!);
   const radius = 6;
   useFrame(({ clock }) => {
     const elapsedTime = clock.getElapsedTime();
@@ -40,12 +40,12 @@ export default function MoneyBag(props: JSX.IntrinsicElements['group']) {
     }
   });
   return (
-    <motion.group ref={group} {...props} dispose={null}>
+    <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene" position={[7,0,0]} rotation={[0.25,2.25,0]}>
         <mesh name="Object_4" geometry={nodes.Object_4.geometry} material={materials.PaletteMaterial001} position={[0.479, 0.327, 0.155]} rotation={[-Math.PI / 2, -0.011, Math.PI / 2]} />
         <mesh name="Object_12" geometry={nodes.Object_12.geometry} material={materials.PaletteMaterial002} />
       </group>
-    </motion.group>
+    </group>
   )
 }
 
