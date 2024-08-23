@@ -35,12 +35,16 @@ type GLTFResult = GLTF & {
 
 export default function Earth(props: JSX.IntrinsicElements['group']) {
   const group = React.useRef<THREE.Group>(null)
+  const earthRef = React.useRef<THREE.Mesh>(null)
   const { nodes, materials, animations } = useGLTF('/3d-objects/earth/Earth-transformed.glb') as GLTFResult
   const { actions } = useAnimations(animations, group)
 
 useFrame(()=> {
   if(actions['Clouds|CloudsAction']) {
     actions['Clouds|CloudsAction'].play()
+  }
+  if (earthRef.current) {
+    earthRef.current.rotation.z += 0.005 // Adjust the speed by changing the value
   }
 });
 
@@ -52,7 +56,7 @@ useFrame(()=> {
             <mesh name="Clouds_Clouds_0" geometry={nodes.Clouds_Clouds_0.geometry} material={materials.Clouds} />
           </group>
         </group>
-        <mesh name="Earth_Earth_0" geometry={nodes.Earth_Earth_0.geometry} material={materials.Earth} rotation={[-Math.PI / 2, 0, -1.544]} scale={99.307} />
+        <mesh ref={earthRef} name="Earth_Earth_0" geometry={nodes.Earth_Earth_0.geometry} material={materials.Earth} rotation={[-Math.PI / 2, 0, -1.544]} scale={99.307} />
       </group>
     </group>
   )

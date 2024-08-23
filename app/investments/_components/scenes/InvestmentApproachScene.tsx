@@ -1,9 +1,9 @@
-import { Earth } from '@/public/3d-objects'
+import { Chess } from '@/public/3d-objects'
 import { Center, Environment, OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import React, { Suspense } from 'react'
 
-const InvestmentWorldScene = () => {
+const InvestmentApproachScene = () => {
 
     return (
         
@@ -22,7 +22,7 @@ const InvestmentWorldScene = () => {
                 <OrbitControls />
                 <Center>
 
-                    <Earth scale={0.0125} />                  
+                    <Chess scale={0.05} rotation={[0.5,0.75 ,0]}/>                  
                 </Center>
                             {/* <directionalLight 
                             position={[2,5,2]}
@@ -40,4 +40,4 @@ const InvestmentWorldScene = () => {
     )
 }
 
-export default InvestmentWorldScene
+export default InvestmentApproachScene

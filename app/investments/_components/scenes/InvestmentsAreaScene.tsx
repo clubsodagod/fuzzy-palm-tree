@@ -1,9 +1,10 @@
 import { Earth } from '@/public/3d-objects'
+import Apartment from '@/public/3d-objects/apartment/Apartment'
 import { Center, Environment, OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import React, { Suspense } from 'react'
 
-const InvestmentWorldScene = () => {
+const InvestmentAreaScene = () => {
 
     return (
         
@@ -19,19 +20,18 @@ const InvestmentWorldScene = () => {
                 preset='studio'
                 />
                 <ambientLight />
-                <OrbitControls />
                 <Center>
 
-                    <Earth scale={0.0125} />                  
+                    <Apartment scale={0.4} />                  
                 </Center>
-                            {/* <directionalLight 
+                            <directionalLight 
                             position={[2,5,2]}
                             intensity={1}
                             castShadow
                             shadow-mapSize-width={2048}
                             shadow-mapSize-height={2048}
                             shadow-bias={-0.0001}
-                            /> */}
+                            />
                 </Suspense>
             
 
@@ -40,4 +40,4 @@ const InvestmentWorldScene = () => {
     )
 }
 
-export default InvestmentWorldScene
+export default InvestmentAreaScene

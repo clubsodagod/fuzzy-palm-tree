@@ -4,10 +4,14 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Button } from '@mui/material'
 import OuterSceneWrapper from '../common/OuterSceneWrapper'
 import PageWrapper from '../common/PageWrapper'
+import { ApproachScene } from '@/app/investments/_components/scenes'
 
 const InvestmentApproach = () => {
     return (
-        <OuterSceneWrapper id='investment-page'>  
+        <OuterSceneWrapper id='investment-page'>
+                <motion.section className={`three-scene`} id='investment-page'>
+                    <ApproachScene />
+                </motion.section>  
                 <PageWrapper
                 id='approach'
                 >
