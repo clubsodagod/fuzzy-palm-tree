@@ -1,15 +1,16 @@
 import { AppContainer } from '@/app/components'
 import React from 'react'
-import { RealEstatePartnerShip } from './_components'
+import { CurrentListings } from './_components'
 
 const page = () => {
-    return (
-        
-        <AppContainer>
 
-            <RealEstatePartnerShip />
+
+    return (
+        <AppContainer>
+            <CurrentListings />
         </AppContainer>
     )
+
 }
 
 export default page

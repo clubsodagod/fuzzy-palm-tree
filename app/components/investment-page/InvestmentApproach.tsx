@@ -2,13 +2,13 @@ import React from 'react'
 import styles from './investments.module.css'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Button } from '@mui/material'
+import OuterSceneWrapper from '../common/OuterSceneWrapper'
+import PageWrapper from '../common/PageWrapper'
 
 const InvestmentApproach = () => {
     return (
-        <section className={`outerSceneWrapper`} id='investment-page'>  
-            <AnimatePresence>
-                <div
-                className={`page-wrapper ${styles.pageWrapper}`}
+        <OuterSceneWrapper id='investment-page'>  
+                <PageWrapper
                 id='approach'
                 >
                     
@@ -41,7 +41,7 @@ const InvestmentApproach = () => {
                                 variant='outlined'
                                 className={`learn-more-btn`}
                                 id={'home-investment-hero'}
-                                href={'/investments'}
+                                href={'/investments/real-estate/business-plan'}
                                 >
                                     Business Plan
                                 </Button>
@@ -49,7 +49,7 @@ const InvestmentApproach = () => {
                                 variant='contained'
                                 className={`partnership-btn`}
                                 id={'home-investment-hero'}
-                                href={'/investments/partnership'}
+                                href={'/investments/real-estate/approach'}
                                 >
                                     Financial Modeling
                                 </Button>
@@ -57,10 +57,9 @@ const InvestmentApproach = () => {
                         </motion.div>  
                     </div>
 
-                </div>                
-            </AnimatePresence>        
+                </PageWrapper>                 
 
-        </section>
+        </OuterSceneWrapper>
     )
 }
 

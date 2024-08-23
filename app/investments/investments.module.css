@@ -23,6 +23,17 @@ div.pageWrapper {
 
 }
 
+.investHeader {
+    color: white;
+    @media screen and (max-width:769px) {
+        font-size: 3rem;
+    }
+
+}
+h6.investSubheader {
+    color: white;
+}
+
 .topTextCtn {
 
     @media screen and (min-width:769px) {
@@ -30,13 +41,6 @@ div.pageWrapper {
     }
     @media screen and (max-width:768px) and (max-width:1024px) {
     }
-}
-
-h1.investHeader {
-    @media screen and (min-width:769px) {
-        font-size: 1rem;
-    }
-
 }
 
 .txtBtnCtn {
@@ -49,4 +53,38 @@ h1.investHeader {
     }
     @media screen and (min-width:769px) and (max-width:1024px) {
     }
+}
+
+
+.btnCtn {
+    display: flex;
+    flex-direction: row;
+    gap: 6vw;
+    margin-top: 3vh;
+    z-index: 5;
+
+    @media screen and (min-width:769px) {
+        justify-content: center;
+    }
+}
+
+.partnershipBtnCtn {
+
+    display: flex;
+    flex-direction: row;
+    gap: 3vw;
+    justify-content: center;
+    margin-bottom: auto;
+}
+
+.formWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.partnershipWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
 }

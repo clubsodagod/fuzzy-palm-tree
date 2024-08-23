@@ -12,16 +12,16 @@ const Footer = () => {
     return (
         <div className='footer'>
             <footer className='footer'>
-                <Link href={''}>
+                <Link href={''} className='link'>
                     <YouTubeIcon className='footer-icon' />
                 </Link>
-                <Link href={''}>
+                <Link href={''} className='link'>
                     <InstagramIcon className='footer-icon' />
                 </Link>
-                <Link href={''}>
+                <Link href={''} className='link'>
                     <FacebookRounded className='footer-icon' />
                 </Link>
-                <Link href={''}>
+                <Link href={''} className='link'>
                     <XIcon className='footer-icon' />
                 </Link>
             </footer> 

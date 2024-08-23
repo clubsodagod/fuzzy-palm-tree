@@ -3,16 +3,16 @@ import React from 'react'
 import { InvestmentPageHeroScene } from '../scenes'
 import styles from './investments.module.css'
 import { Button } from '@mui/material'
+import OuterSceneWrapper from '../common/OuterSceneWrapper'
+import PageWrapper from '../common/PageWrapper'
 
 const InvestmentPageHero = () => {
     return (
-        <section className={`outerSceneWrapper `} id='home'>  
-            <AnimatePresence>
+        <OuterSceneWrapper>
                 <motion.section className={`three-scene`} id='investment-page'>
                     <InvestmentPageHeroScene />
                 </motion.section>
-                <div
-                className={`${styles.pageWrapper}`}
+                <PageWrapper
                 id='investment-page'
                 >
                     
@@ -47,7 +47,7 @@ const InvestmentPageHero = () => {
                                 variant='outlined'
                                 className={`learn-more-btn`}
                                 id={'home-investment-hero'}
-                                href={'/investments'}
+                                href={'/investments/real-estate/current-listings'}
                                 >
                                     Current Listings
                                 </Button>
@@ -55,7 +55,7 @@ const InvestmentPageHero = () => {
                                 variant='contained'
                                 className={`partnership-btn`}
                                 id={'home-investment-hero'}
-                                href={'/investments/partnership'}
+                                href={'/investments/real-estate/partnership'}
                                 >
                                     Let&apos;s Chat
                                 </Button>
@@ -65,10 +65,9 @@ const InvestmentPageHero = () => {
                     
 
 
-                </div>                
-            </AnimatePresence>        
+                </PageWrapper>                
 
-        </section>
+        </OuterSceneWrapper>
     )
 }
 

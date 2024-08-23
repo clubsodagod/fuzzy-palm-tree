@@ -1,10 +1,6 @@
 "use client"
 
 import React from 'react'
-import styles from './investments.module.css'
-import { InvestmentScene } from '../components/scenes'
-import { motion } from 'framer-motion'
-import { InvestmentPageHeroScene } from '../components/scenes'
 import { InvestmentApproach, InvestmentAreas, InvestmentPageHero } from '../components/investment-page'
 import { AppContainer } from '../components'
 

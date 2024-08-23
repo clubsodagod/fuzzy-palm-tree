@@ -9,7 +9,7 @@ const AppContainer:React.FC<{children:React.ReactNode}> = ({children}) => {
         <AnimatePresence>
             <div className="app-ctn">
                 {children}
-                {/* <Footer /> */}
+                <Footer />
             </div>            
         </AnimatePresence>
 

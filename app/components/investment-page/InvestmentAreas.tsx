@@ -2,13 +2,13 @@ import React from 'react'
 import styles from './investments.module.css'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Button } from '@mui/material'
+import PageWrapper from '../common/PageWrapper'
+import OuterSceneWrapper from '../common/OuterSceneWrapper'
 
 const InvestmentAreas = () => {
     return (
-        <section className={`outerSceneWrapper `} id='home'>  
-            <AnimatePresence>
-                <div
-                className={`${styles.pageWrapper}`}
+        <OuterSceneWrapper id='credentials'>
+                <PageWrapper
                 id='credentials'
                 >
                     
@@ -41,26 +41,25 @@ const InvestmentAreas = () => {
                                 variant='outlined'
                                 className={`learn-more-btn`}
                                 id={'home-investment-hero'}
-                                href={'/investments'}
+                                href={'/investments/real-estate/areas-of-investment/criteria'}
                                 >
-                                    My Mission
+                                    Criteria
                                 </Button>
                                 <Button
                                 variant='contained'
                                 className={`partnership-btn`}
                                 id={'home-investment-hero'}
-                                href={'/investments/partnership'}
+                                href={'/investments/real-estate/business-plan/investment-goals'}
                                 >
-                                    Core Values
+                                    Investment Goals
                                 </Button>
                                 
                         </motion.div> 
                     </div>
 
-                </div>                
-            </AnimatePresence>        
+                </PageWrapper>                 
 
-        </section>
+        </OuterSceneWrapper>
     )
 }
 

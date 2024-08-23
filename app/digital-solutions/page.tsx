@@ -1,6 +1,14 @@
+'use client'
 import React from 'react'
 import { AppContainer } from '../components'
-import { DigitalSolutionsMainHero, LetsWork, MyCraft,  PillarsOfCraft, TheProcess } from './_components'
+import { 
+    AreasOfPassion, 
+    DigitalSolutionsMainHero, 
+    LetsWork, 
+    MyCraft,  
+    PillarsOfCraft, 
+    TheProcess, 
+} from './_components'
 
 const page = () => {
     return (
@@ -9,6 +17,7 @@ const page = () => {
             <MyCraft />
             <PillarsOfCraft />
             <TheProcess />
+            <AreasOfPassion />
             <LetsWork />
         </AppContainer>
     )
