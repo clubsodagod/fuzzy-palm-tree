@@ -5,12 +5,13 @@ import styles from './investments.module.css'
 import { Button } from '@mui/material'
 import OuterSceneWrapper from '../common/OuterSceneWrapper'
 import PageWrapper from '../common/PageWrapper'
+import InvestmentWorldScene from '@/app/investments/_components/scenes/InvestmentWorldScene'
 
 const InvestmentPageHero = () => {
     return (
         <OuterSceneWrapper>
                 <motion.section className={`three-scene`} id='investment-page'>
-                    <InvestmentPageHeroScene />
+                    <InvestmentWorldScene />
                 </motion.section>
                 <PageWrapper
                 id='investment-page'
