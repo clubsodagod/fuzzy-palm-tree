@@ -12,6 +12,26 @@ const theme = createTheme({
     typography: {
         fontFamily: roboto.style.fontFamily,
     },
+    components: {
+        MuiAppBar: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: '#00000080', // Semi-transparent background
+                    color: '#FFFFFF',             // Text color
+                    backdropFilter: 'blur(10px)',
+                },
+            },
+        },
+        MuiCssBaseline: {
+            styleOverrides: {
+                '#navbar-drawer .MuiPaper-root': {
+                    backgroundColor: '#00000080', // Semi-transparent background
+                    color: '#FFFFFF',             // Text color
+                    backdropFilter: 'blur(10px)', // Apply blur effect
+                },
+            },
+        },
+    },
 });
 
 export default theme;

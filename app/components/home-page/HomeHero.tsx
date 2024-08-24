@@ -21,7 +21,7 @@ const HomeHero = () => {
             <OuterSceneWrapper>    
                     <div className={`${styles.imgWrapper}`} id='img-maliek_home'>
                         <motion.img 
-                            src='/temporary/images/maliek-davis-home.jpg' 
+                            src='/images/suited.png' 
                             className={`${styles.ftImg}`} 
                             id='home' alt=''  
                             initial={{

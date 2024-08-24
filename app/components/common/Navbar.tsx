@@ -32,7 +32,7 @@ export default function DrawerAppBar() {
     };
 
     const drawer = (
-        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'left' }}>
+        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'left' }} id="navbar-drawer">
             <Typography variant="h6" sx={{ my: 2 }}>
                 MUI
             </Typography>
@@ -77,7 +77,7 @@ export default function DrawerAppBar() {
                         aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: 'none' } }}
+                        sx={{ ml: 'auto', display: { sm: 'none' }, border:'2px solid white', borderRadius: '7.5px',  }}
                     >
                         <MenuIcon />
                     </IconButton>
@@ -102,7 +102,7 @@ export default function DrawerAppBar() {
                 </Toolbar>
             </AppBar>
             <nav>
-                    <Drawer
+                    <Drawer id="navbar-drawer"
                     variant="temporary"
                     open={mobileOpen}
                     onClose={handleDrawerToggle}
