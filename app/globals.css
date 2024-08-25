@@ -326,3 +326,21 @@ div.blog-card-bottom-ctn {
 }
 
 
+.left {
+  text-align: left;
+  justify-content:start;
+}
+.leftBtn {
+  text-align: left !important;
+  display: flex;
+  justify-content:flex-start !important;
+}
+.right {
+  text-align: right;
+  justify-content:end;
+}
+.rightBtn {
+  text-align: right !important;
+  display: flex;
+  justify-content:end !important;
+}

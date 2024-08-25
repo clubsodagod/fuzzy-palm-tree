@@ -8,28 +8,24 @@ import { InvestmentAreaScene } from '@/app/investments/_components/scenes'
 
 const InvestmentAreas = () => {
     return (
-        <OuterSceneWrapper id='credentials'>
-                    <motion.section className={`three-scene`} id='investment-page'>
-                        <InvestmentAreaScene />
-                    </motion.section>
                 <PageWrapper
                 id='credentials'
                 >
                     
                     <div
-                    className={`${styles.topTextCtn}`} 
+                    className={`${styles.topTextCtn} right`} 
                     id='credentials'
                     >
-                        <h2 className={`${styles.investHeader}`} id='credentials'>
+                        <h2 className={`${styles.investHeader} right`} id='credentials'>
                             Areas of Investment
                         </h2>
-                        <h5 className={`${styles.investSubheader}`}>
+                        <h5 className={`${styles.investSubheader} right`}>
                             Balancing Risk and Reward.
                         </h5>                    
                     </div>
 
                     <div
-                    className={`${styles.bottomCtn}`} 
+                    className={`${styles.bottomCtn} right`} 
                     id='credentials'
                     >
                         <p className={`${styles.heroBtnCtnTxt}`} id='credentials'>
@@ -37,7 +33,7 @@ const InvestmentAreas = () => {
                         </p>
 
                         <motion.div
-                        className={`${styles.btnCtn}`}
+                        className={`${styles.btnCtn} rightBtn`}
                         id='home-investment-hero'
                         >
 
@@ -62,8 +58,6 @@ const InvestmentAreas = () => {
                     </div>
 
                 </PageWrapper>                 
-
-        </OuterSceneWrapper>
     )
 }
 

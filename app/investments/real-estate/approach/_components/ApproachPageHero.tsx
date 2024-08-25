@@ -6,7 +6,7 @@ import styles from '../../../investments.module.css'
 import { ApproachScene } from '@/app/investments/_components/scenes'
 import { motion, MotionValue, useMotionValueEvent, useScroll, useTransform } from 'framer-motion'
 import { useFrame } from '@react-three/fiber'
-import { coreInvestmentPrinciples } from '@/library/const'
+import { coreInvestmentPrinciples, longTermVisionPrinciples, marketApproachPrinciples, riskManagementPrinciples } from '@/library/const'
 import { Principle } from '@/library/types/investment'
 
 
@@ -25,7 +25,7 @@ const ApproachPageHero:React.FC<{
     scrollYPro,
 }) => {    
     const criteriaRef = useRef<HTMLDivElement>(null);
-    const finModRef = useRef<HTMLDivElement>(null);
+    const visionRef = useRef<HTMLDivElement>(null);
     const opacity = useTransform(scrollY, [0,  (window?.innerHeight * 1),  (window?.innerHeight * 2),2844 ], [1,0.81,0.5,0]);
     const scale = useTransform(scrollY, [0, (window?.innerHeight * 1), scrollYPro], [0.0625,0.04525,0.03125]);
     const x = useTransform(scrollY, [0,  (window?.innerHeight * 1),  (window?.innerHeight * 2),2844 ], [0,20,-40,0]);
@@ -143,14 +143,14 @@ const ApproachPageHero:React.FC<{
                 className={`${styles.principlesCtn}`}
                 >
                     <h6 className={`${styles.investSubheader}`} id='approach-page'>
-                        This is how I approach the market.
+                        Principles of Market Approach
                     </h6>
 
                     <ul
                     className={`${styles.principles}`}
                     >
                         {
-                            coreInvestmentPrinciples.map((p:Principle,i:number)=> (
+                            marketApproachPrinciples.map((p:Principle,i:number)=> (
                                 <li key={`${p.key} : ${i}`} className={`${styles.principleKeyLI}`}>
                                     <span className={`${styles.fancyLIHeader}`}>
                                         {p.key}
@@ -163,11 +163,12 @@ const ApproachPageHero:React.FC<{
 
                 </motion.div>
             </PageWrapper>
-
+            
+            {/* Vision Principles */}
             <PageWrapper id='approach4'>
                 <motion.div
-                ref={finModRef}
-                className={` ${styles.topTextCtn}`}
+                ref={visionRef}
+                className={` ${styles.visionCtn}`}
                 whileInView={{
                     opacity:1
                 }}
@@ -177,15 +178,86 @@ const ApproachPageHero:React.FC<{
                 transition={{
                     duration: 1.5,
                     delay:0.5,
-                }}
+                }}>
+                <h1 className={` ${styles.investHeader}`} id='approach-page'>
+                    Vision for the Future
+                </h1>
+                <h6 className={`${styles.investSubheader}`} id='approach-page'>
+                    Sustainable Success, Lasting Relationships: Innovate, Adapt, Thrive
+                </h6>
+            </motion.div>
+
+            <motion.div
+            className={`${styles.visionBtmCtn}`}
+            >
+                <h6 className={`${styles.investSubheader}`} id='approach-page'>
+                    Principles of Long Term Vision
+                </h6>
+
+                <ul
+                className={`${styles.principles}`}
                 >
-                    <h1 className={` ${styles.investHeader}`} id='approach-page'>
-                        Financial Model
-                    </h1>
-                    <h6 className={`${styles.investSubheader}`} id='approach-page'>
-                        Maximizing Time. Accelerating your dollar.
-                    </h6>
-                </motion.div>
+                    {
+                        longTermVisionPrinciples.map((p:Principle,i:number)=> (
+                            <li key={`${p.key} : ${i}`} className={`${styles.principleKeyLI}`}>
+                                <span className={`${styles.fancyLIHeader}`}>
+                                    {p.key}
+                                </span> {p.value}
+                            </li>
+                            )
+                        )
+                    }
+                </ul>
+
+            </motion.div>
+            </PageWrapper>
+            
+            {/* Risk Management Principles */}
+            <PageWrapper id='approach4'>
+                <motion.div
+                ref={visionRef}
+                className={` ${styles.visionCtn}`}
+                whileInView={{
+                    opacity:1
+                }}
+                initial={{
+                    opacity:0
+                }}
+                transition={{
+                    duration: 1.5,
+                    delay:0.5,
+                }}>
+                <h1 className={` ${styles.investHeader}`} id='approach-page'>
+                    Mitigating Risk
+                </h1>
+                <h6 className={`${styles.investSubheader}`} id='approach-page'>
+                    Balancing Safety and Growth: Proactive Management, Creative Solutions
+                </h6>
+            </motion.div>
+
+            <motion.div
+            className={`${styles.visionBtmCtn}`}
+            >
+                <h6 className={`${styles.investSubheader}`} id='approach-page'>
+                    Principles of Risk Management
+                </h6>
+
+                <ul
+                className={`${styles.principles}`}
+                >
+                    {
+                        riskManagementPrinciples.map((p:Principle,i:number)=> (
+                            <li key={`${p.key} : ${i}`} className={`${styles.principleKeyLI}`}>
+                                <span className={`${styles.fancyLIHeader}`}>
+                                    {p.key}
+                                </span> {p.value}
+                            </li>
+                            )
+                        )
+                    }
+                </ul>
+
+            </motion.div>
             </PageWrapper>
 
         </OuterSceneWrapper>

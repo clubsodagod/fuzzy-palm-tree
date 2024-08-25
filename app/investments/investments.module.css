@@ -67,6 +67,25 @@ h6.investSubheader {
     @media screen and (min-width:768px) and (max-width:1024px) {
     }
 }
+
+.visionCtn {
+
+    padding-right: 35%;
+@media screen and (min-width:769px) {
+    text-align: left;
+}
+@media screen and (min-width:768px) and (max-width:1024px) {
+}
+}
+.visionBtmCtn {
+
+        padding-right: 35%;
+    @media screen and (min-width:769px) {
+        text-align: left;
+    }
+    @media screen and (min-width:768px) and (max-width:1024px) {
+    }
+}
 .criteriaCtn {
 
     @media screen and (min-width:769px) {

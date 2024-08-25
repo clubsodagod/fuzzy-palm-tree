@@ -1,9 +1,23 @@
 import { Earth } from '@/public/3d-objects'
 import { Center, Environment, OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
+import { MotionValue, useTransform } from 'framer-motion'
 import React, { Suspense } from 'react'
 
-const InvestmentWorldScene = () => {
+const InvestmentWorldScene:React.FC<{
+    scrollYProgress:MotionValue,
+    scrollY:MotionValue,
+    ctnHeightValue:number,
+}> = ({
+    scrollYProgress,
+    scrollY,
+    ctnHeightValue
+}) => {        
+    
+    const opacity = useTransform(scrollYProgress, [0.25,  0.3], [1,0]);
+    const scale = useTransform(scrollY, [0,    (ctnHeightValue - (ctnHeightValue/2)), ctnHeightValue], [0.0625,0.045125, 0.015525]);
+    const x = useTransform(scrollY, [0,  (ctnHeightValue - (ctnHeightValue/2)),  ctnHeightValue ], [0,17,0]);
+    const y = useTransform(scrollY, [0,  (ctnHeightValue - (ctnHeightValue/2)),  ctnHeightValue ], [0,5,5]);
 
     return (
         
@@ -20,10 +34,14 @@ const InvestmentWorldScene = () => {
                 />
                 <ambientLight />
                 <OrbitControls />
-                <Center>
 
-                    <Earth scale={0.0125} />                  
-                </Center>
+                <group>
+                    <Center>
+
+                        <Earth scale={0.0125} />                  
+                    </Center>                    
+                </group>
+
                             {/* <directionalLight 
                             position={[2,5,2]}
                             intensity={1}
