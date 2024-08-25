@@ -11,15 +11,27 @@ body, html {
   scroll-behavior: smooth;
 }
 body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
-  scroll-behavior: smooth;
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  scroll-snap-type: y proximity; /* Enable vertical snap scrolling */
+  overflow-y: auto;   
+  scroll-behavior:smooth;
+  background-color: black;
+}
+
+.app-ctn {
+  overflow-y: auto;
+  width: 100%;
+  height: 300vh;
+  scroll-snap-type: y proximity; /* Enable vertical snap scrolling */
+  overflow-y: auto;   
+  scroll-behavior:smooth;
+  background-color: black;
 }
 @supports (height: 100dvh) {
   body {
-    height: 100dvh;
+    /* height: 100dvh; */
   }
 }
 h1,h2,h3,h4,h5,h6,p {
@@ -46,11 +58,11 @@ h6 {
 }
 
 
-.app-ctn {
+/* .app-ctn {
   overflow-y: auto;
   width: 100%;
   height: 100dvh;
-  scroll-snap-type: y proximity; /* Enable vertical snap scrolling */
+  scroll-snap-type: y proximity; 
   overflow-y: auto;   
   scroll-behavior:smooth;
   background-color: black;
@@ -60,16 +72,17 @@ h6 {
   .app-ctn {
     height: 100dvh;
   }
-}
+} */
 
 .outerSceneWrapper {
   scroll-snap-align: start;  
-  position: relative;
+  position: absolute;
   width: 100%;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
   pointer-events: all;
+  top: 0;
 }
 .learn-more-btn {
   font-size: 0.75rem;
@@ -117,11 +130,6 @@ div.footer {
 }
 
 /* Home page CSS */
-
-.three-scene {
-  position: absolute;
-  height: 100dvh;
-}
 
 
 section.page-background#home, .page-background#investments {
@@ -237,7 +245,7 @@ h6.hero-h6#blog{
 
 .three-scene {
   height: 100dvh;
-  position: absolute;
+  position: sticky;
   width: 100%;
   pointer-events: none;
 }
@@ -316,3 +324,5 @@ img.blog-card-author-img {
 div.blog-card-bottom-ctn {
   height: 100%;
 }
+
+

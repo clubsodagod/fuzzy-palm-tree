@@ -30,6 +30,21 @@ div.pageWrapper {
     }
 
 }
+h1.investHeader,#approach-page {
+    @media screen and (max-width:769px) {
+        font-size: 2.75rem;
+        line-height: 1.25;
+    }
+
+}
+h6.investSubheader, #approach-page {
+
+    @media screen and (max-width:769px) {
+        font-size: 1.1rem;
+    }
+}
+
+
 h6.investSubheader {
     color: white;
 }
@@ -43,6 +58,50 @@ h6.investSubheader {
     }
 }
 
+.philosophyCtn {
+
+        padding-right: 35%;
+    @media screen and (min-width:769px) {
+        text-align: left;
+    }
+    @media screen and (min-width:768px) and (max-width:1024px) {
+    }
+}
+.criteriaCtn {
+
+    @media screen and (min-width:769px) {
+        text-align: left;
+    }
+    @media screen and (max-width:768px) and (max-width:1024px) {
+    }
+}
+.principlesCtn {
+
+    @media screen and (min-width:769px) {
+        text-align: left;
+    }
+    @media screen and (max-width:768px) and (max-width:1024px) {
+    }
+}
+ul.principles {
+    text-align: left;
+}
+.principleKeyLI {
+    color:white
+}
+
+.fancyLIHeader {
+    color: white;
+}
+
+.marketApproachCtn {
+
+    @media screen and (min-width:769px) {
+        text-align: right;
+    }
+    @media screen and (max-width:768px) and (max-width:1024px) {
+    }
+}
 .txtBtnCtn {
 
     display: flex;
@@ -87,4 +146,8 @@ h6.investSubheader {
     display: flex;
     flex-direction: column;
     gap: 3vh;
+}
+
+#principlesCtnOne {
+    padding-right: 35%;
 }

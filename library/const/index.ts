@@ -1,4 +1,5 @@
 import { NavItem } from "../types/common";
+import { Principles } from "../types/investment";
 
 
 
@@ -151,3 +152,65 @@ export const realEstatePassion:string = "Real estate is my path to wealth, commu
 
 
 export const blogHeroH1:string = "The Daily Davis";
+
+
+
+
+
+// investments
+
+export const riskManagementPrinciples: Principles = [
+    {
+        key: "riskAssessment",
+        value: "We conduct comprehensive risk assessments for every investment, analyzing potential downside scenarios and implementing strategies to mitigate those risks. Our conservative underwriting ensures that investments are capable of weathering market fluctuations."
+    },
+    {
+        key: "diversification",
+        value: "Our portfolio is diversified across various asset classes, property types, and geographic locations. This diversification helps to spread risk and provides a balanced approach to potential market downturns."
+    },
+    {
+        key: "activeManagement",
+        value: "We believe in a hands-on approach to managing our properties. By staying actively involved in the operations and maintenance of our assets, we can quickly address issues, optimize performance, and enhance value."
+    }
+];
+
+export const marketApproachPrinciples: Principles = [
+    {
+        key: "dynamicStrategies",
+        value: "Our investment approach is dynamic and adaptable, allowing us to pivot based on market conditions and emerging trends. We continuously monitor market indicators and economic factors to make informed, data-driven decisions."
+    },
+    {
+        key: "dataDrivenDecisionMaking",
+        value: "We leverage advanced analytics and market research to identify undervalued properties and emerging markets. Our use of data allows us to stay ahead of market trends and spot opportunities before they become widely recognized."
+    },
+    {
+        key: "geographicTargeting",
+        value: "Our investment strategy is geographically targeted, focusing on high-growth areas with strong rental demand and potential for property appreciation. By concentrating on specific markets, we can apply our deep understanding and expertise to maximize returns."
+    }
+];
+
+export const longTermVisionPrinciples: Principles = [
+    {
+        key: "lastingRelationships",
+        value: "We aim to build long-term relationships with our investors, partners, and communities. Our commitment to transparency, integrity, and mutual success underpins every partnership we form."
+    },
+    {
+        key: "sustainableGrowth",
+        value: "Our vision is to achieve sustainable growth by investing in properties that not only provide strong financial returns but also contribute positively to the communities they are in. We strive to create lasting impact and value through every investment."
+    },
+    {
+        key: "innovation",
+        value: "As the market evolves, so do we. We are constantly seeking innovative ways to improve our strategies, leverage new technologies, and adapt to the changing landscape of real estate investing."
+    }
+];
+
+
+
+export const coreInvestmentPrinciples: Principles = [
+    { key: "Capital Preservation", value: "Capital preservation is our priority." },
+    { key: "Value Creation", value: "Value creation through strategic investments." },
+    { key: "Sustainable Growth", value: "Focus on sustainable growth." },
+    { key: "Market Adaptation", value: "Adapting to market changes dynamically." },
+    { key: "Risk Mitigation", value: "Mitigating risk with a diversified portfolio." },
+];
+

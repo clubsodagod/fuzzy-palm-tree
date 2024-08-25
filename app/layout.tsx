@@ -29,8 +29,7 @@ useEffect(() => {
   };
 
   window.addEventListener('resize', setBodyHeight);
-  setBodyHeight(); // Initial call
-  console.log(window.innerHeight);
+  setBodyHeight(); 
   
 
   return () => {
@@ -40,19 +39,16 @@ useEffect(() => {
 
   return (
     <html lang="en">
-      <body className={inter.className}>
 
         <AppRouterCacheProvider options={{key: 'css',  enableCssLayer: true }}>
           <AppContext>
             <ThemeProvider theme={theme}>
-              <Navbar />
               {children}
               {/* <Footer />               */}
             </ThemeProvider>
           </AppContext>
         </AppRouterCacheProvider>        
       
-      </body>
     </html>
   );
 }
