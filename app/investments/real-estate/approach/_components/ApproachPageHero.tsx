@@ -26,10 +26,10 @@ const ApproachPageHero:React.FC<{
 }) => {    
     const criteriaRef = useRef<HTMLDivElement>(null);
     const visionRef = useRef<HTMLDivElement>(null);
-    const opacity = useTransform(scrollY, [0,  (window?.innerHeight * 1),  (window?.innerHeight * 2),2844 ], [1,0.81,0.5,0]);
-    const scale = useTransform(scrollY, [0, (window?.innerHeight * 1), scrollYPro], [0.0625,0.04525,0.03125]);
-    const x = useTransform(scrollY, [0,  (window?.innerHeight * 1),  (window?.innerHeight * 2),2844 ], [0,20,-40,0]);
-    const y = useTransform(scrollY, [0,  (window?.innerHeight * 1),  (window?.innerHeight * 2),2844 ], [0,10,5,0]);
+    // const opacity = useTransform(scrollY, [0,  (window?.innerHeight * 1),  (window?.innerHeight * 2),2844 ], [1,0.81,0.5,0]);
+    // const scale = useTransform(scrollY, [0, (window?.innerHeight * 1), scrollYPro], [0.0625,0.04525,0.03125]);
+    // const x = useTransform(scrollY, [0,  (window?.innerHeight * 1),  (window?.innerHeight * 2),2844 ], [0,20,-40,0]);
+    // const y = useTransform(scrollY, [0,  (window?.innerHeight * 1),  (window?.innerHeight * 2),2844 ], [0,10,5,0]);
 
     
 
@@ -52,7 +52,7 @@ const ApproachPageHero:React.FC<{
             {/* Main View Hero   */}
             <PageWrapper id='approach1' >
                 <motion.div
-                    style={{opacity: opacity}}
+                    
 
                 className={` ${styles.topTextCtn}`}
                 >

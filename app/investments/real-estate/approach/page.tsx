@@ -15,8 +15,8 @@ const Page = () => {
 
     
     useMotionValueEvent(scrollY, "change", (latest) => {
-        console.log(latest, (scrollRef?.current?.offsetHeight! - window.innerHeight  ))
-        setScrollYPro(scrollRef?.current?.offsetHeight! - window.innerHeight  );
+        console.log(latest, (scrollRef?.current?.offsetHeight! - ( window ? window?.innerHeight : 0) ))
+        setScrollYPro(scrollRef?.current?.offsetHeight! - (window ? window?.innerHeight : 0)  );
     })
 
     return (
