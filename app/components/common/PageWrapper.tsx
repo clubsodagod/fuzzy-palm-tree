@@ -22,7 +22,7 @@ const PageWrapper:React.FC<{
         id={id?id:''}
         className={`${styles.pageWrapper} page-wrapper`}
         >
-            
+            {/* name */}
             {children}
         </motion.div>
     )
