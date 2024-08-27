@@ -2,12 +2,19 @@
 
 import { firstName, lastName } from "@/library/const";
 import Image from "next/image";
-import { BlogHero, Footer, HomeHero, InvestmentsHero, ProgrammerHero, AppContainer } from "./components";
-import { useRef } from "react";
-import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { BlogHero, Footer, HomeHero, InvestmentsHero, ProgrammerHero, AppContainer, HomeMainHero, OuterSceneWrapper } from "./components";
+import { useEffect, useRef, useState } from "react";
+import { motion, useAnimate, useMotionValueEvent, useScroll, animate, useAnimationControls } from "framer-motion";
 import React from "react";
 import { HomeScene } from "./components/scenes";
 import styles from './components/home-page/home-page.module.css'
+
+export const gradientVariants = {
+  'home-main': {background: `linear-gradient(to bottom, #323232, #3F3F3F, #1C1C1C)`},
+  'home-programmer': { background: 'linear-gradient(to right, #43cea2, #185a9d, #185a9d)' },
+  'home-investment': { background: 'linear-gradient(to right, #1f4037, #99f2c8, #99f2c8)' },
+  'home-blog': { background: 'linear-gradient(to right, #43cea2, #185a9d, #185a9d)' },
+};
 
 export default function Home() {
 
@@ -17,16 +24,74 @@ export default function Home() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress, scrollY,  } = useScroll({target:scrollRef, offset: ['start end', 'start end']})
 
-  
+
   useMotionValueEvent(scrollY, "change", (latest) => {
-      console.log(latest, (scrollRef?.current?.offsetHeight! ))
-      setScrollYPro(scrollRef?.current?.offsetHeight! );
+      console.log(latest, (scrollRef?.current?.scrollHeight! - (window ? window.innerHeight : 0) ))
+      setScrollYPro(scrollRef?.current?.scrollHeight! - (window ? window.innerHeight : 0) );
   })
 
 
+  const mainRef = useRef<HTMLDivElement>(null);
+  const programmerRef = useRef<HTMLDivElement>(null);
+  const investRef = useRef<HTMLDivElement>(null);
+  const blogRef = useRef<HTMLDivElement>(null);
+
+
+
+
+  const [currentSection, setCurrentSection] = useState<string>('');
+  const controls = useAnimationControls();
+
+  useEffect(() => {
+    const refs = [
+      { ref: mainRef, id: 'main' },
+      { ref: programmerRef, id: 'programmer' },
+      { ref: investRef, id: 'invest' },
+      { ref: blogRef, id: 'blog' }
+    ];
+
+    const observerOptions = {
+      root: null, // Use the viewport as the root
+      rootMargin: '0px',
+      threshold: 0.51, // Trigger when 50% of the element is in view
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          setCurrentSection(id); // Update currentSection to the current ref's id
+          controls.start(id); // Trigger the animation for the current section
+        console.log(entry.target.id);
+        }
+        
+      });
+    }, observerOptions);
+
+    refs.forEach(({ ref }) => {
+      if (ref.current) {
+        observer.observe(ref.current);
+        console.log(ref.current);
+        
+      }
+    });
+
+    return () => {
+      refs.forEach(({ ref }) => {
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
+      });
+    };
+  }, []);
+
+  
   return (
     <AppContainer
     ctnRef={scrollRef}
+    className={``}
+    gradientVariants={gradientVariants}
+    controls={controls}
     >
 
       <div className={`${styles.imgWrapper}`} id='img-maliek_home'>
@@ -52,7 +117,14 @@ export default function Home() {
 
       <HomeScene scrollYProgress={scrollYProgress} scrollY={scrollY} ctnHeightValue={scrollYPro}/>
 
-      <HomeHero scrollYProgress={scrollYProgress} scrollY={scrollY} scrollYPro={scrollYPro} />
+      <OuterSceneWrapper >
+        <HomeMainHero ctnRef={mainRef} />
+        <ProgrammerHero ctnRef={programmerRef} />
+        <InvestmentsHero ctnRef={investRef} />
+        <BlogHero ctnRef={blogRef} />   
+      </OuterSceneWrapper>
+ 
+
 
     </AppContainer>
   );

@@ -1,18 +1,20 @@
 'use client'
 import { AnimatePresence } from 'framer-motion'
-import React from 'react'
+import React, { RefObject } from 'react'
 
 const OuterSceneWrapper:React.FC<{
     children:React.ReactNode,
     id?:string,
+    ctnRef?:RefObject<HTMLDivElement>
 }> = ({
     children,
     id,
+    ctnRef,
 }) => {
     return (
-                <section className={`outerSceneWrapper `} id='home'>  
+                <div ref={ctnRef} className={`outerSceneWrapper `} id='home'>  
                         {children}
-                </section>
+                </div>
     )
 }
 

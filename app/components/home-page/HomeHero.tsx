@@ -1,6 +1,6 @@
 'use client'
 import { firstName, lastName } from '@/library/const'
-import React from 'react'
+import React, { RefObject, useRef } from 'react'
 import { HomeScene } from '../scenes'
 import ExpandCircleDownOutlinedIcon from '@mui/icons-material/ExpandCircleDownOutlined';
 import Image from 'next/image'
@@ -13,24 +13,27 @@ import { BlogHero, HomeMainHero, InvestmentsHero, ProgrammerHero } from '..';
 const HomeHero:React.FC<{
     scrollYProgress:MotionValue,
     scrollY:MotionValue,
-    scrollYPro:number
+    scrollYPro:number,
+    ctnRef: RefObject<HTMLDivElement>,
 }> = ({
     scrollYProgress,
     scrollY,
     scrollYPro,
+    ctnRef,
 }) => {  
 
 
-    const scale = useTransform(scrollYProgress,[0,0.2], [1,0]);
-    const x = useTransform(scrollYProgress,[0,0.2],[0,25])
-    const opacity = useTransform(scrollYProgress,[0,0.2], [1,0])
+    const mainRef = useRef<HTMLDivElement>(null);
+    const programmerRef = useRef<HTMLDivElement>(null);
+    const investRef = useRef<HTMLDivElement>(null);
+    const blogRef = useRef<HTMLDivElement>(null);
 
     return (
-            <OuterSceneWrapper>    
-                    <HomeMainHero />
-                    <ProgrammerHero />
-                    <InvestmentsHero />
-                    <BlogHero />    
+            <OuterSceneWrapper ctnRef={ctnRef}>    
+                    <HomeMainHero ctnRef={mainRef} />
+                    <ProgrammerHero ctnRef={programmerRef} />
+                    <InvestmentsHero ctnRef={investRef} />
+                    <BlogHero ctnRef={blogRef} />    
             </OuterSceneWrapper>
 
     )

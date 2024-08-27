@@ -1,14 +1,19 @@
 import { firstName, lastName } from '@/library/const'
 import { motion } from 'framer-motion'
-import React from 'react'
+import React, { RefObject } from 'react'
 import PageWrapper from '../common/PageWrapper'
 import styles from './home-page.module.css';
 import ExpandCircleDownOutlinedIcon from '@mui/icons-material/ExpandCircleDownOutlined';
 
-const MainHomeHero = () => {
+const MainHomeHero:React.FC<{
+    ctnRef:RefObject<HTMLDivElement>,
+}> = ({
+    ctnRef,
+}) => {
     return (
         <PageWrapper
-        id='home'
+        id='home-main'
+        ctnRef={ctnRef}
         >
 
                 <motion.div className={`${styles.topTextCtn} `} id='home' >

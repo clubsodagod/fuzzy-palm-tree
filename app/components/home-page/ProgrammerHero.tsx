@@ -1,6 +1,6 @@
 'use client'
 import { firstName, lastName, missionStatement } from '@/library/const'
-import React from 'react'
+import React, { RefObject } from 'react'
 import { AnimatePresence, motion } from "framer-motion";
 import ProgrammerScene from '../scenes/ProgrammerScene';
 import styles from './home-page.module.css';
@@ -8,9 +8,16 @@ import { Button } from '@mui/material';
 import OuterSceneWrapper from '../common/OuterSceneWrapper';
 import PageWrapper from '../common/PageWrapper';
 
-const ProgrammerHero = () => {
+const ProgrammerHero:React.FC<{
+    ctnRef:RefObject<HTMLDivElement>,
+}> = ({
+    ctnRef,
+}) => {
+
     return (
-                <PageWrapper id='programmer' key={'something differet'}>
+                <PageWrapper 
+                ctnRef={ctnRef}
+                id='home-programmer' key={'something different'}>
 
             {/* Top Text box */}
                     <motion.div

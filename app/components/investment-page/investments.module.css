@@ -1,7 +1,8 @@
 
 .pageWrapper {
+    scroll-snap-align: start;  
     flex-grow: 1;
-    min-height: 100vh;
+    min-height: 100dvh;
     width: 100%;
     margin: 0;
     display: flex;
@@ -10,7 +11,6 @@
     padding-block: 10vh 2.5vh;
     justify-content: space-between;
     overflow-y: hidden;
-
     @media screen and (min-width:769px) {
         text-align: center;
     }
@@ -24,6 +24,7 @@
     }
 
 }
+
 
 
 .investHeader {

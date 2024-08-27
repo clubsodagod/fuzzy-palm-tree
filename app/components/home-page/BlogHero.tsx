@@ -1,16 +1,23 @@
 "use client"
 import { blogHeroH1 } from '@/library/const'
 import { AnimatePresence, motion } from 'framer-motion'
-import React from 'react'
+import React, { RefObject } from 'react'
 import { BlogScene, HomeScene } from '../scenes'
 import styles from './home-page.module.css'
 import { Button } from '@mui/material'
 import OuterSceneWrapper from '../common/OuterSceneWrapper'
 import PageWrapper from '../common/PageWrapper'
 
-const BlogHero = () => {
+const BlogHero:React.FC<{
+    ctnRef:RefObject<HTMLDivElement>,
+}> = ({
+    ctnRef,
+}) => {
+
     return (
-            <PageWrapper id='blog'>
+            <PageWrapper id='home-blog'
+            ctnRef={ctnRef}
+            >
             
                     
                     <motion.div className={`${styles.topTextCtn} right`} id='blog' >

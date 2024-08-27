@@ -71,8 +71,8 @@ h6.investSubheader {
 }
 
 .ftImg {
-    width: 150%;
     object-fit: cover;
+    height: 80dvh;
     @media screen and (min-width:769px) and (max-width:1024px) {
         width:66%
     }

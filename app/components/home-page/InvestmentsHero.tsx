@@ -1,7 +1,7 @@
 'use client'
 
 import { firstName, lastName, navItems } from '@/library/const'
-import React, { useState } from 'react'
+import React, { RefObject, useState } from 'react'
 import { InvestmentScene } from '../scenes';
 import { AnimatePresence, motion } from 'framer-motion'
 import { Button } from '@mui/material';
@@ -9,13 +9,19 @@ import styles from './home-page.module.css'
 import OuterSceneWrapper from '../common/OuterSceneWrapper';
 import PageWrapper from '../common/PageWrapper';
 
-const InvestmentsHero = () => {
+const InvestmentsHero:React.FC<{
+    ctnRef:RefObject<HTMLDivElement>,
+}> = ({
+    ctnRef,
+}) => {
+
     const [index, setIndex] = useState<number>(0);
 
 
     return (
                     <PageWrapper 
-                    id='investments-hero'
+                    ctnRef={ctnRef}
+                    id='home-investment'
                     >
                         
 

@@ -8,17 +8,21 @@ import { motion, useTransform, useScroll } from 'framer-motion'
 const PageWrapper:React.FC<{
     children:React.ReactNode,
     id?:string,
+    ctnRef?:RefObject<HTMLDivElement>
 }> = ({
     children,
     id,
+    ctnRef
 }) => {
 
 
     return (
         <motion.div
-        id={id}
-        className={`${styles.pageWrapper}`}
+        ref={ctnRef}
+        id={id?id:''}
+        className={`${styles.pageWrapper} page-wrapper`}
         >
+            
             {children}
         </motion.div>
     )

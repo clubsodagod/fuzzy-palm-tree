@@ -1,18 +1,43 @@
 'use client'
-import React, { RefObject } from 'react';
+import React, { RefObject, useEffect } from 'react';
 import Footer from './Footer';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, AnimationControls, Variants } from 'framer-motion';
 import { Navbar } from '..';
+import { motion } from 'framer-motion';
 
 
-const AppContainer:React.FC<{children:React.ReactNode, ctnRef:RefObject<HTMLDivElement>}> = ({children, ctnRef}) => {
+const AppContainer:React.FC<{
+    children:React.ReactNode, 
+    ctnRef?:RefObject<HTMLDivElement>, 
+    className?: string,
+    animate?: Animation,
+    controls?: AnimationControls,
+    gradientVariants?: Variants,
+    
+}> = ({
+    children, 
+    ctnRef,
+    className,
+    animate,
+    controls,
+    gradientVariants,
+}) => {
+
+
     return (
                 <AnimatePresence>
-                <body  className="app-ctn">
+                <body >
                     <Navbar/>
-                    <div ref={ctnRef} className={`app-ctn`}>
+                    <motion.div 
+                    className={`app-ctn ${className}`} 
+                    ref={ctnRef}
+                    initial={gradientVariants?.main as any}
+                    animate={controls}
+                    variants={gradientVariants}
+                    transition={{ duration: 2 }}
+                    >
                         {children} 
-                    </div>
+                    </motion.div>
                         
                 </body>       
                 </AnimatePresence>  
