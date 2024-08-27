@@ -1,10 +1,14 @@
-import React from 'react'
+'use client'
+
+import React, { useRef } from 'react'
 import { AppContainer } from '../components'
 import { BioHero, CoreValues, MyMission } from './_components'
 
-const page = () => {
+const Page = () => {
+    
+    const ctnRef = useRef<HTMLDivElement>(null);
     return (
-        <AppContainer>
+        <AppContainer ctnRef={ctnRef}>
             <BioHero />
             <MyMission />
             <CoreValues />
@@ -12,4 +16,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

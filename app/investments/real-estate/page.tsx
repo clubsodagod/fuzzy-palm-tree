@@ -1,11 +1,13 @@
 'use client'
 import { AppContainer } from '@/app/components'
 import { RealEstateAvailable, RealEstateCriteria, RealEstateCTA, RealEstatePageHero, RealEstatePosts } from '@/app/components/investment-page'
-import React from 'react'
+import React, { useRef } from 'react'
 
-const page = () => {
+const Page = () => {
+    
+    const ctnRef = useRef<HTMLDivElement>(null);
     return (
-        <AppContainer>
+        <AppContainer ctnRef={ctnRef}>
             <RealEstatePageHero />
             <RealEstateCriteria />
             <RealEstateAvailable />
@@ -15,4 +17,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page
