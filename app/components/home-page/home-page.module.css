@@ -20,14 +20,15 @@
     }
 
 }
-h1.investHeader,#approach-page {
+.investHeaderMain {
+    color: white;
     @media screen and (max-width:769px) {
-        font-size: 2.75rem;
-        line-height: 1.25;
+        font-size: 4rem;
     }
 
 }
-h6.investSubheader, #approach-page {
+
+h6.investSubheader{
 
     @media screen and (max-width:769px) {
         font-size: 1.1rem;

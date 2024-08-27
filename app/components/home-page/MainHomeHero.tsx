@@ -18,7 +18,7 @@ const MainHomeHero:React.FC<{
 
                 <motion.div className={`${styles.topTextCtn} `} id='home' >
                     <motion.h1 
-                        className={`${styles.investHeader} `} 
+                        className={`${styles.investHeaderMain} `} 
                         id='home'
                         initial={{
                             opacity: 0,

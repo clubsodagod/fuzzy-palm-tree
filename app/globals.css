@@ -54,36 +54,11 @@ body {
 
 
 
-/* .page-wrapper#home {
-  background-image: linear-gradient(to top, #e6b980 0%, #eacda3 100%);
-  background-blend-mode: multiply,multiply,saturation!important;
-}
 
-.page-wrapper#investments-hero {
-  background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%)!important;
-  background-blend-mode: soft-light,screen!important;
-}
-
-.page-wrapper#programmer {
-  background-image: linear-gradient(to right, #434343 0%, black 100%);
-  background-blend-mode: soft-light,screen!important;
-}
-
-.page-wrapper#blog {
-  background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
-} */
 .page-wrapper {
-  z-index: -5;
   scroll-snap-align: start;
 }
-.page-wrapper::after {
-  z-index: -2; /* Base z-index for the pseudo-element */
-}
 
-.page-wrapper::after * {
-  z-index: 1; /* Increase z-index only for children */
-  position: relative; /* Ensure positioning is relative to adjust z-index */
-}
 
 .three-scene::after {
   z-index: 8;
@@ -128,7 +103,7 @@ h6 {
   height: 100dvh;
   display: flex;
   flex-direction: column;
-  pointer-events: all;
+  pointer-events: none;
   top: 0;
   z-index: 0;
 }
