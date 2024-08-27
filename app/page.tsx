@@ -9,7 +9,7 @@ import React from "react";
 import { HomeScene } from "./components/scenes";
 import styles from './components/home-page/home-page.module.css'
 
-export const gradientVariants = {
+const gradientVariants = {
   'home-main': {background: `linear-gradient(to bottom, #323232, #3F3F3F, #1C1C1C)`,},
   'home-programmer': { background: 'linear-gradient(to right, #43cea2, #185a9d, #185a9d)' },
   'home-investment': { background: 'linear-gradient(to right, #1f4037, #99f2c8, #99f2c8)' },
