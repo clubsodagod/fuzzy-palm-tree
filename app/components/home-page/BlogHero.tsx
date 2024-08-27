@@ -10,17 +10,12 @@ import PageWrapper from '../common/PageWrapper'
 
 const BlogHero = () => {
     return (
-        
-        <OuterSceneWrapper id='blog'>
-
-            <BlogScene />
-            
             <PageWrapper id='blog'>
             
                     
-                    <motion.div className='text-box' id='blog' >
+                    <motion.div className={`${styles.topTextCtn} right`} id='blog' >
                         <motion.h1 
-                                className={`${styles.heroH3}`}
+                                className={`${styles.heroH3} right`}
                                 id='blog'
                             initial={{opacity: 0}}
                             whileInView={{opacity:1}}
@@ -29,7 +24,7 @@ const BlogHero = () => {
                         </motion.h1>                  
                     </motion.div>
                     
-                    <motion.div className={`${styles.heroP_Ctn}`} id='investments'>
+                    <motion.div className={`${styles.heroP_Ctn} right`} id='investments'>
                         <motion.p 
                         className={`${styles.heroP}`} 
                         id='blog'
@@ -40,7 +35,7 @@ const BlogHero = () => {
                         </motion.p>  
 
                         <motion.div
-                        className={`${styles.btnCtn}`}
+                        className={`${styles.btnCtn} rightBtn`}
                         id='home-investment-hero'
                         >
 
@@ -71,7 +66,6 @@ const BlogHero = () => {
 
 
             </PageWrapper>
-        </OuterSceneWrapper>
 
     )
 }

@@ -13,6 +13,7 @@ import React from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 import { useFrame } from '@react-three/fiber'
+import { motion } from 'framer-motion-3d'
 
 type ActionName = 'Animation'
 

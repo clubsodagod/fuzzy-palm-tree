@@ -7,6 +7,7 @@ export { default as InvestmentsHero } from "./home-page/InvestmentsHero";
 export { default as ProgrammerHero } from "./home-page/ProgrammerHero";
 export { default as BlogHero } from "./home-page/BlogHero";
 export { default as VisionHero } from "./home-page/VisionHero";
+export { default as HomeMainHero } from './home-page/MainHomeHero';
 
 
 

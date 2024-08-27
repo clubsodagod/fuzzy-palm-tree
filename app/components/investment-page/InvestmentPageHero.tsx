@@ -24,7 +24,7 @@ const InvestmentPageHero = () => {
                             Investments
                         </h1>
                         <h6 className={`${styles.investSubheader}`}>
-                            It&apos;s  more than money. Its&apos;s Life.
+                            It&apos;s  more than money. It&apos;s Life.
                         </h6>
                     </div>
 

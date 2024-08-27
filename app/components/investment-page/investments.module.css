@@ -1,7 +1,7 @@
 
 .pageWrapper {
     flex-grow: 1;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     margin: 0;
     display: flex;
@@ -39,6 +39,8 @@ h6.investSubheader {
 
 .topTextCtn {
 
+    text-align: right;
+    justify-content: flex-end;
     @media screen and (min-width:769px) {
         text-align: center;
     }
@@ -57,11 +59,13 @@ h6.investSubheader {
 
     display: flex;
     flex-direction: column;
+    text-align: right;
+    justify-content: flex-end;
 
     @media screen and (min-width:769px) {
         text-align: center;
     }
-    @media screen and (min-width:769px) and (max-width:1024px) {
+    @media screen and (min-width:769px)  {
     }
 }
 
@@ -72,6 +76,8 @@ h6.investSubheader {
     gap: 6vw;
     margin-top: 3vh;
     z-index: 5;
+    text-align: right;
+    justify-content: flex-end;
 
     @media screen and (min-width:769px) {
         justify-content: center;

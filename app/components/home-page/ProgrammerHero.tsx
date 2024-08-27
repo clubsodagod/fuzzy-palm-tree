@@ -10,28 +10,21 @@ import PageWrapper from '../common/PageWrapper';
 
 const ProgrammerHero = () => {
     return (
-        <OuterSceneWrapper id='programmer'>
-
-
-                {/* ThreeJS Scene */}
-                <ProgrammerScene />
-
-            {/* Readable Information */}
                 <PageWrapper id='programmer' key={'something differet'}>
 
             {/* Top Text box */}
                     <motion.div
-                    className='text-box'
+                    className={`${styles.topTextCtn} right`}
                     id='home' 
                     key={2}
                     >
                         <motion.h3
-                        className={`${styles.heroH3}`}
+                        className={`${styles.heroH3} right`}
                         >
                             The Developer
                         </motion.h3>
                         <motion.h6 
-                        className={`${styles.heroH6}`} 
+                        className={`${styles.heroH6} right`} 
                         id='programmer'
                         >
                             Programming is art. Code is my medium.
@@ -40,13 +33,13 @@ const ProgrammerHero = () => {
 
 
             {/* Bottom Text Box */}
-                    <motion.div className={`${styles.heroP_Ctn}`} id='investments'>
+                    <motion.div className={`${styles.heroP_Ctn} right`} id='investments'>
 
-                        <motion.p className={`${styles.heroP}`} id='programmer'>
+                        <motion.p className={`${styles.heroP} right`} id='programmer'>
                             {missionStatement}
                         </motion.p>
                         <motion.div
-                        className={`${styles.btnCtn}`} id='programmer'
+                        className={`${styles.btnCtn} rightBtn`} id='programmer'
                         >
 
                                 <Button
@@ -70,8 +63,6 @@ const ProgrammerHero = () => {
                     </motion.div>
 
                 </PageWrapper>
-
-        </OuterSceneWrapper>
     )
 }
 

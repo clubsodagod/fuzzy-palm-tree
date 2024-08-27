@@ -13,7 +13,46 @@
 
 
 
+.investHeader {
+    color: white;
+    @media screen and (max-width:769px) {
+        font-size: 3rem;
+    }
+
+}
+h1.investHeader,#approach-page {
+    @media screen and (max-width:769px) {
+        font-size: 2.75rem;
+        line-height: 1.25;
+    }
+
+}
+h6.investSubheader, #approach-page {
+
+    @media screen and (max-width:769px) {
+        font-size: 1.1rem;
+    }
+}
+
+
+h6.investSubheader {
+    color: white;
+}
 /* home hero */
+
+
+.btnCtn {
+    display: flex;
+    flex-direction: row;
+    gap: 6vw;
+    margin-top: 3vh;
+    z-index: 5;
+    color: white;
+
+    @media screen and (min-width:769px) {
+        justify-content: center;
+    }
+}
 
 
 .imgWrapper {
@@ -23,23 +62,22 @@
     z-index: 0;
     padding: 0;
     position: absolute;
-    bottom: 0;
     justify-content: center;
+    height: 100vh;
+    align-items: end;
 
-    @media screen and (min-width:768px) and (max-width:1024px) {
-    }
-    @media screen and (min-width:1024px) {
+    @media screen and (min-width:769px){
     }
 }
 
 .ftImg {
-    width: 70%;
+    width: 150%;
     object-fit: cover;
     @media screen and (min-width:769px) and (max-width:1024px) {
         width:66%
     }
     @media screen and (min-width:1024px) {
-        width: 25%;
+        width: 66%;
     }
 }
 
@@ -132,3 +170,12 @@
     margin: 0;
 }  
 
+
+.topTextCtn {
+
+    @media screen and (min-width:769px) {
+        text-align: center;
+    }
+    @media screen and (max-width:768px) and (max-width:1024px) {
+    }
+}

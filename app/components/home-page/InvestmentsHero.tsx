@@ -14,12 +14,6 @@ const InvestmentsHero = () => {
 
 
     return (
-        
-            <OuterSceneWrapper id='investments-hero'>
-                    <motion.section className='three-scene' id='investments'>
-                        <InvestmentScene />
-                    </motion.section>
-
                     <PageWrapper 
                     id='investments-hero'
                     >
@@ -83,9 +77,7 @@ const InvestmentsHero = () => {
                         </motion.div>
 
 
-                    </PageWrapper>                  
-            </OuterSceneWrapper>
-
+                    </PageWrapper>          
     )
 }
 

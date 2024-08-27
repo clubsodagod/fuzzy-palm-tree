@@ -336,8 +336,9 @@ div.blog-card-bottom-ctn {
   justify-content:flex-start !important;
 }
 .right {
-  text-align: right;
-  justify-content:end;
+  
+  text-align: right !important;
+  justify-content:end !important;
 }
 .rightBtn {
   text-align: right !important;
