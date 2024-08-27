@@ -66,7 +66,7 @@ export default function Home() {
     const observerOptions = {
       root: null, // Use the viewport as the root
       rootMargin: '0px',
-      threshold: 0.51, // Trigger when 50% of the element is in view
+      threshold: 0.75, // Trigger when 50% of the element is in view
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -75,17 +75,11 @@ export default function Home() {
           const id = entry.target.id;
           setCurrentSection(id); // Update currentSection to the current ref's id
           controls.start(id); // Trigger the animation for the current section
+          snapToTop(entry.target);
         // console.log(entry.target.id);
         }
         
-          
-        // Check distance from top and snap to top if close enough
-        if ( entry.boundingClientRect.top <= 100 ) {
-          if(entry.boundingClientRect.top >= -100)
-          console.log(entry.boundingClientRect.top);
-          
-          snapToTop(entry.target);
-        }
+
       });
     }, observerOptions);
 

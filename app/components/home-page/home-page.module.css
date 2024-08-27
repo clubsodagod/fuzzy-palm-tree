@@ -22,6 +22,7 @@
 }
 .investHeaderMain {
     color: white;
+    font-size: 4rem;
     @media screen and (max-width:769px) {
         font-size: 4rem;
     }

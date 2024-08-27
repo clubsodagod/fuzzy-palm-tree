@@ -35,7 +35,7 @@ const MainHomeHero:React.FC<{
                         {firstName.toUpperCase()} {lastName.toUpperCase()}
                     </motion.h1>
                     <motion.h6
-                        className={`hero-h6 ${styles.investSubheader}`}  
+                        className={`${styles.investSubheader}`}  
                         id='home'
                         initial={{
                             opacity: 0,
