@@ -10,7 +10,7 @@ import { HomeScene } from "./components/scenes";
 import styles from './components/home-page/home-page.module.css'
 
 export const gradientVariants = {
-  'home-main': {background: `linear-gradient(to bottom, #323232, #3F3F3F, #1C1C1C)`},
+  'home-main': {background: `linear-gradient(to bottom, #323232, #3F3F3F, #1C1C1C)`,},
   'home-programmer': { background: 'linear-gradient(to right, #43cea2, #185a9d, #185a9d)' },
   'home-investment': { background: 'linear-gradient(to right, #1f4037, #99f2c8, #99f2c8)' },
   'home-blog': { background: 'linear-gradient(to right, #43cea2, #185a9d, #185a9d)' },
@@ -21,8 +21,10 @@ export default function Home() {
   let yProgress:number = 0
   const [scrollYPro, setScrollYPro] = React.useState<number>(yProgress)
 
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress, scrollY,  } = useScroll({target:scrollRef, offset: ['start end', 'start end']})
+  let scrollRef = useRef<HTMLDivElement>(null);
+  let outerSceneRef = useRef<HTMLDivElement>(null)!;
+
+  const { scrollYProgress, scrollY,  } = useScroll({target:scrollRef, offset: ['start end', 'end start']})
 
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -39,8 +41,19 @@ export default function Home() {
 
 
 
+
   const [currentSection, setCurrentSection] = useState<string>('');
   const controls = useAnimationControls();
+
+  const syncScroll = (sourceDiv: HTMLDivElement, targetDiv: HTMLDivElement) => {
+    
+    targetDiv.scrollTop = sourceDiv.scrollTop;
+  };
+
+  const snapToTop = (element: Element) => {
+    element.scrollIntoView({ behavior:"smooth", block: 'start' });
+  };
+
 
   useEffect(() => {
     const refs = [
@@ -62,16 +75,23 @@ export default function Home() {
           const id = entry.target.id;
           setCurrentSection(id); // Update currentSection to the current ref's id
           controls.start(id); // Trigger the animation for the current section
-        console.log(entry.target.id);
+        // console.log(entry.target.id);
         }
         
+          
+        // Check distance from top and snap to top if close enough
+        if ( entry.boundingClientRect.top <= 100 ) {
+          if(entry.boundingClientRect.top >= -100)
+          console.log(entry.boundingClientRect.top);
+          
+          snapToTop(entry.target);
+        }
       });
     }, observerOptions);
 
     refs.forEach(({ ref }) => {
       if (ref.current) {
         observer.observe(ref.current);
-        console.log(ref.current);
         
       }
     });
@@ -83,15 +103,17 @@ export default function Home() {
         }
       });
     };
-  }, []);
+  }, [controls]);
 
-  
+
+
   return (
     <AppContainer
     ctnRef={scrollRef}
     className={``}
     gradientVariants={gradientVariants}
     controls={controls}
+    id="home-page-app-ctn"
     >
 
       <div className={`${styles.imgWrapper}`} id='img-maliek_home'>
@@ -117,12 +139,12 @@ export default function Home() {
 
       <HomeScene scrollYProgress={scrollYProgress} scrollY={scrollY} ctnHeightValue={scrollYPro}/>
 
-      <OuterSceneWrapper >
+      {/* <OuterSceneWrapper ctnRef={outerSceneRef} id="home-page-outer-scene-wrapper"> */}
         <HomeMainHero ctnRef={mainRef} />
         <ProgrammerHero ctnRef={programmerRef} />
         <InvestmentsHero ctnRef={investRef} />
         <BlogHero ctnRef={blogRef} />   
-      </OuterSceneWrapper>
+      {/* </OuterSceneWrapper> */}
  
 
 

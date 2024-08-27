@@ -13,7 +13,7 @@ const AppContainer:React.FC<{
     animate?: Animation,
     controls?: AnimationControls,
     gradientVariants?: Variants,
-    
+    id?:string
 }> = ({
     children, 
     ctnRef,
@@ -21,6 +21,7 @@ const AppContainer:React.FC<{
     animate,
     controls,
     gradientVariants,
+    id
 }) => {
 
 
@@ -35,6 +36,10 @@ const AppContainer:React.FC<{
                     animate={controls}
                     variants={gradientVariants}
                     transition={{ duration: 2 }}
+                    id={id}
+                    style={{
+                        animation: 'gradient 10s ease infinite'
+                    }}
                     >
                         {children} 
                     </motion.div>

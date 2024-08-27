@@ -12,7 +12,7 @@ const OuterSceneWrapper:React.FC<{
     ctnRef,
 }) => {
     return (
-                <div ref={ctnRef} className={`outerSceneWrapper `} id='home'>  
+                <div ref={ctnRef} className={`outerSceneWrapper `} id={id}>  
                         {children}
                 </div>
     )
