@@ -13,59 +13,14 @@ body, html {
 body {
   overflow-y: auto;
   width: 100%;
+  height: 100dvh;
   scroll-snap-type: y proximity; /* Enable vertical snap scrolling */
   overflow-y: auto;   
   scroll-behavior:smooth;
   /* background-color: black; */
   overflow-x: hidden;
 }
-/* Keyframes for gradient animation */
 
-@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
-
-.app-ctn {
-  scroll-snap-type: y proximity; /* Enable vertical snap scrolling */
-  overflow-y: auto;   
-  scroll-behavior:smooth;
-  position: absolute;
-  width: 100%;
-  height: 400vh;
-  display: flex;
-  flex-direction: column;
-  pointer-events: all;
-  top: 0;
-  z-index: 0;
-  background-size: 400% 400%; /* To create smooth transition effect */
-  animation: gradient 10s ease infinite;
-}
-
-
-
-
-
-
-
-.page-wrapper {
-  scroll-snap-align: start;
-}
-
-
-.three-scene::after {
-  z-index: 8;
-}
-.three-scene::after * {
-  z-index: 8;
-}
 
 
 h1,h2,h3,h4,h5,h6,p {
@@ -93,20 +48,105 @@ h6 {
 
 
 
+/* Keyframes for gradient animation */
 
-.outerSceneWrapper {
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+@keyframes animate-main-bg {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+@keyframes animate-approach-bg {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+@keyframes animate-area-bg {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+
+
+
+
+.app-ctn {
+  /* background-color: #000; */
   scroll-snap-type: y proximity; /* Enable vertical snap scrolling */
   overflow-y: auto;   
   scroll-behavior:smooth;
   position: absolute;
   width: 100%;
-  height: 100dvh;
+  height: auto;
   display: flex;
   flex-direction: column;
-  pointer-events: none;
+  pointer-events: all;
+  /* top: -100dvh; */
+  z-index: -1;
+  /* background-size: 400% 400%; To create smooth transition effect */
+  animation: gradient 10s ease infinite;
+}
+
+
+
+
+
+/* 
+.three-scene::before {
+  z-index: 8;
+}
+.three-scene::before * {
+  z-index: 8;
+} */
+
+
+
+
+.outerSceneWrapper {
+  scroll-snap-type: y proximity; /* Enable vertical snap scrolling */
+  overflow-y: auto;   
+  scroll-behavior:smooth;
+  /* position: fixed; */
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
   top: 0;
   z-index: 0;
 }
+
+
 .learn-more-btn {
   font-size: 0.75rem;
   line-height: 2;
@@ -155,76 +195,6 @@ div.footer {
 /* Home page CSS */
 
 
-section.page-background#home, .page-background#investments {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  background: #000;
-  
-}
-
-
-
-
-.img-wrapper#img-maliek_home{
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  display: flex;
-  flex-direction: row;
-  z-index: 0;
-
-  @media screen and (min-width:768px) and (max-width:1024px) {
-    justify-content: center;
-    align-items: center;
-  }
-  @media screen and (min-width:1024px) {
-    justify-content: center;
-    align-items: center;
-  }
-}
-
-/* Investments Hero & Page */
-
-
-
-
-.hero-h3#investments {
-  font-size: 4rem;
-  z-index: 1;
-  color: white;
-
-  @media screen and (min-width: 768px) and (max-width: 1024px) {
-    text-align: center;
-  }
-}
-
-.hero-h6#investments {
-  color: white;
-
-  @media screen and (min-width: 768px) and (max-width: 1024px) {
-    text-align: center;
-  }
-}
-
-.hero-p-btn-ctn#investments {
-
-  @media screen and (min-width: 768px) and (max-width: 1024px) {
-    text-align: center;
-    margin-bottom: 15vh;
-    padding-inline: 17.5vw;
-  }
-}
-
-.hero-p#investments {
-  color:white;
-
-  @media screen and (min-width: 768px) and (max-width: 1024px) {
-    text-align: center;
-  }
-}
 
 
 
@@ -233,24 +203,14 @@ section.page-background#home, .page-background#investments {
 
 
 
-/* Blog Hero &  Page */
-
-h1.hero-h1#blog{
-  color: white;
-  line-height: 0.9;
-}
-h6.hero-h6#blog{
-  color: white;
-  margin-top: 2vh;
-  /* line-height: 1; */
-}
 
 
-.three-scene {
+.three-scene::before {
   height: 100dvh;
-  position: sticky;
   width: 100%;
-  pointer-events: none;
+  /* pointer-events: none; */
+  position: fixed;
+  top: 0;
 }
 
 
@@ -347,4 +307,26 @@ div.blog-card-bottom-ctn {
   text-align: right !important;
   display: flex;
   justify-content:end !important;
+}
+
+
+
+
+/* background gradients and animation css */
+
+
+.investments-main-gradient, 
+.home-main-gradient, 
+programmer-main-gradient, 
+blog-main-gradient, 
+about-main-gradient, 
+contact-main-gradient {
+  background: linear-gradient(to bottom, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to top, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%);
+  background-blend-mode: multiply;
+  animation: gradient 10s infinite   alternate ;
+}
+
+.investment-gradient-next {
+  background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+  animation: gradient 10s infinite   alternate ;
 }

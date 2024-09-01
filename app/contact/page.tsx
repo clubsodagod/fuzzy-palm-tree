@@ -1,9 +1,17 @@
-import React from 'react'
+'use client'
 
-const page = () => {
+
+import React, { useRef } from 'react'
+import { AppContainer } from '../components';
+
+const ContactPage = () => {
+    
+    const ctnRef = useRef<HTMLDivElement>(null);
     return (
-        <div>page</div>
+        <AppContainer ctnRef={ctnRef}>
+            Contact Page
+        </AppContainer>
     )
 }
 
-export default page
+export default ContactPage

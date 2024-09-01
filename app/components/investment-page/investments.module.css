@@ -1,8 +1,10 @@
 
 .pageWrapper {
+    /* position: relative;
+    top: -100dvh; */
     scroll-snap-align: start;  
     flex-grow: 1;
-    min-height: 100vh;
+    min-height: 100dvh;
     width: 100%;
     margin: 0;
     display: flex;
@@ -11,13 +13,16 @@
     padding-block: 10vh 2.5vh;
     justify-content: space-between;
     overflow-y: hidden;
+    background-size: 100% 100%;
+    /* background-color: black; */
+    
     @media screen and (min-width:769px) {
         text-align: center;
     }
 
     @media screen and (min-width:769px) and (max-width:1024px) {
-        padding-inline: 20vw;
-        padding-block: 20vh;
+        padding-inline: 6vw;
+        padding-block: 10vh 0;
     }
     @media screen and (min-width:1025px) {
         padding-block: 10vh ;

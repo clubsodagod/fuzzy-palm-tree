@@ -5,12 +5,18 @@ export interface ScrollContainerData {
 }
 
 export interface ScrollContextProps {
-    scrollX: number;
-    scrollY: number;
-    setScrollX: (value: number) => void;
-    setScrollY: (value: number) => void;
-    scrollContainers: {
-        [key: string]: ScrollContainerData; // Key is a unique identifier, not an index
-    };
-    setContainerRef: (ref: HTMLDivElement | null, id: string) => void; // Function to dynamically set refs using unique id
+    scrollX: number; // Represents the X-axis scroll position
+    scrollY: number; // Represents the Y-axis scroll position
+    scrollYPro: number; // Represents a processed value for Y-axis scrolling
+    setScrollYPro: (value: number) => void; // Function to update scrollYPro
+    windowScrollHeight: number; // Represents a processed value for Y-axis scrolling
+    setWindowScrollHeight: (value: number) => void; // Function to update scrollYPro
+    halfCtn:number,
+    qtrCtn:number,
+    threeQtrCtn:number,
+    threeEighthsCtn:number,
+    eighthCtn:number,
+    fiveEightsCtn:number,
+    sevenEightsCtn:number
 }
+

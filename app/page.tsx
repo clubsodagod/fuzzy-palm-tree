@@ -1,54 +1,44 @@
 'use client'
-
-import { firstName, lastName } from "@/library/const";
-import Image from "next/image";
-import { BlogHero, Footer, HomeHero, InvestmentsHero, ProgrammerHero, AppContainer, HomeMainHero, OuterSceneWrapper } from "./components";
+import { BlogHero, InvestmentsHero, ProgrammerHero, AppContainer, HomeMainHero, } from "./components";
 import { useEffect, useRef, useState } from "react";
-import { motion, useAnimate, useMotionValueEvent, useScroll, animate, useAnimationControls } from "framer-motion";
+import { useMotionValueEvent, useScroll, useAnimationControls } from "framer-motion";
 import React from "react";
 import { HomeScene } from "./components/scenes";
-import styles from './components/home-page/home-page.module.css'
+import { useScroll as scroll } from "./context/sub-context/ScrollContext";
+import { homePage as gradientVariants } from "@/library/const/animation-gradients";
 
-const gradientVariants = {
-  'home-main': {background: `linear-gradient(to bottom, #323232, #3F3F3F, #1C1C1C)`,},
-  'home-programmer': { background: 'linear-gradient(to right, #43cea2, #185a9d, #185a9d)' },
-  'home-investment': { background: 'linear-gradient(to right, #1f4037, #99f2c8, #99f2c8)' },
-  'home-blog': { background: 'linear-gradient(to right, #43cea2, #185a9d, #185a9d)' },
-};
 
 export default function Home() {
 
-  let yProgress:number = 0
-  const [scrollYPro, setScrollYPro] = React.useState<number>(yProgress)
+  const { scrollYPro, setScrollYPro, windowScrollHeight,setWindowScrollHeight } = scroll();
 
-  let scrollRef = useRef<HTMLDivElement>(null);
-  let outerSceneRef = useRef<HTMLDivElement>(null)!;
-
-  const { scrollYProgress, scrollY,  } = useScroll({target:scrollRef, offset: ['start end', 'end start']})
-
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-      console.log(latest, (scrollRef?.current?.scrollHeight! - (window ? window.innerHeight : 0) ))
-      setScrollYPro(scrollRef?.current?.scrollHeight! - (window ? window.innerHeight : 0) );
-  })
-
-
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const bodyRef = useRef<HTMLBodyElement>(null);
   const mainRef = useRef<HTMLDivElement>(null);
   const programmerRef = useRef<HTMLDivElement>(null);
   const investRef = useRef<HTMLDivElement>(null);
   const blogRef = useRef<HTMLDivElement>(null);
+  const threeRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
+  const refArrays: React.RefObject<HTMLDivElement>[] = [mainRef,programmerRef,investRef,blogRef];
+  const refArraysCount = [mainRef,programmerRef,investRef,blogRef].length;
+  for (let i = 0; i < refArraysCount; i++) {
+    if(!threeRefs.current[i]) {
+      threeRefs.current[i] = refArrays[i]
+    }
+    
+  }
+
+  const { scrollYProgress, scrollY,  } = useScroll({target:bodyRef, offset: ['start end', 'end start']})
 
 
-
-
+  useMotionValueEvent(scrollY, "change", (latest) => {
+      console.log(latest, (scrollRef?.current?.scrollHeight! - (window ? window.innerHeight : 0) ));
+      setScrollYPro(scrollRef?.current?.scrollHeight! - (window ? window.innerHeight : 0) );
+  });
 
   const [currentSection, setCurrentSection] = useState<string>('');
   const controls = useAnimationControls();
 
-  const syncScroll = (sourceDiv: HTMLDivElement, targetDiv: HTMLDivElement) => {
-    
-    targetDiv.scrollTop = sourceDiv.scrollTop;
-  };
 
   const snapToTop = (element: Element) => {
     element.scrollIntoView({ behavior:"smooth", block: 'start' });
@@ -66,7 +56,7 @@ export default function Home() {
     const observerOptions = {
       root: null, // Use the viewport as the root
       rootMargin: '0px',
-      threshold: 0.75, // Trigger when 50% of the element is in view
+      threshold: 0.51, // Trigger when 50% of the element is in view
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -76,7 +66,7 @@ export default function Home() {
           setCurrentSection(id); // Update currentSection to the current ref's id
           controls.start(id); // Trigger the animation for the current section
           snapToTop(entry.target);
-        // console.log(entry.target.id);
+        console.log(entry.target.id);
         }
         
 
@@ -90,6 +80,10 @@ export default function Home() {
       }
     });
 
+      if (scrollRef.current){
+        scrollRef.current.scrollTop = 1
+      }
+
     return () => {
       refs.forEach(({ ref }) => {
         if (ref.current) {
@@ -99,49 +93,35 @@ export default function Home() {
     };
   }, [controls]);
 
+  useEffect(() => {
+    if(windowScrollHeight === 0) {
+      setWindowScrollHeight(scrollRef?.current?.scrollHeight! - (window ? window.innerHeight : 0) );
+    }
+    {windowScrollHeight && windowScrollHeight}
+  }, [windowScrollHeight, setWindowScrollHeight, scrollYPro])
 
 
   return (
     <AppContainer
+    bodyRef={bodyRef}
     ctnRef={scrollRef}
-    className={``}
-    gradientVariants={gradientVariants}
     controls={controls}
+    gradientVariants={gradientVariants}
     id="home-page-app-ctn"
     >
 
-      <div className={`${styles.imgWrapper}`} id='img-maliek_home'>
-          <motion.img 
-              src='/images/programmer.png' 
-              className={`${styles.ftImg}`} 
-              id='home' alt=''  
-              initial={{
-                  opacity: 0,
-                  y:-200,
-              }}
-              whileInView={{opacity:1,
-                  y:0,
-                  transition:{
-                      duration:1,
-                      delay:2.4,
-                  },
-              }}
-              exit={{opacity:0}}
-              
-          />
-      </div>
 
-      <HomeScene scrollYProgress={scrollYProgress} scrollY={scrollY} ctnHeightValue={scrollYPro}/>
 
-      {/* <OuterSceneWrapper ctnRef={outerSceneRef} id="home-page-outer-scene-wrapper"> */}
         <HomeMainHero ctnRef={mainRef} />
         <ProgrammerHero ctnRef={programmerRef} />
         <InvestmentsHero ctnRef={investRef} />
         <BlogHero ctnRef={blogRef} />   
-      {/* </OuterSceneWrapper> */}
  
+      <HomeScene scrollYProgress={scrollYProgress} scrollY={scrollY} ctnHeightValue={scrollYPro} ctnRefs={threeRefs}/>
 
 
     </AppContainer>
   );
 }
+
+

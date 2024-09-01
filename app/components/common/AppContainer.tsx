@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 
 const AppContainer:React.FC<{
     children:React.ReactNode, 
+    bodyRef?:RefObject<HTMLBodyElement>,
     ctnRef?:RefObject<HTMLDivElement>, 
     className?: string,
     animate?: Animation,
@@ -16,6 +17,7 @@ const AppContainer:React.FC<{
     id?:string
 }> = ({
     children, 
+    bodyRef,
     ctnRef,
     className,
     animate,
@@ -23,11 +25,24 @@ const AppContainer:React.FC<{
     gradientVariants,
     id
 }) => {
+    const keyframes = `
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    `;
 
 
     return (
                 <AnimatePresence>
-                <body >
+                <body ref={bodyRef}>
                     <Navbar/>
                     <motion.div 
                     className={`app-ctn ${className}`} 
@@ -37,9 +52,6 @@ const AppContainer:React.FC<{
                     variants={gradientVariants}
                     transition={{ duration: 2 }}
                     id={id}
-                    style={{
-                        animation: 'gradient 10s ease infinite'
-                    }}
                     >
                         {children} 
                     </motion.div>

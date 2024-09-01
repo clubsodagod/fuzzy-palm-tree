@@ -17,7 +17,7 @@ const InvestmentsPageScene = () => {
 
                 <Center>
 
-                    <CoinGrowthModel />                    
+                    <CoinGrowthModel  animate={{animationOrbit:true, animationMain:false}}/>                    
                 </Center>
 
             

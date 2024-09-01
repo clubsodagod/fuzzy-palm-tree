@@ -38,14 +38,15 @@ const InvestmentWorldScene:React.FC<{
                     position: [0,0,60],
                     fov:50,
                 }}
-                style={{position:'fixed'}}
+                style={{position:'fixed',
+                        pointerEvents:'none', }}
             >                        
                 <Suspense fallback={null}>
                 <Environment 
                 preset='studio'
                 />
                 <ambientLight />
-                <OrbitControls />
+                {/* <OrbitControls /> */}
 
                     {/* <Center> */}
                         <group>

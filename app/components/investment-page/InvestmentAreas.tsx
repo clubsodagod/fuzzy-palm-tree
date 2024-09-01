@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { RefObject } from 'react'
 import styles from './investments.module.css'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Button } from '@mui/material'
@@ -6,10 +6,16 @@ import PageWrapper from '../common/PageWrapper'
 import OuterSceneWrapper from '../common/OuterSceneWrapper'
 import { InvestmentAreaScene } from '@/app/investments/_components/scenes'
 
-const InvestmentAreas = () => {
+const InvestmentAreas:React.FC<{
+    ctnRef?:RefObject<HTMLDivElement>,
+}> = ({
+    ctnRef,
+}) => {
+    
     return (
                 <PageWrapper
-                id='credentials'
+                id='investments-area'
+                ctnRef={ctnRef}
                 >
                     
                     <div

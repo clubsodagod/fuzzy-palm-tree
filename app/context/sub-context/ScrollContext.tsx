@@ -31,23 +31,19 @@ const calculateScrollProgress = (scrollTop: number, containerHeight: number): nu
 
 // ScrollProvider component
 const ScrollProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+    
     const [scrollX, setScrollX] = useState(0);
     const [scrollY, setScrollY] = useState(0);
+    const [windowScrollHeight, setWindowScrollHeight] = useState<number>(0);
+    const [scrollYPro, setScrollYPro] = useState<number>(windowScrollHeight);
+    const qtrCtn = scrollYPro / 4;
+    const halfCtn = scrollYPro / 2;
+    const threeQtrCtn = qtrCtn * 3;
+    const eighthCtn = scrollYPro / 8;
+    const threeEighthsCtn = eighthCtn * 3;
+    const fiveEightsCtn = eighthCtn * 5;
+    const sevenEightsCtn = eighthCtn * 7;
 
-    // State to store scroll data for multiple containers using unique ids
-    const [scrollContainers, setScrollContainers] = useState<{
-        [key: string]: ScrollContainerData;
-    }>({});
-
-    // Dynamic refs for multiple scrollable containers
-    const containerRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
-
-    // Function to initialize ref for each container
-    const setContainerRef = (ref: HTMLDivElement | null, id: string) => {
-        if (ref) {
-            containerRefs.current[id] = ref;
-        }
-    };
 
     // Update scroll positions on window scroll
     useEffect(() => {
@@ -63,66 +59,28 @@ const ScrollProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         };
     }, []);
 
-    // Update scroll position and height for each container
-    useEffect(() => {
-        const handleScroll = () => {
-            const newScrollData: {
-                [key: string]: ScrollContainerData;
-            } = {};
-
-            Object.entries(containerRefs.current).forEach(([id, ref]) => {
-                if (ref) {
-                    const scrollTop = ref.scrollTop ?? 0; // Default to 0 if undefined
-                    const scrollHeight = ref.scrollHeight ?? 0; // Default to 0 if undefined
-
-                    if (scrollHeight > 0) { // Ensure scrollHeight is valid before calculation
-                        const scrollProgress = calculateScrollProgress(scrollTop, scrollHeight);
-                        newScrollData[id] = {
-                            scrollTop,
-                            scrollHeight,
-                            scrollProgress,
-                        };
-                    } else {
-                        console.warn(`Invalid scroll height for container ${id}`);
-                    }
-                } else {
-                    console.warn(`Ref for container ${id} is not set`);
-                }
-            });
-
-            setScrollContainers(newScrollData);
-        };
-
-        // Attach scroll listeners to all containers
-        Object.values(containerRefs.current).forEach((ref) => {
-            if (ref) {
-                ref.addEventListener('scroll', handleScroll);
-            }
-        });
-
-        // Initial handleScroll call to set initial state
-        handleScroll();
-
-        // Cleanup on unmount
-        return () => {
-            Object.values(containerRefs.current).forEach((ref) => {
-                if (ref) {
-                    ref.removeEventListener('scroll', handleScroll);
-                }
-            });
-        };
-    }, []); // Run once on mount
-
+    useEffect(()=>{
+        {windowScrollHeight && windowScrollHeight}
+        console.log(windowScrollHeight);
+        
+    }, [windowScrollHeight])
 
     return (
         <ScrollContext.Provider
             value={{
                 scrollX,
-                scrollY,
-                setScrollX,
-                setScrollY,
-                scrollContainers,
-                setContainerRef, // Provide function to set refs using unique id
+                scrollY, 
+                scrollYPro,
+                setScrollYPro,
+                windowScrollHeight,
+                setWindowScrollHeight,
+                eighthCtn,
+                halfCtn,
+                qtrCtn,
+                threeQtrCtn,
+                threeEighthsCtn,
+                fiveEightsCtn,
+                sevenEightsCtn
             }}
         >
             {children}

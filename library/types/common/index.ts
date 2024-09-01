@@ -1,3 +1,18 @@
+import React from "react";
+import * as THREE from 'three'
+
+export type JoinGrowthPropsScene = JSX.IntrinsicElements['group'] & {
+    animate: AnimationOptions;
+    ctnRefs?: React.RefObject<HTMLDivElement>[]
+};
+
+export type JoinGrowthProps = JSX.IntrinsicElements['group'] & {
+    animate: AnimationOptions;
+    ctnRefs?: React.MutableRefObject<React.RefObject<HTMLDivElement>[]>;
+};
+
+
+
 
 export type Photo = {
     portrait:string;
@@ -13,6 +28,11 @@ export type Name = {
 export type Video = {
     portrait:string;
     landscape:string;
+}
+
+export type AnimationOptions = {
+    animationMain?: boolean;
+    animationOrbit?: boolean;
 }
 
 export type SocialLinks =  {

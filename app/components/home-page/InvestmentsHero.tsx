@@ -26,11 +26,11 @@ const InvestmentsHero:React.FC<{
                         
 
                         <motion.div
-                        className='text-box'
+                        className={`${styles.topTextCtn} left`}
                         id='home'
                         >
                             <motion.h3
-                            className={`${styles.heroH3}`}
+                            className={`${styles.heroH3} left`}
                             id='investments'
                             initial={{
                                 opacity: 0,
@@ -45,20 +45,20 @@ const InvestmentsHero:React.FC<{
                             }}>
                                 The Investor
                             </motion.h3>
-                            <motion.h6 className={`${styles.heroH6}`} id='investments'>
+                            <motion.h6 className={`${styles.heroH6} left`} id='investments'>
                             Building Wealth Together. One Investment at a Time.
                             </motion.h6>
                         </motion.div>
 
 
-                        <motion.div className={`${styles.heroP_Ctn}`} id='investments'>
+                        <motion.div className={`${styles.heroP_Ctn} left`} id='investments'>
 
-                            <motion.p className={`${styles.heroP}`} id='investments'>
+                            <motion.p className={`${styles.heroP} left`} id='investments'>
                                 Partner with <span className='my-name-text' id='investments'>Maliek Davis</span>, to explore the best opportunities in trading, value investing, and real estate for sustainable growth.
                             </motion.p>
 
                             <motion.div
-                            className={`${styles.btnCtn}`}
+                            className={`${styles.btnCtn} leftBtn`}
                             id='home-investment-hero'
                             >
 

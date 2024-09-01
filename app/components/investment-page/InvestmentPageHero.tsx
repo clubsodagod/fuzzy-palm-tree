@@ -66,7 +66,7 @@ const InvestmentPageHero = () => {
 
 
                 </PageWrapper>                
-            <InvestmentApproach />
+            <InvestmentApproach  />
             <InvestmentAreas />
         </OuterSceneWrapper>
     )
