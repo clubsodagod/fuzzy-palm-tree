@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { RefObject } from 'react'
 import styles from '../investments.module.css'
 import OuterSceneWrapper from '../../common/OuterSceneWrapper'
 import PageWrapper from '../../common/PageWrapper'
 
-const RealEstatePosts = () => {
+const RealEstatePosts:React.FC<{
+    ctnRef:RefObject<HTMLDivElement>,
+}> = ({
+    ctnRef,
+}) => {   
     return (
-        <OuterSceneWrapper id='real-estate-page'>
-
-            <PageWrapper>
+            <PageWrapper 
+            id='real-estate-posts'
+            ctnRef={ctnRef}
+            >
                 
 
                 <div
@@ -35,7 +40,6 @@ const RealEstatePosts = () => {
 
 
             </PageWrapper>
-        </OuterSceneWrapper>
     )
 }
 

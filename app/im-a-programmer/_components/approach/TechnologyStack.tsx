@@ -1,14 +1,21 @@
 'use client'
 
 
-import React from 'react';
+import React, { RefObject } from 'react';
 import { PageWrapper } from '@/app/components';
 import { motion } from 'framer-motion';
 import styles from '../styles.module.css';
 
-const TechnologyStack:React.FC<{}> = () => {
+const TechnologyStack:React.FC<{
+    ctnRef:RefObject<HTMLDivElement>,
+}> = ({
+    ctnRef,
+}) => {   
     return (
-        <PageWrapper id='design-thinking'>
+        <PageWrapper
+        ctnRef={ctnRef} 
+        id='approach-technology-stack'
+        >
 
             <motion.div 
             className={`${styles.topHeroCtn} top-hero-ctn`}

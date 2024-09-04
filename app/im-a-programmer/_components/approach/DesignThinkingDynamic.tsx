@@ -1,28 +1,37 @@
 'use client'
 
-import React from 'react'
+import React, { RefObject } from 'react'
 import styles from '../styles.module.css';
 import { PageWrapper } from '@/app/components';
 import { motion } from 'framer-motion';
 import { Point } from '@/library/const';
+import { numberToWord } from '@/utility/functions';
 
 const DesignThinkingDynamic:React.FC<{
     factor:Point,
-    left:string
+    left:string,
+    ctnRef:RefObject<HTMLDivElement>,
+    index:number
 }> = ({
     factor:{
         label,
         point,
     },
-    left
+    left,
+    ctnRef,
+    index
 }) => {
-    return (
-        <PageWrapper id='design-thinking-dynamic'>
+
+        return (
+            <PageWrapper
+            ctnRef={ctnRef} 
+            id={`approach-design-thinking-dynamic-${numberToWord(index)}`}
+            >
             
 
             {/*  Top Typography Ctn */}
             <motion.div 
-            className={`${styles.pointCtn} point-ctn ${left !== '' && styles[left]} ${left}`}
+            className={`${styles.pointCtn} point-ctn `}
             >
                 <motion.h2 
                 className={`${styles.subheader} subheader ${left !== '' && styles[left]} ${left}`}

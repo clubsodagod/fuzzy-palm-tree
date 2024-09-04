@@ -29,49 +29,6 @@ export const navItems:NavItem[] = [
         path: '/',
     },
     {
-        label: 'investments',
-        path: '/investments',
-        children: [
-            {
-                label: 'real estate',
-                path: '/investments/real-estate',
-                children: [ 
-                    {
-                        label: 'approach',
-                        path: '/investments/residential-real-estate/approach',
-                    },
-                    {
-                        label: 'areas-of-investment',
-                        path: '/investments/residential-real-estate/areas-of-investment',
-                    },
-                    {
-                        label: 'business plan',
-                        path: '/investments/residential-real-estate/business-plan',
-                    },
-                    {
-                        label: 'current listings',
-                        path: '/investments/residential-real-estate/current-listings',
-                    },
-                    {
-                        label: 'partnership',
-                        path: '/investments/residential-real-estate/partnership',
-                    },
-                ]
-            },
-            {
-                label: 'equity markets',
-                children: [
-                    {
-                        label: 'day trading'
-                    },
-                    {
-                        label: 'value trading'
-                    }
-                ]
-            }
-        ]
-    },
-    {
         label: "i'm a programmer",
         path: '/im-a-programmer',
         children: [
@@ -95,6 +52,49 @@ export const navItems:NavItem[] = [
                 label: "let's work",
                 path: '/im-a-programmer/lets-work',
             },
+        ]
+    },
+    {
+        label: 'investments',
+        path: '/investments',
+        children: [
+            {
+                label: 'real estate',
+                path: '/investments/real-estate',
+                children: [ 
+                    {
+                        label: 'approach',
+                        path: '/investments/residential-real-estate/approach',
+                    },
+                    {
+                        label: 'areas of investment',
+                        path: '/investments/residential-real-estate/areas-of-investment',
+                    },
+                    {
+                        label: 'business plan',
+                        path: '/investments/residential-real-estate/business-plan',
+                    },
+                    {
+                        label: 'current listings',
+                        path: '/investments/residential-real-estate/current-listings',
+                    },
+                    {
+                        label: 'partnership',
+                        path: '/investments/residential-real-estate/partnership',
+                    },
+                ]
+            },
+            // {
+            //     label: 'equity markets',
+            //     children: [
+            //         {
+            //             label: 'day trading'
+            //         },
+            //         {
+            //             label: 'value trading'
+            //         }
+            //     ]
+            // },
         ]
     },
     {
@@ -349,3 +349,82 @@ export const workflow:Point[] = [
         point:"Committing to ongoing process evaluation and optimization to enhance efficiency and effectiveness over time.",
     },
 ]
+
+export interface ExtendedPointUseCase extends Point {
+    useCase: string;
+}
+
+export const customSoftware:ExtendedPointUseCase[] = [
+    {
+        label:'Streamlining Operations',
+        point: 'Custom software can integrate various business processes into a single system, reducing manual work and errors.',
+        useCase: 'A manufacturing company implements a custom ERP (Enterprise Resource Planning) solution to integrate inventory management, production schedules, and accounting. This reduces production downtime, improves resource allocation, and lowers costs by automating workflows.',
+    },
+    {
+        label:'Improving Customer Experience',
+        point: 'Tailored software can provide a personalized experience to customers, enhancing satisfaction and loyalty.',
+        useCase: 'An e-commerce platform uses custom software to offer personalized product recommendations based on browsing history and purchase behavior. This increases customer engagement, boosts sales, and improves retention rates.',
+    },
+    {
+        label:'Facilitating Compliance and Reporting',
+        point: "Custom solutions can automate compliance processes, ensuring that businesses meet regulatory requirements without extensive manual oversight.",
+        useCase: "A financial services firm adopts a custom compliance tracking tool that automates reporting, tracks regulatory changes, and ensures all client transactions meet the latest legal standards. This minimizes the risk of non-compliance and associated penalties.",
+    },
+];
+
+
+export const dataScienceAI:ExtendedPointUseCase[] = [
+    {
+        label:"Predictive Maintenance",
+        point: "AI-driven predictive analytics can forecast equipment failures before they happen, reducing downtime and maintenance costs.",
+        useCase: " A logistics company uses data science and AI to analyze sensor data from its fleet, predicting which vehicles are likely to require maintenance soon. This proactive approach prevents breakdowns, reduces repair costs, and keeps the fleet operational.",
+    },
+    {
+        label:"Enhanced Customer Insights",
+        point: "Data science can analyze customer data to uncover insights about behavior and preferences, enabling targeted marketing strategies.",
+        useCase: "A retail chain uses data science to analyze customer purchase patterns and predict future buying behavior. This allows for personalized marketing campaigns, optimized inventory management, and improved customer satisfaction, leading to increased sales.",
+    },
+    {
+        label:"Fraud Detection and Prevention",
+        point: "AI algorithms can identify unusual patterns in data that may indicate fraudulent activity, protecting businesses from financial losses.",
+        useCase: "A bank implements a real-time fraud detection system using AI to analyze transaction data and identify potential fraudulent activities. This system quickly flags suspicious transactions, preventing unauthorized access and protecting customer accounts.",
+    },
+];
+
+
+export const webMobileApp:ExtendedPointUseCase[] = [
+    {
+        label:"Expanding Market Reach",
+        point: "Mobile applications enable businesses to reach customers anytime, anywhere, increasing accessibility and market reach.",
+        useCase: "A restaurant chain develops a mobile app for online ordering and delivery tracking. Customers can easily place orders from their phones, increasing the restaurant’s customer base and boosting sales, especially during off-peak hours.",
+    },
+    {
+        label:"Enhancing Customer Engagement",
+        point: "Interactive and user-friendly web applications can engage users effectively, fostering loyalty and long-term relationships.",
+        useCase: "A fitness brand launches a web app that offers personalized workout plans, tracks progress, and integrates with wearable devices. This keeps users engaged, provides added value, and helps the brand build a strong community of loyal customers.",
+    },
+    {
+        label:"Improving Business Efficiency",
+        point: "Web and mobile apps can automate tasks, streamline processes, and improve internal communication.",
+        useCase: "A real estate company uses a mobile app to manage property listings, track leads, and communicate with clients. This centralizes operations, reduces paperwork, and ensures that agents have all necessary information at their fingertips, enhancing productivity.",
+    },
+];
+
+export const digitalTransformation:ExtendedPointUseCase[] = [
+    {
+        label:"Adapting to Market Changes",
+        point: "Digital transformation allows businesses to quickly adapt to changing market conditions, staying competitive.",
+        useCase: "A traditional retail store transitions to a digital model by launching an online store and using digital marketing strategies. This adaptation allows the store to reach customers during lockdowns, keeping sales steady despite physical store closures.",
+    },
+    {
+        label:"Enhancing Collaboration and Remote Work",
+        point: "Digital tools enable effective remote work, improving collaboration and flexibility.",
+        useCase: "A consulting firm adopts cloud-based collaboration tools and project management software, enabling seamless remote work for its employees. This ensures that projects continue smoothly regardless of location, improving employee satisfaction and productivity.",
+    },
+    {
+        label:"Driving Innovation",
+        point: "Digital transformation fosters a culture of innovation, helping businesses to develop new products and services.",
+        useCase: "A healthcare provider leverages digital transformation to implement telehealth services, allowing patients to consult with doctors via video calls. This innovation improves patient access to healthcare, reduces wait times, and expands the provider's reach to rural areas.",
+    },
+];
+

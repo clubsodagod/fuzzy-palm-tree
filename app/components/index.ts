@@ -21,3 +21,4 @@ export { default as OuterSceneWrapper } from './common/OuterSceneWrapper';
 export{ default as PageWrapper } from './common/PageWrapper';
 export { default as HeroButtonCtn } from './common/HeroButtonCtn';
 export { default as ScrollableItemCtn } from './common/ScrollableItemCtn';
+export { default as Scene } from './common/Scene';

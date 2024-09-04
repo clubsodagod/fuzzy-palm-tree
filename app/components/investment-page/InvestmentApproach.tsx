@@ -21,11 +21,11 @@ const InvestmentApproach:React.FC<{
                     className={`${styles.topTextCtn} left`} 
                     id='approach'
                     >
-                        <h2 className={`${styles.investHeader} left`} id='approach'>
+                        <h2 className={`${styles.investHeader} header left`} id='approach'>
                             Investing Approach
                         </h2>
-                        <h6 className={`${styles.investSubheader} left`}>
-                            Giving velocity to my dollars.
+                        <h6 className={`${styles.investSubheader} subheader left`}>
+                            Giving velocity to my dollars
                         </h6>                    
                     </div>
 
@@ -33,7 +33,7 @@ const InvestmentApproach:React.FC<{
                     className={`${styles.bottomCtn} left`} 
                     id='approach'
                     >
-                        <p className={`${styles.heroBtnCtnTxt}`} id='approach'>
+                        <p className={`${styles.heroBtnCtnTxt} tagline`} id='approach'>
                             Give your money some motion.
                         </p>
 

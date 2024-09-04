@@ -1,54 +1,24 @@
 'use client'
-import React, { Suspense, useRef } from 'react'
-import styles from '../investments.module.css'
-import OuterSceneWrapper from '../../common/OuterSceneWrapper'
-import PageWrapper from '../../common/PageWrapper'
-import { Button } from '@mui/material'
-import HeroButtonCtn from '../../common/HeroButtonCtn'
-import { motion } from 'framer-motion'
-import ScrollableItemCtn from '../../common/ScrollableItemCtn'
-import { Canvas } from '@react-three/fiber'
-import Book from '../../common/Book'
-import { Environment } from '@react-three/drei'
+import React, { RefObject, useRef } from 'react';
+import styles from '../investments.module.css';
+import PageWrapper from '../../common/PageWrapper';
+import { Button } from '@mui/material';
+import HeroButtonCtn from '../../common/HeroButtonCtn';
+import { motion } from 'framer-motion';
 
-const RealEstateAvailable = () => {
+const RealEstateAvailable:React.FC<{
+    ctnRef:RefObject<HTMLDivElement>,
+}> = ({
+    ctnRef,
+}) => {   
 
     const containerRef = useRef<HTMLDivElement>(null);
     
     return (
-        <OuterSceneWrapper id='real-estate-page'>
-
-            <section className='three-scene' id='' key={'real-estate-page-key'}>
-
-                <ScrollableItemCtn elementRef={containerRef} key={'real-estate-page-key-2'}>
-                    <Canvas
-                    shadows
-                    camera={{ position: [-0.5, 1, 4], fov: 45 }} 
-                    style={{height:"100vh", width:'100%'}}
-
-                    >
-                        <Suspense fallback={null}>
-                            <Environment 
-                            preset='studio'
-                            />
-                            <ambientLight />
-                            <directionalLight 
-                            position={[2,5,2]}
-                            intensity={2.5}
-                            castShadow
-                            shadow-mapSize-width={2048}
-                            shadow-mapSize-height={2048}
-                            shadow-bias={-0.0001}
-                            />
-                            <Book />                            
-                        </Suspense>
-
-                    </Canvas>
-                    
-                </ScrollableItemCtn>
-            </section>
-
-                <PageWrapper>
+                <PageWrapper
+                id='real-estate-available'
+                ctnRef={ctnRef}
+                >
                     
 
                     <div
@@ -94,7 +64,6 @@ const RealEstateAvailable = () => {
 
 
                 </PageWrapper>
-        </OuterSceneWrapper>
     )
 }
 

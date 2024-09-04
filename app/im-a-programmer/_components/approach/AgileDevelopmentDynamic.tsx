@@ -1,29 +1,38 @@
 'use client'
 
 
-import React from 'react'
+import React, { RefObject } from 'react'
 import { PageWrapper } from '@/app/components'
 import { Point } from '@/library/const'
 import { motion } from 'framer-motion'
 import styles from '../styles.module.css';
+import { numberToWord } from '@/utility/functions'
 
 const AgileDevelopmentDynamic:React.FC<{
     factor:Point,
-    left:string
+    left:string,
+    ctnRef:RefObject<HTMLDivElement>,
+    index:number
 }> = ({
     factor:{
         label,
         point,
     },
-    left
+    left,
+    ctnRef,
+    index
 }) => {
-    return (
-        <PageWrapper id='agile-development'>
+
+        return (
+            <PageWrapper
+            ctnRef={ctnRef} 
+            id={`approach-agile-development-dynamic-${numberToWord(index)}`}
+            >
             
 
             {/*  Top Typography Ctn */}
             <motion.div 
-            className={`${styles.pointCtn} point-ctn ${left !== '' && styles[left]} ${left}`}
+            className={`${styles.pointCtn} point-ctn `}
             >
                 <motion.h2 
                 className={`${styles.subheader} subheader ${left !== '' && styles[left]} ${left}`}

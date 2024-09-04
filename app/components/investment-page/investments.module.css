@@ -1,7 +1,6 @@
 
 .pageWrapper {
-    /* position: relative;
-    top: -100dvh; */
+    position: relative;
     scroll-snap-align: start;  
     flex-grow: 1;
     min-height: 100dvh;
@@ -13,9 +12,9 @@
     padding-block: 10vh 2.5vh;
     justify-content: space-between;
     overflow-y: hidden;
-    background-size: 100% 100%;
     /* background-color: black; */
-    
+    z-index: 5;
+    pointer-events: all;
     @media screen and (min-width:769px) {
         text-align: center;
     }

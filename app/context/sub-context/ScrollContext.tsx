@@ -43,6 +43,10 @@ const ScrollProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const threeEighthsCtn = eighthCtn * 3;
     const fiveEightsCtn = eighthCtn * 5;
     const sevenEightsCtn = eighthCtn * 7;
+    const halfThirdCtn = (0.33 * scrollYPro) * 0.5;
+    const twoThirdsCtn = (scrollYPro / 3) * 2;
+    const oneThirdCtn = (scrollYPro / 3);
+    const eightyFiveHundredthsCtn = twoThirdsCtn + halfThirdCtn;
 
 
     // Update scroll positions on window scroll
@@ -75,6 +79,10 @@ const ScrollProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 windowScrollHeight,
                 setWindowScrollHeight,
                 eighthCtn,
+                halfThirdCtn,
+                twoThirdsCtn,
+                oneThirdCtn,
+                eightyFiveHundredthsCtn,
                 halfCtn,
                 qtrCtn,
                 threeQtrCtn,

@@ -103,7 +103,7 @@ h6.investSubheader {
     }
 }
 ul.principles {
-    text-align: left;
+    /* list-style-position: inside; */
 }
 .principleKeyLI {
     color:white

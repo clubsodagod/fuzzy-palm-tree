@@ -1,16 +1,21 @@
 'use client'
-import React from 'react'
+import React, { RefObject } from 'react'
 import styles from '../investments.module.css'
 import OuterSceneWrapper from '../../common/OuterSceneWrapper'
 import PageWrapper from '../../common/PageWrapper'
 import { Button } from '@mui/material'
 import HeroButtonCtn from '../../common/HeroButtonCtn'
 
-const RealEstatePageHero = () => {
+const RealEstatePageHero:React.FC<{
+    ctnRef:RefObject<HTMLDivElement>,
+}> = ({
+    ctnRef,
+}) => {   
     return (
-        <OuterSceneWrapper id='real-estate-page'>
-
-            <PageWrapper>
+            <PageWrapper
+            id='real-estate-main'
+            ctnRef={ctnRef}
+            >
 
                 <div
                 className={` ${styles.topTextCtn}`}
@@ -37,7 +42,7 @@ const RealEstatePageHero = () => {
                                 variant='outlined'
                                 className={`learn-more-btn`}
                                 id={'home-investment-hero'}
-                                href={'/investments'}
+                                href={'/investments/real-estate/areas-of-investment/criteria'}
                                 >
                                     My Criteria
                                 </Button>
@@ -45,14 +50,13 @@ const RealEstatePageHero = () => {
                                 variant='contained'
                                 className={`partnership-btn`}
                                 id={'home-investment-hero'}
-                                href={'/investments/partnership'}
+                                href={'/investments/real-estate/business-plan/investment-goals'}
                                 >
                                     See My Goals
                                 </Button>                        
                     </HeroButtonCtn>
                 </div>
             </PageWrapper>
-        </OuterSceneWrapper>
 
     )
 }

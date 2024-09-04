@@ -43,7 +43,9 @@ useEffect(() => {
         <AppRouterCacheProvider options={{key: 'css',  enableCssLayer: true }}>
           <AppContext>
             <ThemeProvider theme={theme}>
-              {children}
+              
+                {children}
+              
               {/* <Footer />               */}
             </ThemeProvider>
           </AppContext>

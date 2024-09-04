@@ -1,90 +1,34 @@
 'use client'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AppContainer } from '../components'
-import { DigitalSolutionsMain, RealWorldImpact, WhyDigitalSolutions, HomeVisuals, Overview, OverviewDynamic, WhyDigitalSolutionsDynamic } from './_components';
-import OverViewTwo from './_components/OverviewDynamic';
+import { WhyDigitalSolutions, Overview, OverviewDynamic, WhyDigitalSolutionsDynamic } from './_components';
 import { Chapter, importantFactors, overview, Point } from '@/library/const';
 import { useScroll, useMotionValueEvent, useAnimationControls } from 'framer-motion';
-
-
-const gradientVariants = {
-    'programmer-main': {
-        background: `linear-gradient(to right, #000, #232526, #414345)`,
-        backgroundSize: '200% 200%',
-        backgroundPosition: '0% 0%',
-        animation: 'animate-main-bg 10s infinite alternate',
-    },
-    'programmer-overview': {
-        background: 'linear-gradient(to bottom, #0ba360 , #0ba360 , #3cba92)',
-        backgroundBlendMode:   `multiply`,
-        backgroundSize: '400% 400%',
-        backgroundPosition: '0% 50%',
-        animation: 'animate-approach-bg 8s ease-in-out infinite alternate',
-    },
-    'programmer-overview-alt': {
-        background: 'linear-gradient(to right, #1f4037, #99f2c8, #99f2c8)',
-        backgroundBlendMode:   `multiply`,
-        backgroundSize: '200% 200%',
-        backgroundPosition: '0% 50%',
-        animation: 'animate-area-bg 6s ease-in-out infinite alternate',
-    },
-    'programmer-why-digital': {
-        background: 'linear-gradient(to right, #1f4037, #99f2c8, #99f2c8)',
-        backgroundBlendMode:   `multiply`,
-        backgroundSize: '400% 400%',
-        backgroundPosition: '0% 50%',
-        animation: 'animate-approach-bg 8s ease-in-out infinite alternate',
-    },
-    'programmer-why-digital-alt': {
-        background: 'linear-gradient(to right, #1f4037, #99f2c8, #99f2c8)',
-        backgroundBlendMode:   `multiply`,
-        backgroundSize: '200% 200%',
-        backgroundPosition: '0% 50%',
-        animation: 'animate-area-bg 6s ease-in-out infinite alternate',
-    },
-};
+import { useProgrammerPageSectionRefs } from '@/utility/refs/programmer-page-refs';
+import { programmerGradientVariants as gradientVariants } from '@/library/const/animation-gradients';
 
 const ImAProgrammerPage = () => {
 
-    let yProgress:number = 0
-    const [scrollYPro, setScrollYPro] = React.useState<number>(yProgress)
+    const {
+        scrollRef, bodyRef, mainRef, overviewRef, overviewAltRef, whyDigitalAltRef, refs, areasRef, whyDigitalRef
+    } = useProgrammerPageSectionRefs();
 
-    let scrollRef = useRef<HTMLDivElement>(null);
-    let bodyRef = useRef<HTMLBodyElement>(null);
-
+    const [scrollYPro, setScrollYPro] = React.useState<number>(0)
     const { scrollYProgress, scrollY,  } = useScroll({target:bodyRef, offset: ['start end', 'end start']})
 
-    
     useMotionValueEvent(scrollY, "change", (latest) => {
         // console.log(latest, (scrollRef?.current?.scrollHeight! - (window ? window.innerHeight : 0) ))
         setScrollYPro(scrollRef?.current?.scrollHeight! - (window ? window.innerHeight : 0) );
     });
-    
-    const mainRef = useRef<HTMLDivElement>(null);
-    const overviewRef = useRef<HTMLDivElement>(null);
-    const overviewAltRef = useRef<HTMLDivElement>(null);
-    const whyDigitalAltRef = useRef<HTMLDivElement>(null);
-    const whyDigitalRef = useRef<HTMLDivElement>(null);
-
-
-
-
 
     const [currentSection, setCurrentSection] = useState<string>('');
     const controls = useAnimationControls();
 
-   
     const snapToTop = (element: Element) => {
         element.scrollIntoView({ behavior:"smooth", block: 'start' });
     };
 
-
     useEffect(() => {
-        const refs = [
-            { ref: mainRef, id: 'programmer-main' },
-            { ref: overviewRef, id: 'programmer-overview' },
-            { ref: whyDigitalRef, id: 'programmer-why-digital' },
-        ];
 
         const observerOptions = {
         root: null, // Use the viewport as the root
@@ -95,10 +39,10 @@ const ImAProgrammerPage = () => {
         const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              const id = entry.target.id;
-              setCurrentSection(id); // Update currentSection to the current ref's id
-              controls.start(id); // Trigger the animation for the current section
-              snapToTop(entry.target);
+                const id = entry.target.id;
+                setCurrentSection(id); // Update currentSection to the current ref's id
+                controls.start(id); // Trigger the animation for the current section
+                snapToTop(entry.target);
             console.log(entry.target.id);
             }
             
@@ -128,7 +72,7 @@ const ImAProgrammerPage = () => {
             }
         });
         };
-    }, [controls]);
+    }, [controls, refs]);
 
 
     return (
@@ -138,7 +82,6 @@ const ImAProgrammerPage = () => {
         gradientVariants={gradientVariants}
         controls={controls}
         >
-            <DigitalSolutionsMain ctnRef={mainRef} />
             <Overview ctnRef={overviewRef}/>
             {
                 overview.map((c:Chapter, i:number)=> {

@@ -15,10 +15,12 @@ const PageWrapper:React.FC<{
     ctnRef
 }) => {
 
-
+useEffect(() => {
+    {ctnRef && ctnRef}
+})
     return (
         <motion.div
-        ref={ctnRef}
+        ref={ctnRef!}
         id={id?id:''}
         className={`${styles.pageWrapper} page-wrapper`}
         >

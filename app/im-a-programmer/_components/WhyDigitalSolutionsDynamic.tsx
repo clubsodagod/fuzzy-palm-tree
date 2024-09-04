@@ -17,7 +17,7 @@ const WhyDigitalSolutionsDynamic:React.FC<{
     index,
 }) => {
 
-
+    const alignment = (index % 2) === 0 ? 'left' : 'right';
     return (
         <PageWrapper
         id={index%2===0 ? 'programmer-why-digital-alt' : 'programmer-why-digital'}
@@ -27,16 +27,16 @@ const WhyDigitalSolutionsDynamic:React.FC<{
 
             {/*  Top Typography Ctn */}
             <motion.div 
-            className={`${styles.pointCtn} point-ctn`}
+            className={`${styles.pointCtn}  point-ctn  `}
             >
                 <motion.h2 
-                className={`${styles.subheader} subheader`}
+                className={`${styles.subheader}  subheader ${alignment}`}
                 >
                     {label}
                 </motion.h2>
 
                 <motion.h4 
-                className={`${styles.storyText} story-text`}
+                className={`${styles.storyText} ${alignment} story-text`}
                 >
                     {point}
                 </motion.h4>

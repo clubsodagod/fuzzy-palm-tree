@@ -113,13 +113,17 @@ h6 {
   flex-direction: column;
   pointer-events: all;
   /* top: -100dvh; */
-  z-index: -1;
+  z-index: 0;
   /* background-size: 400% 400%; To create smooth transition effect */
   animation: gradient 10s ease infinite;
 }
 
 
 
+
+.header, .subheader, .taglines {
+  color: white;
+}
 
 
 /* 

@@ -3,6 +3,7 @@
 
 
 export { default as CoinGrowthModel } from '../3d-objects/coin-growth/CoinGrowth';
+export { default as MacbookModel } from './macbook/Macbook'
 export { default as ApartmentModel } from '../3d-objects/apartment/Apartment';
 export { default as DataChartModelOne } from '../3d-objects/data-chart-one/DataChartOne';
 export { default as DataChartModelTwo } from '../3d-objects/data-chart-two/DataChartTwo';

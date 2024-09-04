@@ -22,11 +22,11 @@ const InvestmentAreas:React.FC<{
                     className={`${styles.topTextCtn} right`} 
                     id='credentials'
                     >
-                        <h2 className={`${styles.investHeader} right`} id='credentials'>
+                        <h2 className={`${styles.investHeader} header right`} id='credentials'>
                             Areas of Investment
                         </h2>
-                        <h5 className={`${styles.investSubheader} right`}>
-                            Balancing Risk and Reward.
+                        <h5 className={`${styles.investSubheader} subheader right`}>
+                            Balancing Risk and Reward
                         </h5>                    
                     </div>
 

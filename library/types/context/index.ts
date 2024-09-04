@@ -13,6 +13,10 @@ export interface ScrollContextProps {
     setWindowScrollHeight: (value: number) => void; // Function to update scrollYPro
     halfCtn:number,
     qtrCtn:number,
+    halfThirdCtn:number,
+    twoThirdsCtn:number,
+    eightyFiveHundredthsCtn:number,
+    oneThirdCtn:number;
     threeQtrCtn:number,
     threeEighthsCtn:number,
     eighthCtn:number,

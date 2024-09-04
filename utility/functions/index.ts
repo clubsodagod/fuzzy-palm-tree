@@ -1,4 +1,6 @@
 import { MotionValue, useTransform } from "framer-motion";
+import { RefObject } from "react";
+import { RefIDObject } from "../refs/programmer-page-refs";
 
 export type ResponsiveValues = [mobile: number, tablet: number, large: number];
 
@@ -45,4 +47,34 @@ export const Animate:Puppeteer = (useTransform, transformValue, scale, x, y, z, 
         rotationY: useTransform(transformValue, eventPoints,rotationY)
         }
 }
+// Utility function to convert numbers to words
+export const numberToWord = (num: number): string => {
+    const words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+    return words[num] || num.toString(); // Extend this array for larger numbers if needed
+};
+
+export interface DynamicRef {
+    refs:RefObject<HTMLDivElement>[];
+    idTemplate:string;
+}
+
+export type CreateDynamicRefs = (dynamicRefs:DynamicRef[]) => RefIDObject[];
+
+
+export const createDynamicRefs:CreateDynamicRefs = (dynamicRefs) => {
+
+    // Generate dynamic refs
+    const dynoRefs = dynamicRefs.flatMap(({ refs, idTemplate }) => 
+        refs.map((singleRef, index) => ({
+            ref: singleRef,
+            id: `${idTemplate}-${numberToWord(index)}`
+        }))
+    );
+
+    // Combine with other static refs
+    return [
+        ...dynoRefs,
+    ];
+};
+
 

@@ -46,6 +46,8 @@ type GLTFResult = GLTF & {
 }
 
 const MacBook: React.FC<JoinGrowthProps> = ({ animate, ctnRefs, ...props }) => {
+  console.log(ctnRefs);
+  
   const group = React.useRef<THREE.Group>(null)
   const { nodes, materials, animations } = useGLTF('3d-objects/macbook/macbook-transformed.glb') as GLTFResult
   const { actions } = useAnimations(animations, group)
@@ -72,7 +74,7 @@ const MacBook: React.FC<JoinGrowthProps> = ({ animate, ctnRefs, ...props }) => {
       
       // Loop through each ref in ctnRefs
       if(ctnRefs)
-      ctnRefs.current?.forEach((element) => {
+      ctnRefs.forEach((element) => {
       // console.log(element.current);
     
         if (element && element.current) { // Check if element and element.current are defined
@@ -127,13 +129,13 @@ const MacBook: React.FC<JoinGrowthProps> = ({ animate, ctnRefs, ...props }) => {
     
 
     // Attach observer to each container ref
-    ctnRefs?.current.forEach(ref => {
+    ctnRefs?.forEach(ref => {
       if (ref) observer.observe(ref.current!);
     });
 
     // Cleanup the observer on component unmount
     return () => {
-      ctnRefs?.current?.forEach(ref => {
+      ctnRefs?.forEach(ref => {
         if (ref) observer.unobserve(ref.current!);
       });
     };

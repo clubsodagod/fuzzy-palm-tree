@@ -25,38 +25,25 @@ const AppContainer:React.FC<{
     gradientVariants,
     id
 }) => {
-    const keyframes = `
-        @keyframes gradientAnimation {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-    `;
 
 
     return (
                 <AnimatePresence>
-                <body ref={bodyRef}>
-                    <Navbar/>
-                    <motion.div 
-                    className={`app-ctn ${className}`} 
-                    ref={ctnRef}
-                    initial={gradientVariants?.main as any}
-                    animate={controls}
-                    variants={gradientVariants}
-                    transition={{ duration: 2 }}
-                    id={id}
-                    >
-                        {children} 
-                    </motion.div>
-                        
-                </body>       
+                    <body>
+                        <Navbar/>
+                        <motion.div 
+                        className={`app-ctn ${className}`} 
+                        ref={ctnRef}
+                        initial={gradientVariants?.main as any}
+                        animate={controls}
+                        variants={gradientVariants}
+                        transition={{ duration: 2 }}
+                        id={id}
+                        >
+                            {children} 
+                        </motion.div>                        
+                    </body>
+
                 </AnimatePresence>  
 
     )

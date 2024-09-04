@@ -10,34 +10,34 @@ const CurrentListings = () => {
     const listingCtnRef = useRef(null);
 
     return (
-        <OuterSceneWrapper
-        id='current-listings-page'
-        >
-            <div className="three-scene" id="current-listings-page">
-                <ScrollableItemCtn elementRef={listingCtnRef}>
-                    {'.'}
-                </ScrollableItemCtn>
-            </div>
-
-            <PageWrapper
-            id='current-listings-page'
-            >
-
-
-                <div
-                className={` ${styles.topTextCtn}`}
-                >
-                    <h1 className={` ${styles.investHeader}`}>
-                        Current Listings
-                    </h1>
-                    <h6 className={`${styles.investSubheader}`}>
-                        It&apos;s  more than money. Its&apos;s Life.
-                    </h6>
+    
+        <>
+                <div className="three-scene" id="current-listings-page">
+                    <ScrollableItemCtn elementRef={listingCtnRef}>
+                        {'.'}
+                    </ScrollableItemCtn>
                 </div>
 
-                
-            </PageWrapper>
-        </OuterSceneWrapper>
+                <PageWrapper
+                id='current-listings-page'
+                >
+
+
+                    <div
+                    className={` ${styles.topTextCtn}`}
+                    >
+                        <h1 className={` ${styles.investHeader}`}>
+                            Current Listings
+                        </h1>
+                        <h6 className={`${styles.investSubheader}`}>
+                            It&apos;s  more than money. Its&apos;s Life.
+                        </h6>
+                    </div>
+
+                    
+                </PageWrapper>    
+        </>
+
     )
 }
 

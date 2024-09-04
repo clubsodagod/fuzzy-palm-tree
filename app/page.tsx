@@ -6,53 +6,38 @@ import React from "react";
 import { HomeScene } from "./components/scenes";
 import { useScroll as scroll } from "./context/sub-context/ScrollContext";
 import { homePage as gradientVariants } from "@/library/const/animation-gradients";
+import { useSectionRefs } from "@/utility/refs/home-page-refs";
 
 
 export default function Home() {
+  const [currentSection, setCurrentSection] = useState<string>('');
 
   const { scrollYPro, setScrollYPro, windowScrollHeight,setWindowScrollHeight } = scroll();
 
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const bodyRef = useRef<HTMLBodyElement>(null);
-  const mainRef = useRef<HTMLDivElement>(null);
-  const programmerRef = useRef<HTMLDivElement>(null);
-  const investRef = useRef<HTMLDivElement>(null);
-  const blogRef = useRef<HTMLDivElement>(null);
-  const threeRefs = useRef<React.RefObject<HTMLDivElement>[]>([]);
-  const refArrays: React.RefObject<HTMLDivElement>[] = [mainRef,programmerRef,investRef,blogRef];
-  const refArraysCount = [mainRef,programmerRef,investRef,blogRef].length;
-  for (let i = 0; i < refArraysCount; i++) {
-    if(!threeRefs.current[i]) {
-      threeRefs.current[i] = refArrays[i]
-    }
-    
-  }
 
+  // Use the custom hook to get the home-page refs for functionality
+    const { 
+      mainRef, programmerRef, investRef, blogRef, refArrays, refs, scrollRef, bodyRef, threeRefs
+    } = useSectionRefs();
+  
+
+    // Transformation and animation values #framer-motion useScroll to determining 
+    // positioning of the container being scrolled
   const { scrollYProgress, scrollY,  } = useScroll({target:bodyRef, offset: ['start end', 'end start']})
 
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-      console.log(latest, (scrollRef?.current?.scrollHeight! - (window ? window.innerHeight : 0) ));
+      // console.log(latest, (scrollRef?.current?.scrollHeight! - (window ? window.innerHeight : 0) ));
       setScrollYPro(scrollRef?.current?.scrollHeight! - (window ? window.innerHeight : 0) );
   });
 
-  const [currentSection, setCurrentSection] = useState<string>('');
   const controls = useAnimationControls();
-
 
   const snapToTop = (element: Element) => {
     element.scrollIntoView({ behavior:"smooth", block: 'start' });
   };
 
-
   useEffect(() => {
-    const refs = [
-      { ref: mainRef, id: 'main' },
-      { ref: programmerRef, id: 'programmer' },
-      { ref: investRef, id: 'invest' },
-      { ref: blogRef, id: 'blog' }
-    ];
-
     const observerOptions = {
       root: null, // Use the viewport as the root
       rootMargin: '0px',
@@ -76,13 +61,12 @@ export default function Home() {
     refs.forEach(({ ref }) => {
       if (ref.current) {
         observer.observe(ref.current);
-        
       }
     });
 
-      if (scrollRef.current){
-        scrollRef.current.scrollTop = 1
-      }
+    if (scrollRef.current){
+      scrollRef.current.scrollTop = 1
+    }
 
     return () => {
       refs.forEach(({ ref }) => {
@@ -91,15 +75,14 @@ export default function Home() {
         }
       });
     };
-  }, [controls]);
+  }, [controls, refs, scrollRef]);
 
   useEffect(() => {
     if(windowScrollHeight === 0) {
       setWindowScrollHeight(scrollRef?.current?.scrollHeight! - (window ? window.innerHeight : 0) );
     }
     {windowScrollHeight && windowScrollHeight}
-  }, [windowScrollHeight, setWindowScrollHeight, scrollYPro])
-
+  }, [windowScrollHeight, setWindowScrollHeight, scrollYPro, scrollRef]);
 
   return (
     <AppContainer
@@ -109,19 +92,11 @@ export default function Home() {
     gradientVariants={gradientVariants}
     id="home-page-app-ctn"
     >
-
-
-
         <HomeMainHero ctnRef={mainRef} />
         <ProgrammerHero ctnRef={programmerRef} />
         <InvestmentsHero ctnRef={investRef} />
         <BlogHero ctnRef={blogRef} />   
- 
-      <HomeScene scrollYProgress={scrollYProgress} scrollY={scrollY} ctnHeightValue={scrollYPro} ctnRefs={threeRefs}/>
-
-
+        <HomeScene scrollYProgress={scrollYProgress} scrollY={scrollY} ctnHeightValue={scrollYPro} ctnRefs={threeRefs}/>
     </AppContainer>
   );
-}
-
-
+};

@@ -1,8 +1,18 @@
-import React from 'react'
+import { PageWrapper } from '@/app/components'
+import React, { RefObject } from 'react'
 
-const Visuals = () => {
+const Visuals:React.FC<{
+    ctnRef?:RefObject<HTMLDivElement>,
+}> = ({
+    ctnRef,
+}) => {
     return (
-        <div>Visuals</div>
+            <PageWrapper 
+            ctnRef={ctnRef} 
+            id='digital-solutions-visuals'
+            >
+                <div>Visuals</div>
+            </PageWrapper>
     )
 }
 

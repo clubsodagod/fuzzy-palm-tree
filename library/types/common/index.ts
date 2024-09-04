@@ -8,7 +8,7 @@ export type JoinGrowthPropsScene = JSX.IntrinsicElements['group'] & {
 
 export type JoinGrowthProps = JSX.IntrinsicElements['group'] & {
     animate: AnimationOptions;
-    ctnRefs?: React.MutableRefObject<React.RefObject<HTMLDivElement>[]>;
+    ctnRefs?: React.RefObject<HTMLDivElement>[];
 };
 
 
