@@ -55,7 +55,7 @@ const Page = () => {
             console.log(id);
             
             controls.start(id); // Trigger the animation for the current section
-            snapToTop(entry.target);
+            // snapToTop(entry.target);
             console.log(entry.target.id);
             }
         });

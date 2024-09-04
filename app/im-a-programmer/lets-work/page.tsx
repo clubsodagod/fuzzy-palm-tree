@@ -42,7 +42,7 @@ const LetsWorkPage = () => {
                 const id = entry.target.id;
                 setCurrentSection(id); // Update currentSection to the current ref's id
                 controls.start(id); // Trigger the animation for the current section
-                snapToTop(entry.target);
+                // snapToTop(entry.target);
             console.log(entry.target.id);
             }
             

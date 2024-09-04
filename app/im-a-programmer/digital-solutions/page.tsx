@@ -46,7 +46,7 @@ const DigitalSolutionsPage = () => {
                     const id = entry.target.id;
                     setCurrentSection(id);
                     controls.start(id);
-                    snapToTop(entry.target);
+                    // snapToTop(entry.target);
                     console.log(id);
                     
                 }
