@@ -1,0 +1,172 @@
+
+div.pageWrapper {
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    padding-block: 10vh 3vh;
+    padding-inline: 10vw;
+    justify-content: space-between;
+
+    @media screen and (min-width:769px) {
+        text-align: center;
+    }
+
+    @media screen and (min-width:769px) and (max-width:1024px) {
+        padding-inline: 20vw;
+        padding-block: 20vh;
+    }
+    @media screen and (min-width:1025px) {
+        padding-block: 10vh 15vh;
+    }
+
+}
+
+.investHeader {
+    color: white;
+    @media screen and (max-width:769px) {
+        font-size: 3rem;
+    }
+
+}
+h1.investHeader,#approach-page {
+    @media screen and (max-width:769px) {
+        font-size: 2.75rem;
+        line-height: 1.25;
+    }
+
+}
+h6.investSubheader, #approach-page {
+
+    @media screen and (max-width:769px) {
+        font-size: 1.1rem;
+    }
+}
+
+
+h6.investSubheader {
+    color: white;
+}
+
+.topTextCtn {
+
+    @media screen and (min-width:769px) {
+        text-align: center;
+    }
+    @media screen and (max-width:768px) and (max-width:1024px) {
+    }
+}
+
+.philosophyCtn {
+
+        padding-right: 35%;
+    @media screen and (min-width:769px) {
+        text-align: left;
+    }
+    @media screen and (min-width:768px) and (max-width:1024px) {
+    }
+}
+
+.visionCtn {
+
+    padding-right: 35%;
+@media screen and (min-width:769px) {
+    text-align: left;
+}
+@media screen and (min-width:768px) and (max-width:1024px) {
+}
+}
+.visionBtmCtn {
+
+        padding-right: 35%;
+    @media screen and (min-width:769px) {
+        text-align: left;
+    }
+    @media screen and (min-width:768px) and (max-width:1024px) {
+    }
+}
+.criteriaCtn {
+
+    @media screen and (min-width:769px) {
+        text-align: left;
+    }
+    @media screen and (max-width:768px) and (max-width:1024px) {
+    }
+}
+.principlesCtn {
+
+    @media screen and (min-width:769px) {
+        text-align: left;
+    }
+    @media screen and (max-width:768px) and (max-width:1024px) {
+    }
+}
+ul.principles {
+    /* list-style-position: inside; */
+}
+.principleKeyLI {
+    color:white
+}
+
+.fancyLIHeader {
+    color: white;
+}
+
+.marketApproachCtn {
+
+    @media screen and (min-width:769px) {
+        text-align: right;
+    }
+    @media screen and (max-width:768px) and (max-width:1024px) {
+    }
+}
+.txtBtnCtn {
+
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width:769px) {
+        text-align: center;
+    }
+    @media screen and (min-width:769px) and (max-width:1024px) {
+    }
+}
+
+
+.btnCtn {
+    display: flex;
+    flex-direction: row;
+    gap: 6vw;
+    margin-top: 3vh;
+    z-index: 5;
+
+    @media screen and (min-width:769px) {
+        justify-content: center;
+    }
+}
+
+.partnershipBtnCtn {
+
+    display: flex;
+    flex-direction: row;
+    gap: 3vw;
+    justify-content: center;
+    margin-bottom: auto;
+}
+
+.formWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.partnershipWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+#principlesCtnOne {
+    padding-right: 35%;
+}

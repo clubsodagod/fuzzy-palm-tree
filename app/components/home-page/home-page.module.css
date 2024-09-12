@@ -1,0 +1,188 @@
+
+.btnCtn {
+    display: flex;
+    flex-direction: row;
+    gap: 6vw;
+    margin-top: 3vh;
+    z-index: 5;
+
+    @media screen and (min-width:769px) {
+        justify-content: center;
+    }
+}
+
+
+
+.investHeader {
+    color: white;
+    @media screen and (max-width:769px) {
+        font-size: 3rem;
+    }
+
+}
+.investHeaderMain {
+    color: white;
+    font-size: 4rem;
+    @media screen and (max-width:769px) {
+        font-size: 4rem;
+    }
+    @media screen and (min-width:769px) and (max-width:1024px) {
+        font-size: 5rem;
+    }
+}
+
+h6.investSubheader{
+
+    @media screen and (max-width:769px) {
+        font-size: 1.1rem;
+    }
+}
+
+
+h6.investSubheader {
+    color: white;
+}
+/* home hero */
+
+
+.btnCtn {
+    display: flex;
+    flex-direction: row;
+    gap: 6vw;
+    margin-top: 3vh;
+    z-index: 5;
+    color: white;
+
+    @media screen and (min-width:769px) {
+        justify-content: center;
+    }
+}
+
+
+.imgWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    z-index: 0;
+    padding: 0;
+    position: absolute;
+    justify-content: center;
+    height: 100vh;
+    align-items: end;
+    top: 0;
+    left: 0;
+
+    @media screen and (min-width:769px){
+    }
+}
+
+.ftImg {
+    object-fit: contain;
+    height: 40dvh;
+    @media screen and (min-width:769px) and (max-width:1024px) {
+        width:100%;
+    }
+    @media screen and (min-width:1024px) {
+        width: 66%;
+        height: 70dvh;
+    }
+}
+
+.heroH1 {
+    text-align: left;
+    color: white;
+    line-height: 1;
+    margin-bottom: 1vh;
+    text-align: center;
+    font-size: 4rem;
+
+    @media screen and (max-width:737px) {
+        text-align: left;
+    }
+    @media screen and (min-width:738px) and (max-width:1024px) {
+        margin-top: 10vh;
+    }
+    @media screen and (min-width:1024px) {
+        /* margin-top: 5vh; */
+        font-size: 5.5rem;
+    }
+}
+
+
+
+
+
+/* Investment Hero */
+.heroH3 {
+    font-size: 4rem;
+    z-index: 1;
+    color: white;
+
+    @media screen and (max-width:768px) {
+        font-size: 3rem;
+    }
+
+    @media screen and (min-width: 769px) {
+        /* text-align: center; */
+    }
+}
+.heroH6 {
+    color: white;
+
+    @media screen and (min-width:769px) and (max-width:1025px) {
+        font-size: 1.35rem;
+        /* text-align: center; */
+    }
+    @media screen and (min-width:1024px) {
+        font-size: 1.5rem;
+        /* text-align: center; */
+        /* padding-inline: 20%; */
+    }
+}
+
+.heroP_Ctn {
+
+    @media screen and (min-width:769px) {
+        margin-bottom: 15vh;
+        /* padding-inline: 17.5vw; */
+    }
+
+
+    @media screen and (min-width: 1025px) {
+        /* padding-inline: 20vw; */
+        margin-bottom: 5vh;
+    }
+}
+
+.heroP, #investments {
+    color:white;
+
+    @media screen and (min-width: 769px) {
+        /* text-align: center; */
+    }
+}
+
+.btnGroup {
+    position: relative;
+    z-index: 1;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.autoScrollBtn {
+    font-size: 3rem;
+    margin: 0;
+}  
+
+
+.topTextCtn {
+
+    @media screen and (min-width:769px) {
+        text-align: center;
+    }
+    @media screen and (max-width:768px) and (max-width:1024px) {
+    }
+}
