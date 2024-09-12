@@ -8,9 +8,14 @@ import { registerFormDocument } from '@/library/const/forms/login-register';
 import DynamicAlert from '@/app/components/common/DynamicAlert';
 import { debounce, validateField } from '@/utility/functions';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 
 const RegisterForm = () => {
+
+    // initialize router
+    const router = useRouter();
+
     let initialErrors = () => {
         return registerFormDocument.reduce((acc: any, f: FormField) => {
             acc[f.name] = false;
@@ -125,8 +130,6 @@ const RegisterForm = () => {
                 throw new Error(`Error: ${response.statusText}`);
             }
 
-
-            
         } catch (error) {
             console.error('Failed to submit form:', error);
         }
