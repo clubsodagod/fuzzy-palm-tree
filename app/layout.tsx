@@ -9,6 +9,7 @@ import { theme } from "@/library/themes";
 import { Footer, Navbar } from "./components";
 import AppContext from "./context/AppContext";
 import { useEffect } from "react";
+import { SessionProvider } from "next-auth/react";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -41,16 +42,17 @@ useEffect(() => {
     <html lang="en">
 
         <AppRouterCacheProvider options={{key: 'css',  enableCssLayer: true }}>
-          <AppContext>
-            <ThemeProvider theme={theme}>
-              
-                {children}
-              
-              {/* <Footer />               */}
-            </ThemeProvider>
-          </AppContext>
+          <SessionProvider>
+            <AppContext>
+              <ThemeProvider theme={theme}>
+                
+                  {children}
+                
+                {/* <Footer />               */}
+              </ThemeProvider>
+            </AppContext>            
+          </SessionProvider>
         </AppRouterCacheProvider>        
-      
     </html>
   );
 }

@@ -1,0 +1,58 @@
+
+.adminSectionWrapper {
+    padding: 10vh 6vw 2vh;
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+.identifierCardModWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.imgWrapper {
+    height: 10vh;
+}
+
+.identifierModCardImg {
+    width: 100%;
+    height:100%;
+    object-fit: cover;
+}
+
+.identifierCardModWrapper, .identifierModCardImg {
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
+.identifierCardNameText {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.actionsCtn {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 6vw;
+}
+
+.clickedCtnWrapper, .clickedIdentifierForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.clickedIdentifierForm {
+    gap: 2vh;
+}
+
+.photoInputElementWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 6vw;
+}

@@ -6,7 +6,7 @@ require('dotenv').config();
 import { v4 as uuidv4 } from 'uuid';
 import bcrypt from "bcrypt"
 import { clientDomain, fromEmail } from "@/library/const";
-import { useRegisterHtmlContent } from "@/library/const/html-content/register";
+import { useRegisterHtmlContent as registerHtmlContent } from "@/library/const/html-content/register";
 
 const sgMail = require('@sendgrid/mail')
 
@@ -14,13 +14,10 @@ const sgMail = require('@sendgrid/mail')
 const sendgridKey: string = process.env.NEXT_PUBLIC_SENDGRID_API_KEY as string ;
 
 export const createNewCredentialsUser = async (user:RegisterForm) => {
-    
 
     // validate user registration fields
-    let error = await useFormFieldMiddleware(user);
+    let error = await formFieldMiddleware(user);
 
-    
-    
     // validate form fields
     if(error) {
         return error;
@@ -54,11 +51,10 @@ export const createNewCredentialsUser = async (user:RegisterForm) => {
     // persist new user
     newUser.save();
 
-
     // send user a message to verify email
             
       // Create the verification link with the verification token
-      const verificationLink = `${clientDomain}/authentication/register/verify?token=${verificationToken}&username=${newUser.username}`;
+      const verificationLink = `localhost:3000/authentication/register/verify?token=${verificationToken}&username=${newUser.username}`;
             
       // set sengrid key
       sgMail.setApiKey(sendgridKey);
@@ -68,22 +64,22 @@ export const createNewCredentialsUser = async (user:RegisterForm) => {
         to: newUser.email,
         from: fromEmail,
         subject: `Verify Your Email ${newUser.firstName}`,
-        html: useRegisterHtmlContent(verificationLink,newUser), 
+        html: registerHtmlContent(verificationLink,newUser), 
       };
 
-
+      // create email sending function
       const email = async() => await sgMail.send(msg);
       
-      console.log(email);
+      // call function to send email
+      email()
       
-       
     // pass the user to the next function
     return newUser;
 }
 
 export const userExist = async (username:string, email:string) => {
 
-  if(username === "" || username === undefined || email === "" || email === undefined) {return {status:null, username, email}}
+  if(username === "" || username === undefined || email === "" || email === undefined) {return {status:null, message:"No email or username provided."}}
 
   try {
 
@@ -116,11 +112,11 @@ export type FormFieldInput = {
     username?: string;
   };
   
-  // Update the middleware function type to accept the object
-  export type UseFormFieldMiddleware = (fields: FormFieldInput) => Promise<string | null>;
+// Update the middleware function type to accept the object
+export type UseFormFieldMiddleware = (fields: FormFieldInput) => Promise<string | null>;
   
 // Implement the middleware function
-export const useFormFieldMiddleware: UseFormFieldMiddleware = async({
+export const formFieldMiddleware: UseFormFieldMiddleware = async({
   email,
   confirmEmail,
   password,

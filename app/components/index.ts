@@ -24,3 +24,7 @@ export{ default as SectionWrapper } from './common/SectionWrapper';
 export { default as HeroButtonCtn } from './common/HeroButtonCtn';
 export { default as ScrollableItemCtn } from './common/ScrollableItemCtn';
 export { default as Scene } from './common/Scene';
+
+
+// route protection
+export { default as LoginProtection } from './route-protection/LoginProtection';

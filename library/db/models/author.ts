@@ -25,6 +25,7 @@ const authorSchema = new Schema<IAuthor>({
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true,
+    unique:true,
   },
   socialLinks: {
     github: String,

@@ -15,8 +15,8 @@ export type JoinGrowthProps = JSX.IntrinsicElements['group'] & {
 
 
 export type Photo = {
-    portrait:string;
-    landscape:string;
+    portrait?:string;
+    landscape?:string;
 };
 
 export type Name = {
@@ -26,8 +26,8 @@ export type Name = {
 }
 
 export type Video = {
-    portrait:string;
-    landscape:string;
+    portrait?:string;
+    landscape?:string;
 }
 
 export type AnimationOptions = {
@@ -156,3 +156,9 @@ export interface Post {
     socialLinks?:SocialLinks;
 };
 
+export type ErrorObject<T> = {
+    [K in keyof T]?: {
+        error:boolean | null,
+        errorMessage:string | null,
+    } | null;
+};

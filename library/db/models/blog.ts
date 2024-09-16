@@ -1,14 +1,32 @@
-import mongoose, { Document, Schema, Model, model } from 'mongoose';
+import { Photo, Video } from '@/library/types/common';
+import mongoose, { Document, Schema, Model, model, ObjectId } from 'mongoose';
+import { IUser } from './user';
+
+// Define an interface for Blog Document 
+export interface BlogDocumentType {
+  title: string;
+  featuredImg:Photo;
+  featuredVideo?:Video;
+  content: string;
+  category: string;
+  subcategories: string[];
+  user:ObjectId;
+}
 
 // Define an interface for the Blog model
 export interface IBlog extends Document {
   title: string;
+  slug:string;
+  featuredImg:Photo;
+  featuredVideo:Video;
   content: string;
   author: mongoose.Types.ObjectId;
-  categories: mongoose.Types.ObjectId[];
-  tags: mongoose.Types.ObjectId[];
+  category: mongoose.Types.ObjectId;
+  subcategories: mongoose.Types.ObjectId[];
+  tags: string[];
   createdAt: Date;
   updatedAt: Date;
+  featured: boolean;
 }
 
 // Define the Blog Schema
@@ -17,22 +35,44 @@ const blogSchema = new Schema<IBlog>({
     type: String,
     required: true,
   },
+  featuredImg:{
+    portrait:{
+      type:String
+    },
+    landscape:{
+      type:String
+    },
+  },
+  featuredVideo:{
+    portrait:{
+      type:String
+    },
+    landscape:{
+      type:String
+    },
+  },
   content: {
     type: String,
     required: true,
+    min: 200,
+    max: 2000000,
+    trim:true,
   },
   author: {
     type: Schema.Types.ObjectId,
     ref: 'Author',
     required: true,
   },
-  categories: [{
+  category: {
     type: Schema.Types.ObjectId,
     ref: 'Category',
+  },
+  subcategories: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Subcategory',
   }],
   tags: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Tag',
+    type: String,
   }],
   createdAt: {
     type: Date,
@@ -41,7 +81,12 @@ const blogSchema = new Schema<IBlog>({
   updatedAt: {
     type: Date,
     default: Date.now,
-  }
+  },
+  featured:{
+    type:Boolean,
+    required:true,
+    default:false,
+  },
 });
 
 // Define the Blog model

@@ -17,6 +17,7 @@ export interface IUser extends Document {
   verificationToken:string;
   verificationTokenExpiration:Date;
   emailVerified:boolean;
+  authorProfile: mongoose.Types.ObjectId;
 }
 
 // Define the User Schema
@@ -87,6 +88,10 @@ const userSchema = new Schema<IUser>({
     type: Boolean,
     required:true,
     default: false,
+  },
+  authorProfile:{
+    type: Schema.Types.ObjectId,
+    ref: 'Author'
   }
   
 });

@@ -1,0 +1,47 @@
+
+.adminSectionWrapper {
+    padding: 10vh 6vw 2vh;
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+.headerCtn {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.editPreviewCtn {
+    display: flex;
+    flex-direction: row;
+    gap: 3vw;
+    justify-content: center;
+}
+
+
+
+/* RichText css */
+.componentWrapper {
+    flex-grow: 1;
+}
+.richTextWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+.featuredImageVideoCtn, .mediaStringCtn {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+.mediaStringCtn {
+    gap: 1vh;
+    margin-top: 1vh;
+}
+
+.richHeader {
+    font-weight: bold;
+}

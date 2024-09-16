@@ -1,28 +1,56 @@
-import NextAuth from "next-auth";
+import NextAuth, { User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
+import { connectToMongoDB } from "@/library/db/db";
+import { UserModel } from "@/library/db/models";
+import { IUser } from "@/library/db/models/user";
 
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
-      // The name to display on the sign in form (e.g. "Sign in with...")
-      name: "Credentials",
-      // `credentials` is used to generate a form on the sign in page.
-      // You can specify which fields should be submitted, by adding keys to the `credentials` object.
-      // e.g. domain, username, password, 2FA token, etc.
-      // You can pass any HTML attribute to the <input> tag through the object.
-      credentials: {
-        credential: { label: "credential", type: "text" || "email", placeholder: "email or username" },
-        secret: { label: "secret", type: "password" }
-      },
+      id: "credentials",
+      credentials: {},
       async authorize(credentials, req) {
-        // Add logic here to look up the user from the credentials supplied
-        const user = { id: "1", name: "J Smith", email: "jsmith@example.com" }
-  
-        if (user) {
-          // Any object returned will be saved in `user` property of the JWT
-          return user
+
+        // connect to database
+        await connectToMongoDB();
+
+        // destructure credentials object
+        const {credential, secret} = credentials as {
+          credential: string,
+          secret: string
+        };
+
+        console.log(credential);
+        
+
+        // validate user existence
+        const userByEmail = await UserModel.findOne({email:credential});
+        const userByUsername = await UserModel.findOne({username:credential});
+
+        console.log(userByEmail, userByUsername);
+        
+        
+
+      
+
+        
+
+        
+        if (userByUsername){
+
+          // Map Mongoose document to the expected `User` object
+          const user= {
+            id: userByUsername.id, // Convert Mongoose ObjectId to string for `id`
+            email: userByUsername.email,
+            name: userByUsername.firstName,
+          };
+
+
+          // return user
+          return user 
+
         } else {
           // If you return null then an error will be displayed advising the user to check their details.
           return null
@@ -39,7 +67,35 @@ const handler = NextAuth({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!
     })
-  ]
+  ],
+  pages: {
+      signIn: "/authentication/login",      // URL for the login page
+      signOut: "/authentication/logout",    // URL for the logout page
+      error: "/authentication/login",       // URL for error page (e.g., for displaying authentication errors)
+      verifyRequest: "/authentication/verify-request/verify", // URL for request to verify email
+      newUser: "/me/account/settings",              // URL for new user registration (set to null if you don't have this page)
+  },
+  session: {
+      strategy: "jwt",
+  },
+  callbacks: {
+      async jwt({ token, user, trigger, session, }) {
+        console.log(user);
+        token.accessId = user;
+        console.log(token.accessId);
+        
+        
+        return token;
+      },
+      async session({ session, token, user }) {
+        const userInfo =  await UserModel.findById(token.sub).populate('');
+        
+      session.user = userInfo;
+      console.log(session.user);
+      
+      return session;
+      },
+  },
 })
 
 export { handler as GET, handler as POST }

@@ -1,5 +1,5 @@
 'use client'
-import { AppContainer, SectionWrapper } from '@/app/components';
+import { AppContainer, LoginProtection, SectionWrapper } from '@/app/components';
 import React, { RefObject, useRef } from 'react';
 import styles from '../_components/styles.module.css';
 import LoginForm from '../_components/login/LoginForm';
@@ -27,4 +27,4 @@ const LoginPage = () => {
   )
 }
 
-export default LoginPage
+export default LoginProtection(LoginPage)

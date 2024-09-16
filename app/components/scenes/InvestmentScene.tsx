@@ -1,6 +1,6 @@
 'use client'
 
-import { useIsMobile } from '@/app/context/sub-context/ScreenContext'
+import { useScreenContext as useIsMobile } from '@/app/context/sub-context/ScreenContext'
 import { CoinGrowthModel } from '@/public/3d-objects'
 import { Center, OrbitControls} from '@react-three/drei'
 import { Canvas, useThree } from '@react-three/fiber'

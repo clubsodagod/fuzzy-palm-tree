@@ -9,9 +9,15 @@ import DynamicAlert from '@/app/components/common/DynamicAlert';
 import { debounce, validateField } from '@/utility/functions';
 import Link from 'next/link';
 import { apiPath, clientDomain } from '@/library/const';
+import { signIn, useSession } from 'next-auth/react';
+import { useMDSession } from '@/app/context/sub-context/SessionContext';
+import { useRouter } from 'next/navigation';
 
 
 const LoginForm = () => {
+
+    const {session, status:sessionStatus} = useMDSession();
+    
     let initialErrors = () => {
         return loginFormDocument.reduce((acc: any, f: FormField) => {
             acc[f.name] = false;
@@ -19,9 +25,8 @@ const LoginForm = () => {
         }, {});
     };
 
-    console.log(initialErrors());
-    
     // initialize the form object
+    const router = useRouter();
     const [loginForm, setLoginForm] = React.useState<LoginFormType | Partial<LoginFormType>>({});
     const [error, setError] = useState(initialErrors())
     const [status, setStatus] = React.useState<number>(0);
@@ -83,14 +88,18 @@ const LoginForm = () => {
 
     // useEffect to observe changes to loginForm and validate accordingly
     useEffect(() => {
-        const validateOnChange = (name: string, value: string) => {
-        validateForm(name, value);  // Call debounced validation
+        const validateOnChange = (name: keyof LoginFormType, value: string | undefined) => {
+            if (value !== undefined) {
+                validateForm(name, value);  // Call debounced validation
+            }
         };
 
         Object.keys(loginForm).forEach((fieldName) => {
-        validateOnChange(fieldName, loginForm[fieldName] as string);
+          // Type assertion to let TypeScript know that fieldName is a valid key
+            const field = fieldName as keyof LoginFormType;
+            validateOnChange(field, loginForm[field]);
         });
-    }, [loginForm]);
+    }, [loginForm, validateForm]);
 
     const handleDynamicSubmit = async (event:Event,form:LoginFormType,url:string) => {
 
@@ -99,40 +108,16 @@ const LoginForm = () => {
         const user = {user:loginForm};
         
         try {
-            const response = await fetch("/api/user/create", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json", // Specify that the request body is JSON
-                },
-                body: JSON.stringify(user), // Send the serialized form data
-            });
-    
-            // Parse the JSON response
-            const res = await response.json();
-    
-            setStatus(response.status);
-            setAlertMessage(res.message)
 
-            // create clear form and update status and alert message function
-            const handleClear = () => {
-                setTimeout(()=> {
-                    setStatus(0);
-                    setAlertMessage("");
-                },3000)
-            }            
-
-            // Check for errors
-            if (!response.ok) {
-                throw new Error(`Error: ${response.statusText}`);
-            }
-
-
-            
+            await signIn('credentials', {
+                credential:loginForm.email, secret:loginForm.password
+            })
         } catch (error) {
             console.error('Failed to submit form:', error);
         }
     };
-    
+
+
     return (
         <div
             className={`${styles.formWrapper} formWrapper`}
@@ -152,7 +137,7 @@ const LoginForm = () => {
                 }
             </div>
             
-            {/* registration form */}
+            {/* login form */}
             <form
             className={`${styles.form} form`}
             id='register-form'
@@ -194,7 +179,7 @@ const LoginForm = () => {
 
                 <div className={`${styles.btnTextCtn} btnTextCtn`}>
                     <p className={`${styles.athQuestionText} authQuestionText`}>
-                        Not apart of the <span className={`${styles.pearlBoxText} pearlBoxText`}>Pearl Box</span> communitity? <Link href={`/authentication/register`}><span className={`${styles.loginText} loginText`}>Create account</span></Link>.
+                        Not apart of the <span className={`${styles.pearlBoxText} pearlBoxText`}>Pearl Box</span> community? <Link href={`/authentication/register`}><span className={`${styles.loginText} loginText`}>Create account</span></Link>.
                     </p>                    
                 </div>
 

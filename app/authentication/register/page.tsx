@@ -1,5 +1,5 @@
 'use client'
-import { AppContainer, SectionWrapper } from '@/app/components'
+import { AppContainer, LoginProtection, SectionWrapper } from '@/app/components'
 import React, { useRef } from 'react'
 import RegisterForm from '../_components/register/RegisterForm';
 import styles from '../_components/styles.module.css'
@@ -29,4 +29,4 @@ const RegisterPage = () => {
     )
 }
 
-export default RegisterPage
+export default LoginProtection(RegisterPage)

@@ -1,11 +1,7 @@
 import { fromEmail } from "@/library/const";
+import { useRegisterHtmlContent } from "@/library/const/html-content/register";
 import { createNewCredentialsUser } from "@/library/db/controllers/user";
-import { connectToMongoDB } from "@/library/db/db";
-import User from "@/library/db/models/user";
-import { error } from "console";
-import { NextApiRequest, NextApiResponse } from "next";
 import { NextRequest, NextResponse } from "next/server";
-import { text } from "stream/consumers";
 require('dotenv').config()
 
 
@@ -26,7 +22,7 @@ export async function POST(req:NextRequest, res:NextResponse) {
             
             // validate user object is  available
             if ( !user ) {
-                // res.status(500).json({message:"There was an error recieving the user data."})
+                return NextResponse.json({message:"There was an error receiving the user data."}, {status:500})
             }
 
             // create new user
@@ -34,12 +30,10 @@ export async function POST(req:NextRequest, res:NextResponse) {
             
             // validate new user is not an error message
             if(typeof newUser === 'string'){
-
                 return NextResponse.json({message: newUser}, {status:500})
             }
             
             if(newUser === null){
-
                 return NextResponse.json({message: "There was an error creating your account."}, {status:500})
             }
 
@@ -50,9 +44,10 @@ export async function POST(req:NextRequest, res:NextResponse) {
                 from:fromEmail,
                 subject:"Please verify your email.",
                 text:'Please verify your email to gain more access.',
-                html: '',
+                html: useRegisterHtmlContent,
             };
 
+            
 
 
             return NextResponse.json({message:'Successful.', user:newUser}, {status:200})     

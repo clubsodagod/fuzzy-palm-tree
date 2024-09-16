@@ -1,3 +1,5 @@
+import { Session } from "next-auth";
+
 export interface ScrollContainerData {
     scrollTop: number;
     scrollHeight: number;
@@ -24,3 +26,14 @@ export interface ScrollContextProps {
     sevenEightsCtn:number
 }
 
+export type SessionStatusType = "authenticated" | "loading" | "unauthenticated";
+
+export type SessionContextType = {
+    session: Session | null;
+    status: SessionStatusType;
+    isAuthenticated:boolean|null;
+};
+
+export type RouterContextType = {
+
+};

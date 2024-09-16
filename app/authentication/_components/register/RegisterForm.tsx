@@ -9,9 +9,14 @@ import DynamicAlert from '@/app/components/common/DynamicAlert';
 import { debounce, validateField } from '@/utility/functions';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
 
 const RegisterForm = () => {
+
+    const { data:session} = useSession();
+    console.log(session);
+    
 
     // initialize router
     const router = useRouter();
@@ -87,14 +92,18 @@ const RegisterForm = () => {
 
     // useEffect to observe changes to registerForm and validate accordingly
     useEffect(() => {
-        const validateOnChange = (name: string, value: string) => {
-        validateForm(name, value);  // Call debounced validation
+        const validateOnChange = (name: keyof RegisterFormType, value: string | undefined) => {
+            if (value !== undefined) {
+                validateForm(name, value);  // Call debounced validation
+            }
         };
-
+        
         Object.keys(registerForm).forEach((fieldName) => {
-        validateOnChange(fieldName, registerForm[fieldName] as string);
+          // Type assertion to let TypeScript know that fieldName is a valid key
+            const field = fieldName as keyof RegisterFormType;
+            validateOnChange(field, registerForm[field]);
         });
-    }, [registerForm]);
+    }, [registerForm, validateForm]);
 
     const handleDynamicSubmit = async (event:Event,form:RegisterFormType,url:string) => {
 
