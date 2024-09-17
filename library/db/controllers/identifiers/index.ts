@@ -92,7 +92,7 @@ export const getAllIdentifiers = async <T extends Document>(req: NextRequest, re
 
             // Fetch identifiers with populated references
             const identifiers = await Model.find().populate(populatePaths);
-            console.log(identifiers, "page 95");
+            // console.log(identifiers,);
             const fetchAndPopulateSubcategories = async (subcategories: (ObjectId | ISubcategory)[]) => {
                 // Check if the subcategories array contains ObjectIds or Subcategory instances
                 const populatedSubcategories = await Promise.all(
@@ -167,9 +167,6 @@ export const updateIdentifier = async <T extends Document & { slug: string; name
         
         if (updatedIdentifier) {
             updatedIdentifier.slug = slugify(identifier.name)
-            if(isCategory(identifier as Partial<ICategory|ISubcategory>)){
-                // updatedIdentifier.subcategories = identifier.subcategories as ISubcategory
-            }
             return updatedIdentifier;
         } else {
             return NextResponse.json(
@@ -190,3 +187,71 @@ export const updateIdentifier = async <T extends Document & { slug: string; name
       );
     }
 };
+
+export const removeSubcategoriesOfCategory = async(req:NextRequest,res:NextResponse,categoryId:string,subcategoryId:string) => {
+    if (req.method==="PUT") {
+        
+        try {
+            
+            // connect to db
+            await connectToMongoDB();
+
+            // find category and remove the subcategory reference
+            const category = await CategoryModel.findByIdAndUpdate(
+                categoryId, 
+                {
+                $pull: { subcategories: subcategoryId } // directly pull the subcategory by its ObjectId
+                },
+                { new: true } // returns the updated category after the pull operation
+            );
+
+            console.log(category);
+            
+
+            if (category) {
+                return category
+            } else {
+                return false
+            }
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    } else {
+        return false
+    }
+}
+
+export const addSubcategoriesOfCategory = async(req:NextRequest,res:NextResponse,categoryId:string,subcategoryId:string) => {
+    if (req.method==="PUT") {
+        
+        try {
+            
+            // connect to db
+            await connectToMongoDB();
+
+            // find category and remove the subcategory reference
+            const category = await CategoryModel.findByIdAndUpdate(
+                categoryId, 
+                {
+                $push: { subcategories: subcategoryId } // directly push the subcategory by its ObjectId
+                },
+                { new: true } // returns the updated category after the pull operation
+            );
+
+            console.log(category);
+            
+
+            if (category) {
+                return category
+            } else {
+                return false
+            }
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    } else {
+        return false
+    }
+}

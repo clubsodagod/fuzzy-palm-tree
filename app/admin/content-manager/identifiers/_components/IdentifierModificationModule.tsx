@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from '../../../styles.module.css';
 import { motion } from 'framer-motion';
 import { ICategory } from '@/library/db/models/category';
@@ -8,13 +8,19 @@ import IdentifierModificationCard from './IdentifierModificationCard';
 const IdentifierModificationModule: React.FC<{
     identifiers:ICategory[]|ISubcategory[]|null|undefined;
     subcategories?:ISubcategory[]|null;
+    refresh:any;
 }> = ({
-    identifiers, subcategories
+    identifiers, subcategories, refresh,
 }) => {
-    console.log(identifiers);
+    
     
 
-    // i
+    useEffect(()=>{
+        {
+            identifiers && identifiers;
+            
+        }
+    }, [identifiers])
 
     return (
         <motion.div
@@ -26,7 +32,7 @@ const IdentifierModificationModule: React.FC<{
                     
                     return(
                         <div key={i}>
-                            <IdentifierModificationCard subcategories={subcategories} identifier={identifier} index={i} />
+                            <IdentifierModificationCard refresh={refresh} subcategories={subcategories as ISubcategory[]|undefined} identifier={identifier} index={i} />
                         </div>
                     )
                 })

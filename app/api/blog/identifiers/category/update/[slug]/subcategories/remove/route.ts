@@ -1,4 +1,4 @@
-import { updateIdentifier } from "@/library/db/controllers/identifiers";
+import { removeSubcategoriesOfCategory, updateIdentifier } from "@/library/db/controllers/identifiers";
 import { connectToMongoDB } from "@/library/db/db";
 import CategoryModel from "@/library/db/models/category";
 import { ICategory } from "@/library/db/models/category";
@@ -18,19 +18,24 @@ export async function PUT (req:NextRequest,res:NextResponse) {
             // access request body
             const reqBody = await req.json();
             const {
-                category 
+                categoryId,
+                subcategoryId 
             } = reqBody;
 
+            console.log(reqBody);
+            
             // validate category from request body
-            if(category) {
-                const updatedCategory = await updateIdentifier(req,res,CategoryModel,category) ;
+            if(categoryId && subcategoryId) {
+                const updatedCategory = await removeSubcategoriesOfCategory(req,res,categoryId, subcategoryId) ;
 
-                // 
+                if(updatedCategory){
+                    return NextResponse.json(
+                        {message:`Category updated successfully!`, updatedCategory}, 
+                        {status:200}
+                    )                    
+                }
                 
-                return NextResponse.json(
-                    {message:`Category updated successfully!`, updatedCategory}, 
-                    {status:200}
-                )
+
             } else {
                 return NextResponse.json(
                     {message:"Information to update category not provided."}, 

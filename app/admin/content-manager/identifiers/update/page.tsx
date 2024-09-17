@@ -16,30 +16,33 @@ const UpdatePage = () => {
 
     // create state variables
     const [identifiers,setIdentifiers] = useState<IdentifiersType|null>(null);
+    const [categories, setCategories] = useState<ICategory[]|null>(null);
+    const [subcategories, setSubcategories] = useState<ISubcategory[]|null>(null);
 
     // access category and subcategory documents from the database
     const initIdentifiers = async() => {
         // api call to fetch documents
         const categoriesData = await fetch('/api/blog/identifiers/category/get-all', {method:"GET"});
         const subcategoriesData = await fetch('/api/blog/identifiers/subcategory/get-all', {method:"GET"});
-        const categories = await categoriesData.json()
-        const subcategories = await subcategoriesData.json()
-
-        console.log(categories);
+        const data = await categoriesData.json()
+        const subData = await subcategoriesData.json()
+        setCategories(data.categories);
+        setSubcategories(subData.subcategories);
+        setIdentifiers({
+            subcategories:subData.subcategories,
+            categories:data.categories,
+        })
         
         
         // return object 
-        return {categories:categories.categories,subcategories:subcategories.subcategories}
+        return {categories:data.categories,subcategories:subData.subcategories}
     } 
 
-
+    
 
 
     // initialize identifiers on page loads
     useEffect(()=>{
-
-        // validate identifiers object is null
-        if(identifiers === null){
             // handle initialize function
             const handleInitIdentifiers = async() =>{
                 const data = await initIdentifiers();
@@ -52,12 +55,36 @@ const UpdatePage = () => {
                 }
                 
             }
+        // validate identifiers object is null
+        if(identifiers === null){
 
             // evoke function and get identifiers
             handleInitIdentifiers()
 
+        } 
+    },[])
+
+    useEffect(()=> {
+        {
+            categories  &&
+            categories
+            console.log(categories);
         }
-    },)
+        {
+            subcategories  &&
+            subcategories
+            console.log(subcategories);
+        }
+        {
+            categories == null  &&
+            categories
+        }
+        {
+            subcategories == null  &&
+            subcategories
+        }
+        // initIdentifiers()
+    },[categories])
 
 
     return (
@@ -86,7 +113,7 @@ const UpdatePage = () => {
                         Categories
                     </motion.h6>
 
-                    <IdentifierModificationModule subcategories={identifiers?.subcategories} identifiers={identifiers?.categories} />
+                    <IdentifierModificationModule subcategories={subcategories} identifiers={categories} refresh={initIdentifiers}/>
                 </motion.div>
             </motion.div>
         </PageContainer>
