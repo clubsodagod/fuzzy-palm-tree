@@ -5,24 +5,25 @@ import { motion } from 'framer-motion';
 import { Button } from '@mui/material';
 import { CategorySubcategoriesType, handleInclusiveSubcategories } from '@/utility/admin/identifiers';
 import { ICategory } from '@/library/db/models/category';
+import { ISubcategory } from '@/library/db/models/subcategory';
 
 
 const IdentifiersActions: React.FC<{
     open:boolean;
     setOpen: (arg0:boolean)=>void;
     handleSubmit:()=>void;
-    newSubcategories:CategorySubcategoriesType|Partial<CategorySubcategoriesType>;
-    setSubcategories:(arg0:any)=>void;
     identifier:ICategory;
-    refresh:any
+    refresh:any;
+    inclusive:ISubcategory[]|undefined;
+    noninclusive:ISubcategory[]|undefined;
+    setInclusive:(arg0:any)=>void;
+    setNoninclusive:(arg0:any)=>void;
 }> = ({
     open, 
     setOpen, 
     handleSubmit,
-    setSubcategories,
     identifier,
-    newSubcategories, 
-    refresh
+    refresh,
 }) => {
 
 
@@ -45,7 +46,7 @@ const IdentifiersActions: React.FC<{
             {
                 open&&
                 <>
-                    <Button onClick={()=>{handleSubmit();handleInclusiveSubcategories(newSubcategories,identifier,setSubcategories);handleRefresh()}} variant='contained' color='warning' className={`${styles.actionsBtn}`}>Update</Button>
+                    <Button onClick={()=>{handleSubmit();setOpen(!open)}} variant='contained' color='warning' className={`${styles.actionsBtn}`}>Update</Button>
                     <Button onClick={()=>{setOpen(!open)}} variant='contained' color='error' className={`${styles.actionsBtn}`}>Delete</Button> 
                     <Button onClick={()=>{setOpen(!open)}} variant='outlined' color='secondary' className={`${styles.actionsBtn}`}>Cancel</Button>                
                 </>

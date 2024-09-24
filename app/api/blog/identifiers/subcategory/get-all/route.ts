@@ -13,7 +13,8 @@ export async function GET (req:NextRequest, res:NextResponse) {
             
             // get subcategories
             const subcategories = await getAllIdentifiers(req,res,SubcategoryModel);
-
+            console.log(subcategories);
+            
             // validate subcategories
             if (subcategories) {
                 return NextResponse.json({message:"Subcategories fetched successfully!", subcategories}, {status:200})

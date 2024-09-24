@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FormControl, FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
+import { Checkbox, FormControl, FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
 import { Editor } from '@tinymce/tinymce-react';
 import styles from '../styles.module.css';
 import PostPreview from '../preview/PostPreview';
@@ -25,7 +25,8 @@ const RichTextEditor:React.FC<{
   const editorRef = useRef<any>(null);
   const titleRef = useRef<HTMLInputElement>(null);
   const [categories, setCategories] = useState<ICategory[]|null>(null);
-  const [subcategories, setSubcategories] = useState<ISubcategory[]|null>(null);
+  const [subcategories, setSubcategories] = useState<Partial<ISubcategory[]>>();
+  const [checkedSubcategory, setCheckedSubcategory] = useState<Partial<string[]>>([]);
   const [article, setArticle] = useState<BlogDocumentType | Partial<BlogDocumentType>>({});
   const [error, setErrors] = useState<ErrorObject<BlogDocumentType>>({})
   const [editorContent, setEditorContent] = useState<string>('');
@@ -74,6 +75,8 @@ const RichTextEditor:React.FC<{
     const response = await fetch('/api/blog/identifiers/category/get-all');
     const data = await response.json().then((body)=>{
       setCategories(body.categories);
+      console.log(body.categories);
+      
       return body.categories;
     })
     console.log(data);
@@ -82,6 +85,22 @@ const RichTextEditor:React.FC<{
     console.error(error);
     }
 };
+
+  const handleSubcategoryToggle = (t:any) => () => {
+    // setValues({...values, error: ''});
+    const clickedSubcategory = checkedSubcategory.indexOf(t)
+    const all = [...checkedSubcategory]
+
+    if(clickedSubcategory === -1) {
+        all.push(t)
+    } else {
+        all.splice(clickedSubcategory, 1)
+    }
+    console.log(all);
+    setCheckedSubcategory(all)
+    // const allLocal = JSON.stringify(all)
+    // localStorage.setItem("Subcategories", allLocal)
+  };
 
   // init subcategories
     const initSubcategories = (id:string) => {
@@ -92,15 +111,17 @@ const RichTextEditor:React.FC<{
 
       // filter the selected category id
       const cat = categories?.filter((c) => 
-          c._id == id
+          c._id as unknown as string == id
       )
       console.log(cat);
       
       // use filtered category id to get sub categories
       const sub = cat && cat[0].subcategories;
       console.log(sub);
+
+
       
-      // setSubcategories(sub);
+      setSubcategories(sub as unknown as ISubcategory[]);
       
   }
 
@@ -113,6 +134,8 @@ const RichTextEditor:React.FC<{
       console.log(categories);      
     }
   }, [categories])
+
+
   return (
 
     <motion.div
@@ -123,7 +146,7 @@ const RichTextEditor:React.FC<{
         ? (
             <motion.div
               className={`${styles.richTextWrapper}`}
-              >
+            >
               {/* Title Input */}
               <TextField
               ref={titleRef}
@@ -204,7 +227,7 @@ const RichTextEditor:React.FC<{
                         onChange={(e) => {
                           setArticle((prevForm) => ({
                             ...prevForm, 
-                            featuredImg: {
+                            featuredVideo: {
                               ...prevForm.featuredVideo,  
                               portrait: e.target.value  
                             }
@@ -217,7 +240,7 @@ const RichTextEditor:React.FC<{
                         onChange={(e) => {
                           setArticle((prevForm) => ({
                             ...prevForm, 
-                            featuredImg: {
+                            featuredVideo: {
                               ...prevForm.featuredVideo,  
                               landscape: e.target.value  
                             }
@@ -254,6 +277,34 @@ const RichTextEditor:React.FC<{
                             {categories?.map((c,i:number) => {
                                 return (
                                   <FormControlLabel  key={c.id}   value={c._id} control={<Radio size='small' />} label={c.name} />
+                                )
+                            })}
+                          </RadioGroup>
+                        </FormControl>
+                    </motion.div>                  
+                  </div>
+                  {/* subcategories container */}
+                  <div>               
+                    <p className={`${styles.richHeader}`}>
+                      Subcategories
+                    </p>     
+                    <motion.div
+                      className={`${styles.identifierCtn}`}
+                    >
+                      
+                        <FormControl>
+                          <RadioGroup
+                            aria-labelledby="controlled-radio-buttons-group"
+                            name="controlled-radio-buttons-group"
+                            value={article.category ? article.category : null}
+                            onChange={(e)=> {setArticle((prevForm)=>({...prevForm,category:e.target.value})); initSubcategories(e.target.value) }}
+                          >
+                            {subcategories?.map((s,i:number) => {
+                              console.log(s);
+                              
+                                const keyName = s?._id!;
+                                return (
+                                  <FormControlLabel  onChange={handleSubcategoryToggle(s?._id)} key={`${keyName}`} control={<Checkbox size='small'  checked={checkedSubcategory.includes(s?._id as unknown as string)} />} label={s?.name} />
                                 )
                             })}
                           </RadioGroup>

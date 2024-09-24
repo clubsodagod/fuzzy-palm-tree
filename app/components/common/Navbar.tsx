@@ -34,7 +34,7 @@ export default function DrawerAppBar() {
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'left' }} id="navbar-drawer">
             <Typography variant="h6" sx={{ my: 2 }}>
-                MUI
+                Maliek Davis
             </Typography>
             <Divider />
             <List>
@@ -87,7 +87,7 @@ export default function DrawerAppBar() {
                             href={'/'}
                         >
                             <h6>
-                                MUI
+                                Maliek Davis
                             </h6>
                             
                         </Button>

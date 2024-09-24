@@ -8,6 +8,7 @@ import mongoose,{ Model as MongooseModel, ObjectId, Document } from 'mongoose';
 import { IUser } from "../../models/user";
 import { Model } from 'mongoose';
 import slugify from "slugify";
+import { isCategory } from "@/utility/admin/identifiers";
 
 
 export type IdentifierModelsType = typeof CategoryModel | typeof SubcategoryModel;
@@ -74,42 +75,25 @@ export const getAllIdentifiers = async <T extends Document>(req: NextRequest, re
             // Connect to the database
             await connectToMongoDB();
 
-            // Get the schema of the model
-            const schema = Model.schema;
-
-            // Find all paths in the schema
-            const paths = Object.keys(schema.paths);
-
-            // Extract paths that are of type ObjectId (i.e., references)
-            const populatePaths = paths.filter(path => {
-                const schemaType = schema.paths[path].instance;
-                const optionsType = schema.paths[path].options.type;
-
-                // Check if the path is of type ObjectId or an array of ObjectId
-                return schemaType === 'ObjectID' || 
-                       (Array.isArray(optionsType) && optionsType[0] === mongoose.Schema.Types.ObjectId);
-            });
-
             // Fetch identifiers with populated references
-            const identifiers = await Model.find().populate(populatePaths);
-            // console.log(identifiers,);
-            const fetchAndPopulateSubcategories = async (subcategories: (ObjectId | ISubcategory)[]) => {
-                // Check if the subcategories array contains ObjectIds or Subcategory instances
-                const populatedSubcategories = await Promise.all(
-                    subcategories.map(async (subcategory) => {
-                        if (mongoose.isValidObjectId(subcategory)) {
-                            // If it's an ObjectId, fetch the full subcategory document
-                            return await SubcategoryModel.findById(subcategory).exec();
-                        } else {
-                            // If it's already an instance of ISubcategory, return it directly
-                            return subcategory;
-                        }
-                    })
-                );
-                return populatedSubcategories;
-            };
+            const subs = new SubcategoryModel;
+            {
+                subs && subs
+            }
+
+            let identifiers
+            if (Model.modelName === 'Category') {
+                identifiers = await Model.find().populate('subcategories');
+                console.log(identifiers, "category model $%%%%%%%%%%%%%%%%%%%%%%##############");
+            } else {
+                identifiers = await Model.find(); // No population for SubcategoryModel
+                console.log(identifiers);
+            }
+            console.log(identifiers,);
+
             // Validate identifiers and return them if successful
             if (identifiers) {
+                
                 return identifiers
             } else {
                 return NextResponse.json(
@@ -239,7 +223,7 @@ export const addSubcategoriesOfCategory = async(req:NextRequest,res:NextResponse
                 { new: true } // returns the updated category after the pull operation
             );
 
-            console.log(category);
+            console.log(category, "with the update");
             
 
             if (category) {

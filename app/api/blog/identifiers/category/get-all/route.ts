@@ -17,6 +17,7 @@ export async function GET (req:NextRequest, res:NextResponse) {
             // validate categories
             if (categories) {
                 // console.log("backend",await categories);
+                // console.log(categories, "backend");
                 
                 return NextResponse.json(
                     {message:"Categories fetched successfully!", categories}, 

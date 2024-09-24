@@ -1,43 +1,27 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../../../styles.module.css'
 import { ISubcategory } from '@/library/db/models/subcategory'
-import { handleRemoveSubcategory, handleAddSubcategory, CategorySubcategoriesType, handleInclusiveSubcategories } from '@/utility/admin/identifiers'
+import { handleRemoveSubcategory, handleAddSubcategory, CategorySubcategoriesType, handleInclusiveSubcategories, handlePopulateFields, isCategory } from '@/utility/admin/identifiers'
 import { TextField, Chip, Avatar } from '@mui/material'
 import { motion } from 'framer-motion'
 import { ICategory } from '@/library/db/models/category'
+import { ManageAddRemoveSubcategoryFunction } from './IdentifierModificationCard'
 
 
 const CardForm: React.FC<{
     identifierDocument:any;
-    setIdentifierDocument:(arg0:any)=>void;
-    newSubcategories:CategorySubcategoriesType|Partial<CategorySubcategoriesType>;
-    setSubcategories:(arg0:any)=>void;
-    identifier:ICategory;
-    refresh:any;
-    setUpdate:(arg0:boolean)=>void;
-    update:boolean;
+    inclusive:ISubcategory[]|undefined;
+    noninclusive:ISubcategory[]|undefined;
+    manageAddRemoveSubcategory: ManageAddRemoveSubcategoryFunction;
 }> = ({
     identifierDocument,
-    newSubcategories,
-    setIdentifierDocument,
-    identifier,
-    setSubcategories,
-    refresh,
-    setUpdate,
-    update,
+    inclusive,
+    noninclusive,
+    manageAddRemoveSubcategory,
 }) => {
+    
+    
 
-    const handleRefresh = async() => {
-        await refresh();
-    }
-
-    {
-        useEffect(()=>{
-            {
-                identifier && identifier
-            }
-        },[identifier])
-    }
 
     return (
         <motion.div className={`${styles.clickedCtnWrapper}`}>
@@ -119,29 +103,29 @@ const CardForm: React.FC<{
             className={`${styles.subcategoriesCtn}`}
         >
             {
-                newSubcategories.inclusive && newSubcategories.inclusive.length > 0 &&
-                    newSubcategories.inclusive.map((sc:ISubcategory,i)=>{
+                    inclusive?.map((sc:ISubcategory|undefined,i:number)=>{
                             return(
                                 <Chip key={`${i} removable chip`} 
                                     variant="outlined" 
-                                    onClick={()=>{handleRemoveSubcategory(sc._id as string,setIdentifierDocument,identifierDocument);setUpdate(!update)}} 
-                                    color="error" label={sc.name} 
-                                    avatar={<Avatar src={`${sc.photo.landscape}`} />} 
+                                    onClick={()=>{manageAddRemoveSubcategory("remove",sc?._id as string,identifierDocument)}} 
+                                    color="error" label={sc?.name} 
+                                    avatar={<Avatar src={`${sc?.photo.landscape}`} />} 
                                 />
                             )
                         })
 
             }
             {
-                newSubcategories.noninclusive && newSubcategories.noninclusive.length > 0 &&
-                    newSubcategories.noninclusive.map((sc:ISubcategory,i)=>{
+                    noninclusive?.map((sc:ISubcategory|undefined,i:number)=>{
+                        console.log(sc);
+                        
                             return(
                                 <Chip 
                                     key={`${i} addable chip`} 
                                     variant="outlined" 
-                                    onClick={()=>{handleAddSubcategory(sc._id as string, setIdentifierDocument, identifierDocument);handleRefresh();setUpdate(!update)}} 
-                                    color="success" label={sc.name} 
-                                    avatar={<Avatar src={`${sc.photo.landscape}`} />} 
+                                    onClick={()=>{manageAddRemoveSubcategory("add",sc?._id as string,identifierDocument)}} 
+                                    color="success" label={sc?.name} 
+                                    avatar={<Avatar src={`${sc?.photo.landscape}`} />} 
                                 />
                             )
                         })

@@ -3,51 +3,108 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import styles from '../../../styles.module.css';
 import { CategoryDocumentType, ICategory } from '@/library/db/models/category';
-import { Avatar, Chip, TextField } from '@mui/material';
+import { Avatar, Chip, } from '@mui/material';
 import { ISubcategory } from '@/library/db/models/subcategory';
 import IdentifiersActions from './IdentifiersActions';
-import { CategorySubcategoriesType, handleAddSubcategory, handleClick, handleInclusiveSubcategories, handlePopulateFields, handleRemoveSubcategory, handleSubmit, isCategory } from '@/utility/admin/identifiers';
+import { handleAddSubcategory, handleClick, handlePopulateFields, handleRemoveSubcategory, handleSubmit, isCategory, } from '@/utility/admin/identifiers';
 import CardForm from './IdentifierCardForm';
 import ClickedIdentifierInformation from './ClickedIdentiferInfo';
 import CardTop from './CardTop';
+import { ObjectId } from 'mongoose';
 
+export type ManageAddRemoveSubcategoryFunction = (method:"add"|"remove",subcategoryId:string,category:Partial<ICategory>) => void
 
 
 const IdentifierModificationCard:React.FC<{
     identifier:ICategory|ISubcategory;
     subcategories:ISubcategory[]|undefined; 
     index:number;
-    refresh:any;
+    refresh:()=>Promise<{categories:ICategory[],subcategories:ISubcategory[]}>|null;
 }> = ({identifier, index, subcategories, refresh}) => {
+    
 
+
+    // init  inclusive and noninclusive subcategories
+    const inclusiveInit = () => {
+        if (isCategory(identifier)) { 
+
+            // Type assertion to ICategory since we have already type checked
+            const categoryIdentifier = identifier as ICategory;
+
+            const data = subcategories?.filter((subcategory) => 
+                categoryIdentifier.subcategories.some((subId) => subId.toString() === subcategory._id));
+
+            return data            
+        }
+}
+
+    const noninclusiveInit = () => {
+        if(isCategory(identifier)){ 
+
+            // Type assertion to ICategory since we have already type checked
+            const categoryIdentifier = identifier as ICategory;
+
+            const data = subcategories?.filter((subcategory) => 
+                !categoryIdentifier.subcategories.some((subId) => subId.toString() === subcategory._id));
+            
+            return data            
+        }
+    }
+
+    
+    
     // initialize state variables
     const [clicked, setClicked] = useState<boolean>(false);
     const [open, setOpen] = useState<boolean>(false);
-    const [newSubcategories, setSubcategories] = useState<CategorySubcategoriesType|Partial<CategorySubcategoriesType>>({all:subcategories});
     const [identifierDocument, setIdentifierDocument] = useState<CategoryDocumentType|Partial<CategoryDocumentType|null>>({});
+    const [inclusive, setInclusive] = useState<ISubcategory[]|undefined>(inclusiveInit())
+    const [noninclusive, setNoninclusive] = useState<ISubcategory[]|undefined>(noninclusiveInit())
     const [update, setUpdate] = useState<boolean>(false);
-    const [ident, setIdent] = useState<Partial<ICategory|ISubcategory>>(identifier)
     
     // useEffect to trigger the fetching of the document on page load
     useEffect(() => {
         handlePopulateFields(setIdentifierDocument,identifier);
-        if(isCategory(identifier)) {
-            handleInclusiveSubcategories(newSubcategories,identifier as ICategory,setSubcategories);
-        }
     },[]); 
 
+    const manageAddRemoveSubcategory:ManageAddRemoveSubcategoryFunction = async(method,subcategoryId,category) => {
+        switch (method) {
+            case "add":
+                handleAddSubcategory(subcategoryId,category);
+                await refresh()?.then(()=>{
+                    handlePopulateFields(setIdentifierDocument,identifier);
+                    setUpdate(!update);
+                });
+                break;
+                case "remove":
+                    handleRemoveSubcategory(subcategoryId,category);
+                    await refresh()?.then((data)=>{
+                        handlePopulateFields(setIdentifierDocument,identifier);
+                    setUpdate(!update);
+                    });
+                    break;
+        
+            default:
+                break;
+        }
+    };
+
     useEffect(()=> {
-        if (update){
-            handleInclusiveSubcategories(newSubcategories,identifier as ICategory,setSubcategories);
-            setTimeout(()=> {
-                console.log(newSubcategories.inclusive);
-                
-                console.log(newSubcategories.noninclusive);                
-            },500)
+
+        if(update){
+            console.log(inclusive, noninclusive, identifierDocument);
+            setInclusive(inclusiveInit());
+            setNoninclusive(noninclusiveInit());
             setUpdate(!update)
         }
-    },[update, newSubcategories.inclusive, newSubcategories.noninclusive])
+    }, [inclusive, noninclusive,]);
 
+    useEffect(()=>{
+        {
+            identifier && console.log(identifier);
+            setInclusive(inclusiveInit());
+            setNoninclusive(noninclusiveInit());
+        }
+    }, [identifier])
 
     return (
         <motion.div
@@ -71,7 +128,8 @@ const IdentifierModificationCard:React.FC<{
                         !open &&
                             <ClickedIdentifierInformation 
                                 identifierDocument={identifierDocument}
-                                newSubcategories={newSubcategories}
+                                inclusive={inclusive}
+                                noninclusive={noninclusive}
                             />
                     }
 
@@ -79,13 +137,9 @@ const IdentifierModificationCard:React.FC<{
                         open &&
                             <CardForm 
                                 identifierDocument={identifierDocument}
-                                setIdentifierDocument={setIdentifierDocument}
-                                newSubcategories={newSubcategories}
-                                setSubcategories={setSubcategories}
-                                identifier={identifier as ICategory}
-                                refresh={refresh}
-                                update={update}
-                                setUpdate={setUpdate}
+                                inclusive={inclusive}
+                                noninclusive={noninclusive}
+                                manageAddRemoveSubcategory={manageAddRemoveSubcategory}
                             />                         
                     }
 
@@ -93,10 +147,12 @@ const IdentifierModificationCard:React.FC<{
                         open={open} 
                         setOpen={setOpen} 
                         handleSubmit={()=>{handleSubmit(identifier,identifierDocument)}}
-                        newSubcategories={newSubcategories}
-                        setSubcategories={setSubcategories}
+                        inclusive={inclusive}
+                        noninclusive={noninclusive}
                         identifier={identifier as ICategory}
                         refresh={refresh}
+                        setInclusive={setInclusive}
+                        setNoninclusive={setNoninclusive}
                     />                     
                 </>
             }
@@ -107,23 +163,18 @@ const IdentifierModificationCard:React.FC<{
                 <motion.div
                     className={`${styles.subcategoriesCtn}`}
                 >
-                    {
-                        newSubcategories.inclusive && newSubcategories.inclusive.length > 0 &&
-                            <>
                                 {
-                                    newSubcategories.inclusive.map((sc:ISubcategory,i)=>{
+                                    inclusive?.map((sc:ISubcategory|undefined,i)=>{
                                         return(
                                             <Chip 
-                                                key={`${i} : subcategory ${sc.name}`} 
+                                                key={`${i} : subcategory ${sc?.name}`} 
                                                 variant="outlined" color="primary" 
-                                                label={sc.name} 
-                                                avatar={<Avatar src={sc.photo.portrait} />} 
+                                                label={sc?.name} 
+                                                avatar={<Avatar src={sc?.photo?.portrait} />} 
                                             />
                                         )
                                     })
                                 }
-                            </>
-                    }
                 </motion.div>
             }
 

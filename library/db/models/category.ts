@@ -6,11 +6,11 @@ import { sluggerPlugin } from 'mongoose-slugger-plugin';
 // Define category document type
 export interface CategoryDocumentType {
   id:string;
-  name?:string;
-  tagline?:string;
+  name:string;
+  tagline:string;
   description?:string;
   subcategories?:string[];
-  photo?:Photo;
+  photo:Photo;
   video?:Video;
 }
 

@@ -6,15 +6,11 @@ import styles from './styles.module.css';
 import { bio, bioImg } from '@/library/const';
 import { Button } from '@mui/material';
 import { motion } from 'framer-motion';
-import { useIsMobile } from '@/app/context/sub-context/ScreenContext';
 
 
 
 const BioHero = () => {
 
-    const {
-        isMobile
-    } = useIsMobile();
 
     return (
         <OuterSceneWrapper

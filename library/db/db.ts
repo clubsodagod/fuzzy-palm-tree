@@ -1,5 +1,6 @@
 
 // Importing mongoose library along with Connection type from it
+import { PhotoSizeSelectLargeTwoTone } from "@mui/icons-material";
 import mongoose, { Connection } from "mongoose";
 require('dotenv').config()
 
@@ -19,6 +20,8 @@ export async function connectToMongoDB() {
     // If no cached connection exists, establish a new connection to MongoDB
     
     const cnx = await mongoose.connect(env.NEXT_PUBLIC_MONGODB_URI!);
+    console.log(env.NEXT_PUBLIC_MONGODB_URI);
+    
     // Cache the connection for future use
     cachedConnection = cnx.connection;
     // Log message indicating a new MongoDB connection is established

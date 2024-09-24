@@ -7,7 +7,7 @@ import IdentifierModificationModule from '../_components/IdentifierModificationM
 import { ICategory } from '@/library/db/models/category';
 import { ISubcategory } from '@/library/db/models/subcategory';
 
-type IdentifiersType = {
+export type IdentifiersType = {
     categories:ICategory[]|null;
     subcategories:ISubcategory[]|null;
 }
@@ -15,31 +15,25 @@ type IdentifiersType = {
 const UpdatePage = () => {
 
     // create state variables
-    const [identifiers,setIdentifiers] = useState<IdentifiersType|null>(null);
-    const [categories, setCategories] = useState<ICategory[]|null>(null);
-    const [subcategories, setSubcategories] = useState<ISubcategory[]|null>(null);
-
+    const [identifiers,setIdentifiers] = useState<IdentifiersType|Partial<IdentifiersType>>({});
+    const [categories, setCategories] = useState();
+    const [subcategories, setSubcategories] = useState();
+    
     // access category and subcategory documents from the database
     const initIdentifiers = async() => {
         // api call to fetch documents
         const categoriesData = await fetch('/api/blog/identifiers/category/get-all', {method:"GET"});
         const subcategoriesData = await fetch('/api/blog/identifiers/subcategory/get-all', {method:"GET"});
         const data = await categoriesData.json()
-        const subData = await subcategoriesData.json()
-        setCategories(data.categories);
-        setSubcategories(subData.subcategories);
+        const subData = await subcategoriesData.json();
         setIdentifiers({
             subcategories:subData.subcategories,
             categories:data.categories,
         })
-        
-        
-        // return object 
+        setCategories(data.categories)
+        setSubcategories(subData.subcategories)
         return {categories:data.categories,subcategories:subData.subcategories}
     } 
-
-    
-
 
     // initialize identifiers on page loads
     useEffect(()=>{
@@ -55,36 +49,10 @@ const UpdatePage = () => {
                 }
                 
             }
-        // validate identifiers object is null
-        if(identifiers === null){
-
             // evoke function and get identifiers
             handleInitIdentifiers()
-
-        } 
     },[])
 
-    useEffect(()=> {
-        {
-            categories  &&
-            categories
-            console.log(categories);
-        }
-        {
-            subcategories  &&
-            subcategories
-            console.log(subcategories);
-        }
-        {
-            categories == null  &&
-            categories
-        }
-        {
-            subcategories == null  &&
-            subcategories
-        }
-        // initIdentifiers()
-    },[categories])
 
 
     return (
@@ -107,13 +75,7 @@ const UpdatePage = () => {
 
                 <motion.div className={`${styles.btmCtn}`}>
 
-                    <motion.h6
-                    className={`${styles.subheader}`}
-                    >
-                        Categories
-                    </motion.h6>
-
-                    <IdentifierModificationModule subcategories={subcategories} identifiers={categories} refresh={initIdentifiers}/>
+                    <IdentifierModificationModule />
                 </motion.div>
             </motion.div>
         </PageContainer>

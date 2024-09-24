@@ -10,9 +10,10 @@ export type CategorySubcategoriesType = {
 }
 
 export type HandleInclusiveSubcategoriesFunction = (
-    newSubcategories:CategorySubcategoriesType|Partial<CategorySubcategoriesType>, 
     category:ICategory,
-    setSubcategories:(arg0:any)=>void,
+    setInclusive:(arg0:any)=>void,
+    setNoninclusive:(arg0:any)=>void,
+    subcategories:ISubcategory[]|undefined,
 ) => void;
 
 // HandleClickFunction
@@ -25,25 +26,27 @@ export const isCategory:IsCategoryFunction = (identifier): identifier is ICatego
 
 // Function to filter and set the inclusive subcategories
 export const handleInclusiveSubcategories:HandleInclusiveSubcategoriesFunction = (
-    newSubcategories,
     category,
-    setSubcategories,
+    setInclusive,
+    setNoninclusive,
+    subcategories
 ) => {
-    if (!category.subcategories || newSubcategories.all?.length === 0) return;
+    if (!category.subcategories || subcategories?.length === 0) return;
 
     // Filter subcategories that are included in category.subcategories
-    const inclusive = newSubcategories.all?.filter((subcategory) =>
+    const inclusive = subcategories?.filter((subcategory) =>
         category.subcategories.some((subId) => subId.toString() === subcategory._id) // Match ObjectIds
     );
 
     // Filter subcategories that are NOT included in category.subcategories
-    const noninclusive = newSubcategories.all?.filter((subcategory) =>
+    const noninclusive = subcategories?.filter((subcategory) =>
         !category.subcategories.some((subId) => subId.toString() === subcategory._id) // Match ObjectIds
     );
-
+    console.log(noninclusive, inclusive);
+    
     // Set the filtered inclusive and noninclusive subcategories to state
-    setSubcategories((prevForm:Partial<CategorySubcategoriesType>)=>({...prevForm, inclusive}));
-    setSubcategories((prevForm:Partial<CategorySubcategoriesType>)=>({...prevForm, noninclusive}));
+    setInclusive(inclusive);
+    setNoninclusive(noninclusive);
 };
 
 // open card to more details
@@ -146,10 +149,10 @@ export const handlePopulateFields:HandlePopulateFieldsFunction = async (setIdent
 };
 
 // handle add and remove sub category type
-export type HandleManageSubcategoryFunction = (subcategoryId:string, setIdentifierDocument:(arg0:any)=>void,category?:Partial<ICategory>) => void;
+export type HandleManageSubcategoryFunction = (subcategoryId:string,category?:Partial<ICategory>) => void;
 
 // Add a new subcategory ObjectId to the array
-export const handleAddSubcategory:HandleManageSubcategoryFunction = (subcategoryId,setIdentifierDocument,identifierDocument) => {
+export const handleAddSubcategory:HandleManageSubcategoryFunction = (subcategoryId,identifierDocument) => {
     
     const handleAPI = async()=> {
         await fetch(`/api/blog/identifiers/category/update/${identifierDocument?.slug}/subcategories/add`, {
@@ -165,7 +168,7 @@ export const handleAddSubcategory:HandleManageSubcategoryFunction = (subcategory
 };
 
 // Remove a subcategory ObjectId from the array
-export const handleRemoveSubcategory:HandleManageSubcategoryFunction = (subcategoryId,setIdentifierDocument,identifierDocument) => {
+export const handleRemoveSubcategory:HandleManageSubcategoryFunction = (subcategoryId,identifierDocument) => {
     
     const handleAPI = async()=> {
         await fetch(`/api/blog/identifiers/category/update/${identifierDocument?.slug}/subcategories/remove`, {

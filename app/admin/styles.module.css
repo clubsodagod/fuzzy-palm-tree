@@ -56,3 +56,37 @@
     flex-direction: row;
     gap: 6vw;
 }
+.catFormCheckbox {
+    width: 100%;
+    height: 33vh;
+    overflow-y: auto;
+    padding: 2vh 3vw;
+}
+
+.moduleWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+    @media screen and (min-width:780px) {
+        flex-direction: row;
+    }
+}
+
+.sectionCtn {
+    gap: 2vh;
+    @media screen and (min-width:780px) {
+        width:50%;
+    }
+}
+
+.identifierForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.createIdentifierCardWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
