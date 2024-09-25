@@ -16,21 +16,21 @@ export async function POST (req:NextRequest, res:NextResponse) {
             // destructure fields from the reqBody
             const {
                 category: {
-                    name, description, photo, video, tagline            
+                    name, description, photo, video, tagline, subcategories            
                 }
             } = reqBody;
 
             // validate fields are not undefined or empty strings
-            if(!name||!description||!photo||!video||!tagline){
+            if(!name||!description||!photo||!video||!tagline||!subcategories){
                 return NextResponse.json({message:"You must provide all fields to create category."})
             }
 
             // initialize new category
-            const category =  await createIdentifier(CategoryModel,name, tagline,description,photo, video,req, res);
+            const category =  await createIdentifier(CategoryModel,name, tagline,description,photo, video,subcategories,req, res);
 
             // validate category properly created
-            if (!category) {
-                throw new Error('Category failed to create. Please try again')
+            if (category) {
+                return NextResponse.json({message:"There was an error creating category", }, {status:500})
             } else {
                 // successfully created category return to client
                 return NextResponse.json({message:`The ${name} category is now created!`, category}, {status:200})
@@ -40,6 +40,6 @@ export async function POST (req:NextRequest, res:NextResponse) {
             return NextResponse.json({message:"There was an error creating category", error:error}, {status:500})
         }
     } else {
-        return NextResponse.json({message:"Your request is unauthorized"}, {status:500})
+        return NextResponse.json({message:"Your request is unauthorized."}, {status:500})
     }
 }

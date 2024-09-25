@@ -2,35 +2,99 @@ import React, { useEffect, useState } from 'react'
 import styles from '../../../styles.module.css'
 import { ISubcategory } from '@/library/db/models/subcategory'
 import { handleRemoveSubcategory, handleAddSubcategory, CategorySubcategoriesType, handleInclusiveSubcategories, handlePopulateFields, isCategory } from '@/utility/admin/identifiers'
-import { TextField, Chip, Avatar } from '@mui/material'
+import { TextField, Chip, Avatar, Checkbox, FormControlLabel } from '@mui/material'
 import { motion } from 'framer-motion'
-import { ICategory } from '@/library/db/models/category'
+import { CategoryDocumentType, ICategory } from '@/library/db/models/category'
 import { ManageAddRemoveSubcategoryFunction } from './IdentifierModificationCard'
+import { categoryFormDocument } from '@/library/const/forms/identifiers'
 
 
 const CardForm: React.FC<{
-    identifierDocument:any;
+    identifierDocument:Partial<CategoryDocumentType>;
     inclusive:ISubcategory[]|undefined;
     noninclusive:ISubcategory[]|undefined;
     manageAddRemoveSubcategory: ManageAddRemoveSubcategoryFunction;
+    handleChange:(
+        key: string,
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => void;
 }> = ({
     identifierDocument,
     inclusive,
     noninclusive,
     manageAddRemoveSubcategory,
+    handleChange
 }) => {
     
     
 
 
     return (
-        <motion.div className={`${styles.clickedCtnWrapper}`}>
+    <motion.div className={`${styles.clickedCtnWrapper}`}>
 
         <motion.form
         className={`${styles.clickedIdentifierForm}`}
         >
+            
+            {categoryFormDocument.map((cf, i) => {
+                            
+                            if (cf && cf.type === "text" && cf.key in identifierDocument!) { // Type narrowing to ensure cf is not undefined
 
-            <TextField 
+                                if (["photo", "video",].some(k => cf.key.includes(k))) {
+                                    return (
+                                        <TextField
+                                            fullWidth
+                                            label={cf.label}
+                                            name={cf.name as string}  // `name` is narrowed down to string
+                                            className={styles.catFormField}
+                                            value={cf.key.includes("photo")
+                                                ? identifierDocument.photo && identifierDocument.photo[cf.name.includes("landscape") ? 'landscape' : 'portrait'] // Access the correct photo sub-property
+                                                : identifierDocument.video && identifierDocument.video[cf.name.includes("landscape") ? 'landscape' : 'portrait']} // Access the correct video sub-property
+                                            key={`${cf.key} ${cf.name} category`}
+                                            id='category'
+                                            onChange={(e)=>{handleChange(cf.key,e)}}
+                                        />
+                                    );
+                                } else {
+                                    // Handle all other text fields
+                                    return (
+                                        <TextField
+                                            fullWidth
+                                            label={cf.label}
+                                            name={cf.name as string}  // `name` is narrowed down to string
+                                            className={styles.catFormField}
+                                            value={identifierDocument[cf.name as keyof CategoryDocumentType]}  // Ensure correct value type
+                                            key={`${cf.key} ${cf.name} category`}
+                                            id='category'
+                                            onChange={(e)=>{handleChange(cf.key,e)}}
+                                        />
+                                    );
+                                }
+                            } else if (cf && cf.type === "textarea" && cf.key in identifierDocument!) {
+                                return (
+                                    <TextField
+                                        fullWidth
+                                        multiline
+                                        rows={4}
+                                        label={cf.label}
+                                        name={cf.name as string}  // `name` is narrowed down to string
+                                        className={styles.catFormField}
+                                        value={identifierDocument && identifierDocument[cf.name as keyof CategoryDocumentType]}  // Ensure correct value type
+                                        key={`${cf.key} ${i}`}
+                                        id='category'
+                                        onChange={(e)=>{handleChange(cf.key,e)}}
+                                    />
+                                );
+                            } else if (cf && cf.type === "checkbox" && cf.key in identifierDocument! && cf.name === "subcategories") {
+                                
+                                if(inclusive && inclusive.length > 0) {
+                                    return null                          
+                                }
+                            } 
+                            return null;
+                        })}
+
+            {/* <TextField 
                 className={`${styles.inputField}`} 
                 label={`Name`} 
                 name={`name`}
@@ -97,7 +161,7 @@ const CardForm: React.FC<{
                     />                                
                 </motion.div>
 
-            </motion.div>
+            </motion.div> */}
         </motion.form>
         <motion.div
             className={`${styles.subcategoriesCtn}`}
@@ -107,7 +171,7 @@ const CardForm: React.FC<{
                             return(
                                 <Chip key={`${i} removable chip`} 
                                     variant="outlined" 
-                                    onClick={()=>{manageAddRemoveSubcategory("remove",sc?._id as string,identifierDocument)}} 
+                                    onClick={()=>{manageAddRemoveSubcategory("remove",sc?._id as string,identifierDocument as Partial<ICategory>)}} 
                                     color="error" label={sc?.name} 
                                     avatar={<Avatar src={`${sc?.photo.landscape}`} />} 
                                 />
@@ -123,7 +187,7 @@ const CardForm: React.FC<{
                                 <Chip 
                                     key={`${i} addable chip`} 
                                     variant="outlined" 
-                                    onClick={()=>{manageAddRemoveSubcategory("add",sc?._id as string,identifierDocument)}} 
+                                    onClick={()=>{manageAddRemoveSubcategory("add",sc?._id as string,identifierDocument as Partial<ICategory>)}} 
                                     color="success" label={sc?.name} 
                                     avatar={<Avatar src={`${sc?.photo.landscape}`} />} 
                                 />

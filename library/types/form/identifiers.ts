@@ -1,3 +1,4 @@
+import { BlogDocumentType } from "@/library/db/models/blog";
 import { CategoryDocumentType } from "@/library/db/models/category";
 import { SubcategoryDocumentType } from "@/library/db/models/subcategory";
 
@@ -6,7 +7,7 @@ import { SubcategoryDocumentType } from "@/library/db/models/subcategory";
 
 
 
-export type FormDocumentType = CategoryDocumentType | SubcategoryDocumentType;
+export type FormDocumentType = CategoryDocumentType | SubcategoryDocumentType | BlogDocumentType;
 
 export interface FormField<T> {
     key: keyof T | string; // Add string to support nested keys like 'photo.portrait'
@@ -15,10 +16,27 @@ export interface FormField<T> {
     type: 'text' | 'textarea' | 'checkbox' | 'select' | 'number'; // Add other types as needed
     validation: {
         required: boolean;
-        minLength?: number;
-        maxLength?: number;
+        regEx?:string;
+        message?:string;
+        minLength?:number;
+        maxLength?:number;
     };
 }
+
+// Define the Status type
+export type Status = {
+    error: boolean;
+    message: string;
+};
+
+// StatusObject to handle nested properties
+export type StatusObject<T extends object> = {
+    [K in keyof T]: T[K] extends object
+      ? StatusObject<T[K]> // Recursively map nested objects to StatusObject
+      : Status;            // Map non-object fields directly to Status
+};
+
+
 
 // Helper type to handle nested fields for Photo and Video, ensuring keys are string or number
 export type NestedFieldKeys<T, K extends keyof T> = K extends string

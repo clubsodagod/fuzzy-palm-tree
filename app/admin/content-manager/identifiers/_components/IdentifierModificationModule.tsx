@@ -87,38 +87,49 @@ const IdentifierModificationModule: React.FC<{
             className={`${styles.identifierModificationModuleWrapper}`}
         >
 
-
-                    <motion.h3
+                <motion.div className={`${styles.sectionCtn}`}>
+                    <motion.h5
                         className={`${styles.subheader}`}
                     >
                         Categories
-                    </motion.h3>
-        {
-            categories?.map((identifier,i:number)=>{
-                
-                return(
-                    <div key={i}>
-                        <IdentifierModificationCard refresh={initIdentifiers} subcategories={subcategories as ISubcategory[]|undefined} identifier={identifier!} index={i} />
-                    </div>
-                )
-            })
-        }
+                    </motion.h5>
 
-                    <motion.h3
+
+                    <motion.div className={`${styles.cardCtn}`}>
+                        {
+                            categories?.map((identifier,i:number)=>{
+                                
+                                return(
+                                    <div key={i}>
+                                        <IdentifierModificationCard refresh={initIdentifiers} subcategories={subcategories as ISubcategory[]|undefined} identifier={identifier!} index={i} />
+                                    </div>
+                                )
+                            })
+                        }  
+                    </motion.div>
+                </motion.div>
+
+                <motion.div className={`${styles.sectionCtn}`}>
+
+                    <motion.h5
                         className={`${styles.subheader}`}
                     >
                         Subcategories
-                    </motion.h3>
-        {
-            subcategories?.map((identifier,i:number)=>{
-                
-                return(
-                    <div key={i}>
-                        <IdentifierModificationCard refresh={initIdentifiers} subcategories={subcategories as ISubcategory[]|undefined} identifier={identifier!} index={i} />
-                    </div>
-                )
-            })
-        }
+                    </motion.h5>
+
+                    <motion.div className={`${styles.cardCtn}`}>
+                    {
+                        subcategories?.map((identifier,i:number)=>{
+                            
+                            return(
+                                <div key={i}>
+                                    <IdentifierModificationCard refresh={initIdentifiers} subcategories={subcategories as ISubcategory[]|undefined} identifier={identifier!} index={i} />
+                                </div>
+                            )
+                        })
+                    }
+                    </motion.div>
+                </motion.div>
         </motion.div>
     )
 }

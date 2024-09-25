@@ -12,23 +12,22 @@ import { isCategory } from "@/utility/admin/identifiers";
 
 
 export type IdentifierModelsType = typeof CategoryModel | typeof SubcategoryModel;
-export type CreateIdentifierFunction = (Model:IdentifierModelsType,name:string, tagline:string, description:string, photo:Photo, video:Video, req:NextRequest, res:NextResponse) => Promise<NextResponse|ICategory|undefined>
+export type CreateIdentifierFunction = (Model:IdentifierModelsType,name:string, tagline:string, description:string, photo:Photo, video:Video,subcategories:string[], req:NextRequest, res:NextResponse) => Promise<NextResponse|ICategory|undefined|void|ISubcategory>
 
+// Type Guard Function to narrow the type to Category
+export function isCategoryPro(doc: any): doc is Document<unknown, {}, ICategory> & ICategory {
+    return doc && (doc as ICategory).subcategories !== undefined;
+}
 
-export const createIdentifier:CreateIdentifierFunction = async(Model,name,tagline,description,photo,video,req,res) => {
+export const createIdentifier:CreateIdentifierFunction = async(Model,name,tagline,description,photo,video,subcategories,req,res) => {
 
     // security? revalidate request method
     if(req.method==="POST"){
-        // validate all arguments are passed properly
-        if (!name||!description||!photo||!res) {
-            throw new Error("All parameters must be provided.")
-        } else {
-
             
             try {
-                
                 // connect to database
                 await connectToMongoDB();
+
 
                 // create new identifier
                 const identifier = new Model({name, description,tagline});
@@ -36,24 +35,27 @@ export const createIdentifier:CreateIdentifierFunction = async(Model,name,taglin
                 identifier.photo.landscape = photo.landscape;
                 identifier.video.landscape = video.portrait;
                 identifier.video.portrait = video.landscape;
+
+                // validate identifier type
+                if (Model.modelName === "Category" && isCategoryPro(identifier)) {
+                    // Restructure string array of subcategories
+                    let checkedSubcategories = subcategories && subcategories.toString().split(",");
+                    identifier.subcategories = checkedSubcategories as unknown as mongoose.Types.ObjectId[];
+                }
+
                 console.log(identifier);
 
                 // validate new identifier
                 if (!identifier) {
                     return NextResponse.json({message:`There was an error creating ${name.toUpperCase()} identifier. Please try again.`}, {status:500})
                 } else {
-
                     // save new identifier
-                    identifier.save();
-
-                    return identifier as ICategory
+                    // identifier.save();
+                    return identifier
                 }
-
-
             } catch (error) {
                 return NextResponse.json({message:`There was an error creating ${name} identifier.`, error:error}, {status:500})
-            }
-        }        
+            }     
     } else {
         return NextResponse.json({message:"Your request is unauthorized"}, {status:500})
     }

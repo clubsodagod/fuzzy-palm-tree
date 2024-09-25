@@ -20,7 +20,8 @@ const IdentifierModificationCard:React.FC<{
     subcategories:ISubcategory[]|undefined; 
     index:number;
     refresh:()=>Promise<{categories:ICategory[],subcategories:ISubcategory[]}>|null;
-}> = ({identifier, index, subcategories, refresh}) => {
+    category:boolean;
+}> = ({identifier, index, subcategories, refresh, category}) => {
     
 
 
@@ -56,10 +57,12 @@ const IdentifierModificationCard:React.FC<{
     // initialize state variables
     const [clicked, setClicked] = useState<boolean>(false);
     const [open, setOpen] = useState<boolean>(false);
-    const [identifierDocument, setIdentifierDocument] = useState<CategoryDocumentType|Partial<CategoryDocumentType|null>>({});
+    const [identifierDocument, setIdentifierDocument] = useState<Partial<CategoryDocumentType>>({});
     const [inclusive, setInclusive] = useState<ISubcategory[]|undefined>(inclusiveInit())
     const [noninclusive, setNoninclusive] = useState<ISubcategory[]|undefined>(noninclusiveInit())
     const [update, setUpdate] = useState<boolean>(false);
+
+    const overlapStyle = index !== 0 ? "overlap" : ""; 
     
     // useEffect to trigger the fetching of the document on page load
     useEffect(() => {
@@ -88,6 +91,78 @@ const IdentifierModificationCard:React.FC<{
         }
     };
 
+    // handle change function
+    const handleChange = (
+        key: string,
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
+        const { name, value, type, id,  } = event.target; // Destructuring event target
+        
+        // Define the paths for category and subcategory based on ID
+        if (category) {
+            // If it's a category, check for specific keys like "photo landscape", etc.
+            if (["photo", "video",].includes(key)) {
+                // Handle photo/video sub-properties
+
+                if(["photo"].includes(key)){
+                    setIdentifierDocument(prevState => ({
+                        ...prevState,
+                        photo: {
+                            ...prevState.photo,
+                            ...(name.includes("landscape") ? { landscape: value } : { portrait: value })
+                        },
+                    }));
+                } else {
+                    setIdentifierDocument(prevState => ({
+                        ...prevState,
+                        video: {
+                            ...prevState.video,
+                            ...(name.includes("landscape") ? { landscape: value } : { portrait: value })
+                        }
+                    }));                    
+                }
+
+            } else {
+                // Handle other fields for CategoryDocumentType
+                setIdentifierDocument((prevState) => ({
+                    ...prevState,
+                    [name]: value
+                }))
+            }
+        } else {
+            // If it's a subcategory, check for the same keys
+
+            if (["photo", "video",].includes(key)) {
+                // Handle photo/video sub-properties
+
+                if(["photo"].includes(key)){
+                    setIdentifierDocument(prevState => ({
+                        ...prevState,
+                        photo: {
+                            ...prevState.photo,
+                            ...(name.includes("landscape") ? { landscape: value } : { portrait: value })
+                        },
+                    }));
+                } else {
+                    setIdentifierDocument(prevState => ({
+                        ...prevState,
+                        video: {
+                            ...prevState.video,
+                            ...(name.includes("landscape") ? { landscape: value } : { portrait: value })
+                        }
+                    }));                    
+                }
+
+            } else {
+                // Handle other fields for SubcategoryDocumentType
+                setIdentifierDocument((prevState) => ({
+                    ...prevState,
+                    [name]: value
+                }));
+            }
+        }
+    };
+
     useEffect(()=> {
 
         if(update){
@@ -108,7 +183,7 @@ const IdentifierModificationCard:React.FC<{
 
     return (
         <motion.div
-            className={`${styles.identifierCardModWrapper}`}
+            className={`${styles.identifierCardModWrapper} ${styles[overlapStyle]}`}
             id={`${identifier._id}`}
             onClick={()=>{if(clicked){return}; handleClick(identifier,setClicked,clicked);}}
         >
@@ -140,6 +215,7 @@ const IdentifierModificationCard:React.FC<{
                                 inclusive={inclusive}
                                 noninclusive={noninclusive}
                                 manageAddRemoveSubcategory={manageAddRemoveSubcategory}
+                                handleChange={handleChange}
                             />                         
                     }
 

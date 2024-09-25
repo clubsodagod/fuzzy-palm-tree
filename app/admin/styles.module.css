@@ -9,6 +9,7 @@
 .identifierCardModWrapper {
     display: flex;
     flex-direction: column;
+    box-shadow: 5px 2.5px 7.5px 2.5px lightgrey;
 }
 
 .imgWrapper {
@@ -21,15 +22,33 @@
     object-fit: cover;
 }
 
+
 .identifierCardModWrapper, .identifierModCardImg {
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
+    
+}
+
+.identifierCardModWrapper {
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.nameWrapper {
+    padding-inline: 6vw;
 }
 
 .identifierCardNameText {
     font-weight: bold;
     font-size: 1.5rem;
+    text-align: center;
+
+    @media screen and (min-width:769px) {
+        font-size: 1rem;
+    }
 }
+
+
 
 .actionsCtn {
     width: 100%;
@@ -79,6 +98,13 @@
     }
 }
 
+.cardCtn {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
 .identifierForm {
     display: flex;
     flex-direction: column;
@@ -89,4 +115,18 @@
     display: flex;
     flex-direction: column;
     gap: 2vh;
+}
+
+.identifierModuleCtn {
+    
+}
+
+.identifierModificationModuleWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6vh;
+
+    @media screen and (min-width:769px) {
+        flex-direction: row;
+    }
 }

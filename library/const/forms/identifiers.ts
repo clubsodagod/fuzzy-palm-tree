@@ -5,6 +5,7 @@ import { FormFieldsFor } from "@/library/types/form/identifiers";
 
 
 
+// Validation properties for CategoryFormDocument
 export const categoryFormDocument: FormFieldsFor<CategoryDocumentType> = [
     {
         key: 'name',
@@ -14,6 +15,8 @@ export const categoryFormDocument: FormFieldsFor<CategoryDocumentType> = [
         validation: {
             required: true,
             minLength: 2,
+            regEx: "^[a-zA-Z0-9 ]+$", // Only allows letters, numbers, and spaces
+            message: "Category name must be at least 2 characters and contain only alphanumeric characters.",
         },
     },
     {
@@ -24,6 +27,8 @@ export const categoryFormDocument: FormFieldsFor<CategoryDocumentType> = [
         validation: {
             required: true,
             minLength: 2,
+            regEx: "^[a-zA-Z0-9,.!? ]+$", // Allows letters, numbers, punctuation, and spaces
+            message: "Tagline must be at least 2 characters and contain valid characters.",
         },
     },
     {
@@ -34,6 +39,9 @@ export const categoryFormDocument: FormFieldsFor<CategoryDocumentType> = [
         validation: {
             required: false,
             maxLength: 500,
+            minLength: 1,
+            regEx: "^[\\s\\S]{0,500}$", // Matches any character up to 500 characters
+            message: "Description should be at least 1 character but, not exceed 500 characters.",
         },
     },
     {
@@ -43,9 +51,10 @@ export const categoryFormDocument: FormFieldsFor<CategoryDocumentType> = [
         type: 'checkbox',
         validation: {
             required: false,
+            regEx: "^([a-zA-Z0-9]+,)*[a-zA-Z0-9]+$", // Validates comma-separated values
+            message: "Subcategories should be comma-separated.",
         },
     },
-    // Handling nested properties for Photo
     {
         key: 'photo',
         label: 'Photo (Portrait)',
@@ -53,6 +62,8 @@ export const categoryFormDocument: FormFieldsFor<CategoryDocumentType> = [
         type: 'text',
         validation: {
             required: false,
+            regEx: "^(https?|ftp)://[^\\s/$.?#].[^\\s]*$", // Standard URL validation regex
+            message: "Please enter a valid URL for the photo.",
         },
     },
     {
@@ -62,9 +73,10 @@ export const categoryFormDocument: FormFieldsFor<CategoryDocumentType> = [
         type: 'text',
         validation: {
             required: false,
+            regEx: "^(https?|ftp)://[^\\s/$.?#].[^\\s]*$", // Standard URL validation regex
+            message: "Please enter a valid URL for the photo.",
         },
     },
-    // Handling nested properties for Video
     {
         key: 'video',
         label: 'Video (Portrait)',
@@ -72,6 +84,8 @@ export const categoryFormDocument: FormFieldsFor<CategoryDocumentType> = [
         type: 'text',
         validation: {
             required: false,
+            regEx: "^(https?|ftp)://[^\\s/$.?#].[^\\s]*$", // Standard URL validation regex
+            message: "Please enter a valid URL for the video.",
         },
     },
     {
@@ -81,11 +95,15 @@ export const categoryFormDocument: FormFieldsFor<CategoryDocumentType> = [
         type: 'text',
         validation: {
             required: false,
+            regEx: "^(https?|ftp)://[^\\s/$.?#].[^\\s]*$", // Standard URL validation regex
+            message: "Please enter a valid URL for the video.",
         },
     },
 ];
 
 
+
+// Validation properties for SubcategoryFormDocument
 export const subcategoryFormDocument: FormFieldsFor<SubcategoryDocumentType> = [
     {
         key: 'name',
@@ -95,6 +113,8 @@ export const subcategoryFormDocument: FormFieldsFor<SubcategoryDocumentType> = [
         validation: {
             required: true,
             minLength: 2,
+            regEx: "^[a-zA-Z0-9 ]+$", // Only allows letters, numbers, and spaces
+            message: "Subcategory name must be at least 2 characters and contain only alphanumeric characters.",
         },
     },
     {
@@ -105,6 +125,8 @@ export const subcategoryFormDocument: FormFieldsFor<SubcategoryDocumentType> = [
         validation: {
             required: true,
             minLength: 2,
+            regEx: "^[a-zA-Z0-9,.!? ]+$", // Allows letters, numbers, punctuation, and spaces
+            message: "Tagline must be at least 2 characters and contain valid characters.",
         },
     },
     {
@@ -115,9 +137,11 @@ export const subcategoryFormDocument: FormFieldsFor<SubcategoryDocumentType> = [
         validation: {
             required: false,
             maxLength: 500,
+            minLength: 1,
+            regEx: "^[\\s\\S]{0,500}$", // Matches any character up to 500 characters
+            message: "Description should be at least 1 character but, not exceed 500 characters.",
         },
     },
-    // Handling nested properties for Photo
     {
         key: 'photo',
         label: 'Photo (Portrait)',
@@ -125,6 +149,8 @@ export const subcategoryFormDocument: FormFieldsFor<SubcategoryDocumentType> = [
         type: 'text',
         validation: {
             required: false,
+            regEx: "^(https?|ftp)://[^\\s/$.?#].[^\\s]*$", // Standard URL validation regex
+            message: "Please enter a valid URL for the photo.",
         },
     },
     {
@@ -134,9 +160,10 @@ export const subcategoryFormDocument: FormFieldsFor<SubcategoryDocumentType> = [
         type: 'text',
         validation: {
             required: false,
+            regEx: "^(https?|ftp)://[^\\s/$.?#].[^\\s]*$", // Standard URL validation regex
+            message: "Please enter a valid URL for the photo.",
         },
     },
-    // Handling nested properties for Video
     {
         key: 'video',
         label: 'Video (Portrait)',
@@ -144,6 +171,8 @@ export const subcategoryFormDocument: FormFieldsFor<SubcategoryDocumentType> = [
         type: 'text',
         validation: {
             required: false,
+            regEx: "^(https?|ftp)://[^\\s/$.?#].[^\\s]*$", // Standard URL validation regex
+            message: "Please enter a valid URL for the video.",
         },
     },
     {
@@ -153,7 +182,10 @@ export const subcategoryFormDocument: FormFieldsFor<SubcategoryDocumentType> = [
         type: 'text',
         validation: {
             required: false,
+            regEx: "^(https?|ftp)://[^\\s/$.?#].[^\\s]*$", // Standard URL validation regex
+            message: "Please enter a valid URL for the video.",
         },
     },
 ];
+
 

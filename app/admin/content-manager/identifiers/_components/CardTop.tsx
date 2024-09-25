@@ -31,7 +31,9 @@ const CardTop: React.FC<{
                 />
             </motion.div>
 
-            <motion.div>
+            <motion.div
+            className={`${styles.nameWrapper}`}
+            >
                 <motion.p className={`${styles.identifierCardNameText}  `}>{identifierDocument?.name ? identifierDocument.name : identifier.name}</motion.p>
             </motion.div>
         </>

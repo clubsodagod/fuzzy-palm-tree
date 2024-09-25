@@ -63,9 +63,9 @@ const UpdatePage = () => {
                 <motion.div
                     className={`${styles.headerCtn} headerCtn`}
                 >
-                    <h4>
+                    <h3>
                         Update Identifiers
-                    </h4>
+                    </h3>
 
                     <h5 className={`${styles.subheader} admin-subheader`}>
                         A little change isn&apos;t so bad
@@ -73,7 +73,7 @@ const UpdatePage = () => {
 
                 </motion.div>
 
-                <motion.div className={`${styles.btmCtn}`}>
+                <motion.div className={`${styles.identifierModuleCtn}`}>
 
                     <IdentifierModificationModule />
                 </motion.div>

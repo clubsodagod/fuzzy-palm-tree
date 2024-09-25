@@ -8,7 +8,7 @@ export interface SubcategoryDocumentType {
   id:string;
   name:string;
   tagline:string;
-  description:string;
+  description?:string;
   photo:Photo;
   video?:Video;
 }
