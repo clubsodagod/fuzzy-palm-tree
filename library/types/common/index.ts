@@ -159,6 +159,6 @@ export interface Post {
 export type ErrorObject<T> = {
     [K in keyof T]?: {
         error:boolean | null,
-        errorMessage:string | null,
+        message:string | null,
     } | null;
 };

@@ -6,7 +6,7 @@ import { IUser } from './user';
 export interface BlogDocumentType {
   title: string;
   featuredImg:Photo;
-  featuredVideo?:Video;
+  featuredVideo:Video;
   content: string;
   category: string;
   subcategories: string[];

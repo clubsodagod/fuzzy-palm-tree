@@ -1,5 +1,6 @@
 import { CategoryDocumentType, ICategory } from "@/library/db/models/category";
 import { ISubcategory, SubcategoryDocumentType } from "@/library/db/models/subcategory";
+import { StatusResponseObject } from "./create-card";
 
 export type IsCategoryFunction = (identifier: ICategory | ISubcategory) => boolean
 
@@ -66,21 +67,25 @@ export const handleClick:HandleClickFunction = (identifier, setClicked,clicked) 
     }
 }
 
-export type HandleSubmitFunction = (identifier:ICategory|ISubcategory, identifierDocument:Partial<CategoryDocumentType>|Partial<SubcategoryDocumentType>|null) => Promise<void>
+export type HandleSubmitFunction = (
+    category:boolean,
+    identifier:ICategory|ISubcategory, 
+    identifierDocument:Partial<CategoryDocumentType>|Partial<SubcategoryDocumentType>|null,
+    refresh: () => Promise<{ categories: ICategory[], subcategories: ISubcategory[] }> | null,
+    setErrorResponseMessage: (arg0: any) => void,
+) => Promise<void>
 
 
 // handle submission of identifier update document
-export const handleSubmit:HandleSubmitFunction = async(identifier, identifierDocument,) => {
+export const handleSubmit:HandleSubmitFunction = async(category,identifier, identifierDocument,refresh, setErrorResponseMessage) => {
     try {
-        // Check if the identifierDocument is valid before submission (optional)
-        if (!identifierDocument) {
-            console.error('No identifier document to update.');
-            return;
-        }
 
-        // If the identifier is a category, proceed with the API call
-        if (isCategory(identifier)) {
-            const response = await fetch(`/api/blog/identifiers/category/update/${identifier.slug}`, {
+        // initialized the response 
+        let response;
+
+        // check if identifier is a category or subcategory
+        if(category){
+            response = await fetch(`/api/blog/identifiers/category/update/${identifier.slug}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -89,60 +94,90 @@ export const handleSubmit:HandleSubmitFunction = async(identifier, identifierDoc
             });
 
             // Check if the response is successful
-            if (!response.ok) {
-                const errorData = await response.json();
-                console.error('Error updating category:', errorData.message);
+            if (response.ok) {
+                const data = await response.json();
+                refresh();
+                setErrorResponseMessage((prev: Partial<StatusResponseObject>) => ({ ...prev, category: { error: false, message: data.message } }));
+                setTimeout(() => {
+                    setErrorResponseMessage((prev: Partial<StatusResponseObject>) => ({ ...prev, category: { error: null, message: "" } }));
+                }, 2000)
                 return;
+            } else {
+                const data = await response.json()
+                setErrorResponseMessage((prev: Partial<StatusResponseObject>) => ({ ...prev, category: { error: true, message: data.message } }));
+                setTimeout(() => {
+                    setErrorResponseMessage((prev: Partial<StatusResponseObject>) => ({ ...prev, category: { error: null, message: "" } }));
+                }, 3000)
+                return
             }
 
-            // Handle successful update
-            const data = await response.json();
-            console.log('Category updated successfully:', data);
-        } else if (!isCategory(identifier)) {
-            const response = await fetch(`/api/blog/identifiers/subcategory/update/${identifier.slug}`, {
+        } else if (!category) {
+
+            response = await fetch(`/api/blog/identifiers/subcategory/update/${identifier.slug}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({ subcategory: identifierDocument }) // Stringify the identifierDocument
-            });
+            });        
+
 
             // Check if the response is successful
-            if (!response.ok) {
-                const errorData = await response.json();
-                console.error('Error updating subcategory:', errorData.message);
+            if (response.ok) {
+                const data = await response.json();
+                refresh();
+                setErrorResponseMessage((prev: Partial<StatusResponseObject>) => ({ ...prev, subcategory: { error: false, message: data.message } }));
+                setTimeout(() => {
+                    setErrorResponseMessage((prev: Partial<StatusResponseObject>) => ({ ...prev, subcategory: { error: null, message: "" } }));
+                }, 2000)
                 return;
+            } else {
+                const data = await response.json()
+                setErrorResponseMessage((prev: Partial<StatusResponseObject>) => ({ ...prev, subcategory: { error: true, message: data.message } }));
+                setTimeout(() => {
+                    setErrorResponseMessage((prev: Partial<StatusResponseObject>) => ({ ...prev, subcategory: { error: null, message: "" } }));
+                }, 3000)
+                return
             }
-
-            // Handle successful update
-            const data = await response.json();
-            console.log('Subcategory updated successfully:', data);
-        } else {
-            console.error('Identifier is not a category or subcategory.');
         }
-        
     } catch (error) {
         // Catch and log any errors that occur during submission
         console.error('Error during submission:', error);
     }
 };
 
-export type HandlePopulateFieldsFunction = (setIdentifierDocument:(arg0:any)=>void,identifier:ISubcategory|ICategory) => void;
+export type HandlePopulateFieldsFunction = (setIdentifierDocument:(arg0:any)=>void,identifier:ISubcategory|ICategory, category:boolean,) => void;
 
 // Function to map and populate fields in state
-export const handlePopulateFields:HandlePopulateFieldsFunction = async (setIdentifierDocument,identifier) => {
+export const handlePopulateFields:HandlePopulateFieldsFunction = async (setIdentifierDocument,identifier,category) => {
     try {
-        // Map through properties of the document and update the state
-        setIdentifierDocument((prevState:Partial<ICategory|ISubcategory>) => ({
-            ...prevState,
-            _id: identifier._id,
-            name: identifier.name,
-            slug: identifier.slug,
-            tagline: identifier.tagline,
-            description: identifier.description,
-            photo: identifier.photo,
-            video: identifier.video,
-        }));
+        if (category) {
+            // Map through properties of the document and update the state
+            setIdentifierDocument((prevState:Partial<ICategory>) => ({
+                ...prevState,
+                _id: identifier._id,
+                name: identifier.name,
+                slug: identifier.slug,
+                tagline: identifier.tagline,
+                description: identifier.description,
+                subcategories:[],
+                photo: identifier.photo,
+                video: identifier.video,
+            }));            
+        } else {
+            // Map through properties of the document and update the state
+            setIdentifierDocument((prevState:Partial<ISubcategory>) => ({
+                ...prevState,
+                _id: identifier._id,
+                name: identifier.name,
+                slug: identifier.slug,
+                tagline: identifier.tagline,
+                description: identifier.description,
+                photo: identifier.photo,
+                video: identifier.video,
+            }));  
+        }
+
     } catch (error) {
         console.error('Error fetching document:', error);
     }
@@ -182,3 +217,5 @@ export const handleRemoveSubcategory:HandleManageSubcategoryFunction = (subcateg
 
     handleAPI()
 };
+
+

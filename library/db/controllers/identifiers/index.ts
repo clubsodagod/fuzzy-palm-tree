@@ -50,7 +50,7 @@ export const createIdentifier:CreateIdentifierFunction = async(Model,name,taglin
                     return NextResponse.json({message:`There was an error creating ${name.toUpperCase()} identifier. Please try again.`}, {status:500})
                 } else {
                     // save new identifier
-                    // identifier.save();
+                    identifier.save();
                     return identifier
                 }
             } catch (error) {

@@ -29,7 +29,7 @@ export async function POST (req:NextRequest, res:NextResponse) {
             const category =  await createIdentifier(CategoryModel,name, tagline,description,photo, video,subcategories,req, res);
 
             // validate category properly created
-            if (category) {
+            if (!category) {
                 return NextResponse.json({message:"There was an error creating category", }, {status:500})
             } else {
                 // successfully created category return to client

@@ -101,7 +101,7 @@ const IdentifierModificationModule: React.FC<{
                                 
                                 return(
                                     <div key={i}>
-                                        <IdentifierModificationCard refresh={initIdentifiers} subcategories={subcategories as ISubcategory[]|undefined} identifier={identifier!} index={i} />
+                                        <IdentifierModificationCard category={true} refresh={initIdentifiers} subcategories={subcategories as ISubcategory[]|undefined} identifier={identifier!} index={i} />
                                     </div>
                                 )
                             })
@@ -123,7 +123,7 @@ const IdentifierModificationModule: React.FC<{
                             
                             return(
                                 <div key={i}>
-                                    <IdentifierModificationCard refresh={initIdentifiers} subcategories={subcategories as ISubcategory[]|undefined} identifier={identifier!} index={i} />
+                                    <IdentifierModificationCard category={false} refresh={initIdentifiers} subcategories={subcategories as ISubcategory[]|undefined} identifier={identifier!} index={i} />
                                 </div>
                             )
                         })

@@ -25,17 +25,19 @@ export async function POST (req:NextRequest, res:NextResponse) {
                 return NextResponse.json({message:"You must provide all fields to create subcategory."})
             }
             console.log("here");
-            
+            let sc:string[] = []
             // initialize new subcategory
-            const subcategory =  await createIdentifier(SubcategoryModel,name, tagline,description,photo, video,req, res);
+            const subcategory =  await createIdentifier(SubcategoryModel,name, tagline,description,photo, video,sc ,req, res);
             console.log(subcategory);
             
             // validate subcategory properly created
-            if (!subcategory) {
+            if (subcategory) {
                 // throw new Error('Subcategory failed to create. Please try again')
-            } else {
-                // successfully created subcategory return to client
                 return NextResponse.json({message:`The ${name} subcategory is now created!`, subcategory}, {status:200})
+            } else {
+                
+                return NextResponse.json({message:"There was an error creating subcategory"}, {status:500})
+                
             }
 
         } catch (error) {

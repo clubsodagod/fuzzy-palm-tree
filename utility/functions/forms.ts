@@ -1,49 +1,46 @@
 import { BlogDocumentType } from "@/library/db/models/blog";
+import { FormField } from "@/library/types/form/identifiers";
 
 // Validation logic for BlogDocumentType fields
-export function validateField<T extends keyof BlogDocumentType>(name: T, value: BlogDocumentType[T]) {
-    let isValid = true;
-    let errorMessage = null;
+export function validateBlogField(
+    field: FormField<BlogDocumentType>,
+    value: string
+) {
 
-    switch (name) {
-        case 'title':
-        // Title should not be empty and should have at least 3 characters
-        if (!value || (typeof value === 'string' && value.trim().length < 3)) {
-            isValid = false;
-            errorMessage = 'Title must be at least 3 characters long.';
-        }
-        break;
+    const errors = {
+        error: false,
+        message: '',
+    };
 
-        case 'content':
-        // Content should not be empty
-        if (!value || (typeof value === 'string' && value.trim().length < 200)) {
-            isValid = false;
-            errorMessage = 'Content must be at least 200 characters long.';
-        }
-        break;
+    const { required, regEx, minLength, maxLength, message } = field.validation;
 
-        case 'categories':
-        case 'subcategories':
-        // Categories and subcategories must have at least one selected item
-        if (Array.isArray(value) && value.length === 0) {
-            isValid = false;
-            errorMessage = `${name} must have at least one item.`;
-        }
-        break;
+    // Check for required fields
+    if (required && !value.trim()) {
+        errors.error = true;
+        errors.message = message || `${field.label} is required.`;
+        return errors;
+    }
 
-        case 'featuredImg':
-        // featuredImg must be provided
-        if (!value) {
-            isValid = false;
-            errorMessage = 'Featured image is required.';
-        }
-        break;
+    // Check for minimum length
+    if (minLength && value.length < minLength) {
+        errors.error = true;
+        errors.message = message || `${field.label} must be at least ${minLength} characters long.`;
+        return errors;
+    }
 
-      // You can add more validation rules for other fields if needed
-        default:
-            isValid = true;
-            errorMessage = null;
-        }
+    // Check for maximum length
+    if (maxLength && value.length > maxLength) {
+        errors.error = true;
+        errors.message = message || `${field.label} must be less than ${maxLength} characters long.`;
+        return errors;
+    }
 
-    return { isValid, errorMessage };
+    // Check for regex pattern
+    if (regEx && !new RegExp(regEx).test(value)) {
+        errors.error = true;
+        errors.message = message || `Invalid ${field.label}.`;
+        return errors;
+    }
+
+    return errors;
 }

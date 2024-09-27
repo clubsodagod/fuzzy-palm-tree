@@ -11,7 +11,7 @@ export interface CategoryDocumentType {
   description?:string;
   subcategories?:string[];
   photo:Photo;
-  video?:Video;
+  video:Video;
 }
 
 

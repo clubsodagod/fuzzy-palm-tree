@@ -46,7 +46,7 @@ const IdentifiersActions: React.FC<{
             {
                 open&&
                 <>
-                    <Button onClick={()=>{handleSubmit();setOpen(!open)}} variant='contained' color='warning' className={`${styles.actionsBtn}`}>Update</Button>
+                    <Button onClick={()=>{handleSubmit();}} variant='contained' color='warning' className={`${styles.actionsBtn}`}>Update</Button>
                     <Button onClick={()=>{setOpen(!open)}} variant='contained' color='error' className={`${styles.actionsBtn}`}>Delete</Button> 
                     <Button onClick={()=>{setOpen(!open)}} variant='outlined' color='secondary' className={`${styles.actionsBtn}`}>Cancel</Button>                
                 </>

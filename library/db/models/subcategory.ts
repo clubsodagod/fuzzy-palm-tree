@@ -10,7 +10,7 @@ export interface SubcategoryDocumentType {
   tagline:string;
   description?:string;
   photo:Photo;
-  video?:Video;
+  video:Video;
 }
 
 
