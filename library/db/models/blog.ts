@@ -10,7 +10,8 @@ export interface BlogDocumentType {
   content: string;
   category: string;
   subcategories: string[];
-  user:ObjectId;
+  user:string;
+  tags:string[];
 }
 
 // Define an interface for the Blog model
@@ -60,7 +61,7 @@ const blogSchema = new Schema<IBlog>({
   },
   author: {
     type: Schema.Types.ObjectId,
-    ref: 'Author',
+    ref: 'User',
     required: true,
   },
   category: {

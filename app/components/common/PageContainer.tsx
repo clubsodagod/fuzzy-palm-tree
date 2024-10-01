@@ -41,10 +41,7 @@ const PageContainer:React.FC<{
                             <Navbar/>
                             {children} 
                         </motion.body>
-                             
-
                 </AnimatePresence>  
-
     )
 }
 

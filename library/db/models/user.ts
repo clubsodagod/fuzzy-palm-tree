@@ -10,7 +10,7 @@ export interface IUser extends Document {
   photo:Photo;
   video:Video;
   password: string;
-  role: 'user' | 'admin';
+  role: 'user' | 'admin' | 'employee';
   createdAt: Date;
   updatedAt:Date;
   portfolio: mongoose.Types.ObjectId[];
@@ -45,7 +45,7 @@ const userSchema = new Schema<IUser>({
   },
   role: {
     type: String,
-    enum: ['user', 'admin'],
+    enum: ['user', 'admin', 'employee'],
     default: 'user',
   },
   createdAt: {

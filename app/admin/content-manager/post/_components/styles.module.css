@@ -45,3 +45,15 @@
 .richHeader {
     font-weight: bold;
 }
+
+.tagInputCtn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.tagsCtn {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}

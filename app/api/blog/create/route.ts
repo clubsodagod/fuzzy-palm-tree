@@ -1,3 +1,4 @@
+import { createBlogPost } from "@/library/db/controllers/blog";
 import { NextRequest, NextResponse } from "next/server";
 
 
@@ -16,8 +17,13 @@ export async function POST (req:NextRequest,res:NextResponse) {
 
             // validate blog
             if (blog) {
-                console.log("success");
-                return NextResponse.json({message:"Successfully created blog post.", blog}, {status:200})
+                const post = await createBlogPost(blog,req,res);
+                
+                if (post) {
+                    return NextResponse.json({message:"Successfully created blog post.", blog:post}, {status:200})
+                } else {
+                    return NextResponse.json({message:"There was an error creating blog post.",}, {status:500})
+                }
             } else {
                 return NextResponse.json({message:"There was an error creating blog post. Please feel free to try again."}, {status:500});
             }

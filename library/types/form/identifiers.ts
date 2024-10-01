@@ -10,16 +10,17 @@ import { SubcategoryDocumentType } from "@/library/db/models/subcategory";
 export type FormDocumentType = CategoryDocumentType | SubcategoryDocumentType | BlogDocumentType;
 
 export interface FormField<T> {
-    key: keyof T | string; // Add string to support nested keys like 'photo.portrait'
+    key: keyof T | string; // Support nested keys
     label: string;
     name: keyof T | string; // Same here to support nested fields
-    type: 'text' | 'textarea' | 'checkbox' | 'select' | 'number' | 'radio'|'editor'|'session'; // Add other types as needed
+    type: 'text' | 'textarea' | 'checkbox' | 'select' | 'number'|'radio'|'editor'|'session'|'tags'; // Add other types as needed
     validation: {
         required: boolean;
-        regEx?:string;
-        message?:string;
-        minLength?:number;
-        maxLength?:number;
+        regEx?: string; // Array validation (for entire array)
+        singleRegEx?: string; // Single ObjectId validation
+        message?: string;
+        minLength?: number;
+        maxLength?: number;
     };
 }
 

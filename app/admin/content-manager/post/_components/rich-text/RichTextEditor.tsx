@@ -10,58 +10,39 @@ import { handleBlogChange, handleSubcategoryToggleBlogCreate, initBlogDocument, 
 import { FormField } from '@/library/types/form/identifiers';
 import { ICategory } from '@/library/db/models/category';
 import BlogFormDocument from './BlogForm';
+import { useMDSession } from '@/app/context/sub-context/SessionContext';
+import mongoose from 'mongoose';
 
 const RichTextEditor: React.FC<{
   editorMode: boolean;
   setSubmittable: (arg0: boolean) => void;
   update?: boolean;
+  handleSave:(blogDocument:Partial<BlogDocumentType>)=>void;
+  handleSubmitBlog:(blogDocument:Partial<BlogDocumentType>)=>Promise<void>;
 }> = ({
   editorMode,
   update,
   setSubmittable,
+  handleSave,
+  handleSubmitBlog,
 }) => {
 
-    const editorRef = useRef<any>(null);
+    const {
+      session, status,
+    } = useMDSession();
     const [categories, setCategories] = useState<ICategory[] | null>(null);
     const [subcategories, setSubcategories] = useState<Partial<ISubcategory[]>>([]);
-    const [checkedSubcategories, setCheckedSubcategories] = useState<Partial<string[]>>([]);
     const [article, setArticle] = useState<BlogDocumentType | Partial<BlogDocumentType>>({});
     const [value, setValue] = useState("Allow life to inspire you...");
-    const [text, setText] = useState("");
     const [eRM, setErrorResponseMessage] = useState<Partial<ErrorObject<BlogDocumentType>>>({});
     const [eFs, setErrorFields] = useState<Partial<ErrorObject<BlogDocumentType>>>({});
+    const [userSet, setUserSet] = useState<boolean>(false)
 
 
-    // handleChange function
-    const handleChange = (
-      field: FormField<BlogDocumentType>,
-      event?: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-      newValue?: string,
-      editor?: boolean,
-    ) => {
 
-      // check where the change is coming from
-      if (editor) {
-        handleBlogChange(
-          setSubmittable,
-          field,
-          eFs, setErrorFields, setArticle, setValue, event, newValue,
-        )
-      } else {
-        handleBlogChange(
-          setSubmittable,
-          field, eFs, setErrorFields, setArticle, setValue, event, undefined
-        )
-      }
-    };
 
-    // implement function to submit blog article for creation
-    const handleSubmitBlog = () => {
-
-      // validate fields
-    };
-
-    const handleSubcategoryToggle = (t: any) =>  {
+    // handle subcategories on click of category
+    const handleSubcategoryToggle = (t: any) => {
       handleSubcategoryToggleBlogCreate(
         t, article, setArticle
       )
@@ -74,6 +55,39 @@ const RichTextEditor: React.FC<{
       )
     }
 
+    // handleChange function
+    const handleChange = (
+      field: FormField<BlogDocumentType>,
+      event?: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+      newValue?: string,
+      editor?: boolean,
+      clickedSubcategoryId?: string,
+      clickedCategoryId?:string,
+      tag?:string,
+    ) => {
+
+      // check where the change is coming from
+      if (editor) {
+        handleBlogChange(
+          handleSave,
+          article,
+          setSubmittable,
+          field,
+          eFs, setErrorFields, setArticle, setValue, event, newValue,
+        )
+      } else {
+        handleBlogChange(
+          handleSave,
+          article, setSubmittable, field,
+          eFs, setErrorFields, setArticle, setValue,
+          event, undefined, handleSubcategoryToggle, clickedSubcategoryId,
+          initSubcategories, clickedCategoryId,tag, 
+        )
+      }
+      console.log(article);
+      
+    };
+
     useEffect(() => {
       const handleInit = async () => {
         await initCategoriesBlogCreate(setCategories);
@@ -81,17 +95,48 @@ const RichTextEditor: React.FC<{
       handleInit();
       initBlogDocument(setArticle);
       initBlogErrorFields(setErrorFields);
+
     }, []);
+
+    useEffect(()=> {
+      
+      if (!userSet) {
+        if (status === "loading") {
+            console.log(session?.user);
+          return
+        } else if (status === "authenticated") {
+          if (session?.user) {
+            console.log(session);
+            
+            const setAuthor = () => {
+              setArticle((prevForm:Partial<BlogDocumentType>)=>({
+                ...prevForm,
+                user:session.user?._id as unknown as string,
+              }))
+            }
+            setAuthor()
+            setUserSet(!userSet)           
+          } else {
+            return
+          }
+        }        
+      } else {
+        return
+      }
+      console.log(article);
+      
+    },[session?.user, status, userSet, article]);
 
     useEffect(() => {
       {
         eFs && console.log(eFs);
+        ;
       }
     }, [eFs])
 
     useEffect(() => {
       {
-        value && console.log(value);
+        value && console.log("");
       }
     }, [value])
 
@@ -99,7 +144,15 @@ const RichTextEditor: React.FC<{
       {
         subcategories && console.log('');
       }
-    }, [subcategories])
+    }, [subcategories]);
+
+    useEffect(()=> {
+      if (update) {
+        console.log(article);
+        
+        handleSubmitBlog(article)
+      }
+    },[update, article, handleSubmitBlog])
 
     return (
 
@@ -122,7 +175,7 @@ const RichTextEditor: React.FC<{
               />
             )
             : (
-              <PostPreview photo={article.featuredImg?.portrait} title={article.title} body={article.content} />
+              <PostPreview blogDocument={article} subcategories={subcategories} categories={categories}/>
             )
         }
 

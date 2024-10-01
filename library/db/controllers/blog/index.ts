@@ -19,30 +19,29 @@ export type CreateBlogFunction = (blog:BlogDocumentType, req:NextRequest, res:Ne
 
 export const createBlogPost:CreateBlogFunction = async(blogData,req,res) => {
     // validate request method
-    if (req.method!=="POST") {
+    if (req.method==="POST") {
         
         try {
             
             // connect to database
             await connectToMongoDB();
-
-            // handle author
-            const handleAuthor = () => {
-
-                // find author
-                findAuthor(blogData.user)
-            }
-            handleAuthor()
+            console.log(blogData);
+            
             // create blog post
-            const blog = new BlogModel();
-            // blog.title = blogData.title;
-            // blog.content = blogData.body;
-            // blog.categories = blogData.categories as unknown as mongoose.Types.ObjectId[];
-            // blog.subcategories = blogData.subcategories as unknown as mongoose.Types.ObjectId[];
-            // blog.tags = blogData.tags;
+            const blog =  new BlogModel();
+            blog.title = blogData.title;
+            blog.content = blogData.content;
+            blog.category = blogData.category as unknown as mongoose.Types.ObjectId;
+            blog.subcategories = blogData.subcategories as unknown as mongoose.Types.ObjectId[];
+            blog.tags = blogData.tags;
+            blog.featuredImg = blogData.featuredImg;
+            blog.featuredVideo = blogData.featuredVideo;
+            blog.author = blogData.user as unknown as mongoose.Types.ObjectId;
 
+            console.log(blog, "ddddd");
+            
 
-            return 
+            return blog
         } catch (error) {
             return NextResponse.json({message:"There was an issue creating blog post. Please feel free to try again.", error:error}, 
                 {status:500})
@@ -52,7 +51,7 @@ export const createBlogPost:CreateBlogFunction = async(blogData,req,res) => {
     }
 }
 
-export const findAuthor = async(userToFind:ObjectId) => {
+export const findAuthor = async(userToFind:string) => {
 
     try {
         
@@ -60,10 +59,11 @@ export const findAuthor = async(userToFind:ObjectId) => {
         await connectToMongoDB()
 
         // find user function
-        const user = await Author.findOne({'user.id': userToFind}, {'User.$': 1},);
-        console.log(user);
+        const user = await Author.findOne({'user._id': userToFind}, {'User.$': 1},);
+        console.log(user, 'placement');
         return user
     } catch (error) {
         return
     }
 }
+

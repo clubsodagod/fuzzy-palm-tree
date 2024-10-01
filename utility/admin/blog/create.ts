@@ -8,6 +8,17 @@ import { ErrorObject } from "@/library/types/common";
 import { blogFormDocument } from "@/library/const/forms/blog";
 import { validateBlogField } from "@/utility/functions/forms";
 import { debounce } from '@/utility/functions';
+import { useMDSession } from "@/app/context/sub-context/SessionContext";
+
+
+const isValidObjectId = (id: string): boolean => {
+    const objectIdRegex = /^[a-f\d]{24}$/i;
+    return objectIdRegex.test(id);
+};
+
+const validateObjectIdArray = (array: string[]): boolean => {
+    return array.every(isValidObjectId);
+};
 
 const hasErrors = <T extends object>(errorFields: Partial<ErrorObject<T>>): boolean => {
     // Loop through each key in the errorFields object
@@ -40,7 +51,6 @@ export const initBlogErrorFields: InitFieldsFunction = (setErrorFields) => {
     // Initialize Error Fields with default values
     blogFormDocument.forEach((field) => {
         const key = field?.key as keyof BlogDocumentType;
-        console.log(key, "keep eyes open and be aware");
 
         // Check for simple fields and assign default error states
         if (key === 'title' || key === 'content' || key === 'subcategories') {
@@ -73,18 +83,28 @@ export const initBlogErrorFields: InitFieldsFunction = (setErrorFields) => {
 
 
 export type HandleCreateBlogChangeFunction = (
+    handleSave:(blogDocument:Partial<BlogDocumentType>)=>void,
+    blogDocument:Partial<BlogDocumentType>,
     setSubmittable:(arg0:boolean)=>void,
     field: FormField<BlogDocumentType>,
     eFs:Partial<ErrorObject<BlogDocumentType>>,
     setErrorFields: (arg0: any) => void,
     setBlogDocument: (arg0: any) => void,
     setValue: (arg0: any) => void,
-    event?: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    newValue?: string,
+    event?: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>|null,
+    newValue?: string|null,
+    handleSubcategoryToggle?:(id:string)=>void,
+    subcategoryId?:string,
+    initSubcategories?:(categoryId:string)=>void,
+    categoryId?:string,
+    tag?:string,
 ) => void;
+
 
 // Handle form field changes dynamically
 export const handleBlogChange: HandleCreateBlogChangeFunction = (
+    handleSave,
+    blogDocument,
     setSubmittable,
     field,
     eFs,
@@ -93,11 +113,19 @@ export const handleBlogChange: HandleCreateBlogChangeFunction = (
     setValue,
     event,
     newValue,
+    handleSubcategoryToggle,
+    subcategoryId,
+    initSubcategories,
+    categoryId,
+    tag,
 ) => {
+    console.log(tag);
+    
     if (event) {
         const { name, value } = event?.target; // Destructuring event target
-        const validationErrors = validateBlogField(field, value);
+        let validationErrors = validateBlogField(field, value ? value : tag!);
 
+        console.log(tag);
         // Handle fields like featuredImg or featuredVideo (with nested portrait/landscape properties)
         if (["featuredImg", "featuredVideo"].includes(field.key)) {
             const mediaType = field.key === "featuredImg" ? "featuredImg" : "featuredVideo";
@@ -107,58 +135,106 @@ export const handleBlogChange: HandleCreateBlogChangeFunction = (
                 [mediaType]: {
                     ...(name.includes("landscape")
                         ? { landscape: validationErrors }
-                        : { portrait: validationErrors })
+                        : { portrait: validationErrors }),
                 },
             }));
 
-            setBlogDocument((prevState: Partial<BlogDocumentType>) => ({
+            setBlogDocument((prevState: Partial<BlogDocumentType>) => {
+                const updatedState = {
+                    ...prevState,
+                    [mediaType]: {
+                        ...prevState[mediaType],
+                        ...(name.includes("landscape")
+                            ? { landscape: value }
+                            : { portrait: value }),
+                    },
+                };
+                return updatedState;
+            });
+
+        } else if (field.key === 'subcategories') {
+
+            if (handleSubcategoryToggle) {
+                handleSubcategoryToggle(subcategoryId!);
+            }
+            
+        } else if (field.key === 'category') {
+
+            if (initSubcategories) {
+                initSubcategories(categoryId!);
+            }
+        } else if (field.key === "tags") {
+            console.log(tag);
+            if(tag)
+            validationErrors = validateBlogField(field, tag!);
+            // Handle other fields
+            setErrorFields((prevState: Partial<ErrorObject<BlogDocumentType>>) => ({
                 ...prevState,
-                [mediaType]: {
-                    ...prevState[mediaType],
-                    ...(name.includes("landscape")
-                        ? { landscape: value }
-                        : { portrait: value }),
-                },
+                [field.key]: validationErrors,
             }));
+
+            const tagToAdd = blogDocument?.tags?.indexOf(tag!)!;
+            console.log(tagToAdd);
+            
+            const all = [...blogDocument?.tags!]
+        
+            if (tagToAdd === -1) {
+                all.push(tag!)
+            } else {
+                all.splice(tagToAdd, 1)
+            }
+            setBlogDocument((prev:Partial<BlogDocumentType>)=>({
+                ...prev,
+                [field.name]:all,
+            }))
 
         } else {
             // Handle other fields
             setErrorFields((prevState: Partial<ErrorObject<BlogDocumentType>>) => ({
                 ...prevState,
-                [name]: validationErrors,
+                [field.key]: validationErrors,
             }));
 
-            setBlogDocument((prevState: Partial<BlogDocumentType>) => ({
-                ...prevState,
-                [name]: value,
-            }));
+            setBlogDocument((prevState: Partial<BlogDocumentType>) => {
+                const updatedState = {
+                    ...prevState,
+                    [field.name]: value,
+                };
+                return updatedState;
+            });
         }
-    } else {
-        if (newValue) {
-            const validationErrors = validateBlogField(field, newValue);
-            setErrorFields((prev: Partial<ErrorObject<BlogDocumentType>>) => ({
-                ...prev,
-                [field.name]: validationErrors,
-            }));
+    } else if (newValue) {
+        const validationErrors = validateBlogField(field, newValue);
 
-            setBlogDocument((prevState: Partial<BlogDocumentType>) => ({
+        setErrorFields((prev: Partial<ErrorObject<BlogDocumentType>>) => ({
+            ...prev,
+            [field.name]: validationErrors,
+        }));
+
+        setBlogDocument((prevState: Partial<BlogDocumentType>) => {
+            const updatedState = {
                 ...prevState,
                 [field.name]: newValue,
-            }));
+            };
+            return updatedState;
+        });
 
-            setValue(newValue!);
-        }
+        setValue(newValue!);
     }
 
     // After updating the error fields, check if the form has any errors
     const formHasErrors = hasErrors(eFs);
     setSubmittable(!formHasErrors);
+    handleSave(blogDocument);
 };
+
 
 
 // Initialize the category document with default values
 export const initBlogDocument: InitFieldsFunction = (setBlogDocument) => {
     const initialCategoryDoc: Partial<BlogDocumentType> = {};
+
+    // const 
 
     blogFormDocument.forEach((field) => {
         const key = field?.key as keyof BlogDocumentType;
@@ -166,7 +242,7 @@ export const initBlogDocument: InitFieldsFunction = (setBlogDocument) => {
         // Assign appropriate default values based on the field type
         if (key === 'title' || key === 'content' || key === 'category') {
             initialCategoryDoc[key] = '' as BlogDocumentType[typeof key]; // String fields
-        } else if (key === 'subcategories') {
+        } else if (key === 'subcategories' || key === 'tags') {
             initialCategoryDoc[key] = [] as BlogDocumentType[typeof key]; // Array fields
         } else if (key === 'featuredImg') {
             initialCategoryDoc[key] = { portrait: '', landscape: '' } as BlogDocumentType[typeof key]; // Object (Photo)
@@ -177,8 +253,6 @@ export const initBlogDocument: InitFieldsFunction = (setBlogDocument) => {
 
     setBlogDocument(initialCategoryDoc);
 };
-
-
 
 // init categories
 export const initCategoriesBlogCreate: InitDataFunction = async (setCategories) => {
@@ -193,8 +267,6 @@ export const initCategoriesBlogCreate: InitDataFunction = async (setCategories) 
         console.error(error);
     }
 };
-
-
 
 export type HandleSubcategoryToggleBlogCreateFunction = (
     id: string,
