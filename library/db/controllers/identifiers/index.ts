@@ -4,7 +4,7 @@ import { CategoryModel, SubcategoryModel } from "../../models";
 import { CategoryDocumentType, ICategory } from "../../models/category";
 import { ISubcategory, SubcategoryDocumentType } from "../../models/subcategory";
 import { Photo, Video } from "@/library/types/common";
-import mongoose,{ Model as MongooseModel, ObjectId, Document } from 'mongoose';
+import mongoose,{ Model as MongooseModel, ObjectId, Document, model } from 'mongoose';
 import { IUser } from "../../models/user";
 import { Model } from 'mongoose';
 import slugify from "slugify";
@@ -60,13 +60,6 @@ export const createIdentifier:CreateIdentifierFunction = async(Model,name,taglin
         return NextResponse.json({message:"Your request is unauthorized"}, {status:500})
     }
 }
-
-// Define the type for the GetIdentifierFunction
-export type GetIdentifierFunction = <T>(
-    req: NextRequest,
-    res: NextResponse,
-    Model: MongooseModel<T>
-) => Promise<NextResponse | undefined | T[]>;
 
 
 // Function to get all identifiers and dynamically populate subdocuments
@@ -241,3 +234,35 @@ export const addSubcategoriesOfCategory = async(req:NextRequest,res:NextResponse
         return false
     }
 }
+
+// Define the type for the GetIdentifierFunction
+export type GetIdentifierFunction = <T>(
+    Model: MongooseModel<T>,
+    slug: string
+) => Promise<T | null>;
+
+// get single identifier
+export const getIdentifier: GetIdentifierFunction = async <T>(Model:any, slug: string): Promise<T | null> => {
+    try {
+        // Connect to the database
+        await connectToMongoDB();
+        await SubcategoryModel.find();
+
+        let identifier;
+
+        // Validate identifier type based on the model
+        if (Model.modelName == 'Category') {
+            identifier = await Model.findOne({ slug }).populate('subcategories');
+        } else {
+            identifier = await Model.findOne({ slug });
+        }
+        
+
+        // Validate and return the identifier
+        return identifier ? identifier : null;
+    } catch (error) {
+        // Handle the error (could also log or throw depending on your needs)
+        console.error('Error fetching identifier:', error);
+        return null;
+    }
+};

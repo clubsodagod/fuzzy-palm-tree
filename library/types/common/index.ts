@@ -19,16 +19,22 @@ export type Photo = {
     landscape?:string;
 };
 
+export type Video = {
+    portrait?:string;
+    landscape?:string;
+}
+
+
+export type PhotoV2 = string
+
+export type VideoV2 = string
+
 export type Name = {
     first: string;
     middleInitial?: string;
     last: string;
 }
 
-export type Video = {
-    portrait?:string;
-    landscape?:string;
-}
 
 export type AnimationOptions = {
     animationMain?: boolean;

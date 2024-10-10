@@ -12,19 +12,22 @@ import { ICategory } from '@/library/db/models/category';
 import BlogFormDocument from './BlogForm';
 import { useMDSession } from '@/app/context/sub-context/SessionContext';
 import mongoose from 'mongoose';
+import { Stack, Alert } from '@mui/material';
 
 const RichTextEditor: React.FC<{
   editorMode: boolean;
   setSubmittable: (arg0: boolean) => void;
   update?: boolean;
-  handleSave:(blogDocument:Partial<BlogDocumentType>)=>void;
-  handleSubmitBlog:(blogDocument:Partial<BlogDocumentType>)=>Promise<void>;
+  handleSave: (blogDocument: Partial<BlogDocumentType>) => void;
+  handleSubmitBlog: (blogDocument: Partial<BlogDocumentType>) => Promise<void>;
+  status: { error: boolean, message: string } | undefined;
 }> = ({
   editorMode,
   update,
   setSubmittable,
   handleSave,
   handleSubmitBlog,
+  status: responseStatus,
 }) => {
 
     const {
@@ -34,7 +37,7 @@ const RichTextEditor: React.FC<{
     const [subcategories, setSubcategories] = useState<Partial<ISubcategory[]>>([]);
     const [article, setArticle] = useState<BlogDocumentType | Partial<BlogDocumentType>>({});
     const [value, setValue] = useState("Allow life to inspire you...");
-    const [eRM, setErrorResponseMessage] = useState<Partial<ErrorObject<BlogDocumentType>>>({});
+    const [eRM, setErrorResponseMessage] = useState<{ error: boolean, message: string } | undefined>(undefined);
     const [eFs, setErrorFields] = useState<Partial<ErrorObject<BlogDocumentType>>>({});
     const [userSet, setUserSet] = useState<boolean>(false)
 
@@ -62,8 +65,8 @@ const RichTextEditor: React.FC<{
       newValue?: string,
       editor?: boolean,
       clickedSubcategoryId?: string,
-      clickedCategoryId?:string,
-      tag?:string,
+      clickedCategoryId?: string,
+      tag?: string,
     ) => {
 
       // check where the change is coming from
@@ -81,11 +84,11 @@ const RichTextEditor: React.FC<{
           article, setSubmittable, field,
           eFs, setErrorFields, setArticle, setValue,
           event, undefined, handleSubcategoryToggle, clickedSubcategoryId,
-          initSubcategories, clickedCategoryId,tag, 
+          initSubcategories, clickedCategoryId, tag,
         )
       }
       console.log(article);
-      
+
     };
 
     useEffect(() => {
@@ -98,34 +101,29 @@ const RichTextEditor: React.FC<{
 
     }, []);
 
-    useEffect(()=> {
-      
+    useEffect(() => {
+
       if (!userSet) {
-        if (status === "loading") {
-            console.log(session?.user);
-          return
-        } else if (status === "authenticated") {
-          if (session?.user) {
+        if (status === "authenticated") {
+          if (session) {
             console.log(session);
-            
+
             const setAuthor = () => {
-              setArticle((prevForm:Partial<BlogDocumentType>)=>({
+              setArticle((prevForm: Partial<BlogDocumentType>) => ({
                 ...prevForm,
-                user:session.user?._id as unknown as string,
+                user: session.user?._id as unknown as string,
               }))
             }
             setAuthor()
-            setUserSet(!userSet)           
+            setUserSet(!userSet)
           } else {
             return
           }
-        }        
-      } else {
-        return
-      }
+        }
+      } 
       console.log(article);
-      
-    },[session?.user, status, userSet, article]);
+
+    }, [userSet,]);
 
     useEffect(() => {
       {
@@ -146,19 +144,71 @@ const RichTextEditor: React.FC<{
       }
     }, [subcategories]);
 
-    useEffect(()=> {
+    useEffect(() => {
       if (update) {
         console.log(article);
-        
-        handleSubmitBlog(article)
+
+        handleSubmitBlog(article);
+        setUserSet(!userSet)
       }
-    },[update, article, handleSubmitBlog])
+    }, [update, article, handleSubmitBlog, userSet]);
+
+    useEffect(() => {
+      {
+        responseStatus !== undefined &&
+          setErrorResponseMessage(responseStatus);
+          if(!eRM?.error) {
+            // clear form for successful post
+            setTimeout(()=>{
+              const handleInit = async () => {
+                await initCategoriesBlogCreate(setCategories);
+              };
+              handleInit();
+              setArticle({});
+              setSubcategories([]);
+              setValue("Allow life to inspire you...");
+              initBlogDocument(setArticle);
+              initBlogErrorFields(setErrorFields);
+              setTimeout(()=>{
+                setErrorResponseMessage(undefined);
+              },1000)
+            },3500)
+          } else {
+            return
+          }
+      }
+    }, [responseStatus, eRM?.error])
+
+    useEffect(() => {
+      {
+        eRM && console.log(eRM);
+      }
+    }, [eRM])
+
+    useEffect(()=> {
+      {
+        article.user && console.log(article.user, article);
+      }
+    },[article.user])
 
     return (
 
       <motion.div
         className={`${styles.componentWrapper}`}
       >
+        {
+          eRM?.error == false ?
+
+          <Stack sx={{ width: '100%' }} spacing={2}>
+            <Alert severity={eRM.error ? `error` : `success` }>{eRM.message}</Alert>
+          </Stack>
+          : eRM?.error == true ?
+          <Stack sx={{ width: '100%' }} spacing={2}>
+            <Alert severity={eRM?.error ? `error` : `success` }>{eRM?.message}</Alert>
+          </Stack>
+          :
+          null
+        }
         {
           editorMode
             ? (
@@ -175,7 +225,7 @@ const RichTextEditor: React.FC<{
               />
             )
             : (
-              <PostPreview blogDocument={article} subcategories={subcategories} categories={categories}/>
+              <PostPreview blogDocument={article} subcategories={subcategories} categories={categories} />
             )
         }
 

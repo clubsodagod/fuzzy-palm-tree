@@ -1,17 +1,76 @@
 import { RegisterForm } from "@/library/types/form/register";
 import { connectToMongoDB } from "../../db";
-import { UserModel } from "../../models";
+import { PortfolioModel, UserModel } from "../../models";
 import { IUser } from "../../models/user";
 require('dotenv').config();
 import { v4 as uuidv4 } from 'uuid';
 import bcrypt from "bcrypt"
 import { clientDomain, fromEmail } from "@/library/const";
 import { useRegisterHtmlContent as registerHtmlContent } from "@/library/const/html-content/register";
+import mongoose from "mongoose";
+import type { ObjectId } from "mongoose";
 
 const sgMail = require('@sendgrid/mail')
 
 
 const sendgridKey: string = process.env.NEXT_PUBLIC_SENDGRID_API_KEY as string ;
+
+export async function findAndAddExistingUserPortfolio(userId:ObjectId,portfolio:ObjectId) {
+
+  // validate userId
+  if (userId) {
+    try {
+      
+      // connect to database
+      await connectToMongoDB();
+      await PortfolioModel.find();
+
+      const updatedUser = await UserModel.findOneAndUpdate({_id:userId},{portfolio:portfolio},{new:true}).select(['firstName','lastName','username','email','photo','video','role','createdAt','portfolio',]);
+
+      // validate updated user
+      if (updatedUser) {
+        console.log(updatedUser);
+        
+          return updatedUser
+      } else {
+        return null
+      }
+      
+    } catch (error) {
+      return null
+    }    
+  } else {
+    return null
+  }
+}
+
+
+export async function createUserPortfolio (userId:mongoose.Types.ObjectId) {
+
+  try {
+    
+    // connect to database
+    await connectToMongoDB()
+
+    // create new portfolio for user
+    const userPortfolio = new PortfolioModel();
+
+    userPortfolio.name = `${userId}'s Extraordinary Portfolio`;
+    userPortfolio.foreword = `Through words we change the course of time. We control our destiny. Try writing something about your portfolio.`;
+    userPortfolio.sections = [];
+    userPortfolio.user = userId as unknown as mongoose.Types.ObjectId;
+
+    // validate user portfolio
+    if (userPortfolio) {
+      userPortfolio.save();
+      return userPortfolio._id as mongoose.Types.ObjectId
+    } else {
+      return null
+    }
+  } catch (error) {
+    return null
+  }
+}
 
 export const createNewCredentialsUser = async (user:RegisterForm) => {
 
@@ -25,12 +84,12 @@ export const createNewCredentialsUser = async (user:RegisterForm) => {
     
     // connect to DB
     await connectToMongoDB();
+    await PortfolioModel.find();
 
     // validate user is unique
 
     // create new user
     const newUser:IUser = new UserModel(user);
-    console.log(newUser, "which line");
     
     // validate new user created is of the correct type and exist
     if (!newUser) {
@@ -47,6 +106,14 @@ export const createNewCredentialsUser = async (user:RegisterForm) => {
     newUser.password = hashedPassword;
     newUser.verificationToken = verificationToken;
     newUser.verificationTokenExpiration = expirationDate;
+
+    const userPortfolio = await createUserPortfolio(newUser._id as mongoose.Types.ObjectId);
+
+    if (userPortfolio) {
+      newUser.portfolio = userPortfolio;
+    } else {
+      return null
+    }
 
     // persist new user
     newUser.save();

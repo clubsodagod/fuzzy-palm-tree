@@ -3,7 +3,6 @@ import { AppContainer, EmployeeArea, PageContainer } from '@/app/components';
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { RichTextEditor } from '../_components';
-import { connectToMongoDB } from '@/library/db/db';
 import styles from '../_components/styles.module.css';
 import { Button } from '@mui/material';
 import { useScreenContext } from '@/app/context/sub-context/ScreenContext';
@@ -19,7 +18,8 @@ const CreatePostsPage = () => {
     const [submittable, setSubmittable] = useState<boolean>(false);
     const [sending, setSending] = useState<boolean>(false);
     const [progressDocument, setProgressDocument] = useState<Partial<BlogDocumentType>>({});
-    const [update,setUpdate] = useState(false)
+    const [update,setUpdate] = useState(false);
+    const [eRM, setErrorResponseMessage] = useState<{error:boolean, message:string}|undefined>();
 
     const handleSetSubmittable = (value: boolean) => {
         setSubmittable(value);
@@ -39,25 +39,29 @@ const CreatePostsPage = () => {
 
     // implement function to submit blog article for creation
     const handleSubmitBlog = async (blogDocument: Partial<BlogDocumentType>) => {
+        // fetch function to create route
+        const response = await fetch('/api/blog/create', {
+            method: "POST",
+            body: JSON.stringify({ blog: blogDocument })
+        });
 
-        try {
-
-            // fetch function to create route
-            const response = await fetch('/api/blog/create', {
-                method: "POST",
-                body: JSON.stringify({ blog: blogDocument })
-            });
-
-            if (response.ok) {
-                const data = await response.json()
-                console.log(data);
-                setUpdate(!update);
-            }
-        } catch (error) {
-            console.log(error);
+        const data = await response.json()
+        
+        if (response.ok) {
+            setErrorResponseMessage({error:false, message:data.message});
             setUpdate(!update);
+            setTimeout(()=>{
+                setErrorResponseMessage(undefined);
+                setEditorMode(true);
+            },3500);
+        } else {
+            setErrorResponseMessage({error:true, message:data.message});
+            setUpdate(!update);
+            setTimeout(()=>{
+                setErrorResponseMessage(undefined);
+                setEditorMode(true);
+            },3500);                
         }
-
     };
 
     useEffect(() => {
@@ -68,7 +72,13 @@ const CreatePostsPage = () => {
         {
             submittable && console.log(submittable);
         }
-    }, [submittable])
+    }, [submittable]);
+
+    useEffect(()=> {
+        {
+            eRM && console.log(eRM);
+        }
+    },[eRM])
 
     return (
         <PageContainer>
@@ -199,7 +209,7 @@ const CreatePostsPage = () => {
                         null
                 }
 
-                <RichTextEditor editorMode={editorMode} setSubmittable={handleSetSubmittable} handleSave={handleSave} update={update} handleSubmitBlog={handleSubmitBlog}/>
+                <RichTextEditor status={eRM} editorMode={editorMode} setSubmittable={handleSetSubmittable} handleSave={handleSave} update={update} handleSubmitBlog={handleSubmitBlog}/>
 
             </motion.div>
         </PageContainer>

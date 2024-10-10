@@ -232,7 +232,7 @@ export const handleBlogChange: HandleCreateBlogChangeFunction = (
 
 // Initialize the category document with default values
 export const initBlogDocument: InitFieldsFunction = (setBlogDocument) => {
-    const initialCategoryDoc: Partial<BlogDocumentType> = {};
+    const initialBlogDoc: Partial<BlogDocumentType> = {};
 
     // const 
 
@@ -241,17 +241,19 @@ export const initBlogDocument: InitFieldsFunction = (setBlogDocument) => {
 
         // Assign appropriate default values based on the field type
         if (key === 'title' || key === 'content' || key === 'category') {
-            initialCategoryDoc[key] = '' as BlogDocumentType[typeof key]; // String fields
+            initialBlogDoc[key] = '' as BlogDocumentType[typeof key]; // String fields
         } else if (key === 'subcategories' || key === 'tags') {
-            initialCategoryDoc[key] = [] as BlogDocumentType[typeof key]; // Array fields
+            initialBlogDoc[key] = [] as BlogDocumentType[typeof key]; // Array fields
         } else if (key === 'featuredImg') {
-            initialCategoryDoc[key] = { portrait: '', landscape: '' } as BlogDocumentType[typeof key]; // Object (Photo)
+            initialBlogDoc[key] = { portrait: '', landscape: '' } as BlogDocumentType[typeof key]; // Object (Photo)
         } else if (key === 'featuredVideo') {
-            initialCategoryDoc[key] = { portrait: '', landscape: '' } as BlogDocumentType[typeof key]; // Object (Video)
+            initialBlogDoc[key] = { portrait: '', landscape: '' } as BlogDocumentType[typeof key]; // Object (Video)
+        } else if (key === 'user') {
+            initialBlogDoc[key] = '';
         }
     });
 
-    setBlogDocument(initialCategoryDoc);
+    setBlogDocument(initialBlogDoc);
 };
 
 // init categories

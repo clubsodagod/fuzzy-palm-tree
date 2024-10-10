@@ -1,3 +1,4 @@
+'use client'
 import { useMDSession } from '@/app/context/sub-context/SessionContext';
 import { redirect } from 'next/navigation';
 import React, { ReactElement, useEffect } from 'react'

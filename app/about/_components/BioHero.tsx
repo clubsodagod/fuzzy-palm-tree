@@ -30,9 +30,9 @@ const BioHero = () => {
                             <img className={`${styles.bioImgMain}`} src={bioImg} alt='image of me'/>
                         </div>
                         <div className={`${styles.bioTxtCtn}`}>
-                            <h1>
-                                About <span className="my-name-text" id="bio">Maliek</span> 
-                            </h1>  
+                            <h2>
+                                Story Time! with <span className="my-name-text" id="bio">Maliek</span> 
+                            </h2>  
                             <h5>
                                 The Scientist, The Developer, The Artist.
                             </h5>

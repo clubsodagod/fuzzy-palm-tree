@@ -2,8 +2,10 @@
 import React, { RefObject, useEffect } from 'react';
 import Footer from './Footer';
 import { AnimatePresence, AnimationControls, Variants } from 'framer-motion';
-import { Navbar } from '..';
 import { motion } from 'framer-motion';
+import { AnimatePresencePro } from '../framer/AnimatePresencePro';
+import { MotionDiv } from '../framer/MotionDiv';
+import Navbar from './Navbar';
 
 
 const AppContainer:React.FC<{
@@ -28,10 +30,10 @@ const AppContainer:React.FC<{
 
 
     return (
-                <AnimatePresence>
+                <AnimatePresencePro>
                     <body>
                         <Navbar/>
-                        <motion.div 
+                        <MotionDiv 
                         className={`app-ctn ${className}`} 
                         ref={ctnRef}
                         initial={gradientVariants?.main as any}
@@ -41,10 +43,10 @@ const AppContainer:React.FC<{
                         id={id}
                         >
                             {children} 
-                        </motion.div>                        
+                        </MotionDiv>                        
                     </body>
 
-                </AnimatePresence>  
+                </AnimatePresencePro>  
 
     )
 }

@@ -20,7 +20,7 @@ export async function POST (req:NextRequest,res:NextResponse) {
                 const post = await createBlogPost(blog,req,res);
                 
                 if (post) {
-                    return NextResponse.json({message:"Successfully created blog post.", blog:post}, {status:200})
+                    return NextResponse.json({message:`Successfully created blog post!`, blog:post}, {status:200})
                 } else {
                     return NextResponse.json({message:"There was an error creating blog post.",}, {status:500})
                 }

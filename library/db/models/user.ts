@@ -13,7 +13,7 @@ export interface IUser extends Document {
   role: 'user' | 'admin' | 'employee';
   createdAt: Date;
   updatedAt:Date;
-  portfolio: mongoose.Types.ObjectId[];
+  portfolio: mongoose.Types.ObjectId;
   verificationToken:string;
   verificationTokenExpiration:Date;
   emailVerified:boolean;
@@ -72,10 +72,10 @@ const userSchema = new Schema<IUser>({
       type:String,
     },
   },
-  portfolio: [{
+  portfolio: {
     type: Schema.Types.ObjectId,
     ref: 'Portfolio'
-  }],
+  },
   verificationToken: {
       type: String,
       required: true,

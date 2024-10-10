@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { BlogDocumentType, IBlog } from "../../models/blog";
 import { connectToMongoDB } from "../../db";
-import { BlogModel } from "../../models";
+import { BlogModel, CategoryModel, SubcategoryModel, UserModel } from "../../models";
 import mongoose, { ObjectId } from "mongoose";
 import Author from "../../models/author";
 import { IUser } from "../../models/user";
+import slugify from "slugify";
+import { Category } from "@mui/icons-material";
 
 
 // types
@@ -37,14 +39,17 @@ export const createBlogPost:CreateBlogFunction = async(blogData,req,res) => {
             blog.featuredImg = blogData.featuredImg;
             blog.featuredVideo = blogData.featuredVideo;
             blog.author = blogData.user as unknown as mongoose.Types.ObjectId;
-
-            console.log(blog, "ddddd");
+            blog.slug = slugify(blogData.title.toLowerCase());
+            blog.save()
+            console.log(blog);
             
-
-            return blog
+            if (blog) {
+                return blog
+            } else {
+                return NextResponse.json({message:"There was an issue creating blog post. Please feel free to try again."}, {status:500})
+            }
         } catch (error) {
-            return NextResponse.json({message:"There was an issue creating blog post. Please feel free to try again.", error:error}, 
-                {status:500})
+            return NextResponse.json({message:"There was an issue creating blog post. Please feel free to try again.", error:error}, {status:500})
         }
     } else {
         return NextResponse.json({message:"Your request is unauthorized."}, {status:500})
@@ -67,3 +72,101 @@ export const findAuthor = async(userToFind:string) => {
     }
 }
 
+
+// GET featured blog post
+export const getAllPosts = async() => {
+
+    try {
+        
+        // connect to database
+        await connectToMongoDB();
+
+        await  UserModel.find()
+        await CategoryModel.find()
+        // access featured blog posts
+        const allPosts = await BlogModel.find().populate(['author','category']);
+
+        // validate featured blog posts 
+        if (allPosts) {
+            return allPosts
+        } else {
+            return null
+        }
+    } catch (error) {
+        return null
+    }
+}
+
+// GET featured blog post
+export const getFeaturedPosts = async() => {
+
+    try {
+        
+        // connect to database
+        await connectToMongoDB();
+
+        await  UserModel.find()
+        await CategoryModel.find()
+        // access featured blog posts
+        const featuredPosts = await BlogModel.find({featured:true}).populate(['author','category']);
+
+        // validate featured blog posts 
+        if (featuredPosts) {
+            return featuredPosts
+        } else {
+            return null
+        }
+    } catch (error) {
+        return null
+    }
+}
+
+export const getPostsOfCategory = async(id:string, featured:boolean) => {
+
+    try {
+        
+        // connect to database
+        await connectToMongoDB();
+
+        await  UserModel.find()
+        await CategoryModel.find()
+        // access posts blog posts with category objectId
+        const postsByCategory = await BlogModel.find({category:id, featured:featured}).populate(['author','category']);
+
+
+        // validate blog posts 
+        if (postsByCategory) {
+            return postsByCategory
+        } else {
+            return null
+        }
+    } catch (error) {
+        return null
+    }
+}
+export const getPostBySlug = async(slug:string) => {
+
+    try {
+        
+        // connect to database
+        await connectToMongoDB();
+
+        await  UserModel.find()
+        await CategoryModel.find()
+        await SubcategoryModel.find()
+        // access posts blog posts with category objectId
+        const postBySlug = await BlogModel.findOne({slug:slug,}).populate(['author','category','subcategories']);
+
+
+        // validate blog posts 
+        if (postBySlug) {
+            console.log(postBySlug);
+            
+            return postBySlug
+        } else {
+            return null
+        }
+    } catch (error) {
+        return null
+    }
+}

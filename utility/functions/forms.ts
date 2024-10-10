@@ -1,5 +1,6 @@
 import { BlogDocumentType } from "@/library/db/models/blog";
-import { FormField } from "@/library/types/form/identifiers";
+import { CaseStudyDocumentType } from "@/library/db/models/case-study";
+import { FormDocumentType, FormField } from "@/library/types/form/identifiers";
 
 // Validation logic for BlogDocumentType fields
 export function validateBlogField(
@@ -54,6 +55,75 @@ export function validateBlogField(
             errors.message = message || `Invalid ${field.label}.`;
             return errors;
         }
+
+
+    }
+
+    return errors;
+}
+// Validation logic for BlogDocumentType fields
+export function validateField(
+    field: FormField<CaseStudyDocumentType>,
+    value: string | number
+) {
+
+    const errors = {
+        error: false,
+        message: '',
+    };
+
+    const { required, regEx, minLength, maxLength, message, singleRegEx,} = field.validation;
+
+    // check for subcategories
+    if (field.key === 'subcategories') {
+        // if (singleRegEx && !new RegExp(singleRegEx).test(value)) {
+        //     errors.error = true;
+        //     errors.message = message || `${field.label} is required.`;
+        //     return errors;
+        // }
+        return
+    } else{
+
+        if (typeof value === "string") {
+            // Check for required fields
+            if (required && !value.trim()) {
+                errors.error = true;
+                errors.message = message || `${field.label} is required.`;
+                return errors;
+            }
+
+            // Check for minimum length
+            if (minLength && value.length < minLength) {
+                errors.error = true;
+                errors.message = message || `${field.label} must be at least ${minLength} characters long.`;
+                return errors;
+            }
+
+            // Check for maximum length
+            if (maxLength && value.length > maxLength) {
+                errors.error = true;
+                errors.message = message || `${field.label} must be less than ${maxLength} characters long.`;
+                return errors;
+            }
+
+            // Check for regex pattern
+            if (regEx && !new RegExp(regEx).test(value)) {
+                errors.error = true;
+                errors.message = message || `Invalid ${field.label}.`;
+                return errors;
+            }
+
+            if(singleRegEx && !new RegExp(singleRegEx).test(value)) {
+                errors.error = true;
+                errors.message = message || `Invalid ${field.label}.`;
+                return errors;
+            }            
+        } else if (typeof value === "number") {
+            // errors.error = true;
+            // errors.message = message || `Invalid ${field.label}.`;
+            // return errors;
+        } 
+
 
 
     }

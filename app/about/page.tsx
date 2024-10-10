@@ -1,17 +1,17 @@
-'use client'
 
 import React, { useRef } from 'react'
 import { AppContainer } from '../components'
 import { BioHero, CoreValues} from './_components'
+import MotionPageWrapper from '../components/common/MotionPageWrapper'
 
 const Page = () => {
     
-    const ctnRef = useRef<HTMLDivElement>(null);
     return (
-        <AppContainer ctnRef={ctnRef}>
+        <MotionPageWrapper>
+            
             <BioHero />
             <CoreValues />
-        </AppContainer>
+        </MotionPageWrapper>
     )
 }
 

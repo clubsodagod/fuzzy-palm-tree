@@ -1,0 +1,28 @@
+.featuredPostsCtn {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    overflow-x: auto;
+}
+
+.sectionHeaderCtn {
+    margin-top: 6vh;
+}
+
+.sectionHeaderTxt {
+    
+}
+
+
+
+/* categories page ---- categories page ------ categories page */
+
+.categoryPageMainHero {
+    margin-bottom: 6vh;
+}
+
+.categoriesCardCtn {
+    display: flex;
+    flex-direction: column;
+    gap: 6vh;
+}

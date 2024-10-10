@@ -13,7 +13,7 @@ const PortfolioPage = () => {
             <CaseStudies />
             <Demos />
             <SocialValidation />
-            <Visuals />
+            {/* <Visuals /> */}
         </AppContainer>
     )
 }

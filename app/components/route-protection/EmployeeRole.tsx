@@ -1,3 +1,4 @@
+'use client'
 import { useMDSession } from '@/app/context/sub-context/SessionContext';
 import { redirect } from 'next/navigation';
 import React, { useEffect } from 'react'
@@ -41,6 +42,8 @@ const EmployeeRoleProtection = (WrappedComponent: React.ElementType) => {
                     </motion.div>
                 </PageContainer>
             )
+        } else if (status === 'unauthenticated') {
+            return redirect('/authentication/login')
         }
 
         return <WrappedComponent {...props} />

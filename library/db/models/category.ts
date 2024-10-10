@@ -2,6 +2,7 @@ import { Photo, Video } from '@/library/types/common';
 import mongoose, { Document, Schema, Model, model, ObjectId } from 'mongoose';
 import slugify from 'slugify'
 import { sluggerPlugin } from 'mongoose-slugger-plugin';
+import { ISubcategory } from './subcategory';
 
 // Define category document type
 export interface CategoryDocumentType {
@@ -34,6 +35,27 @@ export interface ICategory extends Document {
   createdAt: Date;
   updatedAt: Date;
 }
+
+// Define an interface for the Category model
+export interface ICategoryPopulated extends Document {
+  _id: ObjectId;
+  name: string;
+  slug: string;
+  tagline: string;
+  description: string;
+  subcategories: ISubcategory[];
+  photo: {
+    landscape?: string;
+    portrait: string;
+  };
+  video: {
+    landscape?: string;
+    portrait: string;
+  };
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 
 // Define the Category Schema
 const categorySchema = new Schema<ICategory>({
