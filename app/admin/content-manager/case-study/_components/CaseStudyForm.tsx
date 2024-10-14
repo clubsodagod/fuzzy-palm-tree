@@ -18,6 +18,7 @@ import { validateField } from '@/utility/functions/forms';
 import { Description } from '@mui/icons-material';
 import { MotionH6 } from '@/app/components/framer/MotionH6';
 import DynamicAlert from '@/app/components/common/DynamicAlert';
+import { MotionH5 } from '@/app/components/framer/MotionH5';
 
 export type MediaFields = ErrorObject<CaseStudyDocumentType['featuredImg']> | ErrorObject<CaseStudyDocumentType['featuredVideo']>;
 
@@ -113,8 +114,15 @@ const CaseStudyForm: React.FC<{
         }, [eRM])
 
         return (
-            <MotionDiv>
-                <MotionDiv>
+            <MotionDiv
+                className={`${styles.formModuleWrapper}`}
+            >
+                <MotionDiv
+                    className={`${styles.btnCtn}`}
+                >
+                    <MotionH5>
+                        Ready to publish?
+                    </MotionH5>
                     <Button variant="outlined"
                         onClick={submitHandler}
                     >
@@ -135,373 +143,388 @@ const CaseStudyForm: React.FC<{
                                     status={200} message={eRM?.message!}
                                 />
                                 :
-                                null
+                                <MotionDiv>
+                                    <MotionP
+                                        className={`${styles.captionText}`}
+                                    >
+                                        {"We'll make submission status updates available here".toUpperCase()}
+                                    </MotionP>
+                                </MotionDiv>
                     }
                 </MotionDiv>
-                <MotionForm>
-                    {
-                        caseStudyFormDocument.map((cF, i: number) => {
-                            if (caseStudyDocument != undefined) {
-                                if (cF && cF.type === "text" && cF.key in caseStudyDocument!) {
+                <MotionDiv
+                    className={`${styles.formWrapper}`}
+                >
+                    <MotionForm
+                        className={`${styles.form}`}
+                    >
+                        {
+                            caseStudyFormDocument.map((cF, i: number) => {
+                                if (caseStudyDocument != undefined) {
+                                    if (cF && cF.type === "text" && cF.key in caseStudyDocument!) {
 
-                                    if (["featuredImg", "featuredVideo",].some(k => cF.key.includes(k))) {
-                                        // Explicitly type the key as 'photo' or 'video'
-                                        const key = cF.key as 'featuredImg' | 'featuredVideo';
+                                        if (["featuredImg", "featuredVideo",].some(k => cF.key.includes(k))) {
+                                            // Explicitly type the key as 'photo' or 'video'
+                                            const key = cF.key as 'featuredImg' | 'featuredVideo';
 
-                                        // Narrow down the correct error field, making sure to cast correctly
-                                        const errorField = eFs && (eFs[key] as MediaFields);
+                                            // Narrow down the correct error field, making sure to cast correctly
+                                            const errorField = eFs && (eFs[key] as MediaFields);
 
-                                        return (
-                                            <MotionDiv
-                                                key={`${cF.key} ${cF.name} ${i} ${cF.label} `}
-                                            >
-                                                <TextField
-                                                    error={errorField && cF.name.includes("landscape") ? errorField.landscape?.error! : errorField?.portrait?.error!}
-                                                    fullWidth
-                                                    label={cF.label}
-                                                    name={cF.name as string}  // `name` is narrowed down to string
-                                                    className={styles.catFormField}
-                                                    value={mediaValue(cF.key, cF as FormField<CaseStudyDocumentType>)}
-                                                    onChange={(e) => { handleChange(cF as FormField<CaseStudyDocumentType>, e, null, null) }}
-                                                />
-                                            </MotionDiv>
-
-                                        )
-
-                                    } else {
-                                        // Handle all other text fields
-                                        return (
-                                            <MotionDiv
-                                                key={`${cF.key} ${cF.name} ${i} ${cF.label} `}
-                                            >
-                                                <TextField
-                                                    error={eFs && eFs[cF.key as keyof CaseStudyDocumentType]?.error!}
-                                                    rows={4}
-                                                    label={cF.label}
-                                                    name={cF.name as string}  // `name` is narrowed down to string
-                                                    className={styles.catFormField}
-                                                    value={caseStudyDocument && caseStudyDocument[cF.name as keyof CaseStudyDocumentType]}  // Ensure correct value type
-                                                    id='category'
-                                                    onChange={(e) => { handleChange(cF as FormField<CaseStudyDocumentType>, e, null, null) }}
-                                                />
-                                            </MotionDiv>
-
-                                        );
-                                    }
-                                } else if (cF && cF.type === "textarea") {
-                                    console.log(cF.type, cF.name);
-
-                                    if (
-                                        cF.name == 'outcomesDescription' || cF.name == "outcomesTechnicalImpact"
-                                    ) {
-                                        return (
-                                            <MotionDiv
-                                                key={`${cF.key} ${cF.name} ${i} ${cF.label} `}
-                                            >
-                                                <TextField
-                                                    error={eFs && eFs[cF.key as keyof CaseStudyDocumentType]?.error!}
-                                                    fullWidth
-                                                    multiline
-                                                    rows={4}
-                                                    label={cF.label}
-                                                    name={cF.name as string}  // `name` is narrowed down to string
-                                                    className={styles.catFormField}
-                                                    value={caseStudyDocument && caseStudyDocument.outcomes[cF.name == 'outcomesDescription' ? 'description' : 'technicalImpact']}  // Ensure correct value type
-                                                    onChange={(e) => { handleChange(cF as FormField<CaseStudyDocumentType>, e, null, null) }}
-                                                />
-                                            </MotionDiv>
-
-                                        );
-                                    } else if (cF.name == 'summary') {
-                                        return (
-                                            <MotionDiv
-                                                key={`${cF.key} ${cF.name} ${i} ${cF.label} `}
-                                            >
-                                                <TextField
-                                                    fullWidth
-                                                    multiline
-                                                    error={eFs && eFs[cF.key as keyof CaseStudyDocumentType]?.error!}
-                                                    rows={4}
-                                                    label={cF.label}
-                                                    name={cF.name as string}  // `name` is narrowed down to string
-                                                    className={styles.catFormField}
-                                                    value={caseStudyDocument && caseStudyDocument[cF.name as keyof CaseStudyDocumentType]}  // Ensure correct value type
-                                                    id='category'
-                                                    onChange={(e) => { handleChange(cF as FormField<CaseStudyDocumentType>, e, null, null) }}
-                                                />
-                                            </MotionDiv>
-                                        )
-
-                                    }
-                                } else if (cF && cF.type === "tags" && cF.key in caseStudyDocument!) {
-
-                                    // objectives field
-                                    if (cF.key == 'objectives') {
-                                        return (
-                                            <MotionDiv
-                                                key={`${cF.key} ${cF.name} ${i} ${cF.label}`}
-                                                className={`${styles.tagsCtn}`}
-                                            >
-                                                <MotionP className={`${styles.richHeader}`}>
-                                                    Objectives
-                                                </MotionP>
-
-                                                {
-                                                    caseStudyDocument?.objectives && caseStudyDocument?.objectives.length > 0 &&
-                                                    <Stack direction="row" spacing={1}>
-                                                        {
-                                                            caseStudyDocument?.objectives.map((t: string, i: number) => {
-                                                                return (
-                                                                    <Chip
-                                                                        key={`${t}:${i}`}
-                                                                        label={t}
-                                                                        onDelete={
-                                                                            (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
-                                                                                handleChange(
-                                                                                    cF as FormField<CaseStudyDocumentType>,
-                                                                                    e,
-                                                                                    t,
-                                                                                    null
-                                                                                );
-                                                                                setObjective('');
-                                                                            }}
-                                                                    />
-                                                                )
-                                                            })
-                                                        }
-                                                    </Stack>
-
-                                                }
-
-
+                                            return (
                                                 <MotionDiv
-                                                    className={`${styles.tagInputCtn}`}
+                                                    key={`${cF.key} ${cF.name} ${i} ${cF.label} `}
                                                 >
                                                     <TextField
-                                                        size='small'
+                                                        error={errorField && cF.name.includes("landscape") ? errorField.landscape?.error! : errorField?.portrait?.error!}
+                                                        fullWidth
                                                         label={cF.label}
-                                                        name={cF.name}
-                                                        value={objective}
-                                                        onChange={(e) => { setObjective(e.target.value); }}
+                                                        name={cF.name as string}  // `name` is narrowed down to string
+                                                        className={styles.catFormField}
+                                                        value={mediaValue(cF.key, cF as FormField<CaseStudyDocumentType>)}
+                                                        onChange={(e) => { handleChange(cF as FormField<CaseStudyDocumentType>, e, null, null) }}
                                                     />
-                                                    <Button
-                                                        onClick={
-                                                            (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
-                                                                handleChange(
-                                                                    cF as FormField<CaseStudyDocumentType>,
-                                                                    e,
-                                                                    objective,
-                                                                    null
-                                                                );
-                                                                setObjective('');
-                                                            }}>
-                                                        <AddRoundedIcon />
-                                                    </Button>
                                                 </MotionDiv>
 
-                                            </MotionDiv>
-                                        )
+                                            )
 
-                                    }
-
-                                    // challenges field
-                                    else if (cF.key == 'challenges') {
-                                        return (
-                                            <MotionDiv
-                                                key={`${cF.key} ${cF.name} ${i} ${cF.label}`}
-                                                className={`${styles.tagsCtn}`}
-                                            >
-                                                <MotionP className={`${styles.richHeader}`}>
-                                                    Challenges
-                                                </MotionP>
-
-                                                {
-                                                    caseStudyDocument?.challenges && caseStudyDocument?.challenges.length > 0 &&
-                                                    <Stack direction="row" spacing={1}>
-                                                        {
-                                                            caseStudyDocument?.challenges.map((t: string, i: number) => {
-                                                                return (
-                                                                    <Chip
-                                                                        key={`${t}:${i}`}
-                                                                        label={t}
-                                                                        onDelete={
-                                                                            (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
-                                                                                handleChange(
-                                                                                    cF as FormField<CaseStudyDocumentType>,
-                                                                                    e,
-                                                                                    t,
-                                                                                    null
-                                                                                );
-                                                                                setObjective('');
-                                                                            }}
-                                                                    />
-                                                                )
-                                                            })
-                                                        }
-                                                    </Stack>
-
-                                                }
-
-
+                                        } else {
+                                            // Handle all other text fields
+                                            return (
                                                 <MotionDiv
-                                                    className={`${styles.tagInputCtn}`}
+                                                    key={`${cF.key} ${cF.name} ${i} ${cF.label} `}
                                                 >
                                                     <TextField
-                                                        size='small'
+                                                        error={eFs && eFs[cF.key as keyof CaseStudyDocumentType]?.error!}
+                                                        rows={4}
                                                         label={cF.label}
-                                                        name={cF.name}
-                                                        value={challenge}
-                                                        onChange={(e) => { setChallenge(e.target.value); }}
+                                                        name={cF.name as string}  // `name` is narrowed down to string
+                                                        className={styles.catFormField}
+                                                        value={caseStudyDocument && caseStudyDocument[cF.name as keyof CaseStudyDocumentType]}  // Ensure correct value type
+                                                        id='category'
+                                                        onChange={(e) => { handleChange(cF as FormField<CaseStudyDocumentType>, e, null, null) }}
                                                     />
-                                                    <Button
-                                                        onClick={
-                                                            (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
-                                                                handleChange(
-                                                                    cF as FormField<CaseStudyDocumentType>,
-                                                                    e,
-                                                                    challenge,
-                                                                    null
-                                                                );
-                                                                setChallenge('');
-                                                            }}>
-                                                        <AddRoundedIcon />
-                                                    </Button>
                                                 </MotionDiv>
 
-                                            </MotionDiv>
-                                        )
+                                            );
+                                        }
+                                    } else if (cF && cF.type === "textarea") {
+                                        console.log(cF.type, cF.name);
 
-                                    }
-
-                                    // solutions field
-                                    else if (cF.key == 'solutions') {
-                                        return (
-                                            <MotionDiv
-                                                key={`${cF.key} ${cF.name} ${i} ${cF.label}`}
-                                                className={`${styles.tagsCtn}`}
-                                            >
-                                                <MotionP className={`${styles.richHeader}`}>
-                                                    Solutions
-                                                </MotionP>
-
-                                                {
-                                                    caseStudyDocument?.solutions && caseStudyDocument?.solutions.length > 0 &&
-                                                    <Stack direction="row" spacing={1}>
-                                                        {
-                                                            caseStudyDocument?.solutions.map((t: string, i: number) => {
-                                                                return (
-                                                                    <Chip
-                                                                        key={`${t}:${i}`}
-                                                                        label={t}
-                                                                        onDelete={
-                                                                            (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
-                                                                                handleChange(
-                                                                                    cF as FormField<CaseStudyDocumentType>,
-                                                                                    e,
-                                                                                    t,
-                                                                                    null
-                                                                                );
-                                                                                setObjective('');
-                                                                            }}
-                                                                    />
-                                                                )
-                                                            })
-                                                        }
-                                                    </Stack>
-
-                                                }
-
-
+                                        if (
+                                            cF.name == 'outcomesDescription' || cF.name == "outcomesTechnicalImpact"
+                                        ) {
+                                            return (
                                                 <MotionDiv
-                                                    className={`${styles.tagInputCtn}`}
+                                                    key={`${cF.key} ${cF.name} ${i} ${cF.label} `}
                                                 >
                                                     <TextField
-                                                        size='small'
+                                                        error={eFs && eFs[cF.key as keyof CaseStudyDocumentType]?.error!}
+                                                        fullWidth
+                                                        multiline
+                                                        rows={4}
                                                         label={cF.label}
-                                                        name={cF.name}
-                                                        value={solution}
-                                                        onChange={(e) => { setSolution(e.target.value); }}
+                                                        name={cF.name as string}  // `name` is narrowed down to string
+                                                        className={styles.catFormField}
+                                                        value={caseStudyDocument && caseStudyDocument.outcomes[cF.name == 'outcomesDescription' ? 'description' : 'technicalImpact']}  // Ensure correct value type
+                                                        onChange={(e) => { handleChange(cF as FormField<CaseStudyDocumentType>, e, null, null) }}
                                                     />
-                                                    <Button
-                                                        onClick={
-                                                            (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
-                                                                handleChange(
-                                                                    cF as FormField<CaseStudyDocumentType>,
-                                                                    e,
-                                                                    solution,
-                                                                    null
-                                                                );
-                                                                setSolution('');
-                                                            }}
+                                                </MotionDiv>
+
+                                            );
+                                        } else if (cF.name == 'summary') {
+                                            return (
+                                                <MotionDiv
+                                                    key={`${cF.key} ${cF.name} ${i} ${cF.label} `}
+                                                >
+                                                    <TextField
+                                                        fullWidth
+                                                        multiline
+                                                        error={eFs && eFs[cF.key as keyof CaseStudyDocumentType]?.error!}
+                                                        rows={4}
+                                                        label={cF.label}
+                                                        name={cF.name as string}  // `name` is narrowed down to string
+                                                        className={styles.catFormField}
+                                                        value={caseStudyDocument && caseStudyDocument[cF.name as keyof CaseStudyDocumentType]}  // Ensure correct value type
+                                                        id='category'
+                                                        onChange={(e) => { handleChange(cF as FormField<CaseStudyDocumentType>, e, null, null) }}
+                                                    />
+                                                </MotionDiv>
+                                            )
+
+                                        }
+                                    } else if (cF && cF.type === "tags" && cF.key in caseStudyDocument!) {
+
+                                        // objectives field
+                                        if (cF.key == 'objectives') {
+                                            return (
+                                                <MotionDiv
+                                                    key={`${cF.key} ${cF.name} ${i} ${cF.label}`}
+                                                    className={`${styles.tagsCtn}`}
+                                                >
+                                                    <MotionH6 className={`${styles.richHeader}`}>
+                                                        Objectives
+                                                    </MotionH6>
+
+                                                    <MotionDiv
+                                                        className={`${styles.tagInputCtn}`}
                                                     >
-                                                        <AddRoundedIcon />
-                                                    </Button>
+                                                        <TextField
+                                                            size='small'
+                                                            label={cF.label}
+                                                            name={cF.name}
+                                                            value={objective}
+                                                            onChange={(e) => { setObjective(e.target.value); }}
+                                                        />
+                                                        <Button
+                                                            onClick={
+                                                                (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
+                                                                    handleChange(
+                                                                        cF as FormField<CaseStudyDocumentType>,
+                                                                        e,
+                                                                        objective,
+                                                                        null
+                                                                    );
+                                                                    setObjective('');
+                                                                }}>
+                                                            <AddRoundedIcon />
+                                                        </Button>
+                                                    </MotionDiv>
+
+                                                    {
+                                                        caseStudyDocument?.objectives && caseStudyDocument?.objectives.length > 0 &&
+                                                        <Stack direction="row" spacing={1}>
+                                                            {
+                                                                caseStudyDocument?.objectives.map((t: string, i: number) => {
+                                                                    return (
+                                                                        <Chip
+                                                                            key={`${t}:${i}`}
+                                                                            label={t}
+                                                                            onDelete={
+                                                                                (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
+                                                                                    handleChange(
+                                                                                        cF as FormField<CaseStudyDocumentType>,
+                                                                                        e,
+                                                                                        t,
+                                                                                        null
+                                                                                    );
+                                                                                    setObjective('');
+                                                                                }}
+                                                                        />
+                                                                    )
+                                                                })
+                                                            }
+                                                        </Stack>
+
+                                                    }
+
+
                                                 </MotionDiv>
+                                            )
 
-                                            </MotionDiv>
-                                        )
-                                    }
-                                } else if (cF && cF.type === "radio" && cF.key in caseStudyDocument!) {
-                                    return (
-                                        <MotionDiv
-                                            key={`${cF.key} ${cF.name} ${i} ${cF.label} `}
-                                        >
-                                            <MotionH6>Case Study Type</MotionH6>
-                                            <RadioGroup
-                                                aria-labelledby="controlled-radio-buttons-group"
-                                                name="controlled-radio-buttons-group"
-                                                value={caseStudyDocument.type ? caseStudyDocument.type : null}
+                                        }
 
-                                            >
-                                                {
-                                                    caseStudyTypeChoices.map((choice, i: number) => {
-                                                        return (
-                                                            <FormControlLabel
-                                                                key={`${cF.key} ${cF.name} ${i} ${cF.label} ${choice} `}
-                                                                id='category'
-                                                                value={choice.property}
-                                                                control={
-                                                                    <Radio
-                                                                        onChange={(e) => { handleChange(cF as FormField<CaseStudyDocumentType>, e, null, choice.property) }}
-                                                                    />
-                                                                }
-                                                                label={choice.label}
-                                                            />
-                                                        )
-                                                    })
-                                                }
-                                            </RadioGroup>
+                                        // challenges field
+                                        else if (cF.key == 'challenges') {
+                                            return (
+                                                <MotionDiv
+                                                    key={`${cF.key} ${cF.name} ${i} ${cF.label}`}
+                                                    className={`${styles.tagsCtn}`}
+                                                >
+                                                    <MotionH6 className={`${styles.richHeader}`}>
+                                                        Challenges
+                                                    </MotionH6>
 
-                                        </MotionDiv>
 
-                                    );
-                                } else if (cF.type == 'number') {
-                                    console.log(cF.key);
+                                                    <MotionDiv
+                                                        className={`${styles.tagInputCtn}`}
+                                                    >
+                                                        <TextField
+                                                            size='small'
+                                                            label={cF.label}
+                                                            name={cF.name}
+                                                            value={challenge}
+                                                            onChange={(e) => { setChallenge(e.target.value); }}
+                                                        />
+                                                        <Button
+                                                            onClick={
+                                                                (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
+                                                                    handleChange(
+                                                                        cF as FormField<CaseStudyDocumentType>,
+                                                                        e,
+                                                                        challenge,
+                                                                        null
+                                                                    );
+                                                                    setChallenge('');
+                                                                }}>
+                                                            <AddRoundedIcon />
+                                                        </Button>
+                                                    </MotionDiv>
 
-                                    if (cF.name == 'outcomesValueGenerated') {
+                                                    {
+                                                        caseStudyDocument?.challenges && caseStudyDocument?.challenges.length > 0 &&
+                                                        <Stack direction="row" spacing={1}>
+                                                            {
+                                                                caseStudyDocument?.challenges.map((t: string, i: number) => {
+                                                                    return (
+                                                                        <Chip
+                                                                            key={`${t}:${i}`}
+                                                                            label={t}
+                                                                            onDelete={
+                                                                                (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
+                                                                                    handleChange(
+                                                                                        cF as FormField<CaseStudyDocumentType>,
+                                                                                        e,
+                                                                                        t,
+                                                                                        null
+                                                                                    );
+                                                                                    setObjective('');
+                                                                                }}
+                                                                        />
+                                                                    )
+                                                                })
+                                                            }
+                                                        </Stack>
 
+                                                    }
+
+                                                </MotionDiv>
+                                            )
+
+                                        }
+
+                                        // solutions field
+                                        else if (cF.key == 'solutions') {
+                                            return (
+                                                <MotionDiv
+                                                    key={`${cF.key} ${cF.name} ${i} ${cF.label}`}
+                                                    className={`${styles.tagsCtn}`}
+                                                >
+                                                    <MotionH6 className={`${styles.richHeader}`}>
+                                                        Solutions
+                                                    </MotionH6>
+
+
+                                                    <MotionDiv
+                                                        className={`${styles.tagInputCtn}`}
+                                                    >
+                                                        <TextField
+                                                            size='small'
+                                                            label={cF.label}
+                                                            name={cF.name}
+                                                            value={solution}
+                                                            onChange={(e) => { setSolution(e.target.value); }}
+                                                        />
+                                                        <Button
+                                                            onClick={
+                                                                (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
+                                                                    handleChange(
+                                                                        cF as FormField<CaseStudyDocumentType>,
+                                                                        e,
+                                                                        solution,
+                                                                        null
+                                                                    );
+                                                                    setSolution('');
+                                                                }}
+                                                        >
+                                                            <AddRoundedIcon />
+                                                        </Button>
+                                                    </MotionDiv>
+
+                                                    {
+                                                        caseStudyDocument?.solutions && caseStudyDocument?.solutions.length > 0 &&
+                                                        <Stack direction="row" spacing={1}>
+                                                            {
+                                                                caseStudyDocument?.solutions.map((t: string, i: number) => {
+                                                                    return (
+                                                                        <Chip
+                                                                            key={`${t}:${i}`}
+                                                                            label={t}
+                                                                            onDelete={
+                                                                                (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
+                                                                                    handleChange(
+                                                                                        cF as FormField<CaseStudyDocumentType>,
+                                                                                        e,
+                                                                                        t,
+                                                                                        null
+                                                                                    );
+                                                                                    setObjective('');
+                                                                                }}
+                                                                        />
+                                                                    )
+                                                                })
+                                                            }
+                                                        </Stack>
+
+                                                    }
+
+                                                </MotionDiv>
+                                            )
+                                        }
+                                    } else if (cF && cF.type === "radio" && cF.key in caseStudyDocument!) {
                                         return (
                                             <MotionDiv
+                                            className={`${styles.choiceCtn}`}
                                                 key={`${cF.key} ${cF.name} ${i} ${cF.label} `}
                                             >
-                                                <TextField
-                                                    error={eFs && eFs[cF.key as keyof CaseStudyDocumentType]?.error!}
-                                                    fullWidth
-                                                    label={cF.label}
-                                                    name={cF.name as string}  // `name` is narrowed down to string
-                                                    className={styles.catFormField}
-                                                    // value={caseStudyDocument.outcomes["valueGenerated"]}
-                                                    onChange={(e) => { handleChange(cF as FormField<CaseStudyDocumentType>, e, null, null) }}
-                                                />
+                                                <MotionH6>Case Study Type</MotionH6>
+                                                <RadioGroup
+                                                className={`${styles.radioCtn}`}
+                                                    aria-labelledby="controlled-radio-buttons-group"
+                                                    name="controlled-radio-buttons-group"
+                                                    value={caseStudyDocument.type ? caseStudyDocument.type : null}
+
+                                                >
+                                                    {
+                                                        caseStudyTypeChoices.map((choice, i: number) => {
+                                                            return (
+                                                                <FormControlLabel
+                                                                    key={`${cF.key} ${cF.name} ${i} ${cF.label} ${choice} `}
+                                                                    id='category'
+                                                                    value={choice.property}
+                                                                    control={
+                                                                        <Radio
+                                                                            onChange={(e) => { handleChange(cF as FormField<CaseStudyDocumentType>, e, null, choice.property) }}
+                                                                        />
+                                                                    }
+                                                                    label={choice.label}
+                                                                />
+                                                            )
+                                                        })
+                                                    }
+                                                </RadioGroup>
+
                                             </MotionDiv>
-                                        )
+
+                                        );
+                                    } else if (cF.type == 'number') {
+                                        console.log(cF.key);
+
+                                        if (cF.name == 'outcomesValueGenerated') {
+
+                                            return (
+                                                <MotionDiv
+                                                    key={`${cF.key} ${cF.name} ${i} ${cF.label} `}
+                                                >
+                                                    <TextField
+                                                        error={eFs && eFs[cF.key as keyof CaseStudyDocumentType]?.error!}
+                                                        fullWidth
+                                                        label={cF.label}
+                                                        name={cF.name as string}  // `name` is narrowed down to string
+                                                        className={styles.catFormField}
+                                                        // value={caseStudyDocument.outcomes["valueGenerated"]}
+                                                        onChange={(e) => { handleChange(cF as FormField<CaseStudyDocumentType>, e, null, null) }}
+                                                    />
+                                                </MotionDiv>
+                                            )
+                                        }
                                     }
                                 }
-                            }
 
-                        })
-                    }
-                </MotionForm>
+                            })
+                        }
+                    </MotionForm>                    
+                </MotionDiv>
+
             </MotionDiv>
 
         )

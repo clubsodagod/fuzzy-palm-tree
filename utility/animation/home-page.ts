@@ -31,9 +31,9 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
     let bolsa_z = [-10, 0, 0, 0, 0, 0, 0, 0, 0];
     let bolsa_rotation_y = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-    let invest_scale = [0.625,0, 0,0,0.5, 1.1,0.7,0, 0];
-    let invest_x = [useRVs([5,0,20]), 0, 0, 0, 0, 0, 0, 0, 0];
-    let invest_y = [0, 0, 0, 0, -5, -20, -20, 0, 0];
+    let invest_scale = [0.625,0, 0,0,0.5, 0.25,0.7,0, 0];
+    let invest_x = [useRVs([5,0,20]), 0, 0, 0, 0, -1.5, 0, 0, 0];
+    let invest_y = [0, 0, 0, 0, -5, -15, -15, 0, 0];
     let invest_z = [10, 0, 0, 0, 0, 0, 0, 0, 0];
     let invest_rotation_y = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 

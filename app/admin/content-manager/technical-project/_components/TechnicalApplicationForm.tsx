@@ -22,6 +22,7 @@ import { validateField } from '@/utility/functions/forms';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import { red } from '@mui/material/colors';
 import DynamicAlert from '@/app/components/common/DynamicAlert';
+import { MotionH5 } from '@/app/components/framer/MotionH5';
 
 
 const TechnicalApplicationForm: React.FC<{
@@ -131,6 +132,38 @@ const TechnicalApplicationForm: React.FC<{
                                 {field.label}
                             </MotionP>
 
+
+                            <MotionDiv
+                                className={`${styles.tagInputCtn}`}
+                            >
+                                <TextField
+                                    error={eFs && eFs[field.key as keyof TechnicalApplicationDocumentType]?.error!}
+                                    size='small'
+                                    label={field.label}
+                                    name={field.name}
+                                    value={currentValues[field.name]}
+                                    onChange={(e) => { setCurrentValues((prev) => ({ ...prev, [field.name]: e.target.value })); validateUrl(field, e.target.value) }}
+                                />
+                                <Button
+                                    onClick={
+                                        (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
+                                            handleChange(
+                                                field as FormField<TechnicalApplicationDocumentType>,
+                                                e,
+                                                currentValues[field.key as keyof {
+                                                    photos: string;
+                                                    videos: string,
+                                                    technologiesUsed: string;
+                                                }],
+                                                null
+                                            );
+
+                                            setCurrentValues((prev) => ({ ...prev, [field.name]: "" }));
+                                        }}>
+                                    <AddRoundedIcon />
+                                </Button>
+                            </MotionDiv>
+
                             {
                                 document &&
                                 document[field.name] &&
@@ -194,40 +227,7 @@ const TechnicalApplicationForm: React.FC<{
                                         })
                                     }
                                 </Stack>
-
                             }
-
-
-                            <MotionDiv
-                                className={`${styles.tagInputCtn}`}
-                            >
-                                <TextField
-                                    error={eFs && eFs[field.key as keyof TechnicalApplicationDocumentType]?.error!}
-                                    size='small'
-                                    label={field.label}
-                                    name={field.name}
-                                    value={currentValues[field.name]}
-                                    onChange={(e) => { setCurrentValues((prev) => ({ ...prev, [field.name]: e.target.value })); validateUrl(field, e.target.value) }}
-                                />
-                                <Button
-                                    onClick={
-                                        (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
-                                            handleChange(
-                                                field as FormField<TechnicalApplicationDocumentType>,
-                                                e,
-                                                currentValues[field.key as keyof {
-                                                    photos: string;
-                                                    videos: string,
-                                                    technologiesUsed: string;
-                                                }],
-                                                null
-                                            );
-
-                                            setCurrentValues((prev) => ({ ...prev, [field.name]: "" }));
-                                        }}>
-                                    <AddRoundedIcon />
-                                </Button>
-                            </MotionDiv>
 
                         </MotionDiv>
                     )
@@ -240,37 +240,6 @@ const TechnicalApplicationForm: React.FC<{
                             <MotionP className={`${styles.richHeader}`}>
                                 {field.label}
                             </MotionP>
-
-                            {
-                                document &&
-                                document[field.name] &&
-                                document[field.name].length > 0 &&
-                                <Stack direction="row" spacing={1}>
-                                    {
-                                        document[field.name].map((t: string, i: number) => {
-                                            return (
-                                                <Chip
-                                                    key={`${t}:${i}`}
-                                                    label={t}
-                                                    onDelete={
-                                                        (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
-                                                            handleChange(
-                                                                field as FormField<TechnicalApplicationDocumentType>,
-                                                                e,
-                                                                t,
-                                                                null
-                                                            );
-
-                                                            setCurrentValues((prev) => ({ ...prev, [field.name]: "" }));
-                                                        }}
-                                                />
-                                            )
-                                        })
-                                    }
-                                </Stack>
-
-                            }
-
 
                             <MotionDiv
                                 className={`${styles.tagInputCtn}`}
@@ -301,6 +270,36 @@ const TechnicalApplicationForm: React.FC<{
                                     <AddRoundedIcon />
                                 </Button>
                             </MotionDiv>
+
+                            {
+                                document &&
+                                document[field.name] &&
+                                document[field.name].length > 0 &&
+                                <Stack direction="row" spacing={1}>
+                                    {
+                                        document[field.name].map((t: string, i: number) => {
+                                            return (
+                                                <Chip
+                                                    key={`${t}:${i}`}
+                                                    label={t}
+                                                    onDelete={
+                                                        (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
+                                                            handleChange(
+                                                                field as FormField<TechnicalApplicationDocumentType>,
+                                                                e,
+                                                                t,
+                                                                null
+                                                            );
+
+                                                            setCurrentValues((prev) => ({ ...prev, [field.name]: "" }));
+                                                        }}
+                                                />
+                                            )
+                                        })
+                                    }
+                                </Stack>
+                            }
+
 
                         </MotionDiv>
                     )
@@ -365,11 +364,18 @@ const TechnicalApplicationForm: React.FC<{
                 eRM && console.log(eRM);
             }
         }, [eRM])
-        
+
         useEffect
         return (
-            <MotionDiv>
-                <MotionDiv>
+            <MotionDiv
+                className={`${styles.formModuleWrapper}`}
+            >
+                <MotionDiv
+                    className={`${styles.btnCtn}`}
+                >
+                    <MotionH5>
+                        Ready to publish?
+                    </MotionH5>
                     <Button variant="outlined"
                         onClick={submitHandler}
                     >
@@ -390,36 +396,49 @@ const TechnicalApplicationForm: React.FC<{
                                     status={200} message={eRM?.message!}
                                 />
                                 :
-                                null
+                                <MotionDiv>
+                                    <MotionP
+                                        className={`${styles.captionText}`}
+                                    >
+                                        {"We'll make submission status updates available here".toUpperCase()}
+                                    </MotionP>
+                                </MotionDiv>
                     }
                 </MotionDiv>
-                <MotionForm>
+                <MotionDiv
+                    className={`${styles.formWrapper}`}
+                >
+                    <MotionForm
+                        className={`${styles.form}`}
+                    >
 
-                    {/* form object */}
+                        {/* form object */}
 
-                    {
-                        technicalProjectDocument &&
-                        <>
-                            {
-                                technicalApplicationFormDocument.map((tF, i: number) => {
-                                    // validate tF object
-                                    if (tF) {
+                        {
+                            technicalProjectDocument &&
+                            <>
+                                {
+                                    technicalApplicationFormDocument.map((tF, i: number) => {
+                                        // validate tF object
+                                        if (tF) {
 
-                                        return handleRenderForm(tF as FormField<TechnicalApplicationDocumentType>)
+                                            return handleRenderForm(tF as FormField<TechnicalApplicationDocumentType>)
 
-                                    } else {
-                                        return <MotionDiv key={`error: ${i}`}>
-                                            <MotionH3>
-                                                Seems the form is lost. Try again please.
-                                            </MotionH3>
-                                        </MotionDiv>
-                                    }
-                                })
-                            }
-                        </>
-                    }
+                                        } else {
+                                            return <MotionDiv key={`error: ${i}`}>
+                                                <MotionH3>
+                                                    Seems the form is lost. Try again please.
+                                                </MotionH3>
+                                            </MotionDiv>
+                                        }
+                                    })
+                                }
+                            </>
+                        }
 
-                </MotionForm>
+                    </MotionForm>
+                </MotionDiv>
+
             </MotionDiv>
         )
     }

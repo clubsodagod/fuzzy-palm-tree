@@ -37,6 +37,8 @@ export default function Home() {
     element.scrollIntoView({ behavior:"smooth", block: 'start' });
   };
 
+
+
   useEffect(() => {
     const observerOptions = {
       root: null, // Use the viewport as the root

@@ -26,7 +26,9 @@ const CreateTechnicalApplicationPage: React.FC<{}> = ({ }) => {
                 <MotionDiv
                 className={`${styles.headerCtn}`}
                 >
-                    <MotionH2>
+                    <MotionH2
+                    className={`${styles.header}`}
+                    >
                         Create a New Technical Application
                     </MotionH2>
                 </MotionDiv>

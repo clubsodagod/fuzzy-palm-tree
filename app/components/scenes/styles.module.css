@@ -1,0 +1,11 @@
+
+
+.postsCtn {
+    height: fit-content;
+    position: absolute;
+    width: 100%;
+    top: 83%;
+    @media screen and (min-width:769px) {
+        top: 81%;
+    }
+}

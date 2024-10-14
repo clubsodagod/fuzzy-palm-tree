@@ -10,6 +10,7 @@ import MotionSectionWrapper from '@/app/components/common/MotionSectionWrapper';
 import { handleSubmitClient } from '@/utility/functions/forms';
 import { CaseStudyDocumentType } from '@/library/db/models/case-study';
 import { ErrorResponseMessage } from '@/library/types/common';
+import { MotionSection } from '@/app/components/framer/MotionSection';
 
 
 const CaseStudyCreatePage: React.FC<{}> = ({ }) => {
@@ -20,19 +21,23 @@ const CaseStudyCreatePage: React.FC<{}> = ({ }) => {
 
     return (
         <MotionPageWrapper>
-            <MotionSectionWrapper>
+            <MotionSectionWrapper
+            >
 
                 {/* case study create page header */}
                 <MotionDiv
                 className={`${styles.headerCtn}`}
                 >
-                    <MotionH2>
+                    <MotionH2
+                    className={`${styles.header}`}
+                    >
                         Create a New Case Study
                     </MotionH2>
                 </MotionDiv>
 
                 {/* case study form */}
-                <MotionDiv>
+                <MotionDiv
+                >
                     <CaseStudyForm
                     handleSubmit={submitHandler as unknown as (arg0: CaseStudyDocumentType) => Promise<ErrorResponseMessage>} 
                     />

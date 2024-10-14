@@ -17,6 +17,7 @@ import { red } from '@mui/material/colors';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import { validateField } from '@/utility/functions/forms';
 import DynamicAlert from '@/app/components/common/DynamicAlert';
+import { MotionH5 } from '@/app/components/framer/MotionH5';
 
 const investmentTypeChoices: string[] = ["Rental", "Wholesale", "Fix and Flip"];
 const booleanChoices = [{ label: "Yes", value: true }, { label: "No", value: false }];
@@ -128,6 +129,37 @@ const PropertyForm: React.FC<{
                                 {field.label}
                             </MotionP>
 
+
+                            <MotionDiv
+                                className={`${styles.tagInputCtn} w-full flex`}
+                            >
+                                <TextField
+                                    className=''
+                                    size='small'
+                                    label={field.label}
+                                    name={field.name}
+                                    value={currentValues[field.key]}
+                                    onChange={(e) => { setCurrentValues((prev) => ({ ...prev, [field.name]: e.target.value })); validateUrl(field, e.target.value) }}
+                                />
+                                <Button
+                                    onClick={
+                                        (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
+                                            handleChange(
+                                                field as FormField<PropertyDocumentType>,
+                                                e,
+                                                currentValues[field.key as keyof {
+                                                    photos: string;
+                                                    videos: string,
+                                                }],
+                                                null
+                                            );
+
+                                            setCurrentValues((prev) => ({ ...prev, [field.name]: "" }));
+                                        }}>
+                                    <AddRoundedIcon />
+                                </Button>
+                            </MotionDiv>
+
                             {
                                 document &&
                                 document[field.key] &&
@@ -180,37 +212,6 @@ const PropertyForm: React.FC<{
                                 </Stack>
 
                             }
-
-
-                            <MotionDiv
-                                className={`${styles.tagInputCtn} w-full flex`}
-                            >
-                                <TextField
-                                    className=''
-                                    size='small'
-                                    label={field.label}
-                                    name={field.name}
-                                    value={currentValues[field.key]}
-                                    onChange={(e) => { setCurrentValues((prev) => ({ ...prev, [field.name]: e.target.value })); validateUrl(field, e.target.value) }}
-                                />
-                                <Button
-                                    onClick={
-                                        (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
-                                            handleChange(
-                                                field as FormField<PropertyDocumentType>,
-                                                e,
-                                                currentValues[field.key as keyof {
-                                                    photos: string;
-                                                    videos: string,
-                                                }],
-                                                null
-                                            );
-
-                                            setCurrentValues((prev) => ({ ...prev, [field.name]: "" }));
-                                        }}>
-                                    <AddRoundedIcon />
-                                </Button>
-                            </MotionDiv>
 
                         </MotionDiv>
                     )
@@ -388,8 +389,15 @@ const PropertyForm: React.FC<{
         }, [eRM])
 
         return (
-            <MotionDiv>
-                <MotionDiv>
+            <MotionDiv
+                className={`${styles.formModuleWrapper}`}
+            >
+                <MotionDiv
+                    className={`${styles.btnCtn}`}
+                >
+                    <MotionH5>
+                        Ready to publish?
+                    </MotionH5>
                     <Button variant="outlined"
                         onClick={submitHandler}
                     >
@@ -410,35 +418,46 @@ const PropertyForm: React.FC<{
                                     status={200} message={eRM?.message!}
                                 />
                                 :
-                                null
+                                <MotionDiv>
+                                    <MotionP
+                                        className={`${styles.captionText}`}
+                                    >
+                                        {"We'll make submission status updates available here".toUpperCase()}
+                                    </MotionP>
+                                </MotionDiv>
                     }
                 </MotionDiv>
-                <MotionForm
-                    className={`w-1/2 flex flex-col gap-3`}
+                <MotionDiv
+                    className={`${styles.formWrapper}`}
                 >
+                    <MotionForm
+                        className={`${styles.form}`}
+                    >
 
-                    {
-                        propertyDocument &&
-                        <>
-                            {
-                                propertyFormDocument.map((pF, i: number) => {
-                                    // validate tF object
-                                    if (pF) {
+                        {
+                            propertyDocument &&
+                            <>
+                                {
+                                    propertyFormDocument.map((pF, i: number) => {
+                                        // validate tF object
+                                        if (pF) {
 
-                                        return handleRenderForm(pF as FormField<PropertyDocumentType>)
+                                            return handleRenderForm(pF as FormField<PropertyDocumentType>)
 
-                                    } else {
-                                        return <MotionDiv key={`error: ${i}`}>
-                                            <MotionH3>
-                                                Seems the form is lost. Try again please.
-                                            </MotionH3>
-                                        </MotionDiv>
-                                    }
-                                })
-                            }
-                        </>
-                    }
-                </MotionForm>
+                                        } else {
+                                            return <MotionDiv key={`error: ${i}`}>
+                                                <MotionH3>
+                                                    Seems the form is lost. Try again please.
+                                                </MotionH3>
+                                            </MotionDiv>
+                                        }
+                                    })
+                                }
+                            </>
+                        }
+                    </MotionForm>
+                </MotionDiv>
+
             </MotionDiv>
 
         )

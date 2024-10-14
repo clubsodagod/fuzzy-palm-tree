@@ -27,7 +27,9 @@ const CreatePropertyPage: React.FC<{}> = ({ }) => {
                 <MotionDiv
                 className={`${styles.headerCtn}`}
                 >
-                    <MotionH2>
+                    <MotionH2
+                    className={`${styles.header}`}
+                    >
                         Create a New Property
                     </MotionH2>
                 </MotionDiv>
