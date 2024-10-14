@@ -11,15 +11,15 @@ export interface TechnicalApplicationDocumentType {
   githubLink: string;
   link: string;
   caseStudy?: mongoose.Types.ObjectId;  // Reference to CaseStudy
-  createdAt: Date;
   live:boolean;
 }
 // Define an interface for the TechnicalApplication model
 export interface ITechnicalApplication extends Document {
   name: string;
+  slug: string;
   description: string;
-  photos:Photo[];
-  videos:Video[];
+  photos:PhotoV2[];
+  videos:VideoV2[];
   technologiesUsed: string[];
   githubLink?: string;
   link: string;
@@ -32,6 +32,11 @@ export interface ITechnicalApplication extends Document {
 const technicalApplicationSchema = new Schema<ITechnicalApplication>({
   name: {
     type: String,
+    required: true,
+  },
+  slug: {
+    type: String,
+    unique: true,
     required: true,
   },
   description: String,

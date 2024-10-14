@@ -25,12 +25,34 @@ export const propertyFormDocument: FormFieldsFor<PropertyDocumentType> = [
     },
     {
         key: 'acquired',
-        label: 'Acquired?',
+        label: 'Acquired',
         name: 'acquired',
-        type: 'checkbox',
+        type: 'select',
         validation: {
             required: false,
             message: 'Check if this property is acquired',
+        },
+    },
+    {
+        key: 'photos',
+        label: 'Photos',
+        name: 'photos',
+        type: 'tags', // or another appropriate type for handling multiple photo entries
+        validation: {
+            required: true,
+            regEx: "^(https?|ftp)://[^\\s/$.?#].[^\\s]*$", // Standard URL validation regex
+            message: 'Please provide a valid image URL.',
+        },
+    },
+    {
+        key: 'videos',
+        label: 'Videos',
+        name: 'videos',
+        type: 'tags', // or another appropriate type for handling multiple video entries
+        validation: {
+            required: false,
+            regEx:  "^(https?|ftp)://[^\\s/$.?#].[^\\s]*$", // Standard URL validation regex
+            message: 'Please provide a valid video URL.',
         },
     },
     {
@@ -65,9 +87,9 @@ export const propertyFormDocument: FormFieldsFor<PropertyDocumentType> = [
         },
     },
     {
-        key: 'monthlyFinancialFigures.propertyMonthlyIncome',
+        key: 'monthlyFinancialFigures',
         label: 'Monthly Income',
-        name: 'monthlyFinancialFigures.propertyMonthlyIncome',
+        name: 'propertyMonthlyIncome',
         type: 'number',
         validation: {
             required: false,
@@ -75,9 +97,9 @@ export const propertyFormDocument: FormFieldsFor<PropertyDocumentType> = [
         },
     },
     {
-        key: 'monthlyFinancialFigures.propertyMonthlyExpenses',
+        key: 'monthlyFinancialFigures',
         label: 'Monthly Expenses',
-        name: 'monthlyFinancialFigures.propertyMonthlyExpenses',
+        name: 'propertyMonthlyExpenses',
         type: 'number',
         validation: {
             required: false,
@@ -85,9 +107,9 @@ export const propertyFormDocument: FormFieldsFor<PropertyDocumentType> = [
         },
     },
     {
-        key: 'monthlyFinancialFigures.propertyMonthlyDebtServiceExpense',
+        key: 'monthlyFinancialFigures',
         label: 'Monthly Debt Service',
-        name: 'monthlyFinancialFigures.propertyMonthlyDebtServiceExpense',
+        name: 'propertyMonthlyDebtServiceExpense',
         type: 'number',
         validation: {
             required: false,
@@ -106,19 +128,8 @@ export const propertyFormDocument: FormFieldsFor<PropertyDocumentType> = [
         },
     },
     {
-        key: 'caseStudy',
-        label: 'Case Study Reference',
-        name: 'caseStudy',
-        type: 'text',
-        validation: {
-            required: false,
-            singleRegEx: '^[a-fA-F0-9]{24}$',
-            message: 'Enter a valid ObjectId for the case study',
-        },
-    },
-    {
         key: 'live',
-        label: 'Is Live?',
+        label: 'Live',
         name: 'live',
         type: 'checkbox',
         validation: {

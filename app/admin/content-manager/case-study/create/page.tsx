@@ -7,9 +7,16 @@ import { MotionDiv } from '@/app/components/framer/MotionDiv'
 import { MotionH2 } from '@/app/components/framer/MotionH2'
 import CaseStudyForm from '../_components/CaseStudyForm'
 import MotionSectionWrapper from '@/app/components/common/MotionSectionWrapper';
+import { handleSubmitClient } from '@/utility/functions/forms';
+import { CaseStudyDocumentType } from '@/library/db/models/case-study';
+import { ErrorResponseMessage } from '@/library/types/common';
 
 
 const CaseStudyCreatePage: React.FC<{}> = ({ }) => {
+
+    async function submitHandler (caseStudyDocument:CaseStudyDocumentType) {
+        return await handleSubmitClient("api/user/portfolio/case-study/create", caseStudyDocument) as ErrorResponseMessage;
+    };
 
     return (
         <MotionPageWrapper>
@@ -26,7 +33,8 @@ const CaseStudyCreatePage: React.FC<{}> = ({ }) => {
 
                 {/* case study form */}
                 <MotionDiv>
-                    <CaseStudyForm 
+                    <CaseStudyForm
+                    handleSubmit={submitHandler as unknown as (arg0: CaseStudyDocumentType) => Promise<ErrorResponseMessage>} 
                     />
                 </MotionDiv>                
             </MotionSectionWrapper>

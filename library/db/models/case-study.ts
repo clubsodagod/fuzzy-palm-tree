@@ -26,7 +26,8 @@ export interface ICaseStudy extends Document {
   type: 'TechnicalApplication' | 'Property';
   featuredImg:Photo;
   featuredVideo:Video;
-  relatedItem: mongoose.Types.ObjectId;
+  slug:string;
+  relatedItem?: mongoose.Types.ObjectId|null;
   summary: string;
   objectives: string[];
   challenges: string[];
@@ -44,6 +45,12 @@ const caseStudySchema = new Schema<ICaseStudy>({
   title: {
     type: String,
     required: true,
+    unique:true,
+  },
+  slug: {
+    type: String,
+    unique: true,
+    required: true,
   },
   type: {
     type: String,
@@ -52,7 +59,7 @@ const caseStudySchema = new Schema<ICaseStudy>({
   },
   relatedItem: {
     type: Schema.Types.ObjectId,
-    required: true,
+    required: false,
     refPath: 'type',
   },
   summary: {

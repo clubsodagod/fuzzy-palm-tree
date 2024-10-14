@@ -4,7 +4,7 @@ import mongoose, { Document, Schema, Model, model } from 'mongoose';
 // Define an interface for the Property model
 export interface PropertyDocumentType {
   address: string;
-  investmentType: "rental" | "wholesale" | "fix and flip";
+  investmentType: "Rental" | "Wholesale" | "Fix and Flip" | string ;
   acquired: boolean;
   purchasePrice?: number;
   rehabCost?: number;
@@ -24,6 +24,7 @@ export interface PropertyDocumentType {
 export interface IProperty extends Document {
   address: string;
   investmentType: "rental" | "wholesale" | "fix and flip";
+  slug: string;
   acquired: boolean;
   purchasePrice?: number;
   rehabCost?: number;
@@ -44,6 +45,11 @@ export interface IProperty extends Document {
 const propertySchema = new Schema<IProperty>({
   address: {
     type: String,
+    required: true,
+  },
+  slug: {
+    type: String,
+    unique: true,
     required: true,
   },
   investmentType: {

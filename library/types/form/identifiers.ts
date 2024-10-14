@@ -7,7 +7,14 @@ import { SubcategoryDocumentType } from "@/library/db/models/subcategory";
 import { TechnicalApplicationDocumentType } from "@/library/db/models/technicalApplication";
 
 
-
+export type FormDocumentTypeV2 = 
+    | { type: "category"; document: CategoryDocumentType }
+    | { type: "subcategory"; document: SubcategoryDocumentType }
+    | { type: "blog"; document: BlogDocumentType }
+    | { type: "caseStudy"; document: CaseStudyDocumentType }
+    | { type: "property"; document: PropertyDocumentType }
+    | { type: "portfolio"; document: PortfolioDocumentType }
+    | { type: "technicalApplication"; document: TechnicalApplicationDocumentType };
 
 
 

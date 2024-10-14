@@ -168,3 +168,5 @@ export type ErrorObject<T> = {
         message:string | null,
     } | null;
 };
+
+export type ErrorResponseMessage = {error:boolean, message:string};

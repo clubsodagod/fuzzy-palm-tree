@@ -31,8 +31,9 @@ export const technicalApplicationFormDocument: FormFieldsFor<TechnicalApplicatio
         name: 'photos',
         type: 'tags', // or another appropriate type for handling multiple photo entries
         validation: {
-            required: false,
-            message: 'Photos are optional.',
+            required: true,
+            regEx: "^(https?|ftp)://[^\\s/$.?#].[^\\s]*$", // Standard URL validation regex
+            message: 'Please provide a valid image URL.',
         },
     },
     {
@@ -42,7 +43,8 @@ export const technicalApplicationFormDocument: FormFieldsFor<TechnicalApplicatio
         type: 'tags', // or another appropriate type for handling multiple video entries
         validation: {
             required: false,
-            message: 'Videos are optional.',
+            regEx:  "^(https?|ftp)://[^\\s/$.?#].[^\\s]*$", // Standard URL validation regex
+            message: 'Please provide a valid video URL.',
         },
     },
     {
