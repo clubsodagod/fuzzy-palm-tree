@@ -35,7 +35,11 @@ const ScrollProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [scrollX, setScrollX] = useState(0);
     const [scrollY, setScrollY] = useState(0);
     const [windowScrollHeight, setWindowScrollHeight] = useState<number>(0);
+    const [windowHeight, setWindowHeight] = useState<number>(0);
     const [scrollYPro, setScrollYPro] = useState<number>(windowScrollHeight);
+
+    const dynamicIncrement = (iteration:number) => windowHeight * iteration ;
+
     const qtrCtn = scrollYPro / 4;
     const halfCtn = scrollYPro / 2;
     const threeQtrCtn = qtrCtn * 3;
@@ -76,6 +80,8 @@ const ScrollProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 scrollY, 
                 scrollYPro,
                 setScrollYPro,
+                windowHeight,
+                setWindowHeight,
                 windowScrollHeight,
                 setWindowScrollHeight,
                 eighthCtn,
@@ -88,7 +94,8 @@ const ScrollProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 threeQtrCtn,
                 threeEighthsCtn,
                 fiveEightsCtn,
-                sevenEightsCtn
+                sevenEightsCtn,
+                dynamicIncrement
             }}
         >
             {children}

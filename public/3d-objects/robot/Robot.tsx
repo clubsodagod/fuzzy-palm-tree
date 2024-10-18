@@ -10,7 +10,7 @@ Title: Robot No.1 - Rigged - Animated
 
 import * as THREE from 'three'
 import React from 'react'
-import { useGraph } from '@react-three/fiber'
+import { useFrame, useGraph } from '@react-three/fiber'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { GLTF, SkeletonUtils } from 'three-stdlib'
 
@@ -258,12 +258,21 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
-export default function Robot(props: JSX.IntrinsicElements['group']) {
+export default function Robot(props: JSX.IntrinsicElements['group'],animate:any) {
   const group = React.useRef<THREE.Group>(null)
-  const { scene, animations } = useGLTF('/robot-transformed.glb')
+  const { scene, animations } = useGLTF('/3d-objects/robot/robot-transformed.glb')
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
   const { nodes, materials } = useGraph(clone) as GLTFResult
-  const { actions } = useAnimations(animations, group)
+  const { actions } = useAnimations(animations, group);
+  
+  useFrame(({ clock }) => {
+    const elapsedTime = clock.getElapsedTime();
+    if(actions['Scene']) {
+      actions['Scene'].play()
+    }
+  });
+
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">

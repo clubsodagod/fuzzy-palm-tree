@@ -13,6 +13,7 @@ import React from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 import { JoinGrowthProps } from '@/library/types/common'
+import { useFrame } from '@react-three/fiber'
 
 type ActionName = 'Animation'
 
@@ -48,10 +49,18 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
-const POSMachine: React.FC<JoinGrowthProps> = ({ animate, ...props }) => {
+function POSMachine(props: JSX.IntrinsicElements['group'],animate:any) {
   const group = React.useRef<THREE.Group>(null)
   const { nodes, materials, animations } = useGLTF('/3d-objects/pos-machine/POSMachine-transformed.glb') as GLTFResult
-  const { actions } = useAnimations(animations, group)
+  const { actions } = useAnimations(animations, group);
+  
+  useFrame(({ clock }) => {
+    const elapsedTime = clock.getElapsedTime();
+    if(actions['Animation']) {
+      actions['Animation'].play()
+    }
+  });
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">
@@ -62,70 +71,70 @@ const POSMachine: React.FC<JoinGrowthProps> = ({ animate, ...props }) => {
                 <group name="POS_machineingenico_ict250_Box006_21" position={[-4.01, 5.479, 0.069]} rotation={[-1.972, 0, 0]} scale={0.089}>
                   <group name="POS_machinepolySurface2_20">
                     <group name="polySurface3_0" position={[0.143, -0.327, 3.331]}>
-                      <mesh name="Object_10" geometry={nodes.Object_10.geometry} material={materials.POS_machinelambert4} />
+                      <mesh name="Object_10" geometry={nodes.Object_10?.geometry} material={materials.POS_machinelambert4} />
                     </group>
                     <group name="POS_machinepolySurface4_19">
                       <group name="POS_machinepolySurface5_1" position={[0, 0.395, 0.167]}>
-                        <mesh name="Object_13" geometry={nodes.Object_13.geometry} material={materials.PaletteMaterial001} />
+                        <mesh name="Object_13" geometry={nodes.Object_13?.geometry} material={materials.PaletteMaterial001} />
                       </group>
                       <group name="POS_machinepolySurface6_18">
                         <group name="POS_machinepolySurface10_2">
-                          <mesh name="Object_16_1" geometry={nodes.Object_16_1.geometry} material={materials.PaletteMaterial001} />
+                          <mesh name="Object_16_1" geometry={nodes.Object_16_1?.geometry} material={materials.PaletteMaterial001} />
                         </group>
                         <group name="POS_machinepolySurface11_3">
-                          <mesh name="Object_18" geometry={nodes.Object_18.geometry} material={materials.PaletteMaterial001} />
+                          <mesh name="Object_18" geometry={nodes.Object_18?.geometry} material={materials.PaletteMaterial001} />
                         </group>
                         <group name="POS_machinepolySurface13_4">
-                          <mesh name="Object_20" geometry={nodes.Object_20.geometry} material={materials.PaletteMaterial001} />
+                          <mesh name="Object_20" geometry={nodes.Object_20?.geometry} material={materials.PaletteMaterial001} />
                         </group>
                         <group name="POS_machinepolySurface14_5">
-                          <mesh name="Object_22" geometry={nodes.Object_22.geometry} material={materials.PaletteMaterial001} />
+                          <mesh name="Object_22" geometry={nodes.Object_22?.geometry} material={materials.PaletteMaterial001} />
                         </group>
                         <group name="POS_machinepolySurface15_6">
-                          <mesh name="Object_24" geometry={nodes.Object_24.geometry} material={materials.PaletteMaterial001} />
+                          <mesh name="Object_24" geometry={nodes.Object_24?.geometry} material={materials.PaletteMaterial001} />
                         </group>
                         <group name="POS_machinepolySurface16_7">
-                          <mesh name="Object_26" geometry={nodes.Object_26.geometry} material={materials.PaletteMaterial001} />
+                          <mesh name="Object_26" geometry={nodes.Object_26?.geometry} material={materials.PaletteMaterial001} />
                         </group>
                         <group name="POS_machinepolySurface17_8">
-                          <mesh name="Object_28" geometry={nodes.Object_28.geometry} material={materials.PaletteMaterial001} />
+                          <mesh name="Object_28" geometry={nodes.Object_28?.geometry} material={materials.PaletteMaterial001} />
                         </group>
                         <group name="POS_machinepolySurface19_9">
-                          <mesh name="Object_30" geometry={nodes.Object_30.geometry} material={materials.PaletteMaterial001} />
+                          <mesh name="Object_30" geometry={nodes.Object_30?.geometry} material={materials.PaletteMaterial001} />
                         </group>
                         <group name="POS_machinepolySurface20_10">
-                          <mesh name="Object_32" geometry={nodes.Object_32.geometry} material={materials.PaletteMaterial001} />
+                          <mesh name="Object_32" geometry={nodes.Object_32?.geometry} material={materials.PaletteMaterial001} />
                         </group>
                         <group name="POS_machinepolySurface21_11">
-                          <mesh name="Object_34" geometry={nodes.Object_34.geometry} material={materials.PaletteMaterial001} />
+                          <mesh name="Object_34" geometry={nodes.Object_34?.geometry} material={materials.PaletteMaterial001} />
                         </group>
                         <group name="POS_machinepolySurface22_15">
                           <group name="POS_machinepolySurface24_14">
                             <group name="POS_machinepolySurface26_13">
                               <group name="POS_machinepolySurface29_12">
-                                <mesh name="Object_39" geometry={nodes.Object_39.geometry} material={materials.PaletteMaterial001} />
+                                <mesh name="Object_39" geometry={nodes.Object_39?.geometry} material={materials.PaletteMaterial001} />
                               </group>
                             </group>
                           </group>
                         </group>
                         <group name="POS_machinepolySurface8_16">
-                          <mesh name="Object_41" geometry={nodes.Object_41.geometry} material={materials.PaletteMaterial001} />
+                          <mesh name="Object_41" geometry={nodes.Object_41?.geometry} material={materials.PaletteMaterial001} />
                         </group>
                         <group name="POS_machinepolySurface9_17">
-                          <mesh name="Object_43" geometry={nodes.Object_43.geometry} material={materials.PaletteMaterial001} />
+                          <mesh name="Object_43" geometry={nodes.Object_43?.geometry} material={materials.PaletteMaterial001} />
                         </group>
                       </group>
                     </group>
                   </group>
                 </group>
                 <group name="POS_machinepolySurface18_22">
-                  <mesh name="Object_45" geometry={nodes.Object_45.geometry} material={materials.PaletteMaterial001} />
+                  <mesh name="Object_45" geometry={nodes.Object_45?.geometry} material={materials.PaletteMaterial001} />
                 </group>
                 <group name="POS_machinepolySurface23_23">
-                  <mesh name="Object_47" geometry={nodes.Object_47.geometry} material={materials.PaletteMaterial001} />
+                  <mesh name="Object_47" geometry={nodes.Object_47?.geometry} material={materials.PaletteMaterial001} />
                 </group>
                 <group name="POS_machinepolySurface7_24">
-                  <mesh name="Object_49" geometry={nodes.Object_49.geometry} material={materials.PaletteMaterial001} />
+                  <mesh name="Object_49" geometry={nodes.Object_49?.geometry} material={materials.PaletteMaterial001} />
                 </group>
               </group>
             </group>

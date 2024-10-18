@@ -12,13 +12,32 @@ const Overview:React.FC<{
 }> = ({
     ctnRef,
 }) => {
+    
     return (
         <PageWrapper
         id='programmer-overview'
         ctnRef={ctnRef}
         >
-            
-
+        <div className={`${styles.imgWrapper}`} id='img-maliek_home'>
+            <motion.img 
+                src='/images/programmer.png' 
+                className={`${styles.ftImg} `} 
+                id='home' alt=''  
+                initial={{
+                    opacity: 0,
+                    y:-200,
+                }}
+                whileInView={{opacity:1,
+                    y:0,
+                    transition:{
+                        duration:1,
+                        delay:2.4,
+                    },
+                }}
+                exit={{opacity:0}}
+                
+            />
+        </div>
             {/*  Top Typography Ctn */}
             <motion.div 
             className={`${styles.topHeroCtn} top-hero-ctn right`}

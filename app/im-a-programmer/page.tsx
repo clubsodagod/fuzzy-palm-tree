@@ -3,17 +3,22 @@ import React, { useEffect, useState } from 'react'
 import { AppContainer } from '../components'
 import { WhyDigitalSolutions, Overview, OverviewDynamic, WhyDigitalSolutionsDynamic } from './_components';
 import { Chapter, importantFactors, overview, Point } from '@/library/const';
-import { useScroll, useMotionValueEvent, useAnimationControls } from 'framer-motion';
+import { useScroll, useMotionValueEvent, useAnimationControls, MotionValue } from 'framer-motion';
 import { useProgrammerPageSectionRefs } from '@/utility/refs/programmer-page-refs';
 import { programmerGradientVariants as gradientVariants } from '@/library/const/animation-gradients';
+import MainProgrammerScene from './_components/scenes/MainProgrammerScene';
+import { useScroll as scroll } from '../context/sub-context/ScrollContext';
+import { debounceMotionValue } from '@/utility/functions';
 
 const ImAProgrammerPage = () => {
+
+    const { scrollYPro, setScrollYPro, windowScrollHeight,setWindowScrollHeight,setWindowHeight, windowHeight } = scroll();
 
     const {
         scrollRef, bodyRef, mainRef, overviewRef, overviewAltRef, whyDigitalAltRef, refs, areasRef, whyDigitalRef
     } = useProgrammerPageSectionRefs();
 
-    const [scrollYPro, setScrollYPro] = React.useState<number>(0)
+    
     const { scrollYProgress, scrollY,  } = useScroll({target:bodyRef, offset: ['start end', 'end start']})
 
     useMotionValueEvent(scrollY, "change", (latest) => {
@@ -28,6 +33,7 @@ const ImAProgrammerPage = () => {
         element.scrollIntoView({ behavior:"smooth", block: 'start' });
     };
 
+
     useEffect(() => {
 
         const observerOptions = {
@@ -38,6 +44,7 @@ const ImAProgrammerPage = () => {
 
         const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
+            
             if (entry.isIntersecting) {
                 const id = entry.target.id;
                 setCurrentSection(id); // Update currentSection to the current ref's id
@@ -60,7 +67,7 @@ const ImAProgrammerPage = () => {
         {
             refs.forEach((ref)=> {
                 if(ref){
-                    console.log(ref.ref.current)
+                    // console.log(ref.ref.current)
                 }
             })
         }
@@ -74,7 +81,17 @@ const ImAProgrammerPage = () => {
         };
     }, [controls, refs]);
 
-
+    useEffect(() => {
+        if(windowScrollHeight === 0) {
+          setWindowScrollHeight(scrollRef?.current?.scrollHeight!  );
+        }
+        if(windowHeight === 0) {
+            setWindowHeight(window?.innerHeight);
+        }
+        {windowScrollHeight && windowScrollHeight}
+        {windowHeight && windowHeight}
+      }, [windowScrollHeight, setWindowScrollHeight, scrollYPro, scrollRef, windowHeight, setWindowHeight]);
+    
     return (
         <AppContainer
         ctnRef={scrollRef}
@@ -82,6 +99,8 @@ const ImAProgrammerPage = () => {
         gradientVariants={gradientVariants}
         controls={controls}
         >
+            
+
             <Overview ctnRef={overviewRef}/>
             {
                 overview.map((c:Chapter, i:number)=> {
@@ -106,6 +125,7 @@ const ImAProgrammerPage = () => {
             }
             {/* <RealWorldImpact />
             <HomeVisuals /> */}
+            <MainProgrammerScene scrollY={scrollY}/>
         </AppContainer>
     )
 }

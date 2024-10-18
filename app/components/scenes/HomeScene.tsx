@@ -3,8 +3,8 @@ import { CoinGrowthModel, BolsaDeDinero, MacbookModel } from '@/public/3d-object
 import { Canvas } from '@react-three/fiber';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion-3d';
-import { MotionProps, MotionValue } from 'framer-motion';
-import { shouldRenderObject, useResponsiveValues as useRVs } from '@/utility/functions';
+import { MotionProps, MotionValue, useMotionValueEvent } from 'framer-motion';
+import { debounce, shouldRenderObject, useResponsiveValues as useRVs } from '@/utility/functions';
 import { useScroll as scroll } from '@/app/context/sub-context/ScrollContext';
 import { useMotionLogic } from '@/utility/animation/home-page';
 import { useSectionRefs } from '@/utility/refs/home-page-refs';
@@ -16,6 +16,7 @@ import { IBlog, IBlogPopulated } from '@/library/db/models/blog';
 import { useScreenContext } from '@/app/context/sub-context/ScreenContext';
 import BlogCard2D from '@/app/blog/_components/BlogCard';
 import styles from './styles.module.css'
+import { useMotionLogic as useMotionLogicPro } from '@/utility/functions';
 
 const HomeScene: React.FC<{
     scrollYProgress: MotionValue,
@@ -27,6 +28,7 @@ const HomeScene: React.FC<{
     ctnHeightValue,
     ctnRefs
 }) => {
+
 
         const {
             isMobile,
@@ -45,30 +47,32 @@ const HomeScene: React.FC<{
         // Use the custom hook for motion logic
         const { programmerMotion, mainMotion, atomMotion, bolsaMotion, investMotion, dailyMotion } = useMotionLogic(scrollY, homeEventPoints);
 
-        const [posts,setPosts] = useState<IBlogPopulated[]|undefined>();
+        const [posts, setPosts] = useState<IBlogPopulated[] | undefined>();
         const ctnRef = useRef<HTMLDivElement>(null);
 
-        async function initPost () {
+        async function initPost() {
             return await getAllPostsClient()
         }
 
-        useEffect(()=>{
-            
-            async function postsHandler () {
+
+
+        useEffect(() => {
+
+            async function postsHandler() {
                 setPosts(await initPost())
             }
 
             postsHandler()
-        },[])
+        }, [])
 
 
         return (
             <div className="three-scene">
-                
+
                 <Canvas
                     dpr={[1, 1.5]}
                     style={{
-                        // pointerEvents:'none', 
+                        pointerEvents:'none', 
                         position: 'fixed',
                         top: 0,
                         zIndex: 1,
@@ -87,8 +91,8 @@ const HomeScene: React.FC<{
                             castShadow
                             position={[mainMotion().x, mainMotion().y, 0]}
                             animate={{
-                                x: useRVs([5, 5, 15]),
-                                y: useRVs([-6, -3, 7]),
+                                x: mainMotion().x.get(),
+                                y: mainMotion().y.get(),
                             }}
                         >
                             {shouldRenderObject(scrollY, halfCtn, ctnHeightValue,
@@ -98,34 +102,29 @@ const HomeScene: React.FC<{
                                     position={[bolsaMotion().x, bolsaMotion().y, bolsaMotion().z]}
                                     scale={bolsaMotion().scale}>
                                     <MemoizedBolsaDeDinero
-                                        animate={{ animationOrbit: true, animationMain: false }}
+                                    
                                         scale={2} />
                                 </motion.group>
                             )}
-                            {shouldRenderObject(scrollY, 0, eighthCtn,
-                                <motion.group
-                                    castShadow
-                                    initial={{ scale: 0 }}
-                                    animate={{
-                                        scale: programmerMotion().scale.get()
-                                    }}
-                                    position={[programmerMotion().x, programmerMotion().y, programmerMotion().z]}
-                                    scale={programmerMotion().scale}>
-                                    <MemoizedMacbookModel
-                                        animate={{ animationOrbit: true, animationMain: false }}
-                                        scale={2} />
-                                </motion.group>
-                            )}
-                            {shouldRenderObject(scrollY, eighthCtn, halfCtn,
-                                <motion.group
-                                    castShadow
-                                    initial={{ scale: 0 }}
-                                    position={[programmerMotion().x, programmerMotion().y, programmerMotion().z]}
-                                    scale={programmerMotion().scale}>
-                                    <MemoizedMacbookModel
-                                        animate={{ animationOrbit: false, animationMain: false }}
-                                        scale={2} />
-                                </motion.group>
+                            {shouldRenderObject(scrollY, 0, halfCtn,
+                                <Float
+                                floatIntensity={2}
+                                rotationIntensity={2}
+                                >
+                                    <motion.group
+                                        castShadow
+                                        initial={{ scale: 0 }}
+                                        animate={{
+                                            scale: programmerMotion().scale.get()
+                                        }}
+                                        rotation={[0, programmerMotion().rotationY.get(), 0]}
+                                        position={[programmerMotion().x, programmerMotion().y, programmerMotion().z]}
+                                        scale={programmerMotion().scale}>
+                                        <MemoizedMacbookModel
+                                            scale={2} />
+                                    </motion.group>
+                                </Float>
+
                             )}
                             {shouldRenderObject(scrollY, halfCtn, ctnHeightValue,
                                 <motion.group
@@ -138,7 +137,6 @@ const HomeScene: React.FC<{
                                         rotationIntensity={2.5}
                                     >
                                         <MemoizedCoinGrowthModel
-                                            animate={{ animationOrbit: false, animationMain: false }}
                                             scale={2} />
                                     </Float>
 
@@ -172,32 +170,32 @@ const HomeScene: React.FC<{
                 </Canvas>
 
 
-                    {
-                        posts && 
-                        posts.length > 0 &&
-                        <MotionDiv
+                {
+                    posts &&
+                    posts.length > 0 &&
+                    <MotionDiv
                         // className='h-[45vh] absolute w-full top-[83%]'
                         className={`${styles.postsCtn}`}
-                        >
-                            <ScrollableItemCtn
+                    >
+                        <ScrollableItemCtn
                             elementRef={ctnRef}
-                            >
-                                {    posts.map((p,i:number)=>{
+                        >
+                            {posts.map((p, i: number) => {
 
-                                        return (
-                                            <MotionDiv
-                                                key={`${p._id} home page blog card isMobile:${isMobile}`}
-                                            >
-                                                <BlogCard2D blog={p} />
-                                            </MotionDiv>
-                                        )
-                                    })
-                                    }
-                            </ScrollableItemCtn>                            
-                        </MotionDiv>
+                                return (
+                                    <MotionDiv
+                                        key={`${p._id} home page blog card isMobile:${isMobile}`}
+                                    >
+                                        <BlogCard2D blog={p} />
+                                    </MotionDiv>
+                                )
+                            })
+                            }
+                        </ScrollableItemCtn>
+                    </MotionDiv>
 
 
-                    }
+                }
             </div>
         )
     }

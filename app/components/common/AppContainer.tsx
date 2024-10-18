@@ -30,9 +30,6 @@ const AppContainer:React.FC<{
 
 
     return (
-                <AnimatePresencePro>
-                    <body>
-                        <Navbar/>
                         <MotionDiv 
                         className={`app-ctn ${className}`} 
                         ref={ctnRef}
@@ -43,11 +40,7 @@ const AppContainer:React.FC<{
                         id={id}
                         >
                             {children} 
-                        </MotionDiv>                        
-                    </body>
-
-                </AnimatePresencePro>  
-
+                        </MotionDiv>           
     )
 }
 

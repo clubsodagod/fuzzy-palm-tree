@@ -13,6 +13,7 @@ import React from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 import { JoinGrowthProps } from '@/library/types/common'
+import { useFrame } from '@react-three/fiber'
 
 type ActionName = 'Cube.004|KameraAction' | 'Cube.004|K��r.006Action.001'
 
@@ -34,10 +35,11 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
-const IPhone: React.FC<JoinGrowthProps> = ({ animate, ...props }) => {
+function IPhone(props: JSX.IntrinsicElements['group'],animate:any) {
   const group = React.useRef<THREE.Group>(null)
   const { nodes, materials, animations } = useGLTF('/3d-objects/iphone/IPhone-transformed.glb') as GLTFResult
-  const { actions } = useAnimations(animations, group)
+  const { actions } = useAnimations(animations, group);
+  
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">

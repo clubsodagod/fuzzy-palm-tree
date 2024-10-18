@@ -45,8 +45,7 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
-const MacBook: React.FC<JoinGrowthProps> = ({ animate, ctnRefs, ...props }) => {
-  console.log(ctnRefs);
+export default function MacBook(props: JSX.IntrinsicElements["group"], ...rest:any) {
   
   const group = React.useRef<THREE.Group>(null)
   const { nodes, materials, animations } = useGLTF('3d-objects/macbook/macbook-transformed.glb') as GLTFResult
@@ -61,85 +60,46 @@ const MacBook: React.FC<JoinGrowthProps> = ({ animate, ctnRefs, ...props }) => {
   useFrame(({ clock }) => {
     const elapsedTime = clock.getElapsedTime();
   
-    if (group.current) {  // Ensure that group.current is defined
-      if (animate?.animationOrbit) {
-        group.current.position.x = radius * Math.sin(elapsedTime / 1.5);
-        group.current.position.y = radius * Math.cos(elapsedTime / 1.5);
-        group.current.position.z = radiusZ * Math.sin(elapsedTime / 1);
-      }
-    }
+    // if (group.current) {  // Ensure that group.current is defined
+    //   if (animate?.animationOrbit) {
+    //     group.current.position.x = radius * Math.sin(elapsedTime / 1.5);
+    //     group.current.position.y = radius * Math.cos(elapsedTime / 1.5);
+    //     group.current.position.z = radiusZ * Math.sin(elapsedTime / 1);
+    //   }
+    // }
   
     if (actions.Animation) {
       actions.Animation?.play();
       
       // Loop through each ref in ctnRefs
-      if(ctnRefs)
-      ctnRefs.forEach((element) => {
-      // console.log(element.current);
+      // if(ctnRefs)
+      // ctnRefs.forEach((element) => {
+      // // console.log(element.current);
     
-        if (element && element.current) { // Check if element and element.current are defined
-          const a = element.current.id; // Access ID or any property of the object
+      //   if (element && element.current) { // Check if element and element.current are defined
+      //     const a = element.current.id; // Access ID or any property of the object
 
-          {startAnimation && startAnimation}
+      //     {startAnimation && startAnimation}
 
-          if (startAnimation) {
-            if (group.current) {
-              if (animate?.animationOrbit) {
-                group.current.position.x = radius * Math.sin(elapsedTime / 1.5);
-                group.current.position.y = radius * Math.cos(elapsedTime / 1.5);
-                group.current.position.z = radiusZ * Math.sin(elapsedTime / 1);
-              }
-            }
-          } if (!startAnimation) {
-            if(group.current) {
-              group.current.position.x = 0;
-              group.current.position.y = 0;
-              group.current.position.z = 0;              
-            }
-          }
-        }
-      });
+      //     if (startAnimation) {
+      //       if (group.current) {
+      //         if (animate?.animationOrbit) {
+      //           group.current.position.x = radius * Math.sin(elapsedTime / 1.5);
+      //           group.current.position.y = radius * Math.cos(elapsedTime / 1.5);
+      //           group.current.position.z = radiusZ * Math.sin(elapsedTime / 1);
+      //         }
+      //       }
+      //     } if (!startAnimation) {
+      //       if(group.current) {
+      //         group.current.position.x = 0;
+      //         group.current.position.y = 0;
+      //         group.current.position.z = 0;              
+      //       }
+      //     }
+      //   }
+      // });
     }
   });
-
-  useEffect(() => {
-    // Create a function to handle intersections
-    const handleIntersection = (entries: any[]) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setCurrentInView(entry.target.id); // Set the ID of the element in view
-          if(entry.target.id === 'home-main') {
-            setStartAnimation(true);
-          } else {
-            setStartAnimation(false);
-          }
-          
-        }
-      });
-    };
-
-    // Create the observer
-    const observer = new IntersectionObserver(handleIntersection, {
-      root: null, // Uses the viewport as the container
-      rootMargin: '0px',
-      threshold: 0.51 // Adjust this threshold as needed
-    });
-
-    // console.log(ctnRefs);
-    
-
-    // Attach observer to each container ref
-    ctnRefs?.forEach(ref => {
-      if (ref) observer.observe(ref.current!);
-    });
-
-    // Cleanup the observer on component unmount
-    return () => {
-      ctnRefs?.forEach(ref => {
-        if (ref) observer.unobserve(ref.current!);
-      });
-    };
-  }, [ctnRefs]);
 
 
   return (
@@ -169,5 +129,3 @@ const MacBook: React.FC<JoinGrowthProps> = ({ animate, ctnRefs, ...props }) => {
 
 useGLTF.preload('/3d-objects/macbook/macbook-transformed.glb')
 
-
-export default MacBook

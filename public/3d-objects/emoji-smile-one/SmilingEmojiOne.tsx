@@ -13,6 +13,7 @@ import React from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 import { JoinGrowthProps } from '@/library/types/common'
+import { useFrame } from '@react-three/fiber'
 
 type ActionName = 'Take 001'
 
@@ -36,10 +37,16 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
-const SmilingEmojiOne: React.FC<JoinGrowthProps> = ({ animate, ...props }) => {
+export default function SmilingEmojiOne(props: JSX.IntrinsicElements['group']) {
   const group = React.useRef<THREE.Group>(null)
   const { nodes, materials, animations } = useGLTF('/3d-objects/emoji-smile-one/SmilingEmojiOne-transformed.glb') as GLTFResult
-  const { actions } = useAnimations(animations, group)
+  const { actions } = useAnimations(animations, group);
+
+  useFrame(()=> {
+    if (actions['Take 001']) {
+      actions['Take 001'].play();
+    }
+  })
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">
@@ -59,4 +66,4 @@ const SmilingEmojiOne: React.FC<JoinGrowthProps> = ({ animate, ...props }) => {
 }
 
 useGLTF.preload('/3d-objects/emoji-smile-one/SmilingEmojiOne-transformed.glb')
-export default SmilingEmojiOne
+

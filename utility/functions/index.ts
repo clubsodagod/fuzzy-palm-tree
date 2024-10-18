@@ -1,4 +1,4 @@
-import { MotionValue, useTransform } from "framer-motion";
+import { motionValue, MotionValue, useTransform } from "framer-motion";
 import { RefObject } from "react";
 import { RefIDObject } from "../refs/programmer-page-refs";
 import { FormDocument, RegisterForm } from "@/library/types/form/register";
@@ -30,24 +30,62 @@ export const useResponsiveValues: UseResponsiveValues = (values: ResponsiveValue
     return values[2];
 };
 
-export type Puppeteer = (useTransform:any,transformValue:MotionValue, scale:number[], x:number[],y:number[],z:number[], rotationY:number[], eventPoints:number[]) => {
+
+
+export type Puppeteer = (useTransform:any,transformValue:MotionValue, scale:number[], x:number[],y:number[],z:number[], rotationX:number[], rotationY:number[], rotationZ:number[], eventPoints:number[]) => {
     scale:MotionValue,
     x:MotionValue,
     y:MotionValue,
     z:MotionValue,
     rotationY:MotionValue,
+    rotationX:MotionValue,
+    rotationZ:MotionValue,
 }
 
-export const Animate:Puppeteer = (useTransform, transformValue, scale, x, y, z, rotationY, eventPoints) => {
+export const Animate:Puppeteer = (useTransform, transformValue, scale, x, y, z, rotationY, rotationX, rotationZ, eventPoints) => {
+
 
     return {
         scale:  useTransform(transformValue,eventPoints,scale),
         x:  useTransform(transformValue,eventPoints,x),
         y: useTransform(transformValue,eventPoints,y),
         z: useTransform(transformValue,eventPoints,z),
-        rotationY: useTransform(transformValue, eventPoints,rotationY)
+        rotationX: useTransform(transformValue, eventPoints,rotationX),
+        rotationY: useTransform(transformValue, eventPoints,rotationY),
+        rotationZ: useTransform(transformValue, eventPoints,rotationZ),
         }
 }
+
+
+export const useMotionLogic = (scrollY: MotionValue, eventPoints: number[]) => {
+    // Define properties like position and scale that might change with scroll.
+    const x = motionValue(0);
+    const y = motionValue(0);
+    const scale = motionValue(1);
+
+    // Define the updateScroll method for the object.
+    const updateScroll = (scrollValue: number) => {
+        // Here, update the properties based on the scrollValue.
+        // This is where you define how `x`, `y`, and `scale` change with scrolling.
+        const progress = scrollValue / eventPoints[eventPoints.length - 1]; // Example calculation
+        
+        x.set(progress * 10); // Example: Change position based on scroll progress
+        y.set(progress * -5); // Example: Change y position
+        scale.set(1 + progress * 0.5); // Example: Scale effect based on scroll
+    };
+
+    return {
+        x,
+        y,
+        scale,
+        updateScroll
+    };
+};
+
+
+
+
+
 // Utility function to convert numbers to words
 export const numberToWord = (num: number): string => {
     const words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
@@ -100,13 +138,23 @@ export type  HandleSubmit = (arg0:FormDocument, arg1:string) => {message?:string
 
 // Debounce utility function to delay validation execution
 export const debounce = (func: Function, delay: number) => {
-    let timeout: NodeJS.Timeout;
-    return (...args: any) => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func(...args), delay);
-    };
+  let timeout: NodeJS.Timeout;
+  return (...args: any) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), delay);
   };
-    
+};
+  
+
+// Debounce utility function to delay validation execution
+export const debounceMotionValue = (mV: MotionValue, delay: number) => {
+  let timeout: NodeJS.Timeout;
+  return (...args: any) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => mV, delay);
+  };
+};
+  
 
 // Function to validate fields
 export const validateField = (name: string, value: string, form:any) => {
@@ -163,3 +211,6 @@ export const validateField = (name: string, value: string, form:any) => {
   
     return isValid;
   };
+
+
+

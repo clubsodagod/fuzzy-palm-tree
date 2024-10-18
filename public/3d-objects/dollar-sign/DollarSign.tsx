@@ -12,6 +12,7 @@ import * as THREE from 'three'
 import React from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
+import { useFrame } from '@react-three/fiber'
 
 type ActionName = 'Action' | 'dollerAction'
 
@@ -32,7 +33,13 @@ type GLTFResult = GLTF & {
 export default function DolarSign(props: JSX.IntrinsicElements['group']) {
   const group = React.useRef<THREE.Group>(null)
   const { nodes, materials, animations } = useGLTF('/3d-objects/dollar-sign/DollarSign-transformed.glb') as GLTFResult
-  const { actions } = useAnimations(animations, group)
+  const { actions } = useAnimations(animations, group);
+  useFrame(()=> {
+    if (actions['Action'] && actions['dollerAction']) {
+      actions['Action'].play()
+    }
+  });
+  
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">

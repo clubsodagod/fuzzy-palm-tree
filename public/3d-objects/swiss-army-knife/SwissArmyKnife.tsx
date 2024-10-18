@@ -13,6 +13,7 @@ import React from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 import { JoinGrowthProps } from '@/library/types/common'
+import { useFrame } from '@react-three/fiber'
 
 type ActionName = 'Take 001'
 
@@ -40,10 +41,17 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
-const SwissArmyKnife: React.FC<JoinGrowthProps> = ({ animate, ...props }) => {
+function SwissArmyKnife(props: JSX.IntrinsicElements['group'],animate:any) {
   const group = React.useRef<THREE.Group>(null)
   const { nodes, materials, animations } = useGLTF('/3d-objects/swiss-army-knife/SwissArmyKnife-transformed.glb') as GLTFResult
-  const { actions } = useAnimations(animations, group)
+  const { actions } = useAnimations(animations, group);
+
+  useFrame(()=> {
+    if (actions["Take 001"]) {
+      actions["Take 001"].play()
+    }
+  })
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">

@@ -43,7 +43,7 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
-const CoinGrowth: React.FC<JoinGrowthProps> = ({ animate, ...props }) => {
+export function CoinGrowth(props: JSX.IntrinsicElements["group"], ...rest:any) {
   const group = React.useRef<THREE.Group>(null)
   const { nodes, materials, animations } = useGLTF('/3d-objects/coin-growth/coinGrowth-transformed.glb') as GLTFResult
   const { actions } = useAnimations(animations, group)
@@ -52,13 +52,13 @@ const CoinGrowth: React.FC<JoinGrowthProps> = ({ animate, ...props }) => {
   const radiusZ = useRVs([90,0,24])
   useFrame(({ clock }) => {
     const elapsedTime = clock.getElapsedTime();
-    if (group.current ) {  // Ensure that group.current is defined
-        if(animate?.animationOrbit){
-        group.current.position.x = radius * Math.sin(elapsedTime);
-        group.current.position.y = radius * Math.cos(elapsedTime);
-        group.current.position.z = radiusZ * Math.sin(elapsedTime);
-      }
-    }
+    // if (group.current ) {  // Ensure that group.current is defined
+    //     if(animate?.animationOrbit){
+    //     group.current.position.x = radius * Math.sin(elapsedTime);
+    //     group.current.position.y = radius * Math.cos(elapsedTime);
+    //     group.current.position.z = radiusZ * Math.sin(elapsedTime);
+    //   }
+    // }
     if(actions.CINEMA_4D___) {
       actions.CINEMA_4D___.play()
     }

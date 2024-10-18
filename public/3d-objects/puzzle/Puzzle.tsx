@@ -12,6 +12,7 @@ import * as THREE from 'three'
 import React from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
+import { useFrame } from '@react-three/fiber'
 
 type ActionName = 'Take 001'
 
@@ -50,7 +51,15 @@ type GLTFResult = GLTF & {
 export default function Puzzle(props: JSX.IntrinsicElements['group']) {
   const group = React.useRef<THREE.Group>(null)
   const { nodes, materials, animations } = useGLTF('/3d-objects/puzzle/Puzzle-transformed.glb') as GLTFResult
-  const { actions } = useAnimations(animations, group)
+  const { actions } = useAnimations(animations, group);
+  
+  useFrame(({ clock }) => {
+    const elapsedTime = clock.getElapsedTime();
+    if(actions['Take 001']) {
+      actions['Take 001'].play()
+    }
+  });
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">

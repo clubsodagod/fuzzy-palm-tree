@@ -32,11 +32,11 @@ const WhyDigitalSolutions:React.FC<{
                         The Power of Digital Solutions
                     </motion.h1>
 
-                    <motion.h3
+                    <motion.h5
                     className={`${styles.subheader} subheader right`}
                     >
                         Harnessing the Power of Technology to Drive Success
-                    </motion.h3>
+                    </motion.h5>
                     
                 </motion.div>
 
@@ -50,8 +50,8 @@ const WhyDigitalSolutions:React.FC<{
                     </motion.p>
                     <motion.div className={`${styles.btnCtn} btnCtn rightBtn`}>
 
-                        <Button variant="contained">
-                            My Approach
+                        <Button variant="contained" href={`/im-a-programmer/approach`}>
+                            Approach
                         </Button>
 
                         <Button variant="contained">

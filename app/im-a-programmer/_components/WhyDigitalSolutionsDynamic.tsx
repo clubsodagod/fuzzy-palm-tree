@@ -1,4 +1,4 @@
-import React, { RefObject } from 'react'
+import React, { RefObject, useRef } from 'react'
 import { PageWrapper } from '@/app/components'
 import { Point } from '@/library/const'
 import { motion } from 'framer-motion'
@@ -17,11 +17,13 @@ const WhyDigitalSolutionsDynamic:React.FC<{
     index,
 }) => {
 
+    const sectionRef = useRef<HTMLDivElement>(null);
+
     const alignment = (index % 2) === 0 ? 'left' : 'right';
     return (
         <PageWrapper
-        id={index%2===0 ? 'programmer-why-digital-alt' : 'programmer-why-digital'}
-        ctnRef={ctnRef}
+        id={index%2===0 ? `programmer-why-digital-alt${index}` : 'programmer-why-digital'}
+        ctnRef={sectionRef}
         >
             
 
@@ -29,17 +31,17 @@ const WhyDigitalSolutionsDynamic:React.FC<{
             <motion.div 
             className={`${styles.pointCtn}  point-ctn  `}
             >
-                <motion.h2 
+                <motion.h3 
                 className={`${styles.subheader}  subheader ${alignment}`}
                 >
                     {label}
-                </motion.h2>
+                </motion.h3>
 
-                <motion.h4 
+                <motion.h6
                 className={`${styles.storyText} ${alignment} story-text`}
                 >
                     {point}
-                </motion.h4>
+                </motion.h6>
 
             </motion.div>
         </PageWrapper>

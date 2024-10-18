@@ -28,6 +28,7 @@
     "gsap": "^3.12.5",
     "html-react-parser": "^5.1.16",
     "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
     "mongodb": "^6.8.1",
     "mongoose": "^8.6.1",
     "mongoose-slugger-plugin": "^6.1.1",
@@ -41,6 +42,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
+    "@types/lodash": "^4.17.10",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

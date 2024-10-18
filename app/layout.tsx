@@ -10,6 +10,7 @@ import { Footer, Navbar } from "./components";
 import AppContext from "./context/AppContext";
 import { useEffect } from "react";
 import { SessionProvider } from "next-auth/react";
+import { AnimatePresencePro } from "./components/framer/AnimatePresencePro";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -45,8 +46,13 @@ useEffect(() => {
           <SessionProvider>
             <AppContext>
               <ThemeProvider theme={theme}>
-                
+                <AnimatePresencePro>
+                  <Navbar/>
+                        
+                    <body>
                   {children}
+                  </body>
+                </AnimatePresencePro>
                 
                 {/* <Footer />               */}
               </ThemeProvider>

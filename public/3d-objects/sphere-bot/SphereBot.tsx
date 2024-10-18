@@ -10,7 +10,7 @@ Title: Sphere Bot
 
 import * as THREE from 'three'
 import React from 'react'
-import { useGraph } from '@react-three/fiber'
+import { useFrame, useGraph } from '@react-three/fiber'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { GLTF, SkeletonUtils } from 'three-stdlib'
 
@@ -52,10 +52,18 @@ type GLTFResult = GLTF & {
 
 export default function SphereBot(props: JSX.IntrinsicElements['group']) {
   const group = React.useRef<THREE.Group>(null)
-  const { scene, animations } = useGLTF('/sphereBot-transformed.glb')
+  const { scene, animations } = useGLTF('/3d-objects/sphere-bot/sphereBot-transformed.glb')
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
   const { nodes, materials } = useGraph(clone) as GLTFResult
   const { actions } = useAnimations(animations, group)
+  
+  useFrame(({ clock }) => {
+    const elapsedTime = clock.getElapsedTime();
+    if(actions['05_Sphere_bot_WalkCycle']) {
+      actions['05_Sphere_bot_WalkCycle'].play()
+    }
+  });
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">
@@ -63,7 +71,7 @@ export default function SphereBot(props: JSX.IntrinsicElements['group']) {
           <group name="Hemi" position={[3.195, 7.238, 1.018]} rotation={[0.413, -0.073, -0.79]} />
         </group>
         <primitive object={nodes._rootJoint} />
-        <mesh name="Plane_Material_001_0" geometry={nodes.Plane_Material_001_0.geometry} material={materials.Material_001} rotation={[-Math.PI / 2, 0, 0]} scale={0.667} />
+        {/* <mesh name="Plane_Material_001_0" geometry={nodes.Plane_Material_001_0.geometry} material={materials.Material_001} rotation={[-Math.PI / 2, 0, 0]} scale={0.667} /> */}
         <skinnedMesh name="Object_7" geometry={nodes.Object_7.geometry} material={materials.Sphere_Bot__Leg_Ao} skeleton={nodes.Object_7.skeleton} scale={0.667} />
         <skinnedMesh name="Object_9" geometry={nodes.Object_9.geometry} material={materials.Sphere_Bot__Leg_Nor} skeleton={nodes.Object_9.skeleton} scale={0.667} />
         <skinnedMesh name="Object_11" geometry={nodes.Object_11.geometry} material={materials.Sphere_Bot__Leg_Nor} skeleton={nodes.Object_11.skeleton} scale={0.667} />

@@ -4,6 +4,7 @@ import React, { RefObject } from 'react'
 import PageWrapper from '../common/PageWrapper'
 import styles from './home-page.module.css';
 import ExpandCircleDownOutlinedIcon from '@mui/icons-material/ExpandCircleDownOutlined';
+import { relative } from 'path';
 
 const MainHomeHero:React.FC<{
     ctnRef:RefObject<HTMLDivElement>,
@@ -16,6 +17,26 @@ const MainHomeHero:React.FC<{
         ctnRef={ctnRef}
         >
 
+                <div className={`${styles.imgWrapper}`} id='img-maliek_home'>
+                    <motion.img 
+                        src='/images/programmer.png' 
+                        className={`${styles.ftImg} `} 
+                        id='home' alt=''  
+                        initial={{
+                            opacity: 0,
+                            y:-200,
+                        }}
+                        whileInView={{opacity:1,
+                            y:0,
+                            transition:{
+                                duration:1,
+                                delay:2.4,
+                            },
+                        }}
+                        exit={{opacity:0}}
+                        
+                    />
+                </div>
                 <motion.div className={`${styles.topTextCtn} left`} id='home' >
                     <motion.h1 
                         className={`${styles.investHeaderMain} left`} 
@@ -61,26 +82,6 @@ const MainHomeHero:React.FC<{
                 </div>                
 
 
-                <div className={`${styles.imgWrapper}`} id='img-maliek_home'>
-                    <motion.img 
-                        src='/images/programmer.png' 
-                        className={`${styles.ftImg}`} 
-                        id='home' alt=''  
-                        initial={{
-                            opacity: 0,
-                            y:-200,
-                        }}
-                        whileInView={{opacity:1,
-                            y:0,
-                            transition:{
-                                duration:1,
-                                delay:2.4,
-                            },
-                        }}
-                        exit={{opacity:0}}
-                        
-                    />
-                </div>
         </PageWrapper> 
     )
 }

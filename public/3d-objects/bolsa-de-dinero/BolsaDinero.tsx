@@ -40,7 +40,9 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
-const BolsaDinero: React.FC<JoinGrowthProps> = ({ animate, ...props }) => {
+export default function BolsaDinero(props: JSX.IntrinsicElements["group"], ...rest:any) {
+
+  const additionalProps = rest;
   const group = React.useRef<THREE.Group>(null)
   const { nodes, materials, animations } = useGLTF('/3d-objects/bolsa-de-dinero/BolsaDinero-transformed.glb') as GLTFResult
   const { actions } = useAnimations(animations, group);
@@ -51,7 +53,7 @@ const BolsaDinero: React.FC<JoinGrowthProps> = ({ animate, ...props }) => {
   useFrame(({clock}) => {
     const elapsedTime = clock.getElapsedTime();
     if (group.current ) {  // Ensure that group.current is defined
-        if(animate?.animationOrbit){
+        if(rest?.animate?.animationOrbit){
         group.current.position.x = radius * Math.sin(elapsedTime/1.75);
         group.current.position.y = radius * Math.cos(elapsedTime/1.75);
         group.current.position.z = radiusZ * Math.sin(elapsedTime/1);
@@ -79,4 +81,3 @@ const BolsaDinero: React.FC<JoinGrowthProps> = ({ animate, ...props }) => {
 }
 
 useGLTF.preload('/3d-objects/bolsa-de-dinero/BolsaDinero-transformed.glb')
-export default BolsaDinero;

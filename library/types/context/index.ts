@@ -11,8 +11,11 @@ export interface ScrollContextProps {
     scrollY: number; // Represents the Y-axis scroll position
     scrollYPro: number; // Represents a processed value for Y-axis scrolling
     setScrollYPro: (value: number) => void; // Function to update scrollYPro
+    windowHeight: number; // Represents a processed value for Y-axis scrolling
+    setWindowHeight: (value: number) => void; // Function to update scrollYPro
     windowScrollHeight: number; // Represents a processed value for Y-axis scrolling
     setWindowScrollHeight: (value: number) => void; // Function to update scrollYPro
+    dynamicIncrement: (value: number) => number; // Function to update scrollYPro
     halfCtn:number,
     qtrCtn:number,
     halfThirdCtn:number,
