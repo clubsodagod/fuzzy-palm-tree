@@ -62,7 +62,7 @@ const Experience = ({ scrollY }: { scrollY: MotionValue }) => {
         dI(4 ), dI(4.5), dI(5 ), dI(5.5), dI(6 ), dI(6.5), dI(7 ), dI(7.5),
         dI(8 ), dI(8.5), dI(9 ), dI(9.5), dI(10 ), dI(10.5), dI(11 ), dI(11.5),
         dI(12 ), dI(12.5), dI(13 ), dI(13.5), dI(14 ), dI(14.5), dI(15 ), dI(15.5),
-        dI(16 ), dI(16.5), dI(17 ), dI(17.5), dI(18 ), dI(18.5), dI(19 ), dI(19.5), windowScrollHeight
+        dI(16 ), dI(16.5), dI(17 ), dI(17.5), dI(18 ), dI(18.5), dI(19 ), dI(19.5),dI(20), dI(20.5), dI(21), dI(21.5)
     ];
 
     // motion paths for 3d objects
@@ -77,7 +77,8 @@ const Experience = ({ scrollY }: { scrollY: MotionValue }) => {
     // 
     const scrollFactor = scrollY.getPrevious();
 
-    const mainScalingFactor = window ? Math.min(Math.max(window.innerWidth / 1920, 0.6), 3) : 1;
+    const mainScalingFactor = window ? Math.min(Math.max(window.innerWidth / 1920, window.innerWidth > 700 && window.innerWidth < window.innerHeight ? 0.4 :0.6), 3) : 1;
+    const mainHeightScalingFactor = window ? Math.min(Math.max(window.innerHeight / 911, 0.6), 3) : 1;
 
     const lightBulb = lightBulbMotion().scale.get() * mainScalingFactor;
     const bot = robotMotion().scale.get() * mainScalingFactor;

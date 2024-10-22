@@ -21,7 +21,7 @@
 
     @media screen and (min-width:769px) and (max-width:1024px) {
         padding-inline: 6vw;
-        padding-block: 10vh 0;
+        padding-block: 10vh;
     }
     @media screen and (min-width:1025px) {
         padding-block: 10vh ;

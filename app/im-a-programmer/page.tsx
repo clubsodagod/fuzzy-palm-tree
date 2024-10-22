@@ -91,6 +91,8 @@ const ImAProgrammerPage = () => {
         }
         if (windowHeight === 0) {
             setWindowHeight(window?.innerHeight);
+            console.log(window.innerHeight);
+            
         }
         { windowScrollHeight && windowScrollHeight }
         { windowHeight && windowHeight }

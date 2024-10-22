@@ -29,42 +29,42 @@ export const homePage = {
 
 export const investmentsPage = {
     'investments-main': {
-        background: `linear-gradient(to right, #000, #232526, #414345)`,
+        background: `radial-gradient(#000000, #434343)`,
         backgroundSize: '200% 200%',
-        backgroundPosition: '0% 0%',
+        backgroundPosition: '100% 100%',
         animation: 'animate-main-bg 10s infinite alternate',
     },
     'investments-approach': {
-        background: 'linear-gradient(to right, #0ba360 , #0ba360 , #3cba92)',
+        background: 'radial-gradient(#24c6dc, #514a9d)',
         backgroundBlendMode:   `multiply`,
-        backgroundSize: '600% 600%',
-        backgroundPosition: '0% 50%',
+        backgroundSize: '125% 125%',
+        backgroundPosition: '62.5% 62.5%',
         animation: 'animate-approach-bg 8s ease-in-out infinite alternate',
     },
     'investments-area': {
-        background: 'linear-gradient(to right, #1f4037, #99f2c8, #99f2c8)',
+        background: 'radial-gradient(#fc354c, #0abfbc)',
         backgroundBlendMode:   `multiply`,
-        backgroundSize: '200% 200%',
-        backgroundPosition: '0% 50%',
+        backgroundSize: '150% 150%',
+        backgroundPosition: '75% 75%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
 }
 export const investmentsRealEstatePage = {
     'real-estate-main': {
-        background: `linear-gradient(to right, #000, #232526, #414345)`,
+        background: `radial-gradient( #000, #232526, #414345)`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 0%',
         animation: 'animate-main-bg 10s infinite alternate',
     },
     'real-estate-criteria': {
-        background: 'linear-gradient(to right, #0ba360 , #0ba360 , #3cba92)',
+        background: 'radial-gradient( #0ba360 , #0ba360 , #3cba92)',
         backgroundBlendMode:   `multiply`,
         backgroundSize: '600% 600%',
         backgroundPosition: '0% 50%',
         animation: 'animate-approach-bg 8s ease-in-out infinite alternate',
     },
     'real-estate-available': {
-        background: 'linear-gradient(to right, #1f4037, #99f2c8, #99f2c8)',
+        background: 'radial-gradient( #1f4037, #99f2c8, #99f2c8)',
         backgroundBlendMode:   `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
@@ -127,14 +127,14 @@ export const programmerGradientVariants = {
         animation: 'animate-main-bg 10s infinite alternate',
     },
     'programmer-overview-dynamic-zero': {
-        background: "linear-gradient(to right, #ffefba, #ffffff)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: "radial-gradient( #ffefba, #ffffff)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         backgroundBlendMode:   `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-overview-dynamic-one': {
-        background: "linear-gradient(to right, #434343, #000000)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: "radial-gradient( #434343, #000000)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         backgroundBlendMode:   `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
@@ -155,7 +155,7 @@ export const programmerGradientVariants = {
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-overview-dynamic-four': {
-        background: "linear-gradient(to right, #434343, #000000)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: "radial-gradient( #434343, #000000)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         backgroundBlendMode:   `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
@@ -176,7 +176,7 @@ export const programmerGradientVariants = {
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-overview-dynamic-seven': {
-        background: "linear-gradient(to right, #434343, #000000)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: "radial-gradient( #434343, #000000)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         backgroundBlendMode:   `multiply`,
         backgroundSize: '250% 250%',
         backgroundPosition: '50% 50%',

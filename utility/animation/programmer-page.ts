@@ -4,6 +4,7 @@ import { useResponsiveValues as rV } from '@/utility/functions';
 import { Animate } from '@/utility/functions';
 
 export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) => {
+    
 
 
     let lightBulb_scale = [
@@ -14,28 +15,31 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         5, 9, 10, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let lightBulb_x = [
-        rV([5, 5, -20]), rV([5, -7, 20]), rV([5, -5, -20]), 40, 120,
+        rV([5, 5, -20]), rV([-25, -25, 20]), rV([0, -5, -20]), 40, 120,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 80,
         60, 20, rV([5, -5, -20]), -120, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
 
     let lightBulb_y = [
-        rV([-6, 3, 7]), rV([11, -16, 3]), rV([7, 0, 0]), rV([15, 0, 0]), rV([3, 0, 0]),
+        rV([-6, 3, 7]), rV([11, -16, 3]), 0, rV([15, 0, 0]), rV([3, 0, 0]),
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0,
+        0, 0, 0, -9, -7,
+        rV([-6, -5, 25]), -15, rV([7, -20, 0]), rV([15, -8, 0]), rV([3, -9, 0]),
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        rV([-6, 3, 25]), -15, rV([7, 0, 0]), rV([15, 0, 0]), rV([3, 0, 0]),
-        0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0,
     ];
     let lightBulb_z = [
         0, 0, 0, 0, 0,
@@ -45,7 +49,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let lightBulb_rotation_x = [
         rV([5, 0, 0]), rV([6, 0, 6]), rV([2, 0, 0]), rV([3, 0, 0]), rV([4, 0, 0]),
@@ -55,7 +60,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         rV([5, 0, 0]), rV([6, 0, 6]), rV([2, 0, 0]), rV([3, 0, 0]), rV([4, 0, 0]),
         rV([3, 0, 0]), rV([2, 0, 0]), rV([1, 0, 0]), 0, rV([1, 0, 0]),
         rV([2, 0, 0]), rV([3, 0, 0]), rV([4, 0, 0]), rV([3, 0, 0]), rV([4, 0, 0]),
-        rV([3, 0, 0]), rV([2, 0, 0]), rV([1, 0, 0]), 0, rV([1, 0, 0]), 0
+        rV([3, 0, 0]), rV([2, 0, 0]), rV([1, 0, 0]), 0, rV([1, 0, 0]),
+        0, 0, 0, 0,
     ];
     let lightBulb_rotation_y = [
         1, rV([4, 4, 0]), 2, 3, 4,
@@ -65,7 +71,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         1, rV([4, 4, 0]), 2, 3, 4,
         3, rV([2, 0, 0]), rV([1, 0, 0]), 0, rV([1, 0, 0]),
         rV([2, 0, 0]), 3, rV([4, 0, 0]), rV([3, 0, 0]), rV([4, 0, 0]),
-        3, rV([2, 0, 0]), rV([1, 0, 0]), 0, rV([1, 0, 0]), 0
+        3, rV([2, 0, 0]), rV([1, 0, 0]), 0, rV([1, 0, 0]),
+        0, 0, 0, 0,
     ];
     let lightBulb_rotation_z = [
         rV([2, 2, 0]), rV([8, 8, 0.5]), rV([2, 0, 0]), rV([3, 0, 0]), rV([4, 0, 0]),
@@ -75,7 +82,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         rV([2, 2, 0]), rV([8, 8, 0.5]), rV([2, 0, 0]), rV([3, 0, 0]), rV([4, 0, 0]),
         rV([3, 0, 0]), rV([2, 0, 0]), rV([1, 0, 0]), 0, rV([1, 0, 0]),
         rV([2, 0, 0]), rV([3, 0, 0]), rV([4, 0, 0]), rV([3, 0, 0]), rV([4, 0, 0]),
-        rV([3, 0, 0]), rV([2, 0, 0]), rV([1, 0, 0]), 0, rV([1, 0, 0]), 0
+        rV([3, 0, 0]), rV([2, 0, 0]), rV([1, 0, 0]), 0, rV([1, 0, 0]),
+        0, 0, 0, 0,
     ];
 
 
@@ -89,7 +97,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let robot_x = [
         0, 0, rV([5, 0, 100]), rV([5, 5, 40]), rV([10, -5, -20])
@@ -99,7 +108,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         rV([5, 0, 20]), rV([5, 5, 40]), rV([10, -5, -20]), 0, 0
         , 0, 0, 0, 0, 0
         , 0, 0, 0, 0, 0
-        , 0, 0, 0, 0, 0, 0
+        , 0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
 
     let robot_y = [
@@ -110,7 +120,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         rV([-6, -3, 10]), rV([16, -14, -14]), rV([-18, -18, -18]), 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let robot_z = [
         0, 0, 2, 0, 0,
@@ -120,7 +131,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 2, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let robot_rotation_x = [
         0, 0, rV([0.25, 0, 0]), 0, 0,
@@ -130,7 +142,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, rV([0.25, 0, 0]), 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let robot_rotation_y = [
         0, 0, 0, 0, 0,
@@ -140,7 +153,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let robot_rotation_z = [
         0, 0, 0, 0, 0,
@@ -150,7 +164,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
 
 
@@ -158,33 +173,36 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
 
     let posMachine_scale = [
         0, 0, 0, 0, 0,
-        0, 0.1, 24, 7, 0,
+        rV([0,0.1,0]), rV([0.1,38,0.1]), rV([24,14,24]), rV([7,0,7]), 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let posMachine_x = [
         0, 0, 0, 0, 0,
-        0, -60, 0, 40, 80,
+        rV([-60,-60,-60]), rV([0,0,-60]), rV([0,5,0]), rV([40,90,40]), rV([80,0,80]),
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let posMachine_y = [
         0, 0, rV([-50, 0, 0]), rV([17.5, 17.5, 12]), rV([0, 10, 10]),
-        0, 12, 10, -54, 0,
+        0, rV([24,14,12]), 14, -54, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, rV([-50, 0, 0]), rV([17.5, 17.5, 12]), rV([0, 10, 10]),
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let posMachine_z = [
         0, 0, rV([2, 0, 0]), 0, 0,
@@ -194,7 +212,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, rV([2, 0, 0]), 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let posMachine_rotation_x = [
         0, 0, 0, 0, rV([6.5, 0, 0]),
@@ -204,7 +223,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, rV([6.5, 0, 0]),
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let posMachine_rotation_y = [
         0, 0, 0, 1, 0,
@@ -214,7 +234,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 1, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let posMachine_rotation_z = [
         0, 0, 0, 0, 0,
@@ -224,7 +245,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
 
     let iPhone_scale = [
@@ -235,17 +257,19 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let iPhone_x = [
         0, 0, 0, 0, 200,
-        100, 35, 0, -90, -55,
+        100, 35, 0, -90, rV([45,45,-55]),
         75, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         rV([0, 0, 20]), rV([0, 5, 120]), rV([37.5, 37.5, 90]), rV([27.5, 12, 35]), rV([-25, -25, -85]),
         rV([18, 55, 55]), rV([45, 85, 65]), 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let iPhone_y = [
         0, 0, 0, 0, 0,
@@ -255,7 +279,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, rV([50, 0, 0]), rV([-17.5, -14, -34]), rV([-25, 0, -20]),
         rV([-10, -10, -10]), 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let iPhone_z = [
         0, 0, rV([2, 0, 0]), 0, 0,
@@ -265,7 +290,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, rV([2, 0, 0]), 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let iPhone_rotation_x = [
         0, 0, 0, rV([6.5, 6.5, 6.5]), 0,
@@ -275,7 +301,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, rV([6.5, 6.5, 6.5]), 0,
         rV([6.5, 12, 6.5]), 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let iPhone_rotation_y = [
         1, 0, 0, 1, 2,
@@ -285,7 +312,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         1, 0, 0, 1, 2,
         rV([2, 12, 2]), 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let iPhone_rotation_z = [
         4, 0, 0, 0, 6.5,
@@ -295,7 +323,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
 
 
@@ -305,34 +334,40 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
 
     let puzzle_scale = [
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0,
-        0, 6, 12, 18, 18,
-        0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0,
+        0, 0, 0, 0, rV([0,6,0]),
+        rV([0,12,0]),  rV([6,18,6]), rV([12,18,12]), rV([18,0,18]), rV([18,0,18]),
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
+
     let puzzle_x = [
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0,
-        -65, -65, 75, 150, 280,
+        0, 0, 0, rV([0,65,0]), rV([0,75,0]),
+        -65, rV([10,0,-65]), 75, 150, 280,
         280, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
+
     let puzzle_y = [
         0, 0, 0, 0, 0,
         25, 0, 0, 0, 0,
-        0, 0, -30, 30, 0,
+        0, rV([-10,0,0]), -30, 30, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         25, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
+
     let puzzle_z = [
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
@@ -341,8 +376,10 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
+
     let puzzle_rotation_x = [
         0, 0, 0, 0, 0,
         0, 3, 0, 0, 0,
@@ -351,8 +388,10 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 3, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
+
     let puzzle_rotation_y = [
         0, 0, 0, 0, 0,
         1, 0, 0, 0, 0,
@@ -361,8 +400,10 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         1, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
+
     let puzzle_rotation_z = [
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
@@ -371,7 +412,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
 
 
@@ -381,32 +423,35 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
     let emoji_scale = [
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 12, 48,
-        42, 36, 0, 0, 0,
-        0, 24, 9, 18, 32,
+        0, 0, rV([0,48,0]), rV([24,42,12]), 48,
+        42, 36, 0, 0, rV([9,9,0]),
+        rV([24,42,0]), rV([28,42,24]), rV([9,38,9]), 18, rV([0,0,32]),
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let emoji_x = [
         0, 0, 0, 0, rV([-45, -90, -135]),
         rV([-25, -50, -175]), rV([-25, -50, -175]), rV([7, 14, 21]), rV([-5, -10, -20]), rV([-25, -50, -100]),
-        0, rV([30, 15, 30]), rV([-45, -45, -45]), 70, -30,
-        0, 25, 90, 0, 0,
-        0, -45, 0, 0, 0,
+        0, rV([30, 15, 30]), rV([-45, -45, -45]), rV([0,25,70]), -30,
+        0, 25, 90, 0, rV([0,-45,0]),
+        rV([0,0,0]), rV([0,95,-45]), 0, 0, 45,
         rV([-25, -50, -175]), rV([-25, -50, -175]), rV([7, 14, 21]), rV([-5, -10, -20]), rV([-25, -50, -100]),
         0, rV([30, 15, 30]), rV([-45, -45, -45]), 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let emoji_y = [
         0, 0, 0, 0, 0,
         0, rV([-30, -20, -10]), rV([-10, -6.7, -10]), rV([20, 27, 20]), 0,
         rV([20, 20, 20]), rV([-15, -7, -7]), rV([-20, -20, -20]), 0, -5,
         0, 17, 0, 0, -5,
-        0, 13, 0, 24, 6,
+        rV([-24,-24,0]), rV([48,48,13]), rV([36,24,0]), 24, 6,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let emoji_z = [
         0, 0, 0, 0, 0,
@@ -416,17 +461,19 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let emoji_rotation_x = [
         0, 0, 0, 0, 0,
         0, rV([-18, 0, -18]), rV([-27, 11, -27]), rV([-36, 0, -36]), rV([-45, 0, -45]),
-        rV([-54, 14, -54]), rV([-63, 24, -63]), rV([-18, -18, -18]), rV([-36, -36, -36]), -1,
-        34, -4, 0, 0, 0,
-        0, -1, 0, 0, -3,
+        rV([-54, 14, -54]), rV([-63, 24, -63]), rV([-18, -18, -18]), rV([-36, -2, -36]), -1,
+        rV([0,0,34]), -4, 0, 0, 0,
+        rV([-1,-1,0]), rV([0,0,-1]), rV([-1,-1,0]), 0, -3,
         0, -3, rV([-27, 11, -27]), rV([-36, 0, -36]), rV([-45, 0, -45]),
         rV([-54, 14, -54]), rV([-63, 24, -63]), rV([-18, -18, -18]), rV([-36, -36, -36]), 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let emoji_rotation_y = [
         0, 0, 0, 0, 0,
@@ -436,7 +483,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let emoji_rotation_z = [
         0, 3, 0, 0, 0,
@@ -446,7 +494,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, -0.5, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0,
     ];
 
 
@@ -455,21 +504,23 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 20, 1000,
+        0, 0, rV([200,0,0]), rV([2000,1500,20]), rV([0,1000,1000]),
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let swiss_x = [
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, -50,
-        75, 75, 0, 0, 0,
+        0, 0, rV([0,-80,0]), rV([0,90,0]), rV([50,100,50]),
+        rV([75,150,75]), 75, 0, 0, 0,
         0, 0, rV([250, 250, 250]), rV([0, 100, 250]), rV([9, -30, -150]),
         rV([0, -100, 150]), 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let swiss_y = [
         0, 0, 0, 0, 0,
@@ -479,7 +530,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, rV([250, 500, 750]), 0, rV([-20, -20, 0]),
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let swiss_z = [
         0, 0, 0, 0, 0,
@@ -489,27 +541,30 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let swiss_rotation_x = [
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 1,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 1,
+        0, 0, 0, -3, 1,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 1,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let swiss_rotation_y = [
         0, 0, 0, 0, 0,
         0, 0, 0, rV([-2, -2, -2]), 1,
         2, 0, 0, 0, 0,
-        0, 0, 0, 0, 1,
+        0, 0, 0, 3, 1,
         0, 0, 0, 0, 0,
-        0, 0, 0, rV([-2, -2, -2]), 1,
+        0, 0, 0, -2, 1,
         2, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let swiss_rotation_z = [
         0, rV([3, 0, 0]), 0, 0, 0,
@@ -519,7 +574,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, rV([3, 0, 0]), 0, 0, 0,
         0, 0, 0, 0, 1,
         2, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
 
 
@@ -529,30 +585,33 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
+        0, 0, 0, rV([0,120,0]), rV([72,240,0]),
+        rV([360,72,72]), rV([96,48,180]), rV([0,0,48]), 0, 0,
         0, 0, 0, 0, 0,
-        72, 180, 48, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0,
     ];
     let macbook_x = [
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
+        0, 0, rV([0,45,0]), 0, rV([-75,-15,0]),
+        rV([45,45,-75]), rV([65,75,-15]), rV([90,90,45]), rV([0,90,90]), 0,
         0, 0, 0, 0, 0,
-        -75, -15, 45, 90, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0,
     ];
     let macbook_y = [
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
+        0, 0, 0, 0, rV([-40,-30,0]),
+        rV([0,0,50]), rV([0,0,-10]), -15, -45, -90,
         0, 0, 0, 0, 0,
-        50, -10, -15, -45, -90,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0,
     ];
     let macbook_z = [
         0, 0, 0, 0, 0,
@@ -562,17 +621,19 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let macbook_rotation_x = [
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
+        0, 0, 0, 0, rV([0.5,0.5,0]),
+        rV([1,1,5]), rV([-3,-3,1]), rV([0,0,-3]), 0, 0,
         0, 0, 0, 0, 0,
-        5, 1, -3, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0,
     ];
     let macbook_rotation_y = [
         0, 0, 0, 0, 0,
@@ -582,7 +643,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         rV([2, 0, 0]), 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let macbook_rotation_z = [
         0, rV([3, 0, 0]), 0, 0, 0,
@@ -592,7 +654,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, rV([3, 0, 0]), 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
 
 
@@ -603,9 +666,10 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 1, 2, 0.5,
+        0, rV([1,2,0]), rV([2,1,1]), rV([0.5,0.5,2]), rV([0,0,0.5]),
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let coinGrowth_x = [
         0, 0, 0, 0, 0,
@@ -613,9 +677,10 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, -150, -50, 15, -50,
-        -150, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        -50, rV([-50,0,-150]), rV([15,-50,-50]), rV([-50,-150,15]), rV([-150,0,-50]),
+        rV([0,0,-150]), 0, 0, 0, 0,
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let coinGrowth_y = [
         0, 0, 0, 0, 0,
@@ -625,7 +690,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, -25, -25,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let coinGrowth_z = [
         0, 0, 0, 0, 0,
@@ -635,7 +701,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let coinGrowth_rotation_x = [
         0, 0, 0, 0, 0,
@@ -645,7 +712,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let coinGrowth_rotation_y = [
         0, 0, 0, 0, 0,
@@ -655,7 +723,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, rV([-1.5, 0, 0]), 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let coinGrowth_rotation_z = [
         0, 0, 0, 0, 0,
@@ -665,7 +734,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
 
 
@@ -676,9 +746,10 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
+        0, 0, 0, rV([0,135,0]), rV([160,0,0]),
+        rV([0,0,100]), 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        100, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0,
     ];
     let dataHighway_x = [
         0, 0, 0, 0, 0,
@@ -686,9 +757,10 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
+        0, 0, 0, -40, rV([-40,0,0]),
+        rV([0,-20,-20]), 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        -20, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0,
     ];
     let dataHighway_y = [
         0, 0, 0, 0, 0,
@@ -698,7 +770,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let dataHighway_z = [
         0, 0, 0, 0, 0,
@@ -708,7 +781,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let dataHighway_rotation_x = [
         0, 0, 0, 0, 0,
@@ -718,7 +792,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let dataHighway_rotation_y = [
         0, 0, 0, 0, 0,
@@ -728,7 +803,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let dataHighway_rotation_z = [
         0, 0, 0, 0, 0,
@@ -738,7 +814,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, rV([20, 0, 0]),
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
 
 
@@ -750,8 +827,9 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 36, 0,
-        0, 0, 0, 0, 0, 0
+        rV([0,38,0]), rV([36,38,0]), rV([38,0,0]), rV([0,0,36]), 0,
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let emojiTwo_x = [
         0, 0, 0, 0, 0,
@@ -760,8 +838,9 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         25, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 45, 25,
-        0, -25, 50, 0, 0, 0
+        rV([0,45,0]), rV([0,15,0]), rV([45,-75,0]), rV([25,0,45]), rV([0,0,25]),
+        rV([-25,-25,0]), rV([50,50,-25]), rV([0,0,50]), 0, 0,
+        0, 0, 0, 0,
     ];
     let emojiTwo_y = [
         0, 0, 0, 0, 0,
@@ -770,8 +849,9 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, -25, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, -12, 85,
-        95, -25, 0, 0, 0, 0
+        0, rV([12,12,0]), rV([-12,-24,0]), rV([85,-12,-12]), 85,
+        95, -25, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let emojiTwo_z = [
         0, 0, 0, 0, 0,
@@ -781,7 +861,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let emojiTwo_rotation_x = [
         0, 0, 0, 0, 0,
@@ -790,8 +871,9 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, -3.5, 0,
-        0, 0, 0, 0, 0, 0
+        0, rV([-9,-6,0]), 0, rV([0,-3.5,-3.5]), 0,
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let emojiTwo_rotation_y = [
         0, 0, 0, 0, 0,
@@ -800,8 +882,9 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, rV([-3, -3, -6]),
-        0, 0, 0, 0, 0, 0
+        0, rV([-6,0,0]), 0, rV([-3,0,0]), rV([-6, -3, -6]),
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let emojiTwo_rotation_z = [
         0, 0, 0, 0, 0,
@@ -811,7 +894,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
 
 
@@ -823,8 +907,9 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 28,
-        10, 1, 36, 20, 0, 0
+        0, 0, rV([28,0,0]), rV([10,10,0]), rV([1,28,28]),
+        rV([36,36,10]), rV([20,20,1]), rV([0,0,36]), rV([0,0,20]), 0,
+        0, 0, 0, 0,
     ];
     let dollarSign_x = [
         0, 0, 0, 0, 0,
@@ -833,8 +918,9 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 150, 150,
-        -70, 55, 35, 45, -90, 0
+        0, rV([150,150,0]), rV([-70,-70,0]), rV([-20,0,150]), rV([55,55,150]),
+        rV([-70,0,-70]), 55, 35, 45, -90,
+        0, 0, 0, 0,
     ];
     let dollarSign_y = [
         0, 0, 0, 0, 0,
@@ -843,8 +929,9 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 75,
-        0, 0, 0, 0, 0, 0
+        0, 75, rV([0,75,0]), rV([0,-30,0]), rV([0,-75,75]),
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0,
     ];
     let dollarSign_z = [
         0, 0, 0, 0, 0,
@@ -854,7 +941,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let dollarSign_rotation_x = [
         0, 0, 0, 0, 0,
@@ -864,7 +952,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let dollarSign_rotation_y = [
         0, 0, 0, 0, 0,
@@ -874,7 +963,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
     let dollarSign_rotation_z = [
         0, 0, 0, 0, 0,
@@ -884,7 +974,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0,
     ];
 
 
@@ -897,17 +988,19 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, rV([0,5,0]), rV([5,12,0]), rV([12,12,0]), rV([0,0,5]), 
+        rV([0,0,12]), 0, 0, 0,
     ];
     let combinationLock_x = [
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, rV([15, 0, 85]), rV([0, 0, 75]),
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, rV([15, 0, 85]), rV([0, 0, 75]), rV([-45, 0, -275])
+        0, 0, 0, 0, 0,
+        0,rV([0,85,0]), rV([0,-25,0]), rV([0, 85, 85]), rV([-25,-25,0]), 
+        rV([50,50,-25]), rV([0,75,50]), 0, 0,
     ];
     let combinationLock_y = [
         0, 0, 0, 0, 0,
@@ -917,7 +1010,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, rV([6, 0, 0]), rV([10, 0, 0]), rV([-20, 0, 0]), 0
+        0, 40, rV([6, -20, 0]), rV([10, -40, 0]), rV([-20, -20, 0]), 
+        0, 0, 0, 0,
     ];
     let combinationLock_z = [
         0, 0, 0, 0, 0,
@@ -927,17 +1021,19 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0,
     ];
     let combinationLock_rotation_x = [
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, rV([-1.25, -1.25, -1.25]),
+        0, 0, 0, 0, -1.25,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, rV([-1.25, -1.25, -1.25]), 0
+        0, -3.25, rV([-3.25,-1.25,0]), rV([-1.25,0,0]), rV([0,0,3.25]), 
+        rV([0,0,-1.25]), 0, 0, 0,
     ];
     let combinationLock_rotation_y = [
         0, 0, 0, 0, 0,
@@ -947,7 +1043,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, rV([9, 0, 0]), 0, 0, 0
+        0, 0.75, 0.75, rV([0.5,0,0]), 0, 
+        0.75, 0, 0, 0,
     ];
     let combinationLock_rotation_z = [
         0, 0, 0, 0, 0,
@@ -957,7 +1054,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0,
     ];
 
 
@@ -969,7 +1067,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, rV([7,7,0]), 
+        rV([14,14,0]), rV([0,0,7]), rV([0,0,14]), 0,
     ];
     let atom_x = [
         0, 0, 0, 0, 0,
@@ -979,17 +1078,19 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, rV([85, 0, 125]), rV([-55, 0, 125]), rV([55, 0, 15])
+        0, 0, 0, rV([85, -45, 125]), rV([-55, 0, 125]), 
+        rV([35, 55, 55]), -45, 65, 0,
     ];
     let atom_y = [
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, rV([40, 0, 0]),
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, rV([40, 0, 0]), rV([-80, 0, 0])
+        0, 0, 0, 0, 0,
+        0, 0, 0, 0, rV([40, -30, 0]), 
+        rV([0, 0, 0]), 0, 0, 0,
     ];
     let atom_z = [
         0, 0, 0, 0, 0,
@@ -999,7 +1100,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0,
     ];
     let atom_rotation_x = [
         0, 0, 0, 0, 0,
@@ -1009,7 +1111,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0,
     ];
     let atom_rotation_y = [
         0, 0, 0, 0, 0,
@@ -1019,7 +1122,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0,
     ];
     let atom_rotation_z = [
         0, 0, 0, 0, 0,
@@ -1029,7 +1133,8 @@ export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) 
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
         0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0,
     ];
 
 

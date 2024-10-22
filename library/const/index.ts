@@ -26,7 +26,7 @@ export const middleInitial:string = "j";
 
 export const missionStatement:string = "Increasing the quality of life through the advancement of technology.";
 
-export const bioImg:string = "/temporary/images/maliek-davis-home.jpg"
+export const bioImg:string = "/images/suited.png"
 
 export const bio:string = `Maliek Davis is a dedicated real estate investor with a passion for revitalizing communities through strategic multifamily investments. With a focus on properties that offer significant value-add potential, Maliek is committed to creating positive change in Metro Detroit, Grand Rapids, and Lansing, Michigan. His approach to real estate is driven by a deep understanding of market dynamics, an eye for underperforming properties, and a commitment to long-term value creation.
 
