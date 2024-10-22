@@ -16,7 +16,7 @@ const theme = createTheme({
         MuiAppBar: {
             styleOverrides: {
                 root: {
-                    backgroundColor: '#00000080', // Semi-transparent background
+                    backgroundColor: '#00000000', // Semi-transparent background
                     color: '#FFFFFF',             // Text color
                     backdropFilter: 'blur(10px)',
                 },

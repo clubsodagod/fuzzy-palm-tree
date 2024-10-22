@@ -3,11 +3,13 @@ import { PageWrapper } from '@/app/components'
 import { Point } from '@/library/const'
 import { motion } from 'framer-motion'
 import styles from './styles.module.css';
+import { numberToWord } from '@/utility/functions';
 
 const WhyDigitalSolutionsDynamic:React.FC<{
-    factor:Point,
-    ctnRef?:RefObject<HTMLDivElement>,
-    index:number,
+    factor:Point;
+    ctnRef?:RefObject<HTMLDivElement>;
+    index:number;
+    id:string;
 }> = ({
     factor:{
         label,
@@ -15,15 +17,15 @@ const WhyDigitalSolutionsDynamic:React.FC<{
     },
     ctnRef,
     index,
+    id,
 }) => {
 
-    const sectionRef = useRef<HTMLDivElement>(null);
 
     const alignment = (index % 2) === 0 ? 'left' : 'right';
     return (
         <PageWrapper
-        id={index%2===0 ? `programmer-why-digital-alt${index}` : 'programmer-why-digital'}
-        ctnRef={sectionRef}
+        id={id}
+        ctnRef={ctnRef}
         >
             
 

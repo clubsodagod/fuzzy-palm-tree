@@ -93,7 +93,7 @@ const ApproachPage = () => {
             <AgileDevelopment ctnRef={approachAgileDevRef} />
             {
                 agileDevelopment.map((f:Point,i:number)=> { 
-                    const currentRef = processFlowDynamicRefs[i];
+                    const currentRef = approachAgileDevDynamicRefs[i];
                     if (i%2 === 0) {
                         return (
                             <AgileDevelopmentDynamic key={`importFactor: ${i}`} left='right' factor={f} ctnRef={currentRef} index={i} />
@@ -108,7 +108,7 @@ const ApproachPage = () => {
             <DesignThinking ctnRef={designThinkingRef} />
             {
                 designThinking.map((f:Point,i:number)=> { 
-                    const currentRef = processFlowDynamicRefs[i];
+                    const currentRef = designThinkingDynamicRefs[i];
                     if (i%2 === 0) {
                         return (
                             <DesignThinkingDynamic key={`importFactor: ${i}`} left='right' factor={f}ctnRef={currentRef} index={i} />

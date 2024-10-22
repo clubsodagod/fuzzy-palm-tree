@@ -48,8 +48,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
     const elapsedTime = clock.getElapsedTime();
     if (group.current) {  // Ensure that group.current is defined
       // group.current.position.x = radius * Math.cos(elapsedTime);
-      group.current.position.y = radius * Math.cos(elapsedTime);
-      group.current.position.z = radius * Math.sin(elapsedTime);
+      group.current.rotation.z += 0.025
     }
   });
 
@@ -62,7 +61,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
 
   return (
     <group ref={group} {...props} dispose={null}>
-      <group name="Sketchfab_Scene" position={[12, -7, 15]}>
+      <group name="Sketchfab_Scene" position={[0, 0, 0]}>
         <group name="Sketchfab_model" position={[-0.003, 0.011, -5.077]} rotation={[-Math.PI / 2, 0, 0]}>
           <group name="Root">
             <group name="electron_2" position={[0.137, -0.01, -0.077]} rotation={[0.847, 0.748, 3.049]}>

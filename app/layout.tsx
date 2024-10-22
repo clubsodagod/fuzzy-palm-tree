@@ -47,9 +47,9 @@ useEffect(() => {
             <AppContext>
               <ThemeProvider theme={theme}>
                 <AnimatePresencePro>
-                  <Navbar/>
                         
                     <body>
+                  <Navbar/>
                   {children}
                   </body>
                 </AnimatePresencePro>

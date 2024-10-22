@@ -1,7 +1,7 @@
 
 .pageWrapper {
     position: relative;
-    scroll-snap-align: start;  
+    /* scroll-snap-align: start;   */
     flex-grow: 1;
     min-height: 100dvh;
     width: 100%;

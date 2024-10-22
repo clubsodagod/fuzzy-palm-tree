@@ -6,54 +6,54 @@ import { Animate } from '@/utility/functions';
 export const useMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) => {
 
 
-    let main_scale = [useRVs([5,5,15]), 7, -15, 0, 0, 0, 0, 0, 0];
-    let main_x = [useRVs([5,5,15]), 7, -15, 0, 0, 0, 0, 0, 0];
-    let main_y = [useRVs([-6,-3,7]), 0, 7, 15, 3, 0, 0, 0, 0];
-    let main_z = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let main_rotation_x =  [0, 0, 0, 0, 0, 0, 0, 0, 0,];
-    let main_rotation_y =  [0, 0, 0, 0, 0, 0, 0, 0, 0,];
-    let main_rotation_z =  [0, 0, 0, 0, 0, 0, 0, 0, 0,];
+    let main_scale = [1,1,1,1,1,1,1,];
+    let main_x = [0,0,0,0,0,0,0,];
+    let main_y = [0,0,0,0,0,0,0,];
+    let main_z = [0,0,0,0,0,0,0,];
+    let main_rotation_x = [0,0,0,0,0,0,0,];
+    let main_rotation_y = [0,0,0,0,0,0,0,];
+    let main_rotation_z = [0,0,0,0,0,0,0,];
 
     // Define your animation arrays here
-    const developer_scale = [useRVs([36, 48, 36]), useRVs([72, 96, 48]), useRVs([72, 96, 48]), 96, 0, 0, 0, 0, 0];
-    const developer_x = [0, 0, 7, 0, 3, 0, 0, 0, 0];
-    const developer_y = [0, 0, useRVs([-5, -5, -5]), useRVs([-35, -30, -30]), 0, 0, 0, 0, 0];
-    const developer_z = [1, 0, 0, 0, 0, 0, 0, 0, 0];
-    let developer_rotation_x =  [0, 0, 0, 0, 0, 0, 0, 0, 0,];
-    let developer_rotation_y =  [0, 0, 0, 0, 0, 0, 0, 0, 0,];
-    let developer_rotation_z =  [0, 0, 0, 0, 0, 0, 0, 0, 0,];
+    const developer_scale = [72,120,170,140,0,0,0,];
+    const developer_x = [0,-120,0,120,0,0,0,];
+    const developer_y = [useRVs([-5,-5,10]),0,useRVs([-15,-15,-10]),72,0,0,0,];
+    const developer_z = [0,-150,0,0,0,0,0,];
+    let developer_rotation_x = [0,0,0.75,0,0,0,0,];
+    let developer_rotation_y = [0,0,0,0,0,0,0,];
+    let developer_rotation_z = [0,0,0,0,0,0,0,];
 
-    let atom_scale = [24,48, 72, 96, 1, 1, 1, 1, 1];
-    let atom_x = [0, 0, 7, 0, 3, 0, 0, 0, 0];
-    let atom_y = [0, 0, -7, -35, 3, 0, 0, 0, 0];
-    let atom_z = [1, 0, 0, 0, 0, 0, 0, 0, 0];
-    let atom_rotation_x =  [0, 0, 0, 0, 0, 0, 0, 0, 0,];
-    let atom_rotation_y =  [0, 0, 0, 0, 0, 0, 0, 0, 0,];
-    let atom_rotation_z =  [0, 0, 0, 0, 0, 0, 0, 0, 0,];
+    let atom_scale = [0,0,0,0,0,0,0,];
+    let atom_x = [0,0,0,0,0,0,0,];
+    let atom_y = [0,0,0,0,0,0,0,];
+    let atom_z = [0,0,0,0,0,0,0,];
+    let atom_rotation_x = [0,0,0,0,0,0,0,];
+    let atom_rotation_y = [0,0,0,0,0,0,0,];
+    let atom_rotation_z = [0,0,0,0,0,0,0,];
 
-    let bolsa_scale = [3,0, 0, 0, 2, 2.75, 3.5, 0, 0];
-    let bolsa_x = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let bolsa_y = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let bolsa_z = [-10, 0, 0, 0, 0, 0, 75, 5, 0];
-    let bolsa_rotation_x =  [0, 0, 0, 0, 0, 0, 0, 0, 0,];
-    let bolsa_rotation_y =  [0, 0, 0, 0, 0, 0, 0, 0, 0,];
-    let bolsa_rotation_z =  [0, 0, 0, 0, 0, 0, 0, 0, 0,];
+    let bolsa_scale = [0,0,0,3,5,1,0,];
+    let bolsa_x = [0,0,0,useRVs([-35,-45,-150]),useRVs([7,12,-35]),useRVs([95,95,95]),0,];
+    let bolsa_y = [0,0,0,0,useRVs([10,10,-15]),0,0,];
+    let bolsa_z = [0,0,0,0,0,0,0,];
+    let bolsa_rotation_x  = [0,0,0,0,0,0,0,];
+    let bolsa_rotation_y = [0,0,0,0,0,0,0,];
+    let bolsa_rotation_z = [0,0,0,0,0,0,0,];
 
-    let invest_scale = [0.625,0, 0,0,0.5, 0.25,useRVs([0.7,1,2]),0, 0];
-    let invest_x = [useRVs([5,0,20]), 0, 0, 0, 0, -1.5, useRVs([0,0,45]), 0, 0];
-    let invest_y = [0, 0, 0, 0, -5, -15, -15, 0, 0];
-    let invest_z = [10, 0, 0, 0, 0, 0, 0, 0, 0];
-    let invest_rotation_x =  [0, 0, 0, 0, 0, 0, 0, 0, 0,];
-    let invest_rotation_y =  [0, 0, 0, 0, 0, 0, 0, 0, 0,];
-    let invest_rotation_z =  [0, 0, 0, 0, 0, 0, 0, 0, 0,];
+    let invest_scale = [0,0,0,0.3,0.625,0.1,0,];
+    let invest_x = [0,0,useRVs([50,50,150]),useRVs([25,25,75]),useRVs([0,0,20]),useRVs([-75,-75,-75]),0,];
+    let invest_y = [0,0,0,0,-25,0,0,];
+    let invest_z = [0,0,0,0,30,0,0,];
+    let invest_rotation_x = [0,0,0,0,1,0,0,];
+    let invest_rotation_y = [0,0,0,0,1,0,0,];
+    let invest_rotation_z = [0,0,0,0,1,0,0,];
 
-    let daily_scale = [24,48, 72, 96, 1, 1, 1, 1, 1];
-    let daily_x = [0, 0, 7, 0, 3, 0, 0, 0, 0];
-    let daily_y = [0, 0, -7, -35, 3, 0, 0, 0, 0];
-    let daily_z = [1, 0, 0, 0, 0, 0, 0, 0, 0];
-    let daily_rotation_x =  [0, 0, 0, 0, 0, 0, 0, 0, 0,];
-    let daily_rotation_y =  [0, 0, 0, 0, 0, 0, 0, 0, 0,];
-    let daily_rotation_z =  [0, 0, 0, 0, 0, 0, 0, 0, 0,];
+    let daily_scale = [0,0,0,0,0,0,0,];
+    let daily_x = [0,0,0,0,0,0,0,];
+    let daily_y = [0,0,0,0,0,0,0,];
+    let daily_z = [0,0,0,0,0,0,0,];
+    let daily_rotation_x = [0,0,0,0,0,0,0,];
+    let daily_rotation_y = [0,0,0,0,0,0,0,];
+    let daily_rotation_z = [0,0,0,0,0,0,0,];
 
     // Functions to handle animations    
     const mainMotion = () => Animate(useTransform, scrollY, main_scale, main_x, main_y, main_z, main_rotation_x,main_rotation_y,main_rotation_z, homeEventPoints);

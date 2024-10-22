@@ -1,9 +1,9 @@
 'use client'
 import { CoinGrowthModel, BolsaDeDinero, MacbookModel } from '@/public/3d-objects';
-import { Canvas } from '@react-three/fiber';
-import React, { Suspense, useEffect, useRef, useState } from 'react';
+import { Canvas, GroupProps, useThree } from '@react-three/fiber';
+import React, { RefObject, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'framer-motion-3d';
-import { MotionProps, MotionValue, useMotionValueEvent } from 'framer-motion';
+import { MotionProps, MotionValue, useInView, useMotionValueEvent, inView } from 'framer-motion';
 import { debounce, shouldRenderObject, useResponsiveValues as useRVs } from '@/utility/functions';
 import { useScroll as scroll } from '@/app/context/sub-context/ScrollContext';
 import { useMotionLogic } from '@/utility/animation/home-page';
@@ -17,6 +17,204 @@ import { useScreenContext } from '@/app/context/sub-context/ScreenContext';
 import BlogCard2D from '@/app/blog/_components/BlogCard';
 import styles from './styles.module.css'
 import { useMotionLogic as useMotionLogicPro } from '@/utility/functions';
+import { group } from 'console';
+
+
+
+const Experience = ({ scrollY }: { scrollY: MotionValue }) => {
+
+    const viewport = useThree((state) => state.viewport);
+
+
+    const {
+        isMobile,
+    } = useScreenContext();
+
+    const ctnRef = React.useRef(null);
+
+
+
+    const MemoizedBolsaDeDinero = React.memo(BolsaDeDinero);
+    const MemoizedMacbookModel = React.memo(MacbookModel);
+    const MemoizedCoinGrowthModel = React.memo(CoinGrowthModel);
+
+    const macbookRef = React.useRef<JSX.IntrinsicElements['group']>(null);
+    const coinGrowthRef = React.useRef<JSX.IntrinsicElements['group']>(null);
+    const moneyRef = React.useRef<JSX.IntrinsicElements['group']>(null);
+
+    const watchMacbook = macbookRef.current;
+    const watchCoin = coinGrowthRef.current;
+    const watchMoney = moneyRef.current;
+
+
+
+
+    const { sceneRef: mainRef, programmerRef, blogRef } = useSectionRefs();
+
+    const { fiveEightsCtn, eighthCtn, sevenEightsCtn, qtrCtn, threeEighthsCtn, threeQtrCtn, halfCtn, dynamicIncrement: dI } = scroll();
+
+    const homeEventPoints = useMemo(() => {
+        return [
+            0, (dI(0.5)),
+            (dI(1)), (dI(1.5)),
+            (dI(2)), (dI(2.5)),
+            (dI(3))
+        ]
+    }, [dI]);
+
+    // Use the custom hook for motion logic
+    const { programmerMotion, mainMotion, atomMotion, bolsaMotion, investMotion, dailyMotion } = useMotionLogic(scrollY, homeEventPoints);
+
+    const [posts, setPosts] = useState<IBlogPopulated[] | undefined>();
+    const [scalingFactor, setScalingFactor] = useState<number>(1);
+    const [visible, setVisible] = useState({
+        macbook: true,
+        money: false,
+        coin: false,
+    });
+
+    async function initPost() {
+        return await getAllPostsClient()
+    }
+
+    useEffect(() => {
+        async function postsHandler() {
+            setPosts(await initPost())
+        }
+        postsHandler()
+    }, [])
+
+    const mainScalingFactor = window ? Math.min(Math.max(window.innerWidth / 1920, 0.6), 3) : 1;
+
+    useEffect(() => {
+        if (scalingFactor) {
+            setScalingFactor(mainScalingFactor);
+        }
+
+    }, [mainScalingFactor, scalingFactor]);
+
+    const moneyScale = bolsaMotion().scale.get() * mainScalingFactor
+    const coinScale = investMotion().scale.get() * mainScalingFactor
+    const macbookScale = programmerMotion().scale.get() * mainScalingFactor
+
+    useEffect(() => {
+
+        if ((macbookScale) > 0) {
+            setVisible((prev) => ({
+                ...prev,
+                macbook: true,
+            }))
+        } else {
+            setVisible((prev) => ({
+                ...prev,
+                macbook: false,
+            }))
+        }
+
+        if ((coinScale) > 0) {
+            setVisible((prev) => ({
+                ...prev,
+                coin: true,
+            }))
+        } else {
+            setVisible((prev) => ({
+                ...prev,
+                coin: false,
+            }))
+        }
+        if ((moneyScale) > 0) {
+            setVisible((prev) => ({
+                ...prev,
+                money: true,
+            }))
+        } else {
+            setVisible((prev) => ({
+                ...prev,
+                money: false,
+            }))
+        }
+
+
+
+    }, [macbookScale, moneyScale, coinScale, visible])
+
+    return (
+        <group
+            scale={scalingFactor}
+        >
+            <motion.group
+                castShadow
+                position={[mainMotion().x, mainMotion().y, 0]}
+                initial={{
+                    scale: 0
+                }}
+                animate={{
+                    scale: mainMotion().scale.get(),
+                    x: mainMotion().x.get(),
+                    y: mainMotion().y.get(),
+                    transition: {
+                        duration: 1,
+                    }
+                }}
+            >
+                <motion.group
+                    name='money'
+                    ref={moneyRef as unknown as RefObject<GroupProps>}
+                    visible={visible.money}
+                    castShadow
+                    initial={{ scale: 0 }}
+                    position={[bolsaMotion().x, bolsaMotion().y, bolsaMotion().z]}
+                    scale={bolsaMotion().scale}>
+                    <MemoizedBolsaDeDinero
+
+                        scale={2} />
+                </motion.group>
+
+                <motion.group
+                    name='macbook'
+                    ref={macbookRef as unknown as RefObject<GroupProps>}
+                    visible={visible.macbook}
+                    castShadow
+                    initial={{ scale: 0 }}
+                    animate={{
+                        scale: (programmerMotion().scale.get())
+                    }}
+                    rotation={[programmerMotion().rotationX, programmerMotion().rotationY, programmerMotion().rotationZ]}
+                    position={[programmerMotion().x, programmerMotion().y, programmerMotion().z]}
+                    scale={programmerMotion().scale}
+                >
+                    <Float
+                        floatIntensity={0.0625}
+                        rotationIntensity={1.25}
+                    >
+                        <MemoizedMacbookModel
+                        // scale={mainScalingFactor}
+                        />
+                    </Float>
+                </motion.group>
+
+                <motion.group
+                    name='coin'
+                    ref={coinGrowthRef as unknown as RefObject<GroupProps>}
+                    visible={visible.coin}
+                    castShadow
+                    initial={{ scale: 0 }}
+                    position={[investMotion().x, investMotion().y, investMotion().z]}
+                    scale={investMotion().scale}>
+                    <Float
+                        floatIntensity={4}
+                        rotationIntensity={2.5}
+                    >
+                        <MemoizedCoinGrowthModel
+                            scale={2} />
+                    </Float>
+
+                </motion.group>
+            </motion.group>
+        </group>
+    )
+
+}
 
 const HomeScene: React.FC<{
     scrollYProgress: MotionValue,
@@ -25,54 +223,33 @@ const HomeScene: React.FC<{
     ctnRefs: React.RefObject<HTMLDivElement>[],
 }> = ({
     scrollY,
-    ctnHeightValue,
-    ctnRefs
 }) => {
+    
+    const {
+        isMobile,
+    } = useScreenContext();
+    const ctnRef = React.useRef(null);
 
+    const [posts, setPosts] = useState<IBlogPopulated[] | undefined>();
 
-        const {
-            isMobile,
-        } = useScreenContext();
+    async function initPost() {
+        return await getAllPostsClient()
+    }
 
-        const MemoizedBolsaDeDinero = React.memo(BolsaDeDinero);
-        const MemoizedMacbookModel = React.memo(MacbookModel);
-        const MemoizedCoinGrowthModel = React.memo(CoinGrowthModel);
-
-        const { sceneRef: mainRef, programmerRef, blogRef } = useSectionRefs();
-
-        const { fiveEightsCtn, eighthCtn, sevenEightsCtn, qtrCtn, threeEighthsCtn, threeQtrCtn, halfCtn } = scroll();
-        const homeEventPoints = [0, eighthCtn, qtrCtn, threeEighthsCtn, halfCtn, fiveEightsCtn, threeQtrCtn, sevenEightsCtn, ctnHeightValue];
-
-
-        // Use the custom hook for motion logic
-        const { programmerMotion, mainMotion, atomMotion, bolsaMotion, investMotion, dailyMotion } = useMotionLogic(scrollY, homeEventPoints);
-
-        const [posts, setPosts] = useState<IBlogPopulated[] | undefined>();
-        const ctnRef = useRef<HTMLDivElement>(null);
-
-        async function initPost() {
-            return await getAllPostsClient()
+    useEffect(() => {
+        async function postsHandler() {
+            setPosts(await initPost())
         }
-
-
-
-        useEffect(() => {
-
-            async function postsHandler() {
-                setPosts(await initPost())
-            }
-
-            postsHandler()
-        }, [])
-
+        postsHandler()
+    }, [])
 
         return (
-            <div className="three-scene">
-
+            <>
                 <Canvas
+
                     dpr={[1, 1.5]}
                     style={{
-                        pointerEvents:'none', 
+                        pointerEvents: 'none',
                         position: 'fixed',
                         top: 0,
                         zIndex: 1,
@@ -87,62 +264,7 @@ const HomeScene: React.FC<{
                     <Suspense fallback={null}>
 
                         {/* Main home hero object group */}
-                        <motion.group
-                            castShadow
-                            position={[mainMotion().x, mainMotion().y, 0]}
-                            animate={{
-                                x: mainMotion().x.get(),
-                                y: mainMotion().y.get(),
-                            }}
-                        >
-                            {shouldRenderObject(scrollY, halfCtn, ctnHeightValue,
-                                <motion.group
-                                    castShadow
-                                    initial={{ scale: 3 }}
-                                    position={[bolsaMotion().x, bolsaMotion().y, bolsaMotion().z]}
-                                    scale={bolsaMotion().scale}>
-                                    <MemoizedBolsaDeDinero
-                                    
-                                        scale={2} />
-                                </motion.group>
-                            )}
-                            {shouldRenderObject(scrollY, 0, halfCtn,
-                                <Float
-                                floatIntensity={2}
-                                rotationIntensity={2}
-                                >
-                                    <motion.group
-                                        castShadow
-                                        initial={{ scale: 0 }}
-                                        animate={{
-                                            scale: programmerMotion().scale.get()
-                                        }}
-                                        rotation={[0, programmerMotion().rotationY.get(), 0]}
-                                        position={[programmerMotion().x, programmerMotion().y, programmerMotion().z]}
-                                        scale={programmerMotion().scale}>
-                                        <MemoizedMacbookModel
-                                            scale={2} />
-                                    </motion.group>
-                                </Float>
-
-                            )}
-                            {shouldRenderObject(scrollY, halfCtn, ctnHeightValue,
-                                <motion.group
-                                    castShadow
-                                    initial={{ scale: 0 }}
-                                    position={[investMotion().x, investMotion().y, investMotion().z]}
-                                    scale={investMotion().scale}>
-                                    <Float
-                                        floatIntensity={4}
-                                        rotationIntensity={2.5}
-                                    >
-                                        <MemoizedCoinGrowthModel
-                                            scale={2} />
-                                    </Float>
-
-                                </motion.group>
-                            )}
-                        </motion.group>
+                        <Experience scrollY={scrollY} />
 
                         <ambientLight />
                         <directionalLight
@@ -168,8 +290,6 @@ const HomeScene: React.FC<{
                     </Suspense>
 
                 </Canvas>
-
-
                 {
                     posts &&
                     posts.length > 0 &&
@@ -186,6 +306,7 @@ const HomeScene: React.FC<{
                                     <MotionDiv
                                         key={`${p._id} home page blog card isMobile:${isMobile}`}
                                     >
+
                                         <BlogCard2D blog={p} />
                                     </MotionDiv>
                                 )
@@ -196,7 +317,7 @@ const HomeScene: React.FC<{
 
 
                 }
-            </div>
+            </>
         )
     }
 

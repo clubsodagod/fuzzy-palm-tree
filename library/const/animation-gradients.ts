@@ -120,35 +120,132 @@ export const investmentRealEstateApproachPage = {
 };
 
 export const programmerGradientVariants = {
-    'programmer-main': {
-        background: `linear-gradient(to right, #000, #232526, #414345)`,
+    'programmer-overview': {
+        background: `radial-gradient(#f12711, #f5af19)`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 0%',
         animation: 'animate-main-bg 10s infinite alternate',
     },
-    'programmer-overview': {
-        background: 'linear-gradient(to bottom, #0ba360 , #0ba360 , #3cba92)',
-        backgroundBlendMode:   `multiply`,
-        backgroundSize: '400% 400%',
-        backgroundPosition: '0% 50%',
-        animation: 'animate-approach-bg 8s ease-in-out infinite alternate',
-    },
-    'programmer-overview-alt': {
-        background: 'linear-gradient(to right, #1f4037, #99f2c8, #99f2c8)',
+    'programmer-overview-dynamic-zero': {
+        background: "linear-gradient(to right, #ffefba, #ffffff)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         backgroundBlendMode:   `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
-    'programmer-why-digital': {
-        background: 'linear-gradient(to right, #1f4037, #99f2c8, #99f2c8)',
+    'programmer-overview-dynamic-one': {
+        background: "linear-gradient(to right, #434343, #000000)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         backgroundBlendMode:   `multiply`,
-        backgroundSize: '400% 400%',
+        backgroundSize: '200% 200%',
+        backgroundPosition: '0% 50%',
+        animation: 'animate-area-bg 6s ease-in-out infinite alternate',
+    },
+    'programmer-overview-dynamic-two': {
+        background: "radial-gradient( #52c234, #061700)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        backgroundBlendMode:   `multiply`,
+        backgroundSize: '200% 200%',
+        backgroundPosition: '0% 50%',
+        animation: 'animate-area-bg 6s ease-in-out infinite alternate',
+    },
+    'programmer-overview-dynamic-three': {
+        background: "radial-gradient( #1f1c2c, #928dab)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        backgroundBlendMode:   `multiply`,
+        backgroundSize: '200% 200%',
+        backgroundPosition: '0% 50%',
+        animation: 'animate-area-bg 6s ease-in-out infinite alternate',
+    },
+    'programmer-overview-dynamic-four': {
+        background: "linear-gradient(to right, #434343, #000000)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        backgroundBlendMode:   `multiply`,
+        backgroundSize: '200% 200%',
+        backgroundPosition: '0% 50%',
+        animation: 'animate-area-bg 6s ease-in-out infinite alternate',
+    },
+    'programmer-overview-dynamic-five': {
+        background: "radial-gradient( #fceabb, #f8b500)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        backgroundBlendMode:   `multiply`,
+        backgroundSize: '200% 200%',
+        backgroundPosition: '0% 50%',
+        animation: 'animate-area-bg 6s ease-in-out infinite alternate',
+    },
+    'programmer-overview-dynamic-six': {
+        background: "radial-gradient(#f8b500, #fceabb)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        backgroundBlendMode:   `multiply`,
+        backgroundSize: '200% 200%',
+        backgroundPosition: '0% 50%',
+        animation: 'animate-area-bg 6s ease-in-out infinite alternate',
+    },
+    'programmer-overview-dynamic-seven': {
+        background: "linear-gradient(to right, #434343, #000000)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        backgroundBlendMode:   `multiply`,
+        backgroundSize: '250% 250%',
+        backgroundPosition: '50% 50%',
+        animation: 'animate-area-bg 6s ease-in-out infinite alternate',
+    },
+    'programmer-overview-dynamic-eight': {
+        background: "radial-gradient( #be93c5, #7bc6cc)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        backgroundBlendMode:   `multiply`,
+        backgroundSize: '125% 125%',
+        backgroundPosition: '25% 50%',
+        animation: 'animate-area-bg 6s ease-in-out infinite alternate',
+    },
+    'programmer-overview-dynamic-nine': {
+        background: "radial-gradient(#16bffd, #cb3066)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        backgroundBlendMode:   `multiply`,
+        backgroundSize: '125% 125%',
+        backgroundPosition: '50% 0%',
+        animation: 'animate-area-bg 6s ease-in-out infinite alternate',
+    },
+    'programmer-why-digital': {
+        background: 'radial-gradient(#0f2027, #203a43)',
+        backgroundBlendMode:   `multiply`,
+        backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-approach-bg 8s ease-in-out infinite alternate',
     },
-    'programmer-why-digital-alt': {
-        background: 'linear-gradient(to right, #1f4037, #99f2c8, #99f2c8)',
+    'programmer-why-digital-dynamic-one': {
+        background: 'radial-gradient( #000000, #434343)',
+        backgroundBlendMode:   `multiply`,
+        backgroundSize: '200% 200%',
+        backgroundPosition: '0% 50%',
+        animation: 'animate-area-bg 6s ease-in-out infinite alternate',
+    },
+    'programmer-why-digital-dynamic-two': {
+        background: 'radial-gradient( #fffbd5, #b20a2c)',
+        backgroundBlendMode:   `multiply`,
+        backgroundSize: '200% 200%',
+        backgroundPosition: '0% 50%',
+        animation: 'animate-area-bg 6s ease-in-out infinite alternate',
+    },
+    'programmer-why-digital-dynamic-three': {
+        background: 'radial-gradient(#000000, #0f9b0f)',
+        backgroundBlendMode:   `multiply`,
+        backgroundSize: '200% 200%',
+        backgroundPosition: '0% 50%',
+        animation: 'animate-area-bg 6s ease-in-out infinite alternate',
+    },
+    'programmer-why-digital-dynamic-four': {
+        background: 'radial-gradient(#0f9b0f,#000000)',
+        backgroundSize: '400% 400%',
+        backgroundPosition: '0% 0%',
+        animation: 'animate-area-bg 6s ease-in-out infinite alternate',
+    },
+    'programmer-why-digital-dynamic-five': {
+        background: 'radial-gradient(#005aa7, #fffde4)',
+        backgroundBlendMode:   `multiply`,
+        backgroundSize: '125% 125%',
+        backgroundPosition: '50% 50%',
+        animation: 'animate-area-bg 6s ease-in-out infinite alternate',
+    },
+    'programmer-why-digital-dynamic-six': {
+        background: 'radial-gradient(#8e0e00, #1f1c18)',
+        backgroundBlendMode:   `multiply`,
+        backgroundSize: '200% 200%',
+        backgroundPosition: '0% 50%',
+        animation: 'animate-area-bg 6s ease-in-out infinite alternate',
+    },
+    'programmer-why-digital-dynamic-zero': {
+        background: 'radial-gradient(#1c92d2, #f2fcfe)',
         backgroundBlendMode:   `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',

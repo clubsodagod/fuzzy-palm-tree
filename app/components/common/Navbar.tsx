@@ -18,6 +18,7 @@ import Button from '@mui/material/Button';
 import { navItems } from '@/library/const';
 import Link from 'next/link';
 import { color } from 'framer-motion';
+import zIndex from '@mui/material/styles/zIndex';
 
 
 
@@ -68,7 +69,7 @@ export default function DrawerAppBar() {
    
 
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex',zIndex:10,position:"relative" }}>
             <CssBaseline />
             <AppBar component="nav">
                 <Toolbar>

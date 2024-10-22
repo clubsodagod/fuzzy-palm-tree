@@ -14,7 +14,7 @@ import { useGLTF, useAnimations } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 import { JoinGrowthProps } from '@/library/types/common';
 import { useResponsiveValues as useRVs } from '@/utility/functions';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 
 type ActionName = 'BOLSA_MONEYAction'
 
@@ -49,6 +49,10 @@ export default function BolsaDinero(props: JSX.IntrinsicElements["group"], ...re
 
   const radius = useRVs([5, 5, 5]);
   const radiusZ = useRVs([0,0,1]);
+
+  
+  const viewport = useThree((state)=> state.viewport);
+  
 
   useFrame(({clock}) => {
     const elapsedTime = clock.getElapsedTime();

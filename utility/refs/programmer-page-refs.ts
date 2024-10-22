@@ -1,7 +1,7 @@
 import { useRef, useEffect, RefObject, createRef } from "react";
 import React from "react";
 import { createDynamicRefs } from "../functions";
-import { agileDevelopment, customSoftware } from "@/library/const";
+import { agileDevelopment, customSoftware, designThinking, digitalTransformation, importantFactors, overview } from "@/library/const";
 
 export type RefIDObject = {
     ref: RefObject<HTMLDivElement>;
@@ -15,9 +15,9 @@ export const useProgrammerPageSectionRefs = (): {
     mainRef: RefObject<HTMLDivElement>;
     areasRef: RefObject<HTMLDivElement>;
     overviewRef: RefObject<HTMLDivElement>;
-    overviewAltRef: RefObject<HTMLDivElement>;
+    overviewDynamicRefs: RefObject<HTMLDivElement>[];
     whyDigitalRef: RefObject<HTMLDivElement>;
-    whyDigitalAltRef: RefObject<HTMLDivElement>;
+    whyDigitalDynamicRefs: RefObject<HTMLDivElement>[];
     refs: RefIDObject[];
     approachMainRef: RefObject<HTMLDivElement>;
     approachAgileDevRef: RefObject<HTMLDivElement>;
@@ -45,14 +45,17 @@ export const useProgrammerPageSectionRefs = (): {
     digitalSolutionsRefs: RefIDObject[];
 } => {
     // Static Refs
+
+    // /im-a-programmer refs static
     const scrollRef = useRef<HTMLDivElement>(null);
     const areasRef = useRef<HTMLDivElement>(null);
     const bodyRef = useRef<HTMLBodyElement>(null);
     const mainRef = useRef<HTMLDivElement>(null);
     const overviewRef = useRef<HTMLDivElement>(null);
-    const overviewAltRef = useRef<HTMLDivElement>(null);
-    const whyDigitalAltRef = useRef<HTMLDivElement>(null);
     const whyDigitalRef = useRef<HTMLDivElement>(null);
+    //  /im-a-programmer dynamic ref initialization
+    const overviewDynamicRefs = useRef(overview.map(() => createRef<HTMLDivElement>())).current;
+    const whyDigitalDynamicRefs = useRef(importantFactors.map(() => createRef<HTMLDivElement>())).current;
 
     // Approach Section Refs
     const approachMainRef = useRef<HTMLDivElement>(null);
@@ -63,7 +66,7 @@ export const useProgrammerPageSectionRefs = (): {
 
     // Dynamic Refs Initialization
     const approachAgileDevDynamicRefs = useRef(agileDevelopment.map(() => createRef<HTMLDivElement>())).current;
-    const designThinkingDynamicRefs = useRef(agileDevelopment.map(() => createRef<HTMLDivElement>())).current;
+    const designThinkingDynamicRefs = useRef(designThinking.map(() => createRef<HTMLDivElement>())).current;
     const processFlowDynamicRefs = useRef(agileDevelopment.map(() => createRef<HTMLDivElement>())).current;
 
     // Let's Work Section Refs
@@ -97,6 +100,7 @@ export const useProgrammerPageSectionRefs = (): {
         ...createDynamicRefs([{ refs: processFlowDynamicRefs, idTemplate: `approach-process-flow-dynamic` }]),
     ];
 
+
     const ctaRefs = [
         { ref: ctaConsultationRef, id: 'lets-work-consultation' },
         { ref: contactInfoRef, id: 'lets-work-contact-information' },
@@ -116,10 +120,13 @@ export const useProgrammerPageSectionRefs = (): {
         { ref: digitalSolutionsVisualsRef, id: 'digital-solutions-visual' },
     ];
 
+
     const refs = [
         { ref: mainRef, id: 'programmer-main' },
         { ref: overviewRef, id: 'programmer-overview' },
+        ...createDynamicRefs([{ refs: overviewDynamicRefs, idTemplate: `programmer-overview-dynamic` }]),
         { ref: whyDigitalRef, id: 'programmer-why-digital' },
+        ...createDynamicRefs([{ refs: whyDigitalDynamicRefs, idTemplate: `programmer-why-digital-dynamic` }]),
     ];
 
     return {
@@ -128,9 +135,9 @@ export const useProgrammerPageSectionRefs = (): {
         mainRef,
         areasRef,
         overviewRef,
-        overviewAltRef,
+        overviewDynamicRefs,
         whyDigitalRef,
-        whyDigitalAltRef,
+        whyDigitalDynamicRefs,
         refs,
         approachRefs,
         approachMainRef,
