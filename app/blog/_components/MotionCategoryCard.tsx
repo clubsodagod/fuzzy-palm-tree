@@ -1,12 +1,12 @@
 "use client"
 import React from 'react';
 import styles from './components.module.css';
-import { MotionDiv } from '@/app/components/framer/MotionDiv';
-import { MotionImg } from '@/app/components/framer/MotionImg';
-import { MotionH6 } from '@/app/components/framer/MotionH6';
-import { MotionP } from '@/app/components/framer/MotionP';
+import { MotionDiv } from '@/app/_components/framer/MotionDiv';
+import { MotionImg } from '@/app/_components/framer/MotionImg';
+import { MotionH6 } from '@/app/_components/framer/MotionH6';
+import { MotionP } from '@/app/_components/framer/MotionP';
 import { ICategory, ICategoryPopulated } from '@/library/db/models/category';
-import { useScreenContext } from '@/app/context/sub-context/ScreenContext';
+import { useScreenContext } from '@/app/_context/sub-context/ScreenContext';
 import { goTo } from '@/utility/blog-section/blog-page-functions';
 import { useRouter } from 'next/navigation';
 import { ISubcategory } from '@/library/db/models/subcategory';

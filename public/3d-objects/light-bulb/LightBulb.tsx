@@ -12,7 +12,7 @@ import * as THREE from 'three'
 import React from 'react'
 import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
-import { MotionGroup } from '@/app/components/framer/MotionGroup'
+import { MotionGroup } from '@/app/_components/framer/MotionGroup'
 import type { HTMLMotionProps } from 'framer-motion';
 
 

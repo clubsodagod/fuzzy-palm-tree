@@ -1,10 +1,10 @@
 'use client'
-import { AppContainer, ScrollableItemCtn } from '@/app/components'
-import { RealEstateAvailable, RealEstateCriteria, RealEstateCTA, RealEstatePageHero, RealEstatePosts } from '@/app/components/investment-page'
+import { AppContainer, ScrollableItemCtn } from '@/app/_components'
+import { RealEstateAvailable, RealEstateCriteria, RealEstateCTA, RealEstatePageHero, RealEstatePosts } from '@/app/_components/investment-page'
 import { useInvestmentsPageSectionRefs } from '@/utility/refs/investments-page-refs'
 import { useScroll, useAnimationControls, useMotionValueEvent } from 'framer-motion'
 import React, { Suspense, useEffect, useRef, useState } from 'react';
-import { useScroll as scroll } from '@/app/context/sub-context/ScrollContext';
+import { useScroll as scroll } from '@/app/_context/sub-context/ScrollContext';
 import { investmentsRealEstatePage as gradientVariants } from '@/library/const/animation-gradients'
 import { Book } from '@mui/icons-material'
 import { Environment } from '@react-three/drei'

@@ -1,142 +1,92 @@
 'use client'
 
 
-import { AppContainer } from '@/app/components';
+import { AppContainer } from '@/app/_components';
 import React, { useEffect, useRef, useState } from 'react'
-import { AgileDevelopment, AgileDevelopmentDynamic, ApproachHero, DesignThinking, DesignThinkingDynamic, ProcessWorkflow, TechnologyStack, WorkflowDynamic } from '../_components/approach';
+import { AgileDevelopment, AgileDevelopmentDynamic, ApproachHero, DesignPatterns,  DesignThinkingDynamic, ProcessWorkflow, TechnologyStack, WorkflowDynamic } from '../_components/approach';
 import { agileDevelopment, designThinking, Point, workflow } from '@/library/const';
 import { useProgrammerPageSectionRefs } from '@/utility/refs/programmer-page-refs';
 import { useScroll, useMotionValueEvent, useAnimationControls } from 'framer-motion';
 import { programmerGradientVariants } from '@/library/const/animation-gradients';
+import SolidHero from '../_components/approach/solid/SolidHero';
+import SDLCHero from '../_components/approach/sdlc/SDLCHero';
+import GradientUseEffect from '@/app/_components/common/GradientUseEffect';
+import { useRouter } from 'next/navigation';
 
 const ApproachPage = () => {
-
+    const router = useRouter();
     const {
-        scrollRef, bodyRef,  approachRefs:refs, 
-        approachMainRef, approachAgileDevRef, approachAgileDevDynamicRefs,
-        designThinkingRef, designThinkingDynamicRefs, technologyStackRef,
-        processFlowRef, processFlowDynamicRefs,
+        scrollRef, bodyRef, approachRefs: refs,
+        approachMainRef, approachSolidRef, approachAgileDevDynamicRefs,
+        designPatternsRef, designThinkingDynamicRefs, continuousLearningRef,
+        sdlcRef, processFlowDynamicRefs,
     } = useProgrammerPageSectionRefs();
 
     const [scrollYPro, setScrollYPro] = React.useState<number>(0)
-    const { scrollYProgress, scrollY,  } = useScroll({target:bodyRef, offset: ['start end', 'end start']})
+    const { scrollYProgress, scrollY, } = useScroll({ target: bodyRef, offset: ['start end', 'end start'] })
 
     useMotionValueEvent(scrollY, "change", (latest) => {
         // console.log(latest, (scrollRef?.current?.scrollHeight! - (window ? window.innerHeight : 0) ))
-        setScrollYPro(scrollRef?.current?.scrollHeight! - (window ? window.innerHeight : 0) );
+        setScrollYPro(scrollRef?.current?.scrollHeight! - (window ? window.innerHeight : 0));
     });
 
     const [currentSection, setCurrentSection] = useState<string>('');
     const controls = useAnimationControls();
 
     const snapToTop = (element: Element) => {
-        element.scrollIntoView({ behavior:"smooth", block: 'start' });
+        element.scrollIntoView({ behavior: "auto", block: 'start' });
     };
 
-    useEffect(() => {
+    console.log(refs);
 
-        const observerOptions = {
-        root: null, // Use the viewport as the root
-        rootMargin: '0px',
-        threshold: 0.51, // Trigger when 50% of the element is in view
-        };
+    function scrollToSection(id: string) {
+        switch (id) {
+            case "approach-main":
+                refs[0].ref.current?.scrollIntoView({
+                    block:"start", behavior:"auto",
+                });
+                break;
+            case "approach-solid-principles":
+                refs[1].ref.current?.scrollIntoView({
+                    block:"start", behavior:"auto",
+                });
+                break;
+            case "approach-design-patterns":
+                refs[2].ref.current?.scrollIntoView({
+                    block:"start", behavior:"auto",
+                });
+                break;
+            case "approach-sdlc":
+                refs[3].ref.current?.scrollIntoView({
+                    block:"start", behavior:"auto",
+                });
+                break;
 
-        const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                const id = entry.target.id;
-                setCurrentSection(id); // Update currentSection to the current ref's id
-                controls.start(id); // Trigger the animation for the current section
-                // snapToTop(entry.target);
-            console.log(entry.target.id);
-            }
-            
-
-        });
-        }, observerOptions);
-
-        refs.forEach(({ ref }) => {
-        if (ref.current) {
-            observer.observe(ref.current);
-            
+            default:
+                break;
         }
-        });
+    }
 
-        {
-            refs.forEach((ref)=> {
-                if(ref){
-                    console.log(ref.ref.current)
-                }
-            })
-        }
+    function goToPage(id:string) {
+        router.push(id);
+    }
 
-        return () => {
-        refs.forEach(({ ref }) => {
-            if (ref.current) {
-            observer.unobserve(ref.current);
-            }
-        });
-        };
-    }, [controls, refs]);
-
-
+    GradientUseEffect({ controls, refs });
 
 
     return (
         <AppContainer
-        ctnRef={scrollRef}
-        bodyRef={bodyRef}
-        gradientVariants={programmerGradientVariants}
-        controls={controls}
+            ctnRef={scrollRef}
+            bodyRef={bodyRef}
+            gradientVariants={programmerGradientVariants}
+            controls={controls}
         >
-            <ApproachHero ctnRef={approachMainRef} />
-            <AgileDevelopment ctnRef={approachAgileDevRef} />
-            {
-                agileDevelopment.map((f:Point,i:number)=> { 
-                    const currentRef = approachAgileDevDynamicRefs[i];
-                    if (i%2 === 0) {
-                        return (
-                            <AgileDevelopmentDynamic key={`importFactor: ${i}`} left='right' factor={f} ctnRef={currentRef} index={i} />
-                        )                        
-                    } else {
-                        return (
-                            <AgileDevelopmentDynamic key={`importFactor: ${i}`} left='left' factor={f} ctnRef={currentRef} index={i} />
-                        )
-                    }
-                })
-            }
-            <DesignThinking ctnRef={designThinkingRef} />
-            {
-                designThinking.map((f:Point,i:number)=> { 
-                    const currentRef = designThinkingDynamicRefs[i];
-                    if (i%2 === 0) {
-                        return (
-                            <DesignThinkingDynamic key={`importFactor: ${i}`} left='right' factor={f}ctnRef={currentRef} index={i} />
-                        )                        
-                    } else {
-                        return (
-                            <DesignThinkingDynamic key={`importFactor: ${i}`} left='left' factor={f} ctnRef={currentRef} index={i} />
-                        )
-                    }
 
-                })
-            }
-            <TechnologyStack ctnRef={technologyStackRef} />
-            <ProcessWorkflow ctnRef={processFlowRef} />
-            {
-                workflow.map((f:Point,i:number)=> { 
-                    const currentRef = processFlowDynamicRefs[i];
-                    if (i%2 === 0) {
-                        return (
-                            <WorkflowDynamic key={`importFactor: ${i}`} left='right' factor={f} ctnRef={currentRef}  index={i} />
-                        )                        
-                    } else {
-                        return (
-                            <WorkflowDynamic key={`importFactor: ${i}`} left='left' factor={f} ctnRef={currentRef}  index={i} />
-                        )
-                    }
-                })
-            }
+            <ApproachHero ctnRef={approachMainRef} scrollTo={scrollToSection} />
+            <SolidHero ctnRef={approachSolidRef} scrollTo={scrollToSection} />
+            <DesignPatterns ctnRef={designPatternsRef}  scrollTo={scrollToSection}/>
+            <SDLCHero ctnRef={sdlcRef}  scrollTo={scrollToSection}/>
+
         </AppContainer>
     )
 }

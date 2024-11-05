@@ -2,7 +2,7 @@
 
 
 import React, { RefObject } from 'react';
-import { PageWrapper } from '@/app/components';
+import { Header, PageWrapper } from '@/app/_components';
 import { motion } from 'framer-motion';
 import styles from './styles.module.css'
 import { Button } from '@mui/material';
@@ -21,24 +21,14 @@ const WhyDigitalSolutions:React.FC<{
             id='programmer-why-digital'
             ctnRef={ctnRef}
             >
-                
-                {/* Top Typography Containers */}
-                <motion.div
-                className={`${styles.topHeroCtn} top-hero-ctn right`}
-                >
-                    <motion.h1
-                    className={`${styles.header} header right`}
-                    >
-                        The Power of Digital Solutions
-                    </motion.h1>
 
-                    <motion.h5
-                    className={`${styles.subheader} subheader right`}
-                    >
-                        Harnessing the Power of Technology to Drive Success
-                    </motion.h5>
-                    
-                </motion.div>
+                <Header 
+                headerLabel='The Power of Digital Solutions'
+                tagLine='Harnessing the Power of Technology to Drive Success'
+                size='sm'
+                />
+                
+          
 
                 {/*  Bottom Container for navigation buttons */}
                 <motion.div 

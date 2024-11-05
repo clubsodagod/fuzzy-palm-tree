@@ -1,14 +1,14 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from 'react'
-import { InvestmentApproach, InvestmentAreas, InvestmentPageHero } from '../components/investment-page'
-import { AppContainer, PageWrapper } from '../components'
+import { InvestmentApproach, InvestmentAreas, InvestmentPageHero } from '../_components/investment-page'
+import { AppContainer, PageWrapper } from '../_components'
 import { motion, useAnimationControls, useMotionValueEvent, useScroll } from 'framer-motion'
 import InvestmentWorldScene from './_components/scenes/InvestmentWorldScene';
 import { investmentsPage as gradientVariants } from '@/library/const/animation-gradients'
 import { useInvestmentsPageSectionRefs } from '@/utility/refs/investments-page-refs'
-import { InvestmentsPageExperience } from '../components/experiences';
-import { useScroll as scroll } from '../context/sub-context/ScrollContext';
+import { InvestmentsPageExperience } from '../_components/experiences';
+import { useScroll as scroll } from '../_context/sub-context/ScrollContext';
 
 
 const InvestmentsPage = () => {

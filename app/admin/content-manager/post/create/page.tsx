@@ -1,11 +1,11 @@
 'use client'
-import { AppContainer, EmployeeArea, PageContainer } from '@/app/components';
+import { AppContainer, EmployeeArea, PageContainer } from '@/app/_components';
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { RichTextEditor } from '../_components';
 import styles from '../_components/styles.module.css';
 import { Button } from '@mui/material';
-import { useScreenContext } from '@/app/context/sub-context/ScreenContext';
+import { useScreenContext } from '@/app/_context/sub-context/ScreenContext';
 import { BlogDocumentType } from '@/library/db/models/blog';
 
 const CreatePostsPage = () => {

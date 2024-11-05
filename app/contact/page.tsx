@@ -2,7 +2,7 @@
 
 
 import React, { useRef } from 'react'
-import { AppContainer } from '../components';
+import { AppContainer } from '../_components';
 
 const ContactPage = () => {
     

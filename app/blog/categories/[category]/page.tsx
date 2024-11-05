@@ -1,13 +1,13 @@
 
-import { AppContainer } from '@/app/components';
-import { AnimatePresencePro } from '@/app/components/framer/AnimatePresencePro';
-import { MotionDiv } from '@/app/components/framer/MotionDiv';
+import { AppContainer } from '@/app/_components';
+import { AnimatePresencePro } from '@/app/_components/framer/AnimatePresencePro';
+import { MotionDiv } from '@/app/_components/framer/MotionDiv';
 import { ICategory } from '@/library/db/models/category'
 import { useRef } from 'react';
 import slugify from 'slugify';
 import CategoryHero from '../../_components/slug-page/CategoryHero';
-import MotionPageWrapper from '@/app/components/common/MotionPageWrapper';
-import MotionSectionWrapper from '@/app/components/common/MotionSectionWrapper';
+import MotionPageWrapper from '@/app/_components/common/MotionPageWrapper';
+import MotionSectionWrapper from '@/app/_components/common/MotionSectionWrapper';
 
 
 // Next.js will invalidate the cache when a

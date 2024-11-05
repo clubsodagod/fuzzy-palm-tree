@@ -2,7 +2,7 @@
 
 import React, { RefObject } from 'react'
 import styles from '../styles.module.css';
-import { PageWrapper } from '@/app/components';
+import { PageWrapper } from '@/app/_components';
 import { motion } from 'framer-motion';
 import { Point } from '@/library/const';
 import { numberToWord } from '@/utility/functions';

@@ -1,16 +1,16 @@
 "use client"
 import React from 'react'
 import styles from '../../../styles.module.css';
-import { EmployeeArea} from '@/app/components'
-import MotionPageWrapper from '@/app/components/common/MotionPageWrapper'
-import { MotionDiv } from '@/app/components/framer/MotionDiv'
-import { MotionH2 } from '@/app/components/framer/MotionH2'
+import { EmployeeArea} from '@/app/_components'
+import MotionPageWrapper from '@/app/_components/common/MotionPageWrapper'
+import { MotionDiv } from '@/app/_components/framer/MotionDiv'
+import { MotionH2 } from '@/app/_components/framer/MotionH2'
 import CaseStudyForm from '../_components/CaseStudyForm'
-import MotionSectionWrapper from '@/app/components/common/MotionSectionWrapper';
+import MotionSectionWrapper from '@/app/_components/common/MotionSectionWrapper';
 import { handleSubmitClient } from '@/utility/functions/forms';
 import { CaseStudyDocumentType } from '@/library/db/models/case-study';
 import { ErrorResponseMessage } from '@/library/types/common';
-import { MotionSection } from '@/app/components/framer/MotionSection';
+import { MotionSection } from '@/app/_components/framer/MotionSection';
 
 
 const CaseStudyCreatePage: React.FC<{}> = ({ }) => {

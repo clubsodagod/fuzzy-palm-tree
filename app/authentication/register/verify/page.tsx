@@ -1,5 +1,5 @@
 'use client'
-import { AppContainer, SectionWrapper } from '@/app/components';
+import { AppContainer, SectionWrapper } from '@/app/_components';
 import React, { useRef, useEffect, useState } from 'react';
 import styles from '../../_components/styles.module.css';
 import { useSearchParams, useRouter} from 'next/navigation';

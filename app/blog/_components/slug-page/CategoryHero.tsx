@@ -1,13 +1,13 @@
 import React from 'react'
 import styles from '../components.module.css'
-import { MotionDiv } from '@/app/components/framer/MotionDiv';
-import { MotionH3 } from '@/app/components/framer/MotionH3';
+import { MotionDiv } from '@/app/_components/framer/MotionDiv';
+import { MotionH3 } from '@/app/_components/framer/MotionH3';
 import { ICategory } from '@/library/db/models/category';
-import { MotionP } from '@/app/components/framer/MotionP';
+import { MotionP } from '@/app/_components/framer/MotionP';
 import { IBlogPopulated } from '@/library/db/models/blog';
 import BlogCard2D from '../BlogCard';
-import { MotionH6 } from '@/app/components/framer/MotionH6';
-import { MotionH5 } from '@/app/components/framer/MotionH5';
+import { MotionH6 } from '@/app/_components/framer/MotionH6';
+import { MotionH5 } from '@/app/_components/framer/MotionH5';
 
 
 const CategoryHero: React.FC<{ 

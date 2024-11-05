@@ -1,6 +1,6 @@
 'use client'
 
-import { AppContainer } from '@/app/components';
+import { AppContainer } from '@/app/_components';
 import React, { useRef } from 'react'
 
 const MediaPage = () => {

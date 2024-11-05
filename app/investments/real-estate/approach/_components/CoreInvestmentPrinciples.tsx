@@ -1,7 +1,7 @@
 'use client'
 import React, { RefObject, useRef } from 'react'
 import styles from '../../../investments.module.css'
-import { PageWrapper } from '@/app/components';
+import { PageWrapper } from '@/app/_components';
 import { coreInvestmentPrinciples } from '@/library/const';
 import { Principle } from '@/library/types/investment';
 import { motion } from 'framer-motion';

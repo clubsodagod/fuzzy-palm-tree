@@ -20,10 +20,10 @@ export const useProgrammerPageSectionRefs = (): {
     whyDigitalDynamicRefs: RefObject<HTMLDivElement>[];
     refs: RefIDObject[];
     approachMainRef: RefObject<HTMLDivElement>;
-    approachAgileDevRef: RefObject<HTMLDivElement>;
-    designThinkingRef: RefObject<HTMLDivElement>;
-    technologyStackRef: RefObject<HTMLDivElement>;
-    processFlowRef: RefObject<HTMLDivElement>;
+    approachSolidRef: RefObject<HTMLDivElement>;
+    designPatternsRef: RefObject<HTMLDivElement>;
+    continuousLearningRef: RefObject<HTMLDivElement>;
+    sdlcRef: RefObject<HTMLDivElement>;
     approachAgileDevDynamicRefs: RefObject<HTMLDivElement>[];
     designThinkingDynamicRefs: RefObject<HTMLDivElement>[];
     processFlowDynamicRefs: RefObject<HTMLDivElement>[];
@@ -59,10 +59,10 @@ export const useProgrammerPageSectionRefs = (): {
 
     // Approach Section Refs
     const approachMainRef = useRef<HTMLDivElement>(null);
-    const approachAgileDevRef = useRef<HTMLDivElement>(null);
-    const designThinkingRef = useRef<HTMLDivElement>(null);
-    const technologyStackRef = useRef<HTMLDivElement>(null);
-    const processFlowRef = useRef<HTMLDivElement>(null);
+    const approachSolidRef = useRef<HTMLDivElement>(null);
+    const designPatternsRef = useRef<HTMLDivElement>(null);
+    const continuousLearningRef = useRef<HTMLDivElement>(null);
+    const sdlcRef = useRef<HTMLDivElement>(null);
 
     // Dynamic Refs Initialization
     const approachAgileDevDynamicRefs = useRef(agileDevelopment.map(() => createRef<HTMLDivElement>())).current;
@@ -92,12 +92,9 @@ export const useProgrammerPageSectionRefs = (): {
 
     const approachRefs = [
         { ref: approachMainRef, id: 'approach-main' },
-        { ref: approachAgileDevRef, id: 'approach-agile-development' },
-        ...createDynamicRefs([{ refs: approachAgileDevDynamicRefs, idTemplate: `approach-agile-development-dynamic` }]),
-        { ref: designThinkingRef, id: 'approach-design-thinking' },
-        ...createDynamicRefs([{ refs: designThinkingDynamicRefs, idTemplate: `approach-design-thinking-dynamic` }]),
-        { ref: processFlowRef, id: 'real-estate-cta' },
-        ...createDynamicRefs([{ refs: processFlowDynamicRefs, idTemplate: `approach-process-flow-dynamic` }]),
+        { ref: approachSolidRef, id: 'approach-solid-principles' },
+        { ref: designPatternsRef, id: 'approach-design-patterns' },
+        { ref: sdlcRef, id: 'approach-sdlc' },
     ];
 
 
@@ -111,13 +108,12 @@ export const useProgrammerPageSectionRefs = (): {
         { ref: digitalSolutionsRef, id: 'digital-solutions-main' },
         { ref: customSoftwareRef, id: 'custom-software' },
         ...createDynamicRefs([{ refs: customSoftwareDynamicRefs, idTemplate: `custom-software-dynamic` }]),
-        ...createDynamicRefs([{ refs: digitalTransformationDynamicRefs, idTemplate: `digital-transformation-dynamic` }]),
         { ref: dataScienceAIRef, id: 'data-science-ai' },
-        { ref: webMobileAppRef, id: 'web-mobile-application' },
         ...createDynamicRefs([{ refs: dataScienceAIDynamicRefs, idTemplate: `data-science-ai-dynamic` }]),
+        { ref: webMobileAppRef, id: 'web-mobile-application' },
+        ...createDynamicRefs([{ refs: webMobileAppDynamicRefs, idTemplate: `web-mobile-application-dynamic` }]),
         { ref: digitalTransformationRef, id: 'digital-transformation' },
-        ...createDynamicRefs([{ refs: webMobileAppDynamicRefs, idTemplate: `web-mobile-app-dynamic` }]),
-        { ref: digitalSolutionsVisualsRef, id: 'digital-solutions-visual' },
+        ...createDynamicRefs([{ refs: digitalTransformationDynamicRefs, idTemplate: `digital-transformation-dynamic` }]),
     ];
 
 
@@ -141,12 +137,12 @@ export const useProgrammerPageSectionRefs = (): {
         refs,
         approachRefs,
         approachMainRef,
-        approachAgileDevRef,
+        continuousLearningRef,
         approachAgileDevDynamicRefs,
-        designThinkingRef,
+        designPatternsRef,
         designThinkingDynamicRefs,
-        technologyStackRef,
-        processFlowRef,
+        approachSolidRef,
+        sdlcRef,
         processFlowDynamicRefs,
         ctaConsultationRef,
         contactInfoRef,

@@ -1,10 +1,10 @@
-import MotionPageWrapper from '@/app/components/common/MotionPageWrapper';
-import MotionSectionWrapper from '@/app/components/common/MotionSectionWrapper';
-import { MotionDiv } from '@/app/components/framer/MotionDiv';
-import { MotionH1 } from '@/app/components/framer/MotionH1';
-import { MotionImg } from '@/app/components/framer/MotionImg';
-import { MotionP } from '@/app/components/framer/MotionP';
-import { useScreenContext } from '@/app/context/sub-context/ScreenContext';
+import MotionPageWrapper from '@/app/_components/common/MotionPageWrapper';
+import MotionSectionWrapper from '@/app/_components/common/MotionSectionWrapper';
+import { MotionDiv } from '@/app/_components/framer/MotionDiv';
+import { MotionH1 } from '@/app/_components/framer/MotionH1';
+import { MotionImg } from '@/app/_components/framer/MotionImg';
+import { MotionP } from '@/app/_components/framer/MotionP';
+import { useScreenContext } from '@/app/_context/sub-context/ScreenContext';
 import { getPostBySlug } from '@/library/db/controllers/blog';
 import { IBlog, IBlogPopulated } from '@/library/db/models/blog';
 import { getAllPostsClient, getPostBySlugClient } from '@/utility/blog-section/blog-page-functions';

@@ -1,47 +1,69 @@
 
 import React, { RefObject } from 'react'
-import { PageWrapper } from '@/app/components'
+import { Header, PageWrapper } from '@/app/_components'
 import { motion } from 'framer-motion';
 import styles from './styles.module.css'
 import { Button } from '@mui/material';
+import { MotionDiv } from '@/app/_components/framer/MotionDiv';
+import ButtonPro from '@/app/_components/common/buttons/ButtonPro';
+import { extend } from 'lodash';
+import { MotionDivProps } from '@/app/_components/common/ScrollableItemCtn';
 
-const DigitalSolutionsHeroMain:React.FC<{
-    ctnRef:RefObject<HTMLDivElement>,
-}> = ({
+export type VoidOneParameterFunction = (id: string) => void;
+export type VoidTwoParameterFunction = (event: MouseEvent, id: string) => void;
+
+interface DigitalSolutionsHeroProps extends MotionDivProps {
+    ctnRef: RefObject<HTMLDivElement>;
+    scrollTo: VoidOneParameterFunction;
+    goToPage: VoidTwoParameterFunction;
+}
+
+
+const DigitalSolutionsHeroMain: React.FC<DigitalSolutionsHeroProps> = ({
     ctnRef,
+    scrollTo,
+    goToPage
 }) => {
     return (
-            <PageWrapper 
-            ctnRef={ctnRef} 
+        <PageWrapper
+            ctnRef={ctnRef}
             id='digital-solutions-main'
+        >
+            <MotionDiv className={`${styles.heroWrapper}`}>
+
+                <Header
+                    headerLabel='Digital Solutions'
+                    tagLine='Bringing Your Ideas to Life with Innovation and Expertise'
+                    size='md'
+                />
+
+
+            </MotionDiv>
+            <MotionDiv
+                className={`${styles.btmHeroCtn} btm-hero-ctn left mt-auto`}
             >
-                
-                {/* Top Typography Containers */}
-                <motion.div
-                className={`${styles.topHeroCtn} top-hero-ctn left`}
-                >
-                    <motion.h1
-                    className={`${styles.header} header left`}
-                    >
-                        I&apos;m a Programmer
-                    </motion.h1>
-                    <motion.h3 className={`${styles.subheader} subheader left`}>
-                        Bringing Your Ideas to Life with Innovation and Expertise
-                    </motion.h3>
-                </motion.div>
 
-                {/*  Bottom Container for navigation buttons */}
-                <motion.div className={`${styles.btmHeroCtn} btm-hero-ctn left`}>
+                <MotionDiv className={`${styles.btnCtn} btn-ctn leftBtn flex gap-3`}>
 
-                    <motion.h5 className={styles.excerpt}>
+                    <ButtonPro
+                        variant='contained'
+                        label="Let's Work"
+                        color='primary'
+                        href='/im-a-programmer/lets-work'
+                        onClick={(event) => { goToPage(event as unknown as MouseEvent, '/im-a-programmer/lets-work') }}
+                    />
 
-                    </motion.h5>
-                    <motion.div className={`${styles.btnCtn} btn-ctn leftBtn`}>
-                        <Button variant='contained'>My Approach</Button>
-                        <Button variant='outlined'>Featured Solutions</Button>
-                    </motion.div>
-                </motion.div>
-            </PageWrapper>
+                    <ButtonPro
+                        variant='contained'
+                        label='Custom Software'
+                        color='secondary'
+                        onClick={() => { scrollTo('custom-software') }}
+                    />
+
+                </MotionDiv>
+            </MotionDiv>
+
+        </PageWrapper>
     )
 }
 

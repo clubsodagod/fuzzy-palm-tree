@@ -1,5 +1,5 @@
 'use client'
-import { OuterSceneWrapper, PageWrapper, ScrollableItemCtn } from '@/app/components';
+import { OuterSceneWrapper, PageWrapper, ScrollableItemCtn } from '@/app/_components';
 import React, { ReactHTMLElement, RefObject, useRef } from 'react';
 import styles from '../../../../investments.module.css';
 

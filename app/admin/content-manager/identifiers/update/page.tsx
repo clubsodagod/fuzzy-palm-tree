@@ -1,5 +1,5 @@
 'use client'
-import { PageContainer } from '@/app/components';
+import { PageContainer } from '@/app/_components';
 import React, { useEffect, useState } from 'react';
 import styles from '../../../styles.module.css';
 import { motion } from 'framer-motion';

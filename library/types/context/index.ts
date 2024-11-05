@@ -1,3 +1,4 @@
+import { MotionValue } from "framer-motion";
 import { Session } from "next-auth";
 
 export interface ScrollContainerData {
@@ -7,10 +8,6 @@ export interface ScrollContainerData {
 }
 
 export interface ScrollContextProps {
-    scrollX: number; // Represents the X-axis scroll position
-    scrollY: number; // Represents the Y-axis scroll position
-    scrollYPro: number; // Represents a processed value for Y-axis scrolling
-    setScrollYPro: (value: number) => void; // Function to update scrollYPro
     windowHeight: number; // Represents a processed value for Y-axis scrolling
     setWindowHeight: (value: number) => void; // Function to update scrollYPro
     windowScrollHeight: number; // Represents a processed value for Y-axis scrolling
@@ -26,7 +23,8 @@ export interface ScrollContextProps {
     threeEighthsCtn:number,
     eighthCtn:number,
     fiveEightsCtn:number,
-    sevenEightsCtn:number
+    sevenEightsCtn:number,
+    scrollY:MotionValue,
 }
 
 export type SessionStatusType = "authenticated" | "loading" | "unauthenticated";

@@ -26,9 +26,9 @@ body {
 h1,h2,h3,h4,h5,h6,p {
   margin: 0;
 }
-
+/* 
 h1 {
-  font-size: 3.5rem;
+  font-size: 4rem;
 }
 h2 {
   font-size: 3.0rem;
@@ -44,7 +44,7 @@ h5 {
 }
 h6 {
   font-size: 1.15rem;
-}
+} */
 
 
 
@@ -102,7 +102,11 @@ h6 {
 
 
 .app-ctn {
-  /* background-color: #000; */
+  background: #3494E6;  /* fallback for old browsers */
+  background: -webkit-radial-gradient( #EC6EAD, #3494E6);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-radial(#EC6EAD, #3494E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-size: 150% 150%;
+  background-position: 0% 75%;
   scroll-snap-type: y proximity; /* Enable vertical snap scrolling */
   overflow-y: auto;   
   scroll-behavior:smooth;
@@ -333,4 +337,9 @@ contact-main-gradient {
 .investment-gradient-next {
   background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
   animation: gradient 10s infinite   alternate ;
+}
+
+
+.headerCtn {
+  width: 100%;
 }

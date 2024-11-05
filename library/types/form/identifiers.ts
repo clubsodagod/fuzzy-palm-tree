@@ -1,6 +1,7 @@
 import { BlogDocumentType } from "@/library/db/models/blog";
 import { CaseStudyDocumentType } from "@/library/db/models/case-study";
 import { CategoryDocumentType } from "@/library/db/models/category";
+import { ContactDocumentType } from "@/library/db/models/contact";
 import { PortfolioDocumentType } from "@/library/db/models/portfolio";
 import { PropertyDocumentType } from "@/library/db/models/property";
 import { SubcategoryDocumentType } from "@/library/db/models/subcategory";
@@ -14,11 +15,12 @@ export type FormDocumentTypeV2 =
     | { type: "caseStudy"; document: CaseStudyDocumentType }
     | { type: "property"; document: PropertyDocumentType }
     | { type: "portfolio"; document: PortfolioDocumentType }
-    | { type: "technicalApplication"; document: TechnicalApplicationDocumentType };
+    | { type: "technicalApplication"; document: TechnicalApplicationDocumentType }
+    | { type: "contact"; document: ContactDocumentType };
 
 
 
-export type FormDocumentType = CategoryDocumentType | SubcategoryDocumentType | BlogDocumentType | CaseStudyDocumentType | PropertyDocumentType | PortfolioDocumentType | TechnicalApplicationDocumentType;
+export type FormDocumentType = CategoryDocumentType | SubcategoryDocumentType | BlogDocumentType | CaseStudyDocumentType | PropertyDocumentType | PortfolioDocumentType | TechnicalApplicationDocumentType | ContactDocumentType;
 
 export interface FormField<T> {
     key: keyof T | string; // Support nested keys

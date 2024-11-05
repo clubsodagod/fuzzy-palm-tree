@@ -1,51 +1,27 @@
 'use client'
-import { BlogHero, InvestmentsHero, ProgrammerHero, AppContainer, HomeMainHero, ScrollableItemCtn, } from "./components";
+import { BlogHero, InvestmentsHero, ProgrammerHero, AppContainer, HomeMainHero, ScrollableItemCtn, } from "./_components";
 import { useEffect, useRef, useState } from "react";
 import { useMotionValueEvent, useScroll, useAnimationControls, MotionValue, motionValue } from "framer-motion";
 import React from "react";
-import { HomeScene } from "./components/scenes";
-import { useScroll as scroll } from "./context/sub-context/ScrollContext";
+import { HomeScene } from "./_components/scenes";
+import { useScroll as scroll } from "./_context/sub-context/ScrollContext";
 import { homePage as gradientVariants } from "@/library/const/animation-gradients";
-import { useSectionRefs } from "@/utility/refs/home-page-refs";
+import { RefIDObject, useSectionRefs } from "@/utility/refs/home-page-refs";
 import { log } from "console";
 import { getAllPostsClient } from "@/utility/blog-section/blog-page-functions";
 import { IBlogPopulated } from "@/library/db/models/blog";
 import BlogCard2D from "./blog/_components/BlogCard";
-import { MotionDiv } from "./components/framer/MotionDiv";
+import { MotionDiv } from "./_components/framer/MotionDiv";
 import styles from "./components/scenes/styles.module.css"
-import { useScreenContext } from "./context/sub-context/ScreenContext";
-import { MotionH6 } from "./components/framer/MotionH6";
+import { useScreenContext } from "./_context/sub-context/ScreenContext";
+import { MotionH6 } from "./_components/framer/MotionH6";
 
-const useDebouncedMotionValue = (motionValue: MotionValue<number>, delay: number) => {
-  const [debouncedValue, setDebouncedValue] = useState(motionValue.get());
-
-  useEffect(() => {
-    let timeout: NodeJS.Timeout;
-
-    const updateDebouncedValue = (latest: number) => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        setDebouncedValue(latest);
-      }, delay);
-    };
-
-    const unsubscribe = motionValue.onChange(updateDebouncedValue);
-
-    // Cleanup on unmount
-    return () => {
-      clearTimeout(timeout);
-      unsubscribe();
-    };
-  }, [motionValue, delay]);
-
-  return debouncedValue;
-};
 
 export default function Home() {
   const [currentSection, setCurrentSection] = useState<string>('');
   const [posts, setPosts] = useState<IBlogPopulated[] | undefined>();
 
-  const { scrollYPro, setScrollYPro, windowScrollHeight, setWindowScrollHeight, setWindowHeight, windowHeight } = scroll();
+  const { windowScrollHeight, setWindowScrollHeight, setWindowHeight, windowHeight } = scroll();
 
 
   const {
@@ -58,9 +34,7 @@ export default function Home() {
   } = useSectionRefs();
 
 
-  const ctnRef = React.useRef<HTMLDivElement>(null);
-  // Transformation and animation values #framer-motion useScroll to determining 
-  // positioning of the container being scrolled
+  // Transformation and animation values #framer-motion useScroll 
   const { scrollYProgress, scrollY, } = useScroll({ target: bodyRef, offset: ['start end', 'end start'] })
 
 
@@ -74,8 +48,56 @@ export default function Home() {
     return await getAllPostsClient()
   }
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const scrollToSection = (index: number, refs: RefIDObject[]) => {
+    if (refs[index] && refs[index].ref.current) {
+      refs[index].ref.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  };
+
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  const scrollThreshold = 150;
+
+
   useEffect(() => {
-    setScrollYPro(scrollRef?.current?.scrollHeight!);
+
+    let accumulatedDeltaY = 0; // Accumulate scroll deltas to reduce sensitivity
+
+    const handleScroll = (event: WheelEvent) => {
+      accumulatedDeltaY += event.deltaY;
+
+      // Only scroll when deltaY exceeds the threshold
+      if (Math.abs(accumulatedDeltaY) > scrollThreshold) {
+        if (accumulatedDeltaY > 0) {
+          // Scrolling down
+          setCurrentIndex((prevIndex) =>
+            Math.min(prevIndex + 1, refs.length - 1)
+          );
+        } else {
+          // Scrolling up
+          setCurrentIndex((prevIndex) =>
+            Math.max(prevIndex - 1, 0)
+          );
+        }
+        accumulatedDeltaY = 0; // Reset after scrolling
+      }
+    };
+
+    window.addEventListener('wheel', handleScroll);
+
+    scrollToSection(currentIndex, refs); // Scroll when the index changes
+
+    return () => {
+      window.removeEventListener('wheel', handleScroll);
+    };
+  }, [currentIndex, refs]);
+
+  useEffect(() => {
     console.log(window?.innerHeight);
 
     setWindowHeight(window?.innerHeight);
@@ -86,7 +108,9 @@ export default function Home() {
     postsHandler()
   }, []);
 
+
   useEffect(() => {
+
     const observerOptions = {
       root: null, // Use the viewport as the root
       rootMargin: '0px',
@@ -112,9 +136,6 @@ export default function Home() {
       }
     });
 
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = 1
-    }
 
     return () => {
       refs.forEach(({ ref }) => {
@@ -123,7 +144,7 @@ export default function Home() {
         }
       });
     };
-  }, [controls, refs, scrollRef]);
+  }, [controls, refs, ]);
 
 
   useEffect(() => {
@@ -134,7 +155,7 @@ export default function Home() {
       setWindowHeight(window?.innerHeight);
     }
     { windowScrollHeight && windowScrollHeight }
-  }, [windowScrollHeight, setWindowScrollHeight, scrollYPro, scrollRef, windowHeight, setWindowHeight]);
+  }, [windowScrollHeight, setWindowScrollHeight, scrollRef, windowHeight, setWindowHeight]);
 
   return (
     <AppContainer
@@ -161,7 +182,7 @@ export default function Home() {
             <BlogHero ctnRef={blogRef} />
 
             <div className='three-scene'>
-              <HomeScene scrollYProgress={scrollYProgress} scrollY={scrollY} ctnHeightValue={scrollYPro} ctnRefs={threeRefs} />
+              <HomeScene scrollYProgress={scrollYProgress} scrollY={scrollY} ctnRefs={threeRefs} />
             </div>
           </>
       }

@@ -5,7 +5,7 @@
 
 .bioFlexCtn {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     justify-content: center;
     gap: 3vw;
 }
@@ -20,7 +20,26 @@
     width: 40%;
     }
 }
+.bioTextBox {
+    z-index: 10;
+    height: auto;
 
+    @media screen and (min-width:769px) {
+        padding-inline: 16vw;
+    }
+}
+.bioTextt {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 1;
+    line-clamp: 3; /* Specifies the number of lines to show */
+    -webkit-line-clamp: 3; /* Works in most browsers */
+    line-height: 1.15rem; /* Adjust this based on your font size */
+    max-height: calc(1.15rem * 3); 
+    color: whitesmoke;
+}
 .bioBioTxt {
 
     @media screen and (max-width:768px) {
@@ -39,15 +58,16 @@
 .bioImgWrapper {
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: end;
+    align-items: end;
     position: absolute;
-    top:0;
+    bottom:0;
     width: 100%;
-    height:100vh;
+    /* height:100vh; */
 
     @media screen and (min-width:769px) {
-        max-width: 33vw;
-        position: relative;
+        right: 0;
+        max-width: 66vw;
         height: auto;
     }
 }
@@ -56,7 +76,15 @@
     object-fit: cover;
     width: 100%;
     @media screen and (min-width:769px) {
-    width: 33vw;
     }
 
+}
+
+.storyTimeTextBox {
+    position: absolute;
+    left: 0;
+    top: 30vh;
+    padding-inline: 6vw;
+    max-height: 60vh;
+    overflow-y: auto;
 }

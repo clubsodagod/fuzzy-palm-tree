@@ -30,8 +30,6 @@ export const useResponsiveValues: UseResponsiveValues = (values: ResponsiveValue
     return values[2];
 };
 
-
-
 export type Puppeteer = (useTransform:any,transformValue:MotionValue, scale:number[], x:number[],y:number[],z:number[], rotationX:number[], rotationY:number[], rotationZ:number[], eventPoints:number[]) => {
     scale:MotionValue,
     x:MotionValue,
@@ -55,7 +53,6 @@ export const Animate:Puppeteer = (useTransform, transformValue, scale, x, y, z, 
         rotationZ: useTransform(transformValue, eventPoints,rotationZ),
         }
 }
-
 
 export const useMotionLogic = (scrollY: MotionValue, eventPoints: number[]) => {
     // Define properties like position and scale that might change with scroll.
@@ -82,10 +79,6 @@ export const useMotionLogic = (scrollY: MotionValue, eventPoints: number[]) => {
     };
 };
 
-
-
-
-
 // Utility function to convert numbers to words
 export const numberToWord = (num: number): string => {
     const words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
@@ -98,7 +91,6 @@ export interface DynamicRef {
 }
 
 export type CreateDynamicRefs = (dynamicRefs:DynamicRef[]) => RefIDObject[];
-
 
 export const createDynamicRefs:CreateDynamicRefs = (dynamicRefs) => {
 
@@ -132,9 +124,7 @@ export const shouldRenderObject = (
     return null;
   };
 
-
 export type  HandleSubmit = (arg0:FormDocument, arg1:string) => {message?:string, error:boolean}
-
 
 // Debounce utility function to delay validation execution
 export const debounce = (func: Function, delay: number) => {
@@ -145,7 +135,6 @@ export const debounce = (func: Function, delay: number) => {
   };
 };
   
-
 // Debounce utility function to delay validation execution
 export const debounceMotionValue = (mV: MotionValue, delay: number) => {
   let timeout: NodeJS.Timeout;
@@ -155,7 +144,6 @@ export const debounceMotionValue = (mV: MotionValue, delay: number) => {
   };
 };
   
-
 // Function to validate fields
 export const validateField = (name: string, value: string, form:any) => {
     let isValid = true;

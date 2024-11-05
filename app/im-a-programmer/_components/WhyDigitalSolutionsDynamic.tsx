@@ -1,5 +1,5 @@
 import React, { RefObject, useRef } from 'react'
-import { PageWrapper } from '@/app/components'
+import { PageWrapper } from '@/app/_components'
 import { Point } from '@/library/const'
 import { motion } from 'framer-motion'
 import styles from './styles.module.css';

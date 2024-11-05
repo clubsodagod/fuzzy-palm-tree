@@ -1,5 +1,5 @@
 'use client'
-import { AppContainer, LoginProtection, SectionWrapper } from '@/app/components'
+import { AppContainer, LoginProtection, SectionWrapper } from '@/app/_components'
 import React, { useRef } from 'react'
 import RegisterForm from '../_components/register/RegisterForm';
 import styles from '../_components/styles.module.css'

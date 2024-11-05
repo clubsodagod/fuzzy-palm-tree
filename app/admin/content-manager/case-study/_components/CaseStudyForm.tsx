@@ -1,24 +1,24 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import styles from './components.module.css'
-import { MotionForm } from '@/app/components/framer/MotionForm';
+import { MotionForm } from '@/app/_components/framer/MotionForm';
 import { blogFormDocument } from '@/library/const/forms/blog';
 import { caseStudyFormDocument } from '@/library/const/forms/case-study';
 import { CaseStudyDocumentType } from '@/library/db/models/case-study';
 import { ErrorObject, ErrorResponseMessage } from '@/library/types/common';
 import TextField from '@mui/material/TextField';
 import { FormField, FormFieldsFor } from '@/library/types/form/identifiers';
-import { MotionDiv } from '@/app/components/framer/MotionDiv';
+import { MotionDiv } from '@/app/_components/framer/MotionDiv';
 import { handleChanges, initCaseStudyDocument } from '@/utility/admin/case-study/create';
 import { Button, Checkbox, Chip, FormControl, FormControlLabel, Radio, RadioGroup, Stack } from '@mui/material';
-import { MotionP } from '@/app/components/framer/MotionP';
+import { MotionP } from '@/app/_components/framer/MotionP';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { StatusResponseObject } from '@/utility/admin/identifiers/create-card';
 import { validateField } from '@/utility/functions/forms';
 import { Description } from '@mui/icons-material';
-import { MotionH6 } from '@/app/components/framer/MotionH6';
-import DynamicAlert from '@/app/components/common/DynamicAlert';
-import { MotionH5 } from '@/app/components/framer/MotionH5';
+import { MotionH6 } from '@/app/_components/framer/MotionH6';
+import DynamicAlert from '@/app/_components/common/DynamicAlert';
+import { MotionH5 } from '@/app/_components/framer/MotionH5';
 
 export type MediaFields = ErrorObject<CaseStudyDocumentType['featuredImg']> | ErrorObject<CaseStudyDocumentType['featuredVideo']>;
 

@@ -1,4 +1,4 @@
-import { PageWrapper } from '@/app/components'
+import { PageWrapper } from '@/app/_components'
 import { motion } from 'framer-motion'
 import React, { RefObject } from 'react'
 import styles from '../styles.module.css'

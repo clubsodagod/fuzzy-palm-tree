@@ -1,6 +1,6 @@
 "use client"
-import { MotionGroup } from '@/app/components/framer/MotionGroup';
-import { useScroll } from '@/app/context/sub-context/ScrollContext';
+import { MotionGroup } from '@/app/_components/framer/MotionGroup';
+import { useScroll } from '@/app/_context/sub-context/ScrollContext';
 import { Atom, BankVault, CoinGrowthModel, DollarSign, IPhoneModel, LightBulbModel, MacbookModel, POSMachineModel, PuzzleModel, RobotModel, SmilingEmojiOneModel, SmilingEmojiTwoModel, SphereBotModel, SwissArmyKnifeModel } from '@/public/3d-objects';
 import { useMotionLogic } from '@/utility/animation/programmer-page';
 import { Environment, Float } from '@react-three/drei';
@@ -376,20 +376,6 @@ const MainProgrammerScene: React.FC<{
     scrollY,
 }) => {
 
-        const lightRef = React.useRef<GroupProps>(null);
-        const botRef = React.useRef<GroupProps>(null);
-        const posMachineRef = React.useRef<GroupProps>(null);
-        const iPhoneRef = React.useRef<GroupProps>(null);
-        const puzzleRef = React.useRef<GroupProps>(null);
-        const emojiRef = React.useRef<GroupProps>(null);
-        const swissArmyKnifeRef = React.useRef<GroupProps>(null);
-        const macbookRef = React.useRef<GroupProps>(null);
-        const coinGrowthRef = React.useRef<GroupProps>(null);
-        const dataHighwayRef = React.useRef<GroupProps>(null);
-        const emojiTwoRef = React.useRef<GroupProps>(null);
-        const dollarSignRef = React.useRef<GroupProps>(null);
-        const combinationLockRef = React.useRef<GroupProps>(null);
-        const atomRef = React.useRef<GroupProps>(null);
 
 
 

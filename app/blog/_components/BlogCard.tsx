@@ -6,7 +6,7 @@ import { Avatar } from '@mui/material'
 import { IBlog, IBlogPopulated } from '@/library/db/models/blog'
 import parse from "html-react-parser";
 import { useRouter } from 'next/navigation'
-import { MotionDiv } from '@/app/components/framer/MotionDiv'
+import { MotionDiv } from '@/app/_components/framer/MotionDiv'
 
 
 const BlogCard2D: React.FC<{

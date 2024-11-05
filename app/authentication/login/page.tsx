@@ -1,5 +1,5 @@
 'use client'
-import { AppContainer, LoginProtection, SectionWrapper } from '@/app/components';
+import { AppContainer, LoginProtection, SectionWrapper } from '@/app/_components';
 import React, { RefObject, useRef } from 'react';
 import styles from '../_components/styles.module.css';
 import LoginForm from '../_components/login/LoginForm';

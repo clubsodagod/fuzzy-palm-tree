@@ -1,10 +1,11 @@
 'use client'
-import { AppContainer } from '@/app/components';
+import { AppContainer } from '@/app/_components';
 import React, { useEffect, useRef, useState } from 'react'
 import { ConsultationOffers, ContactInformation, LocationSocialLinks } from '../_components/lets-work';
 import { useProgrammerPageSectionRefs } from '@/utility/refs/programmer-page-refs';
 import { useScroll, useMotionValueEvent, useAnimationControls } from 'framer-motion';
 import { programmerGradientVariants  } from '@/library/const/animation-gradients';
+import LetsWorkHero from '../_components/lets-work/LetsWorkHero';
 
 const LetsWorkPage = () => {
 
@@ -16,10 +17,7 @@ const LetsWorkPage = () => {
     const [scrollYPro, setScrollYPro] = React.useState<number>(0)
     const { scrollYProgress, scrollY,  } = useScroll({target:bodyRef, offset: ['start end', 'end start']})
 
-    useMotionValueEvent(scrollY, "change", (latest) => {
-        // console.log(latest, (scrollRef?.current?.scrollHeight! - (window ? window.innerHeight : 0) ))
-        setScrollYPro(scrollRef?.current?.scrollHeight! - (window ? window.innerHeight : 0) );
-    });
+
 
     const [currentSection, setCurrentSection] = useState<string>('');
     const controls = useAnimationControls();
@@ -82,9 +80,8 @@ const LetsWorkPage = () => {
         gradientVariants={programmerGradientVariants}
         controls={controls}
         >
-            <ConsultationOffers ctnRef={ctaConsultationRef} />
-            <ContactInformation ctnRef={contactInfoRef} />
-            <LocationSocialLinks ctnRef={locationInfoRef} />
+            <LetsWorkHero ctnRef={ctaConsultationRef}  />
+        
         </AppContainer>
     )
 }

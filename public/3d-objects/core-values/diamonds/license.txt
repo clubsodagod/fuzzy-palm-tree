@@ -1,0 +1,11 @@
+Model Information:
+* title:	Diamonds
+* source:	https://sketchfab.com/3d-models/diamonds-f3c067750ca3403fa8106f672b5bcffe
+* author:	1catalogue (https://sketchfab.com/1catalogue)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Diamonds" (https://sketchfab.com/3d-models/diamonds-f3c067750ca3403fa8106f672b5bcffe) by 1catalogue (https://sketchfab.com/1catalogue) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

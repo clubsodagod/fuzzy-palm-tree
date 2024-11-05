@@ -1,7 +1,7 @@
 'use client'
 
 
-import { PageWrapper } from '@/app/components'
+import { PageWrapper } from '@/app/_components'
 import React from 'react'
 
 const RealWorldImpact = () => {

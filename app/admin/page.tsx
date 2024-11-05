@@ -1,7 +1,7 @@
 'use client'
 import React from 'react';
 import styles from './styles.module.css';
-import { AppContainer, PageContainer } from '../components';
+import { AppContainer, PageContainer } from '../_components';
 
 const AdminPanel = () => {
     return (

@@ -1,18 +1,20 @@
 
 import React, { useEffect, useRef, useState } from 'react'
-import { AppContainer, SectionWrapper } from '../components';
+import { AppContainer, Header, ScrollableItemCtn, SectionWrapper } from '../_components';
 import { motion } from 'framer-motion';
 import styles from "./styles.module.css";
 import { IBlog, IBlogPopulated } from '@/library/db/models/blog';
-import { initBlogHomePageClient,} from '@/utility/blog-section/blog-page-functions';
+import { initBlogHomePageClient, } from '@/utility/blog-section/blog-page-functions';
 import BlogCard2D from './_components/BlogCard';
-import MotionPageWrapper from '../components/common/MotionPageWrapper';
-import MotionSectionWrapper from '../components/common/MotionSectionWrapper';
-import { MotionDiv } from '../components/framer/MotionDiv';
-import { MotionH3 } from '../components/framer/MotionH3';
-import { MotionH5 } from '../components/framer/MotionH5';
-import { MotionH6 } from '../components/framer/MotionH6';
-import { MotionP } from '../components/framer/MotionP';
+import MotionPageWrapper from '../_components/common/MotionPageWrapper';
+import MotionSectionWrapper from '../_components/common/MotionSectionWrapper';
+import { MotionDiv } from '../_components/framer/MotionDiv';
+import { MotionH3 } from '../_components/framer/MotionH3';
+import { MotionH5 } from '../_components/framer/MotionH5';
+import { MotionH6 } from '../_components/framer/MotionH6';
+import { MotionP } from '../_components/framer/MotionP';
+import { MotionH1 } from '../_components/framer/MotionH1';
+import { Typography } from '@mui/material';
 
 
 
@@ -37,15 +39,25 @@ export default async function BlogPage() {
         <MotionPageWrapper>
 
             <MotionSectionWrapper>
+
+
                 <MotionDiv
                     className={`${styles.headerWrapper}`}
                 >
-                    <MotionH3>
-                        The Davis Daily
-                    </MotionH3>
-                    <MotionH6>
-                        All of the latest articles surrounding various interest. Enjoy.
-                    </MotionH6>
+                    <MotionDiv>
+                        <Typography
+                            variant='h1'
+                        >
+                            The Davis Daily
+
+                        </Typography>
+                    </MotionDiv>
+
+                    <MotionDiv>
+                        <Typography variant='h6' className={`subheader`}>
+                            Fresh. Relevant. Mind Expanding.
+                        </Typography>
+                    </MotionDiv>
                 </MotionDiv>
 
                 {/* Featured Posts Hero Component */}
@@ -62,29 +74,33 @@ export default async function BlogPage() {
                         </MotionH5>
                     </MotionDiv>
 
-                    {
-                        featuredPosts.length > 0 ?
-                            <>
-                                {
-                                    featuredPosts.map((p: IBlogPopulated, i: number) => {
-                                        return (
-                                            <MotionDiv
-                                                key={`${p._id}`}
-                                            >
-                                                <BlogCard2D
-                                                    blog={p}
-                                                />
-                                            </MotionDiv>
+                    <ScrollableItemCtn
+                    >
+                        {
+                            featuredPosts.length > 0 ?
+                                <>
+                                    {
+                                        featuredPosts.map((p: IBlogPopulated, i: number) => {
+                                            return (
+                                                <MotionDiv
+                                                    key={`${p._id}`}
+                                                >
+                                                    <BlogCard2D
+                                                        blog={p}
+                                                    />
+                                                </MotionDiv>
 
-                                        )
-                                    })
-                                }
-                            </>
-                            :
-                            <MotionP>
-                                On the search for those articles...
-                            </MotionP>
-                    }
+                                            )
+                                        })
+                                    }
+                                </>
+                                :
+                                <MotionP>
+                                    On the search for those articles...
+                                </MotionP>
+                        }
+                    </ScrollableItemCtn>
+
                 </MotionDiv>
 
 

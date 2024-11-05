@@ -5,7 +5,7 @@ import { Button, TextField } from '@mui/material';
 import { FormDocument, FormField, RegisterForm as RegisterFormType } from '@/library/types/form/register';
 import { useRegisterPageRefs } from '@/utility/refs/register-login-page-refs';
 import { registerFormDocument } from '@/library/const/forms/login-register';
-import DynamicAlert from '@/app/components/common/DynamicAlert';
+import DynamicAlert from '@/app/_components/common/DynamicAlert';
 import { debounce, validateField } from '@/utility/functions';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';

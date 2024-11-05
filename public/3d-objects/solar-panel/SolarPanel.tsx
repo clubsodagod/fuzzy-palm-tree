@@ -36,9 +36,9 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
-const SolarPanel: React.FC<JoinGrowthProps> = ({ animate, ...props }) => {
+export default function Model(props: JSX.IntrinsicElements['group']) {
   const group = React.useRef<THREE.Group>(null)
-  const { nodes, materials, animations } = useGLTF('/3d-objects/solar-panels/SolarPanel-transformed.glb') as GLTFResult
+  const { nodes, materials, animations } = useGLTF('/3d-objects/solar-panel/SolarPanel-transformed.glb') as GLTFResult
   const { actions } = useAnimations(animations, group)
   return (
     <group ref={group} {...props} dispose={null}>
@@ -59,4 +59,4 @@ const SolarPanel: React.FC<JoinGrowthProps> = ({ animate, ...props }) => {
   )
 }
 
-useGLTF.preload('/3d-objects/solar-panels/SolarPanel-transformed.glb');
+useGLTF.preload('/3d-objects/solar-panel/SolarPanel-transformed.glb');

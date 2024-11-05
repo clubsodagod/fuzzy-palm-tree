@@ -1,5 +1,5 @@
 'use client'
-import { PageWrapper } from '@/app/components';
+import { PageWrapper } from '@/app/_components';
 import { marketApproachPrinciples } from '@/library/const';
 import { Principle } from '@/library/types/investment';
 import { motion } from 'framer-motion';

@@ -1,6 +1,6 @@
 
 
-import { PageWrapper } from '@/app/components'
+import { PageWrapper } from '@/app/_components'
 import React, { RefObject } from 'react'
 import styles from '../../../investments.module.css'
 import { motion } from 'framer-motion'

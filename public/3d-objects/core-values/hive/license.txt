@@ -1,0 +1,11 @@
+Model Information:
+* title:	Hive
+* source:	https://sketchfab.com/3d-models/hive-1b0b7c4eebe24dd384f7803e60380582
+* author:	Matt LeMoine (https://sketchfab.com/Matt_LeMoine)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Hive" (https://sketchfab.com/3d-models/hive-1b0b7c4eebe24dd384f7803e60380582) by Matt LeMoine (https://sketchfab.com/Matt_LeMoine) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,12 +1,12 @@
 'use client'
 
-import { AppContainer } from '@/app/components'
+import { AppContainer } from '@/app/_components'
 import React, { useEffect, useRef, useState } from 'react'
 import { ApproachPageHero, CoreInvestmentPrinciples, RiskManagementPrinciples, VisionPrinciples, MarketPrinciples } from './_components'
 import { ApproachScene } from '../../_components/scenes'
 import { useAnimationControls, useMotionValueEvent, useScroll } from 'framer-motion'
 import { useInvestmentsPageSectionRefs } from '@/utility/refs/investments-page-refs'
-import { useScroll as scroll } from '@/app/context/sub-context/ScrollContext'
+import { useScroll as scroll } from '@/app/_context/sub-context/ScrollContext'
 import { investmentRealEstateApproachPage as gradientVariants } from '@/library/const/animation-gradients'
 
 const Page = () => {

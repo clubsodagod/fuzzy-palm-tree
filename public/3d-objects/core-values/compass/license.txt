@@ -1,0 +1,11 @@
+Model Information:
+* title:	Compass
+* source:	https://sketchfab.com/3d-models/compass-5c47b26f85eb4659af66c10c568c1df3
+* author:	EwanLejkowski (https://sketchfab.com/EwanLejkowski)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Compass" (https://sketchfab.com/3d-models/compass-5c47b26f85eb4659af66c10c568c1df3) by EwanLejkowski (https://sketchfab.com/EwanLejkowski) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

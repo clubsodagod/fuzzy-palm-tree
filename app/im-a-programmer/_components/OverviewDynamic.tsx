@@ -3,7 +3,7 @@
 
 
 import React, { RefObject, useEffect, useState } from 'react';
-import { PageWrapper } from '@/app/components';
+import { PageWrapper } from '@/app/_components';
 import { motion } from 'framer-motion';
 import styles from './styles.module.css';
 import { Chapter } from '@/library/const';

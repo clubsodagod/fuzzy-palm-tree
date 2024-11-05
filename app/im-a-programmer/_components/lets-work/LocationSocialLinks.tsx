@@ -1,4 +1,4 @@
-import { PageWrapper } from '@/app/components';
+import { PageWrapper } from '@/app/_components';
 import { Button } from '@mui/material';
 import { motion } from 'framer-motion';
 import React, { RefObject } from 'react';

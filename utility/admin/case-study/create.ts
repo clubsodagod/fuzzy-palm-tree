@@ -54,214 +54,7 @@ export function isTechnicalApplicationDocument(doc: Partial<FormDocumentType>): 
     return (doc as TechnicalApplicationDocumentType).technologiesUsed !== undefined;
 }
 
-// handle case study form changes
-// export function handleCaseStudyChangess<T extends FormDocumentType>(
-//     field: FormField<T>,
-//     event: any,
-//     addValue: string | null,
-//     eFs: Partial<ErrorObject<T>>,
-//     setErrorFields: (arg0: any) => void,
-//     document: Partial<T>,
-//     setDocument: (arg0: any) => void,
-//     choice: string | null,
-// ) {
 
-//     let validationErrors: any;
-
-//     if (event) {
-
-//         // Destructuring event target
-//         const { name, value } = event.target;
-//         // validationErrors = validateField(field, value);
-
-//         console.log(isCaseStudyDocument(document));
-
-
-
-//         if (isCaseStudyDocument(document)) {
-//             const documentTyped = document as unknown as CaseStudyDocumentType;
-
-//             // Handle fields like featuredImg or featuredVideo (with nested portrait/landscape properties)
-//             if (["featuredImg", "featuredVideo"].includes(field.key as string)) {
-//                 const mediaType = field.key  === "featuredImg" ? "featuredImg" : "featuredVideo";
-
-//                 // handle error fields
-//                 setErrorFields((prev: Partial<ErrorObject<T>>) => ({
-//                     ...prev,
-//                     [mediaType]: {
-//                         ...(name.includes("landscape")
-//                             ? { landscape: validationErrors }
-//                             : { portrait: validationErrors }),
-//                     },
-//                 }));
-
-//                 // handle case study document
-//                 setDocument((prevState: Partial<T[CaseStudyDocumentType]>) => {
-//                     const updatedState = {
-//                         ...prevState,
-//                         [mediaType]: {
-//                             ...prevState[mediaType],
-//                             ...(name.includes("landscape")
-//                                 ? { landscape: value }
-//                                 : { portrait: value }),
-//                         },
-//                     };
-//                     return updatedState;
-//                 });
-
-//             }
-
-//             // Handle outcomes fields object
-//             else if (["outcomes"].includes(field.key)) {
-//                 const outcomeType = field.name === "outcomesDescription" ? "outcomesDescription" : field.name == "outcomesTechnicalImpact" ? "outcomesTechnicalImpact" : "outcomesValueGenerated";
-
-//                 if (["outcomesDescription", 'outcomesTechnicalImpact'].includes(field.name)) {
-//                     console.log(value);
-
-//                     // handle error fields
-//                     setErrorFields((prev: Partial<ErrorObject<CaseStudyDocumentType>>) => ({
-//                         ...prev,
-//                         ["outcomes"]: {
-//                             ...prev.outcomes,
-//                             ...(name.includes("outcomesDescription")
-//                                 ? { description: validationErrors }
-//                                 : { technicalImpact: validationErrors }),
-//                         },
-//                     }));
-
-//                     // handle case study document
-//                     setDocument((prevState: CaseStudyDocumentType) => {
-//                         const updatedState = {
-//                             ...prevState,
-//                             [field.key]: {
-//                                 ...prevState['outcomes'],
-//                                 ...(name.includes("outcomesDescription")
-//                                     ? { description: value }
-//                                     : { technicalImpact: value }),
-//                             },
-//                         };
-//                         return updatedState;
-//                     });
-
-//                 } else if (["outcomesValueGenerated"].includes(field.name)) {
-
-//                     // handle error fields
-//                     setErrorFields((prev: Partial<ErrorObject<FormDocumentType>>) => ({
-//                         ...prev,
-//                         [field.key]: {
-//                             ...prev.outcomes,
-//                             outcomesGeneratedValue: validationErrors,
-//                         },
-//                     }));
-
-//                     // handle case study document
-//                     setDocument((prevState: FormDocumentType) => {
-//                         const updatedState = {
-//                             ...prevState,
-//                             [field.key]: {
-//                                 ...prevState.outcomes,
-//                                 valueGenerated: value
-//                             },
-//                         };
-//                         return updatedState;
-//                     });
-
-//                 }
-
-
-//             }
-
-//             // handle objectives, challenges, and solutions
-//             else if (["objectives", "challenges", "solutions"].includes(field.key)) {
-//                 if (addValue && document) {
-//                     validationErrors = validateField(field, addValue);
-//                     // Handle other fields
-//                     setErrorFields((prevState: Partial<ErrorObject<FormDocumentType>>) => ({
-//                         ...prevState,
-//                         [field.key]: validationErrors,
-//                     }));
-
-//                     const valueIndex = document[field.key as keyof FormDocumentType]?.indexOf(addValue);
-
-//                     // Create a copy of the existing array to modify it
-//                     const updatedArray = [...(document[field.key as keyof FormDocumentType] as string[])];
-
-//                     // If the value is not found, add it to the array
-//                     if (valueIndex === -1) {
-//                         updatedArray.push(addValue);
-//                     }
-//                     // If the value is found, remove it from the array (toggle functionality)
-//                     else {
-//                         updatedArray.splice(valueIndex, 1);
-//                     }
-
-//                     // Update the state with the modified array
-//                     setDocument((prev: FormDocumentType) => ({
-//                         ...prev,
-//                         [field.key]: updatedArray,
-//                     }));
-//                 } else {
-
-//                 }
-
-
-//             }
-
-
-//             // handle radio change
-//             else if (["radio"].includes(field.type)) {
-
-//                 if (choice) {
-
-//                     validationErrors = validateField(field, choice);
-//                     // handle error fields
-//                     setErrorFields((prev: Partial<ErrorObject<FormDocumentType>>) => ({
-//                         ...prev,
-//                         [field.key]: validationErrors
-//                     }));
-
-
-
-//                     // handle case study document
-//                     setDocument((prevState: FormDocumentType) => {
-//                         const updatedState = {
-//                             ...prevState,
-//                             [field.key]: choice
-//                         };
-//                         return updatedState;
-//                     });
-//                 }
-
-
-//             }
-//         }
-
-
-
-//         // handle title text change
-//         else if (["title",].includes(field.key)) {
-
-//             validationErrors = validateField(field, value);
-//             // handle error fields
-//             setErrorFields((prev: Partial<ErrorObject<FormDocumentType>>) => ({
-//                 ...prev,
-//                 [field.key]: validationErrors
-//             }));
-
-
-
-//             // handle case study document
-//             setDocument((prevState: FormDocumentType) => {
-//                 const updatedState = {
-//                     ...prevState,
-//                     [field.key]: value
-//                 };
-//                 return updatedState;
-//             });  
-//         }
-//     }
-
-// }
 
 export function handleChanges<T extends FormDocumentTypeV2>(
     field: FormField<T["document"]>,
@@ -442,7 +235,7 @@ export function handleChanges<T extends FormDocumentTypeV2>(
                 }
 
                 // handle title text change
-                else if (["title","summary"].includes(field.key as string)) {
+                else if (["title", "summary"].includes(field.key as string)) {
 
                     validationErrors = validateField(field, value);
                     // handle error fields
@@ -468,7 +261,7 @@ export function handleChanges<T extends FormDocumentTypeV2>(
                 // handle objectives, challenges, and solutions
                 if (["photos", "videos", "technologiesUsed"].includes(field.key as string)) {
                     console.log(addValue, document);
-                    
+
                     if (addValue && document) {
                         validationErrors = validateField(field, addValue);
                         // Handle other fields
@@ -539,7 +332,7 @@ export function handleChanges<T extends FormDocumentTypeV2>(
                 // handle objectives, challenges, and solutions
                 if (["photos", "videos",].includes(field.key as string)) {
                     console.log(addValue, document);
-                    
+
                     if (addValue && document) {
                         validationErrors = validateField(field, addValue);
                         // Handle other fields
@@ -608,13 +401,13 @@ export function handleChanges<T extends FormDocumentTypeV2>(
                 // handle radio change
                 else if (["select"].includes(field.type)) {
 
-                    if (choice && typeof choice  == "string") {
+                    if (choice && typeof choice == "string") {
 
                         validationErrors = validateField(field, choice as string);
                         // handle error fields
                         setErrorFields((prev: Partial<ErrorObject<PropertyDocumentType>>) => ({
                             ...prev,
-                            [field.key]: {message:"", value:false}
+                            [field.key]: { message: "", value: false }
                         }));
 
 
@@ -627,13 +420,13 @@ export function handleChanges<T extends FormDocumentTypeV2>(
                             };
                             return updatedState;
                         });
-                    } else if (choice != null && typeof choice == "boolean"){
+                    } else if (choice != null && typeof choice == "boolean") {
 
                         // validationErrors = validateField(field, choice as unknown as string);
                         // handle error fields
                         setErrorFields((prev: Partial<ErrorObject<PropertyDocumentType>>) => ({
                             ...prev,
-                            [field.key]: {message:"", value:false}
+                            [field.key]: { message: "", value: false }
                         }));
 
 
@@ -691,7 +484,7 @@ export function handleChanges<T extends FormDocumentTypeV2>(
                             ...prevState,
                             [field.key]: {
                                 ...prevState.monthlyFinancialFigures,
-                                [field.name]:value
+                                [field.name]: value
                             }
                         };
                         return updatedState;
@@ -709,7 +502,7 @@ export function handleChanges<T extends FormDocumentTypeV2>(
 
 
                     console.log(choice);
-                    
+
                     // handle case study document
                     setDocument((prevState: PropertyDocumentType) => {
                         const updatedState = {
@@ -722,7 +515,52 @@ export function handleChanges<T extends FormDocumentTypeV2>(
 
                 break;
 
-            // Add cases for other types...
+            case "contact":
+                if ((['text', 'textarea'].includes(field.type))) {
+
+                    validationErrors = validateField(field, value);
+                    // handle error fields
+                    setErrorFields((prev: Partial<ErrorObject<PropertyDocumentType>>) => ({
+                        ...prev,
+                        [field.key]: validationErrors
+                    }));
+
+
+
+                    // handle case study document
+                    setDocument((prevState: PropertyDocumentType) => {
+                        const updatedState = {
+                            ...prevState,
+                            [field.key]: value
+                        };
+                        return updatedState;
+                    });
+                }
+                // handle radio change
+                else if (["radio"].includes(field.type)) {
+
+                    if (choice) {
+
+                        validationErrors = validateField(field, choice as string);
+                        // handle error fields
+                        setErrorFields((prev: Partial<ErrorObject<CaseStudyDocumentType>>) => ({
+                            ...prev,
+                            [field.key]: validationErrors
+                        }));
+
+
+
+                        // handle case study document
+                        setDocument((prevState: CaseStudyDocumentType) => {
+                            const updatedState = {
+                                ...prevState,
+                                [field.key]: choice
+                            };
+                            return updatedState;
+                        });
+                    }
+                }
+                break
 
             default:
                 throw new Error("Unsupported document type");

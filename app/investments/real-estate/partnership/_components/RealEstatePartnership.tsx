@@ -1,4 +1,4 @@
-import { OuterSceneWrapper, PageWrapper } from '@/app/components';
+import { OuterSceneWrapper, PageWrapper } from '@/app/_components';
 import React from 'react';
 import styles from '../../../investments.module.css';
 import PartnershipForm from './partnership-form/PartnershipForm';

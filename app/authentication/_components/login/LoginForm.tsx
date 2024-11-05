@@ -5,12 +5,12 @@ import { Button, TextField } from '@mui/material';
 import { FormDocument, FormField, LoginFormType, } from '@/library/types/form/register';
 import { useRegisterPageRefs } from '@/utility/refs/register-login-page-refs';
 import { loginFormDocument } from '@/library/const/forms/login-register';
-import DynamicAlert from '@/app/components/common/DynamicAlert';
+import DynamicAlert from '@/app/_components/common/DynamicAlert';
 import { debounce, validateField } from '@/utility/functions';
 import Link from 'next/link';
 import { apiPath, clientDomain } from '@/library/const';
 import { signIn, useSession } from 'next-auth/react';
-import { useMDSession } from '@/app/context/sub-context/SessionContext';
+import { useMDSession } from '@/app/_context/sub-context/SessionContext';
 import { useRouter } from 'next/navigation';
 
 

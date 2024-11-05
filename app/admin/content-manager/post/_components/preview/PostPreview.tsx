@@ -4,7 +4,7 @@ import { Typography, CardMedia, Chip } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { motion } from 'framer-motion';
 import { BlogDocumentType } from '@/library/db/models/blog';
-import { useScreenContext } from '@/app/context/sub-context/ScreenContext';
+import { useScreenContext } from '@/app/_context/sub-context/ScreenContext';
 import { ISubcategory } from '@/library/db/models/subcategory';
 import { ICategory } from '@/library/db/models/category';
 

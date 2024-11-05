@@ -1,16 +1,20 @@
 'use client'
 
 
-import { AppContainer } from '@/app/components';
+import { AppContainer } from '@/app/_components';
 import React, { createRef, useEffect, useRef, useState } from 'react'
 import { DigitalSolutionsMain } from '../_components';
-import { CustomSoftware, CustomSoftwareDynamic, DataScienceAI, DataScienceAIDynamic, DigitalTransformation, DigitalTransformationDynamic, Visuals, WebMobileApplications, WebMobileApplicationsDynamic } from '../_components/digital-solutions';
+import { CustomSoftware, CustomSoftwareDynamic, DataScienceAI, DataScienceAIDynamic, DigitalTransformation, DigitalTransformationDynamic, Visuals, WebMobileApplications, WebMobileApplicationsDynamic } from '../_components/_digital-solutions';
 import { programmerGradientVariants } from '@/library/const/animation-gradients';
 import { useProgrammerPageSectionRefs } from '@/utility/refs/programmer-page-refs';
 import { useScroll, useMotionValueEvent, useAnimationControls } from 'framer-motion';
 import { customSoftware, dataScienceAI, digitalTransformation, ExtendedPointUseCase, Point, webMobileApp } from '@/library/const';
+import { useRouter } from 'next/navigation';
 
 const DigitalSolutionsPage = () => {
+
+    const router = useRouter();
+
     const {
         scrollRef, bodyRef, digitalSolutionsRefs: refs,
         digitalSolutionsRef, customSoftwareRef, customSoftwareDynamicRefs,
@@ -19,7 +23,7 @@ const DigitalSolutionsPage = () => {
         digitalSolutionsVisualsRef,
         digitalTransformationDynamicRefs
     } = useProgrammerPageSectionRefs();
-    
+
     const [scrollYPro, setScrollYPro] = useState<number>(0);
     const { scrollYProgress, scrollY } = useScroll({ target: scrollRef, offset: ['start end', 'end start'] });
     useMotionValueEvent(scrollY, "change", (latest) => {
@@ -48,7 +52,7 @@ const DigitalSolutionsPage = () => {
                     controls.start(id);
                     // snapToTop(entry.target);
                     console.log(id);
-                    
+
                 }
             });
         }, observerOptions);
@@ -69,6 +73,63 @@ const DigitalSolutionsPage = () => {
     }, [controls, refs]);
 
 
+    function scrollToSection(id: string,) {
+        // Find the index of the current section in the refs array
+        const currentIndex = refs.findIndex(section => section.id === currentSection);
+
+        // Helper function to scroll to a section by index
+        function scrollToIndex(index: number) {
+            refs[index]?.ref.current?.scrollIntoView({
+                block: "start",
+                behavior: "smooth", // Adding smooth scrolling for a better experience
+            });
+        }
+
+        switch (id) {
+            case "digital-solutions-main":
+                scrollToIndex(0);
+                break;
+            case "custom-software":
+                scrollToIndex(1);
+                break;
+            case "data-science-ai":
+                scrollToIndex(5);
+                break;
+            case "web-mobile-application":
+                scrollToIndex(9);
+                break;
+            case "digital-transformation":
+                scrollToIndex(13);
+                break;
+
+            case "next":
+                if (currentIndex >= 0 && currentIndex < refs.length - 1) {
+                    // Go to the next section if there is one
+                    scrollToIndex(currentIndex + 1);
+                }
+                break;
+
+            case "previous":
+                if (currentIndex > 0) {
+                    // Go to the previous section if there is one
+                    scrollToIndex(currentIndex - 1);
+                }
+                break;
+
+            case "top":
+                scrollToIndex(0);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+
+    function goToPage(event: MouseEvent, id: string) {
+        event.preventDefault();
+        router.push(id);
+    }
 
 
     return (
@@ -78,13 +139,23 @@ const DigitalSolutionsPage = () => {
             gradientVariants={programmerGradientVariants}
             controls={controls}
         >
-            <DigitalSolutionsMain ctnRef={digitalSolutionsRef} />
-            <CustomSoftware ctnRef={customSoftwareRef} />
+            <DigitalSolutionsMain
+                ctnRef={digitalSolutionsRef}
+                scrollTo={scrollToSection}
+                goToPage={goToPage}
+            />
+
+            <CustomSoftware
+                ctnRef={customSoftwareRef}
+                scrollTo={scrollToSection}
+                goToPage={goToPage}
+            />
+
             {customSoftware.map((f: ExtendedPointUseCase, i: number) => {
-                
+
                 const currentRef = customSoftwareDynamicRefs[i];
                 // console.log(currentRef);
-                
+
                 return (
                     <CustomSoftwareDynamic
                         key={`customSoftware: ${i}`}
@@ -92,10 +163,19 @@ const DigitalSolutionsPage = () => {
                         factor={f}
                         ctnRef={currentRef}
                         index={i}
+                        scrollTo={scrollToSection}
+                        goToPage={goToPage}
                     />
                 );
             })}
-            <DataScienceAI ctnRef={dataScienceAIRef} />
+
+
+            <DataScienceAI
+                ctnRef={dataScienceAIRef}
+                scrollTo={scrollToSection}
+                goToPage={goToPage}
+            />
+
             {dataScienceAI.map((f: ExtendedPointUseCase, i: number) => {
                 const currentRef = dataScienceAIDynamicRefs[i];
                 return (
@@ -105,10 +185,20 @@ const DigitalSolutionsPage = () => {
                         factor={f}
                         ctnRef={currentRef}
                         index={i}
+                        scrollTo={scrollToSection}
+                        goToPage={goToPage}
                     />
                 );
             })}
-            <WebMobileApplications ctnRef={webMobileAppRef} />
+
+
+            <WebMobileApplications
+                ctnRef={webMobileAppRef}
+                scrollTo={scrollToSection}
+                goToPage={goToPage}
+            />
+
+
             {webMobileApp.map((f: ExtendedPointUseCase, i: number) => {
                 const currentRef = webMobileAppDynamicRefs[i];
                 return (
@@ -118,10 +208,19 @@ const DigitalSolutionsPage = () => {
                         factor={f}
                         ctnRef={currentRef}
                         index={i}
+                        scrollTo={scrollToSection}
+                        goToPage={goToPage}
                     />
                 );
             })}
-            <DigitalTransformation ctnRef={digitalTransformationRef} />
+
+
+            <DigitalTransformation
+                ctnRef={digitalTransformationRef}
+                scrollTo={scrollToSection}
+                goToPage={goToPage}
+            />
+
             {digitalTransformation.map((f: ExtendedPointUseCase, i: number) => {
                 const currentRef = digitalTransformationDynamicRefs[i];
                 return (
@@ -131,6 +230,8 @@ const DigitalSolutionsPage = () => {
                         factor={f}
                         ctnRef={currentRef}
                         index={i}
+                        scrollTo={scrollToSection}
+                        goToPage={goToPage}
                     />
                 );
             })}

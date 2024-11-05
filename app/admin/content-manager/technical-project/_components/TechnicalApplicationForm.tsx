@@ -4,25 +4,25 @@ import styles from './components.module.css';
 import { CaseStudyDocumentType } from '@/library/db/models/case-study';
 import { ErrorObject, ErrorResponseMessage } from '@/library/types/common';
 import { StatusResponseObject } from '@/utility/admin/identifiers/create-card';
-import { MotionForm } from '@/app/components/framer/MotionForm';
+import { MotionForm } from '@/app/_components/framer/MotionForm';
 import { technicalApplicationFormDocument } from '@/library/const/forms/technicalProject';
 import { Avatar, Badge, Button, Chip, FabProps, Stack, TextField } from '@mui/material';
 import { FormDocumentType, FormField } from '@/library/types/form/identifiers';
 import { BlogDocumentType } from '@/library/db/models/blog';
 import { TechnicalApplicationDocumentType } from '@/library/db/models/technicalApplication';
 import { FormFieldsFor } from '@/library/types/form/identifiers';
-import { MotionDiv } from '@/app/components/framer/MotionDiv';
-import { MotionP } from '@/app/components/framer/MotionP';
+import { MotionDiv } from '@/app/_components/framer/MotionDiv';
+import { MotionP } from '@/app/_components/framer/MotionP';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import { MotionH3 } from '@/app/components/framer/MotionH3';
+import { MotionH3 } from '@/app/_components/framer/MotionH3';
 import { handleChanges } from '@/utility/admin/case-study/create';
 import { log } from 'console';
 import { initTechnicalApplicationDocument } from '@/utility/admin/technical-application/create';
 import { validateField } from '@/utility/functions/forms';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import { red } from '@mui/material/colors';
-import DynamicAlert from '@/app/components/common/DynamicAlert';
-import { MotionH5 } from '@/app/components/framer/MotionH5';
+import DynamicAlert from '@/app/_components/common/DynamicAlert';
+import { MotionH5 } from '@/app/_components/framer/MotionH5';
 
 
 const TechnicalApplicationForm: React.FC<{

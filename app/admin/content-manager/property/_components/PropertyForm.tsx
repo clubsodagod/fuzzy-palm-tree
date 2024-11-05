@@ -4,20 +4,20 @@ import styles from './components.module.css'
 import { PropertyDocumentType } from '@/library/db/models/property';
 import { ErrorObject, ErrorResponseMessage } from '@/library/types/common';
 import { initPropertyDocument } from '@/utility/admin/property';
-import { MotionDiv } from '@/app/components/framer/MotionDiv';
-import { MotionP } from '@/app/components/framer/MotionP';
+import { MotionDiv } from '@/app/_components/framer/MotionDiv';
+import { MotionP } from '@/app/_components/framer/MotionP';
 import { FormField } from '@/library/types/form/identifiers';
 import { handleChanges } from '@/utility/admin/case-study/create';
 import { TextField, Stack, Chip, Button, FormControl, FormControlLabel, Radio, RadioGroup, Avatar, Badge } from '@mui/material';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import { MotionForm } from '@/app/components/framer/MotionForm';
+import { MotionForm } from '@/app/_components/framer/MotionForm';
 import { propertyFormDocument } from '@/library/const/forms/property';
-import { MotionH3 } from '@/app/components/framer/MotionH3';
+import { MotionH3 } from '@/app/_components/framer/MotionH3';
 import { red } from '@mui/material/colors';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import { validateField } from '@/utility/functions/forms';
-import DynamicAlert from '@/app/components/common/DynamicAlert';
-import { MotionH5 } from '@/app/components/framer/MotionH5';
+import DynamicAlert from '@/app/_components/common/DynamicAlert';
+import { MotionH5 } from '@/app/_components/framer/MotionH5';
 
 const investmentTypeChoices: string[] = ["Rental", "Wholesale", "Fix and Flip"];
 const booleanChoices = [{ label: "Yes", value: true }, { label: "No", value: false }];
