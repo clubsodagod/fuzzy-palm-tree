@@ -2,12 +2,13 @@
 import { AppContainer } from '@/app/_components';
 import { AnimatePresencePro } from '@/app/_components/framer/AnimatePresencePro';
 import { MotionDiv } from '@/app/_components/framer/MotionDiv';
-import { ICategory } from '@/library/db/models/category'
+import CategoryModel, { ICategory } from '@/library/db/models/category'
 import { useRef } from 'react';
 import slugify from 'slugify';
 import CategoryHero from '../../_components/slug-page/CategoryHero';
 import MotionPageWrapper from '@/app/_components/common/MotionPageWrapper';
 import MotionSectionWrapper from '@/app/_components/common/MotionSectionWrapper';
+import { getAllIdentifiers } from '@/library/db/controllers/identifiers';
 
 
 // Next.js will invalidate the cache when a
@@ -19,10 +20,11 @@ export const dynamicParams = true // or false, to 404 on unknown paths
 
 // Generate static paths for categories.
 export async function generateStaticParams() {
-    const categoryResponse = await fetch('http://localhost:3000/api/blog/identifiers/category/get-all');
-    const categories = await categoryResponse.json();
+    
+    const categoryResponse = await getAllIdentifiers(CategoryModel)
+    const categories = categoryResponse
 
-    return categories.categories.map((category: ICategory) => ({
+    return categories?.map((category: ICategory) => ({
         category: category.slug,
     }));
 }
