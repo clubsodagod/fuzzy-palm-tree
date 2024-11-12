@@ -93,7 +93,7 @@ export async function getAllCategoriesDynamicClient() {
 
     // use fetch request to get categories
     const categoriesResponse = await fetch('http://localhost:3000/api/blog/identifiers/category/get-all', {
-        method: "GET", cache: "force-cache",
+        method: "GET", cache: "no-store",
     });
 
     // validate response
