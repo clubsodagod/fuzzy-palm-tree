@@ -58,7 +58,7 @@ export async function createUserPortfolio (userId:mongoose.Types.ObjectId) {
     userPortfolio.name = `${userId}'s Extraordinary Portfolio`;
     userPortfolio.foreword = `Through words we change the course of time. We control our destiny. Try writing something about your portfolio.`;
     userPortfolio.sections = [];
-    userPortfolio.user = userId as unknown as mongoose.Types.ObjectId;
+    userPortfolio.owner = userId as unknown as mongoose.Types.ObjectId;
 
     // validate user portfolio
     if (userPortfolio) {

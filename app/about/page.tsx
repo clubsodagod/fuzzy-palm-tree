@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { AppContainer } from '../_components'
 import { BioHero, CoreValues, MissionStatement } from './_components'
 import MotionPageWrapper from '../_components/common/MotionPageWrapper'
@@ -56,35 +56,15 @@ const AboutPage = () => {
         }
     }
 
-	useEffect(() => {
-		if (windowScrollHeight === 0) {
-			setWindowScrollHeight(ctnRef?.current?.scrollHeight! - window.innerHeight);
-		}
-		if (windowHeight === 0) {
-			setWindowHeight(window?.innerHeight);
-			console.log(window.innerHeight);
-
-		}
-		{ windowScrollHeight && windowScrollHeight }
-		{ windowHeight && windowHeight }
-	}, [windowScrollHeight, setWindowScrollHeight, ctnRef, windowHeight, setWindowHeight]);
-
-    const prime = scrollY.get();
-    const pastPrime = scrollY.getPrevious();
-    const scalingFactor = () => Math.min(Math.max(window?.innerWidth / 1920, window?.innerWidth > 700 && window?.innerWidth < window?.innerHeight ? 0.8 : 0.6), 3);
 
     useEffect(() => {
+        if (typeof window !== 'undefined') {
+            setWindowScrollHeight(ctnRef?.current?.scrollHeight! - window.innerHeight);
+            setWindowHeight(window.innerHeight);
+        }
+    }, [ctnRef, setWindowScrollHeight, setWindowHeight]);
 
-        const functionHandler = () => {
-            if (prime !== pastPrime) {
 
-                console.log(scalingFactor());
-            }
-        };
-
-        functionHandler();
-
-    }, [pastPrime, prime, scalingFactor]);
 
     return (
         <MotionPageWrapper
@@ -119,7 +99,6 @@ const AboutPage = () => {
             scrollTo={scrollToSectionHandler}
             value={coreValue}
             carouselHandler={carouselHandler}
-            scalingFactor={scalingFactor()}
             />
         </MotionPageWrapper>
     )

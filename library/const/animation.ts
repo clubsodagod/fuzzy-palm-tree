@@ -1,7 +1,7 @@
 import { useScroll } from "@/app/_context/sub-context/ScrollContext";
 
 const ScrollValue = () => {
-    return useScroll().scrollYPro;
+    return useScroll().windowScrollHeight;
 }
 
 

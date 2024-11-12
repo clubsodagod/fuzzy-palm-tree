@@ -17,7 +17,7 @@ const ProgrammerScene = () => {
         {/* <OrbitControls /> */}
         <group >
             <ambientLight />
-            <MacBook scale={5}  animate={{animationOrbit:true, animationMain:false}}/>
+            <MacBook props={{scale:5}}   />
         </group>
 
         </Canvas>  

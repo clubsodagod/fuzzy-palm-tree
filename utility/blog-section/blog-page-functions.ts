@@ -51,6 +51,15 @@ export async function getAllPostsClient() {
 
     return posts
 }
+// get all posts
+export async function getAllPostsSlugClient() {
+
+    const postsResponse = await fetch('http://localhost:3000/api/blog/get/all',
+        {  method: "GET", cache:'force-cache' });
+    const posts = await postsResponse.json().then((res) => res.posts);
+
+    return posts
+}
 
 // get post by slug
 export async function getPostBySlugClient(slug: string) {
@@ -67,8 +76,24 @@ export async function getPostBySlugClient(slug: string) {
 export async function getAllCategoriesClient() {
 
     // use fetch request to get categories
-    const categoriesResponse = await fetch('http://localhost:3000//api/blog/identifiers/category/get-all', {
+    const categoriesResponse = await fetch('http://localhost:3000/api/blog/identifiers/category/get-all', {
         method: "GET", cache: "no-store",
+    });
+
+    // validate response
+    if (categoriesResponse.ok) {
+        const categories = await categoriesResponse.json().then((res) => res.categories);
+        return categories
+    } else {
+        return null
+    }
+}
+// get all categories client function
+export async function getAllCategoriesDynamicClient() {
+
+    // use fetch request to get categories
+    const categoriesResponse = await fetch('http://localhost:3000/api/blog/identifiers/category/get-all', {
+        method: "GET", cache: "force-cache",
     });
 
     // validate response

@@ -25,7 +25,7 @@ const Investments = () => {
         <Center  position={[0,0,0]} scale={1}>
             <motion.group initial={{x:0}}>
                 <ambientLight />
-                <CoinGrowthModel  animate={{animationOrbit:true, animationMain:false}}/>
+                <CoinGrowthModel  />
             </motion.group>                        
         </Center>        
     )

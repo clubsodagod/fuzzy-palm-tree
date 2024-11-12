@@ -19,7 +19,7 @@ const Page = () => {
         realEstatePostsRef, realEstateCtnRef:ctnRef, realEstateRefs:refs 
     } = useInvestmentsPageSectionRefs();
 
-    const { scrollYPro, setScrollYPro, windowScrollHeight,setWindowScrollHeight } = scroll();
+    const {  windowScrollHeight,setWindowScrollHeight } = scroll();
 
     const { scrollY, } = useScroll({target:ctnRef, offset: ['start end', 'start end']});
 
@@ -29,17 +29,14 @@ const Page = () => {
         element.scrollIntoView({ behavior:"smooth", block: 'start' });
     };
     
-    useMotionValueEvent(scrollY, "change", (latest) => {
-        // console.log(latest, (ctnRef?.current?.offsetHeight! - window.innerHeight  ))
-        setScrollYPro(ctnRef?.current?.offsetHeight! - (window ? window.innerHeight : 0)  );
-    });
+    
 
     useEffect(() => {
         if(windowScrollHeight === 0) {
             setWindowScrollHeight(ctnRef?.current?.scrollHeight! - (window ? window.innerHeight : 0) );
         }
         {windowScrollHeight && windowScrollHeight}
-    }, [windowScrollHeight, setWindowScrollHeight, scrollYPro, ctnRef]);
+    }, [windowScrollHeight, setWindowScrollHeight,  ctnRef]);
 
     useEffect(() => {
         const observerOptions = {

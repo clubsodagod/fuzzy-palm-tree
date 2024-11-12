@@ -30,7 +30,6 @@ type GLTFResult = GLTF & {
     Camera_Flash: THREE.MeshStandardMaterial
     material: THREE.MeshStandardMaterial
   }
-  animations: GLTFAction[]
 }
 
 export function Model(props: JSX.IntrinsicElements['group']) {

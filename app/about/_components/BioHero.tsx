@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 import { Header, HeroButtonCtn, OuterSceneWrapper, PageWrapper } from '@/app/_components';
-import React, { RefObject, useState } from 'react';
+import React, { RefObject, useEffect, useState } from 'react';
 import styles from './styles.module.css';
 import { bio, bioImg } from '@/library/const';
 import { Button, Typography } from '@mui/material';
@@ -16,7 +16,7 @@ import { useResponsiveValues as rv } from '@/utility/functions';
 export interface HeroProps {
     ctnRef: RefObject<HTMLDivElement>,
     id: string,
-    scrollTo?:VoidOneParameterFunction,
+    scrollTo?: VoidOneParameterFunction,
 }
 
 
@@ -27,24 +27,34 @@ const BioHero: React.FC<HeroProps> = ({
 }) => {
 
     const [storyTime, setStoryTime] = useState<boolean>(false);
+    const [scalingFactor, setScalingFactor] = useState<number>(1)
 
     function readMoreHandler() {
         // set state of storyTime to opposite
         setStoryTime(!storyTime);
     }
 
-    const scalingFactor = window && Math.min(Math.max(window?.innerWidth / 480,  0.2), 100);
-
-
     const variants = {
-        storyTime: { opacity: 0.25, scale: 0.75, y: 65*scalingFactor  },
+        storyTime: { opacity: 0.25, scale: 0.75, y: 65 * scalingFactor },
         other: { opacity: 1, scale: 1 },
         clampedText: { opacity: 1, scale: 1 },
         hideClampedText: { opacity: 0, scale: 0 },
         storyTimeText: { opacity: 1, scale: 1 },
         hideStoryTimeText: { opacity: 0, scale: 0 },
     }
+let check = scalingFactor
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
 
+            const mainScalingFactor = window && Math.min(Math.max(window?.innerWidth / 480, 0.2), 100);
+            if (mainScalingFactor !== scalingFactor) {
+                setScalingFactor(mainScalingFactor);
+            }
+            
+
+        }
+
+    }, [scalingFactor])
 
     return (
         <PageWrapper
@@ -127,14 +137,14 @@ const BioHero: React.FC<HeroProps> = ({
                             variant='outlined'
                             color='secondary'
                             className={`learn-more-btn`}
-                            onClick={()=>{scrollTo && scrollTo('about-mission-statement')}}
+                            onClick={() => { scrollTo && scrollTo('about-mission-statement') }}
                         />
                         <ButtonPro
                             color='primary'
                             label={`Core Values`}
                             variant='contained'
                             className={`partnership-btn`}
-                            onClick={()=>{scrollTo && scrollTo('about-core-values')}}
+                            onClick={() => { scrollTo && scrollTo('about-core-values') }}
                         />
                     </HeroButtonCtn>
 
@@ -143,6 +153,7 @@ const BioHero: React.FC<HeroProps> = ({
             </MotionDiv>
         </PageWrapper>
     )
+
 }
 
 export default BioHero

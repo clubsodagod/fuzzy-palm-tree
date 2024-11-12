@@ -12,7 +12,7 @@ export async function GET (req:NextRequest, res:NextResponse) {
         try {
             
             // get subcategories
-            const subcategories = await getAllIdentifiers(req,res,SubcategoryModel);
+            const subcategories = await getAllIdentifiers(SubcategoryModel);
             
             // validate subcategories
             if (subcategories) {

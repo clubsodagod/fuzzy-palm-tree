@@ -18,7 +18,6 @@ interface HeroPropsExtended extends HeroProps {
     carouselHandler: VoidOneParameterFunction;
     scrollY: MotionValue,
     scrollYProgress: MotionValue,
-    scalingFactor: number,
 }
 
 interface VariantsType {

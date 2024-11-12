@@ -12,7 +12,7 @@ export async function GET (req:NextRequest, res:NextResponse) {
         try {
             
             // get categories
-            const categories = await getAllIdentifiers(req,res,CategoryModel);
+            const categories = await getAllIdentifiers(CategoryModel);
 
             // validate categories
             if (categories) {

@@ -63,9 +63,8 @@ export const createIdentifier:CreateIdentifierFunction = async(Model,name,taglin
 
 
 // Function to get all identifiers and dynamically populate subdocuments
-export const getAllIdentifiers = async <T extends Document>(req: NextRequest, res: NextResponse, Model: MongooseModel<T>) => {
+export const getAllIdentifiers = async <T extends Document>( Model: MongooseModel<T>) => {
     // Validate request method
-    if (req.method === "GET") {
         try {
             // Connect to the database
             await connectToMongoDB();
@@ -91,20 +90,12 @@ export const getAllIdentifiers = async <T extends Document>(req: NextRequest, re
                 
                 return identifiers
             } else {
-                return NextResponse.json(
-                    { message: "There was an error getting identifiers." }, 
-                    { status: 500 }
-                );
+                return null
             }
         } catch (error) {
-            return NextResponse.json(
-                { message: "There was an error getting identifiers.", error: error },
-                { status: 500 }
-            );
+            return null
         }
-    } else {
-        return NextResponse.json({ message: "Your request method is unauthorized." }, { status: 405 });
-    }
+
 }
 
 export type UpdateIdentifierFunction = <T extends Document>(
@@ -167,7 +158,7 @@ export const updateIdentifier = async <T extends Document & { slug: string; name
     }
 };
 
-export const removeSubcategoriesOfCategory = async(req:NextRequest,res:NextResponse,categoryId:string,subcategoryId:string) => {
+export const removeSubcategoriesOfCategory = async(req:NextRequest,categoryId:string,subcategoryId:string) => {
     if (req.method==="PUT") {
         
         try {

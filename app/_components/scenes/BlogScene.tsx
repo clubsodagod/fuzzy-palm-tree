@@ -44,26 +44,7 @@ const BlogScene = () => {
             <group position={[0,9,0]}>
                 <ambientLight />
 
-                {
-                    blogPosts && blogPosts.map((p,i:number)=> {
-
-                        // Ensure the ref array has enough elements
-                        if (!groupRefs.current[i]) {
-                            groupRefs.current[i] = React.createRef<THREE.Group>().current!;
-                        }
-
-                        return (
-                                <BlogCard
-                                position={[(0 + (i*32)),0,0]}
-                                post={p} 
-                                key={`blog-card-home-object-${i}-${p.title}`} 
-                                ref={(el:GroupType) => {
-                                    groupRefs.current[i] = el!;
-                                }} 
-                                />
-                        )
-                    })
-                }
+                
             </group>
 
             </Canvas>            

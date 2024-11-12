@@ -17,7 +17,7 @@ const InvestmentsPage = () => {
 
     const { mainRef, areasRef, approachRef, ctnRef, refs } = useInvestmentsPageSectionRefs();
 
-    const { scrollYPro, setScrollYPro, windowScrollHeight, setWindowScrollHeight, windowHeight, setWindowHeight } = scroll();
+    const {  windowScrollHeight, setWindowScrollHeight, windowHeight, setWindowHeight } = scroll();
     const { scrollYProgress, scrollY, } = useScroll({ target: ctnRef, offset: ['start end', 'start end'] })
 
 
@@ -73,7 +73,7 @@ const InvestmentsPage = () => {
             setWindowHeight(window?.innerHeight);
         }
         { windowScrollHeight && windowScrollHeight }
-    }, [windowScrollHeight, setWindowScrollHeight, scrollYPro, ctnRef, windowHeight,setWindowHeight]);
+    }, [windowScrollHeight, setWindowScrollHeight,  ctnRef, windowHeight,setWindowHeight]);
 
 
     return (
@@ -84,7 +84,7 @@ const InvestmentsPage = () => {
             id='investments-page'
         >
 
-            <InvestmentsPageExperience scrollY={scrollY} scrollYProgress={scrollYProgress} ctnHeightValue={scrollYPro} />
+            <InvestmentsPageExperience scrollY={scrollY} scrollYProgress={scrollYProgress} ctnHeightValue={windowScrollHeight} />
 
             <InvestmentPageHero ctnRef={mainRef} />
             <InvestmentApproach ctnRef={approachRef} />

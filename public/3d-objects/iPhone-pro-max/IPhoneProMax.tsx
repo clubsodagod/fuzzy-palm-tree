@@ -30,7 +30,6 @@ type GLTFResult = GLTF & {
     Material: THREE.MeshStandardMaterial
     PaletteMaterial003: THREE.MeshStandardMaterial
   }
-  animations: GLTFAction[]
 }
 
 export function Model(props: JSX.IntrinsicElements['group']) {

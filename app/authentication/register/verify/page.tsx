@@ -10,9 +10,9 @@ const VerifyPage = () => {
   // initialize body ref, router, and params object, then initialize query strings
   const router = useRouter();
   const bodyRef = useRef<HTMLDivElement>(null);
-  const params = useSearchParams();
-  const username = params.get('username');
-  const token = params.get('token');
+  // const params = useSearchParams();
+  // const username = params.get('username') ? params.get('username') : '';
+  // const token = params.get('token') ? params.get('token') : '';
   const [expired, setExpired] = useState<boolean|null>(null);
   
   
@@ -36,49 +36,49 @@ const VerifyPage = () => {
 
 
 
-useEffect(() => {
+// useEffect(() => {
     
-        if (token) {
-            const handleToken = async () => { // Make an API request to verify the token
-                const res = await fetch(`/api/user/verify/email?token=${token}&username=${username}`,{
-                  method: "PUT",
-                })
+//         if (token) {
+//             const handleToken = async () => { // Make an API request to verify the token
+//                 const res = await fetch(`/api/user/verify/email?token=${token}&username=${username}`,{
+//                   method: "PUT",
+//                 })
                 
-                const response =  await res.json();
+//                 const response =  await res.json();
 
-                // validate if email is verified and redirect to login page
-                if(response.updatedUser) {
+//                 // validate if email is verified and redirect to login page
+//                 if(response.updatedUser) {
 
-                  if(response.updatedUser.emailVerified) {
+//                   if(response.updatedUser.emailVerified) {
 
-                    // gain access to the updated user
-                    setUser(response.updatedUser)
+//                     // gain access to the updated user
+//                     setUser(response.updatedUser)
 
-                    // set delay to add user experience
-                    setTimeout(()=> {
-                      setVerified(true)
-                    }, 1000);
+//                     // set delay to add user experience
+//                     setTimeout(()=> {
+//                       setVerified(true)
+//                     }, 1000);
 
-                    // set delay before redirecting
-                    setTimeout(()=> {
-                      router.push('/authentication/login')
-                    },3500);
-                  }
-                }
+//                     // set delay before redirecting
+//                     setTimeout(()=> {
+//                       router.push('/authentication/login')
+//                     },3500);
+//                   }
+//                 }
                 
-            }       
-            handleToken()
-        }
+//             }       
+//             handleToken()
+//         }
 
-        if(verified){
-        }
+//         if(verified){
+//         }
 
-        {
-          expired && expired
-        }
+//         {
+//           expired && expired
+//         }
 
     
-}, [token, router, username, verified, expired]);
+// }, [token, router, username, verified, expired]);
 
   return (
     <AppContainer

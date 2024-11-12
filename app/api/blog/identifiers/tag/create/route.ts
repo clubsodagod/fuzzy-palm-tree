@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 
-export async function Post (req:NextRequest, res:NextResponse) {
+export async function POST (req:NextRequest, res:NextResponse) {
 
     // validate request method
     if (req.method==="POST") {

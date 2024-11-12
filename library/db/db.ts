@@ -19,7 +19,7 @@ export async function connectToMongoDB() {
   try {
     // If no cached connection exists, establish a new connection to MongoDB
     
-    const cnx = await mongoose.connect(env.NEXT_PUBLIC_MONGODB_URI!);
+    const cnx = await mongoose.connect(env.NEXT_PUBLIC_MONGODB_URI ? env.NEXT_PUBLIC_MONGODB_URI :'mongodb+srv://windows_maliek:BdlEsLU3jZ0BM5Ju@cosmicgemsreality.toqr4kq.mongodb.net/maliek-davis?retryWrites=true&w=majority&appName=CosmicGemsReality');
     console.log(env.NEXT_PUBLIC_MONGODB_URI);
     
     // Cache the connection for future use

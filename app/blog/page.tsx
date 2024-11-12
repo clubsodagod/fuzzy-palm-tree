@@ -23,7 +23,7 @@ import BlogModule from './_components/BlogModule';
 // request comes in, at most once every 60 seconds.
 export const revalidate = 3600;
 
-
+export const dynamic = 'force-dynamic'
 
 export default async function BlogPage() {
 
