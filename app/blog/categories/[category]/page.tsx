@@ -8,7 +8,7 @@ import slugify from 'slugify';
 import CategoryHero from '../../_components/slug-page/CategoryHero';
 import MotionPageWrapper from '@/app/_components/common/MotionPageWrapper';
 import MotionSectionWrapper from '@/app/_components/common/MotionSectionWrapper';
-import { getAllIdentifiers, getIdentifier } from '@/library/db/controllers/identifiers';
+import { getAllIdentifiers } from '@/library/db/controllers/identifiers';
 import { connectToMongoDB } from '@/library/db/db';
 
 
@@ -22,12 +22,12 @@ export const dynamicParams = false // or false, to 404 on unknown paths
 // Generate static paths for categories.
 export async function generateStaticParams() {
     
-    
-    const categoryResponse = await getAllIdentifiers(CategoryModel);
+    await connectToMongoDB()
+    const categoryResponse = await CategoryModel.find();
     const categories = categoryResponse
 
     
-    return categories?.map((category: ICategory) => ({
+    return categories.map((category: ICategory) => ({
         category: category.slug,
     }));
 }
