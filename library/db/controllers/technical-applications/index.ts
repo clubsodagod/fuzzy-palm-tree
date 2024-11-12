@@ -88,7 +88,7 @@ export async function getAllTechnicalApplicationsClient() {
 
         // find technical applications
         const technicalApplications = await fetch('https://fuzzy-palm-tree.vercel.app/api/user/portfolio/technical-application/get/all', {
-            method:'GET', cache:'no-store'
+            method:'GET'
         }).then((res)=>res.json());
         console.log(technicalApplications);
         

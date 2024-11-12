@@ -18,7 +18,6 @@ export default async function PortfolioPage () {
     
     const technicalApplications = await getAllTechnicalApplicationsClient();
     const caseStudies = await getAllCaseStudiesClient();
-    console.log(caseStudies);
     
     if (technicalApplications && caseStudies) {
         return (

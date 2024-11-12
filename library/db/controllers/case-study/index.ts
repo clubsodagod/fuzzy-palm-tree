@@ -91,7 +91,7 @@ export async function getAllCaseStudiesClient() {
 
         // find case studies 
         const caseStudies = await fetch('https://fuzzy-palm-tree.vercel.app/user/portfolio/case-study/get/all', {
-            method:'GET', cache:'no-store'
+            method:'GET'
         }).then((res)=>res.json());
         console.log(caseStudies);
         
