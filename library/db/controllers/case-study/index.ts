@@ -90,7 +90,7 @@ export async function getAllCaseStudiesClient() {
         await connectToMongoDB();
 
         // find case studies 
-        const caseStudies = await fetch('https://fuzzy-palm-tree.vercel.app/user/portfolio/case-study/get/all', {
+        const caseStudies = await fetch('https://fuzzy-palm-tree.vercel.app/api/user/portfolio/case-study/get/all', {
             method:'GET'
         }).then((res)=>res.json());
         console.log(caseStudies);
