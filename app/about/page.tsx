@@ -1,8 +1,7 @@
 'use client'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AppContainer } from '../_components'
 import { BioHero, CoreValues, MissionStatement } from './_components'
-import MotionPageWrapper from '../_components/common/MotionPageWrapper'
 import { useAnimationControls } from 'framer-motion'
 import { useAboutSectionRefs } from './_utils/refs'
 import ScrollGradientUtil from '@/utility/common/ScrollGradientUtil'
@@ -11,7 +10,7 @@ import { scrollToSection } from '@/utility/common/scrollToSection'
 import { useScroll } from '../_context/sub-context/ScrollContext'
 import { MotionDiv } from '../_components/framer/MotionDiv'
 import MissionStatementScene from './_components/scenes/mission-statement/MissionStatementScene'
-import { CoreValue, coreValues } from '@/library/const'
+import { coreValues } from '@/library/const'
 
 const AboutPage = () => {
 
