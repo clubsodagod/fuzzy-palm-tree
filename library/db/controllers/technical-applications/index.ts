@@ -87,7 +87,7 @@ export async function getAllTechnicalApplicationsClient() {
         await connectToMongoDB();
 
         // find technical applications
-        const technicalApplications = await fetch('http://localhost:3000/api/user/portfolio/technical-application/get/all', {
+        const technicalApplications = await fetch('https://fuzzy-palm-tree.vercel.app//api/user/portfolio/technical-application/get/all', {
             method:'GET', cache:'no-store'
         }).then((res)=>res.json());
         console.log(technicalApplications);
