@@ -56,14 +56,18 @@ const AboutPage = () => {
         }
     }
 
+	useEffect(() => {
+		if (window && windowScrollHeight === 0) {
+			setWindowScrollHeight(ctnRef?.current?.scrollHeight! - window?.innerHeight);
+		}
+		if (window && windowHeight === 0) {
+			setWindowHeight(window?.innerHeight);
+			console.log(window?.innerHeight);
 
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            setWindowScrollHeight(ctnRef?.current?.scrollHeight! - window.innerHeight);
-            setWindowHeight(window.innerHeight);
-        }
-    }, [ctnRef, setWindowScrollHeight, setWindowHeight]);
-
+		}
+		{ windowScrollHeight && windowScrollHeight }
+		{ windowHeight && windowHeight }
+	}, [windowScrollHeight, setWindowScrollHeight, ctnRef, windowHeight, setWindowHeight]);
 
 
     return (
