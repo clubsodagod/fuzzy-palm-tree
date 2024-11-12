@@ -20,7 +20,7 @@ export const useScroll = () => {
 // ScrollProvider component
 const ScrollProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const bodyRef = useRef<RefObject<HTMLDivElement>>(null)
-	const { scrollYProgress, scrollY, } = useScrollFramer({  offset: ['start end', 'end start'] })
+	const { scrollYProgress, scrollY, } = useScrollFramer();
     const [windowScrollHeight, setWindowScrollHeight] = useState<number>(0);
     const [windowHeight, setWindowHeight] = useState<number>(0);
 
@@ -65,7 +65,7 @@ const ScrollProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 threeEighthsCtn,
                 fiveEightsCtn,
                 sevenEightsCtn,
-                dynamicIncrement, scrollY
+                dynamicIncrement, scrollY, scrollYProgress
             }}
         >
             {children}

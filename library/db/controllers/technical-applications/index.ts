@@ -2,7 +2,7 @@
 import { connectToMongoDB } from "../../db";
 import { TechnicalApplicationModel } from "../../models";
 import slugify from "slugify";
-import { TechnicalApplicationDocumentType } from "../../models/technicalApplication";
+import { ITechnicalApplication, TechnicalApplicationDocumentType } from "../../models/technicalApplication";
 
 
 
@@ -57,6 +57,50 @@ export async function createNewTechnicalApplication(technicalApplication: Techni
             return null
         }
     } else {
+        return null
+    }
+}
+
+export async function getAllTechnicalApplications() {
+
+    try {
+        
+        // connect to database
+        await connectToMongoDB();
+
+        // find technical applications
+        const technicalApplications = await TechnicalApplicationModel.find();
+
+        // validate technicalApplications
+        if (technicalApplications.length > 0) {
+            return technicalApplications
+        }
+    } catch (error) {
+        return null
+    }
+}
+export async function getAllTechnicalApplicationsClient() {
+
+    try {
+        
+        // connect to database
+        await connectToMongoDB();
+
+        // find technical applications
+        const technicalApplications = await fetch('http://localhost:3000/api/user/portfolio/technical-application/get/all', {
+            method:'GET', cache:'no-store'
+        }).then((res)=>res.json());
+        console.log(technicalApplications);
+        
+        // validate technicalApplications
+        if (technicalApplications.technicalApplications.length > 0) {
+            console.log(technicalApplications.technicalApplications);
+            
+            return technicalApplications.technicalApplications
+        } else {
+            return {error:true, message:technicalApplications.message}
+        }
+    } catch (error) {
         return null
     }
 }

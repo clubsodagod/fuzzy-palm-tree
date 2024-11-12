@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { HeroProps } from './BioHero'
 import { Header, HeroButtonCtn, PageWrapper } from '@/app/_components'
 import styles from './styles.module.css'
@@ -17,21 +17,25 @@ const MissionVision: React.FC<HeroProps> = ({
     scrollTo,
 }) => {
     const {
-        scrollY
+        scrollY, windowScrollHeight, scrollYProgress
     } = useScroll()
+
+    const [scrollYPro, setScrollYPro] = useState(scrollY.get())
+
+    useEffect(()=> {
+        if(scrollY)
+            console.log(scrollY.get(), scrollYProgress.get());
+            
+        
+        
+        
+    },[scrollY.get(),scrollYProgress.get()])
 
     return (
         <PageWrapper
             ctnRef={ctnRef}
             id={id}
         >
-            <MotionDiv
-                className={`left-0 absolute w-full`}
-            >
-                <MissionStatementScene
-                    scrollY={scrollY}
-                />
-            </MotionDiv>
             <MotionDiv className={` h-full`}>
 
                 <Header
@@ -40,7 +44,7 @@ const MissionVision: React.FC<HeroProps> = ({
                     size='md'
                 />
 
-                <MotionDiv className={`min-h-[60vh] flex justify-center align-middle items-center`}>
+                <MotionDiv className={`${styles.missionText}`}>
                     <Typography variant='h6'>
                         {missionStatement}
                     </Typography>

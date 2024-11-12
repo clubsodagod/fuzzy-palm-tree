@@ -18,6 +18,8 @@ import BlogCard2D from '@/app/blog/_components/BlogCard';
 import styles from './styles.module.css'
 import { useMotionLogic as useMotionLogicPro } from '@/utility/functions';
 import { group } from 'console';
+import MacBookPro from '@/public/3d-objects/macbook-pro/MacBookPro';
+import MacBook from '@/public/3d-objects/macbook/Macbook';
 
 
 
@@ -183,14 +185,13 @@ const Experience = ({ scrollY }: { scrollY: MotionValue }) => {
                     position={[programmerMotion().x, programmerMotion().y, programmerMotion().z]}
                     scale={programmerMotion().scale}
                 >
-                    <Float
+                    {/* <Float
                         floatIntensity={0.0625}
                         rotationIntensity={1.25}
-                    >
-                        <MemoizedMacbookModel
-                        // scale={mainScalingFactor}
-                        />
-                    </Float>
+                    > */}
+                        {/* <MacBookPro props={{scale:0.02, position:[0,-0.5,0] }} link='https://images.pexels.com/photos/6477212/pexels-photo-6477212.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'/> */}
+                        <MacBook />
+                    {/* </Float> */}
                 </motion.group>
 
                 <motion.group

@@ -63,12 +63,15 @@
     position: absolute;
     bottom:0;
     width: 100%;
-    /* height:100vh; */
+    height:100%;
 
-    @media screen and (min-width:769px) {
+    @media screen and (min-width:675px) {
         right: 0;
-        max-width: 66vw;
-        height: auto;
+        max-width: 75vw;
+    } @media screen and (min-width:840px) {
+        max-width: 65vw;
+    } @media screen and (min-width:1025px) {
+        max-width: 35vw;
     }
 }
 
@@ -87,4 +90,57 @@
     padding-inline: 6vw;
     max-height: 60vh;
     overflow-y: auto;
+    @media screen and (min-width:769px) {
+        padding-inline: 16.5vw;
+    } @media screen and (min-width:1025px) {
+        padding-inline: 24vw;
+    }
+}
+
+.missionText {
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    @media screen and (min-width:769px) {
+        padding-inline: 12vw;
+    }
+}
+
+.carouselWrapper {
+    height: 75vh;
+    position: absolute;
+    width: 100%;
+    left: 0;
+}
+
+.textBoxWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6vh;
+    text-align: center;
+    padding-block: 20vh 0;
+
+    @media screen and (min-width:769px){
+        padding-inline: 16.5vw;
+    } @media screen and (min-width:1025px){
+        width: 50%;
+        padding-inline: 0;
+    }
+}
+
+.coreValueTextBoxWrapper {
+    border-radius: 25px;
+    background-color: #f5f5f517;
+    backdrop-filter: blur(2.5px);
+    padding:1vh;
+}
+
+.chipWrapper {
+    border-radius: 50px;
+    background-color: #f5f5f517;
+    backdrop-filter: blur(2.5px);
+    padding:0.25vh;
 }

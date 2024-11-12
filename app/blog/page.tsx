@@ -15,6 +15,7 @@ import { MotionH6 } from '../_components/framer/MotionH6';
 import { MotionP } from '../_components/framer/MotionP';
 import { MotionH1 } from '../_components/framer/MotionH1';
 import { Typography } from '@mui/material';
+import BlogModule from './_components/BlogModule';
 
 
 
@@ -35,117 +36,13 @@ export default async function BlogPage() {
     } = posts!;
 
 
-    return (
-        <MotionPageWrapper>
-
-            <MotionSectionWrapper>
-
-
-                <MotionDiv
-                    className={`${styles.headerWrapper}`}
-                >
-                    <MotionDiv>
-                        <Typography
-                            variant='h1'
-                        >
-                            The Davis Daily
-
-                        </Typography>
-                    </MotionDiv>
-
-                    <MotionDiv>
-                        <Typography variant='h6' className={`subheader`}>
-                            Fresh. Relevant. Mind Expanding.
-                        </Typography>
-                    </MotionDiv>
-                </MotionDiv>
-
-                {/* Featured Posts Hero Component */}
-                <MotionDiv
-                    className={`${styles.sectionCtn}`}
-                >
-                    <MotionDiv
-                        className={`${styles.sectionHeaderCtn}`}
-                    >
-                        <MotionH5
-                            className={`${styles.sectionHeaderTxt} font-bold`}
-                        >
-                            Featured Posts
-                        </MotionH5>
-                    </MotionDiv>
-
-                    <ScrollableItemCtn
-                    >
-                        {
-                            featuredPosts.length > 0 ?
-                                <>
-                                    {
-                                        featuredPosts.map((p: IBlogPopulated, i: number) => {
-                                            return (
-                                                <MotionDiv
-                                                    key={`${p._id}`}
-                                                >
-                                                    <BlogCard2D
-                                                        blog={p}
-                                                    />
-                                                </MotionDiv>
-
-                                            )
-                                        })
-                                    }
-                                </>
-                                :
-                                <MotionP>
-                                    On the search for those articles...
-                                </MotionP>
-                        }
-                    </ScrollableItemCtn>
-
-                </MotionDiv>
-
-
-                {/* All Posts Hero Component */}
-                <MotionDiv
-                    className={`${styles.sectionCtn}`}
-                >
-                    <MotionDiv
-                        className={`${styles.sectionHeaderCtn}`}
-                    >
-                        <MotionH5
-                            className={`${styles.sectionHeaderTxt} font-bold`}
-                        >
-                            All Posts
-                        </MotionH5>
-                    </MotionDiv>
-
-                    {
-                        featuredPosts.length > 0 ?
-                            <>
-                                {
-                                    allPosts.map((p: IBlogPopulated, i: number) => {
-                                        return (
-                                            <MotionDiv
-                                                key={`${p._id}`}
-                                            >
-                                                <BlogCard2D
-                                                    blog={p}
-                                                />
-                                            </MotionDiv>
-
-                                        )
-                                    })
-                                }
-                            </>
-                            :
-                            <MotionP>
-                                On the search for those articles...
-                            </MotionP>
-                    }
-                </MotionDiv>
-
-            </MotionSectionWrapper>
-
-        </MotionPageWrapper>
-    )
+    if (featuredPosts && allPosts) {
+        return  (
+            <BlogModule 
+            featuredPosts={featuredPosts}
+            allPosts={allPosts}
+            />
+        )
+    }
 }
 

@@ -12,6 +12,7 @@ import * as THREE from 'three'
 import React from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
+import { useFrame } from '@react-three/fiber'
 
 type ActionName = 'rotating cylinderAction' | 'needleAction'
 
@@ -41,12 +42,25 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
-export default function Compass(props: JSX.IntrinsicElements['group']) {
+interface CompassThreeProps  {
+  animation: ActionName[];
+  props: JSX.IntrinsicElements['group'];
+}
+
+export default function Compass(props: CompassThreeProps) {
   const group = React.useRef<THREE.Group>(null)
   const { nodes, materials, animations } = useGLTF('/3d-objects/core-values/compass/Compass-transformed.glb') as GLTFResult
-  const { actions } = useAnimations(animations, group)
+  const { actions } = useAnimations(animations, group);
+  useFrame(()=> {
+    if (actions.needleAction) {
+      actions.needleAction.play();
+    }
+    if (actions['rotating cylinderAction']) {
+      actions['rotating cylinderAction'].play()
+    }
+  });
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref={group} {...props.props} dispose={null}>
       <group name="Sketchfab_Scene">
         <group name="GLTF_SceneRootNode">
           <group name="rotating_cylinder_3" rotation={[0, 0.051, 0]}>

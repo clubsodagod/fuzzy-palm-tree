@@ -25,6 +25,7 @@ export interface ScrollContextProps {
     fiveEightsCtn:number,
     sevenEightsCtn:number,
     scrollY:MotionValue,
+    scrollYProgress:MotionValue,
 }
 
 export type SessionStatusType = "authenticated" | "loading" | "unauthenticated";

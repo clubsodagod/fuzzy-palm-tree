@@ -12,6 +12,7 @@ import * as THREE from 'three'
 import React from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
+import { useFrame } from '@react-three/fiber'
 
 type ActionName = 'Take 001'
 
@@ -210,12 +211,23 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
-export default function Book(props: JSX.IntrinsicElements['group']) {
+
+export interface BookThreeProps  {
+  animation: ActionName;
+  props: JSX.IntrinsicElements['group'];
+}
+
+export default function Book(props: BookThreeProps) {
   const group = React.useRef<THREE.Group>(null)
   const { nodes, materials, animations } = useGLTF('/3d-objects/core-values/book/Book-transformed.glb') as GLTFResult
-  const { actions } = useAnimations(animations, group)
+  const { actions } = useAnimations(animations, group);
+  useFrame(()=> {
+    if (actions[props.animation]) {
+      actions[props.animation]!.play()
+    }
+  });
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref={group} {...props.props} dispose={null}>
       <group name="Sketchfab_Scene">
         <group name="Book_0" position={[-0.096, 0.123, 0.592]} rotation={[-2.327, -0.237, -2.897]}>
           <group name="Stars_6" position={[5.81, 0.988, 5.41]} rotation={[-1.309, 0.045, -0.012]} scale={0.1}>

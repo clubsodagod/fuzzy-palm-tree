@@ -5,35 +5,79 @@ import styles from './styles.module.css'
 import ArrowCircleDownRoundedIcon from '@mui/icons-material/ArrowCircleDownRounded';
 import { MotionDiv } from '../framer/MotionDiv';
 import type { HTMLMotionProps } from 'framer-motion';
+import { useScroll } from '@/app/_context/sub-context/ScrollContext';
+import { useScreenContext } from '@/app/_context/sub-context/ScreenContext';
 
 export type MotionDivProps = HTMLMotionProps<'div'>;
 
-export interface ScrollableItemCtnProps extends MotionDivProps  {
-    children:React.ReactNode,   
-    elementRef?:React.RefObject<HTMLDivElement>,
+export interface ScrollableItemCtnProps extends MotionDivProps {
+    children: React.ReactNode,
+    elementRef?: React.RefObject<HTMLDivElement>,
+    portfolio?: boolean;
+    setIndex?: React.Dispatch<number>;
+    index?: number;
+    totalIndex?: number;
 }
 
 const ScrollableItemCtn: React.FC<ScrollableItemCtnProps> = ({
     children,
     elementRef,
+    portfolio,
+    setIndex,
+    totalIndex,
+    index,
     ...rest
 }) => {
+    const {
+        isMobile, currentBreakpoint
+    } = useScreenContext()
     const scrollCtnRef = useRef<HTMLDivElement>(null);
     // Function to scroll the container by the window width
     const scrollContainer = (direction: 'left' | 'right') => {
         if (scrollCtnRef?.current) {
-            const scrollAmount = window.innerWidth * 0.5;
+            let scrollAmount: number;
+            if (portfolio) {
+                scrollAmount = window.innerWidth;
+            } else {
+                scrollAmount = window.innerWidth * (isMobile ? 1 : 0.5);
+            }
+
             if (direction === 'left') {
+                
+                if (portfolio) {
+                    if (index && totalIndex && setIndex) {
+                        if (index == 0) {
+
+                            setIndex(totalIndex);
+                        } else {
+                            setIndex(index - 1);
+                        }
+                    }
+                }
+
                 scrollCtnRef.current.scrollBy({
                     left: -scrollAmount,
                     behavior: 'smooth',
                 });
+
             } else {
+
+                if (portfolio) {
+                    if (index && totalIndex && setIndex) {
+                        if (index == totalIndex) {
+                            setIndex(0);
+                        } else {
+                            setIndex(index + 1);
+                        }
+                    }
+                }
+
                 scrollCtnRef.current.scrollBy({
                     left: scrollAmount,
                     behavior: 'smooth',
                 });
             }
+
         }
     };
 
@@ -44,51 +88,60 @@ const ScrollableItemCtn: React.FC<ScrollableItemCtnProps> = ({
             className={`${styles.scrollableCtnWrapper}`}
             {...rest}
         >
-            <MotionDiv
-                initial={{
-                    opacity:0,
-                }}
-                whileInView={{
-                    opacity:"100%",
-                    transition:{
-                        duration:2,
-                    }
-                }}
-                whileHover={{
-                    scale:1.25
-                }}
-                className={`${styles.leftArrowCtn}`}
-                onClick={() => scrollContainer('left')} // Scroll left on click
-            >
-                <ArrowCircleDownRoundedIcon 
-                    className={`${styles.leftArrow}`}
-                />
-            </MotionDiv>
+            {
+                !(['xs', 'sm', 'md']).includes(currentBreakpoint) &&
+                <MotionDiv
+                    initial={{
+                        opacity: 0,
+                    }}
+                    whileInView={{
+                        opacity: "100%",
+                        transition: {
+                            duration: 2,
+                        }
+                    }}
+                    whileHover={{
+                        scale: 1.25
+                    }}
+                    className={`${styles.leftArrowCtn}`}
+                    onClick={() => scrollContainer('left')} // Scroll left on click
+                >
+                    <ArrowCircleDownRoundedIcon
+                        className={`${styles.leftArrow}`}
+                    />
+                </MotionDiv>
+            }
+
 
             <div ref={scrollCtnRef} className={styles.childWrapper} >
                 {children}
             </div>
 
-            <MotionDiv
-                initial={{
-                    opacity:0,
-                }}
-                whileInView={{
-                    opacity:"100%",
-                    transition:{
-                        duration:2.5,
-                    }
-                }}
-                whileHover={{
-                    scale:1.25
-                }}
-                className={`${styles.rightArrowCtn}`}
-                onClick={() => scrollContainer('right')} // Scroll right on click
-            >
-                <ArrowCircleDownRoundedIcon 
-                    className={`${styles.rightArrow}`}
-                />
-            </MotionDiv>
+
+            {
+                !(['xs', 'sm', 'md']).includes(currentBreakpoint) &&
+                <MotionDiv
+                    initial={{
+                        opacity: 0,
+                    }}
+                    whileInView={{
+                        opacity: "100%",
+                        transition: {
+                            duration: 2.5,
+                        }
+                    }}
+                    whileHover={{
+                        scale: 1.25
+                    }}
+                    className={`${styles.rightArrowCtn}`}
+                    onClick={() => scrollContainer('right')} // Scroll right on click
+                >
+                    <ArrowCircleDownRoundedIcon
+                        className={`${styles.rightArrow}`}
+                    />
+                </MotionDiv>
+            }
+
         </MotionDiv>
     );
 }

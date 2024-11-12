@@ -61,3 +61,49 @@ export async function createNewCaseStudy(caseStudy: CaseStudyDocumentType) {
         return null
     }
 }
+
+
+export async function getAllCaseStudies() {
+
+    try {
+        
+        // connect to database
+        await connectToMongoDB();
+
+        // find case studies
+        const caseStudies = await CaseStudyModel.find();
+
+        // validate case studies
+        if (caseStudies.length > 0) {
+            return caseStudies
+        }
+    } catch (error) {
+        return null
+    }
+}
+
+export async function getAllCaseStudiesClient() {
+
+    try {
+        
+        // connect to database
+        await connectToMongoDB();
+
+        // find case studies 
+        const caseStudies = await fetch('http://localhost:3000/api/user/portfolio/case-study/get/all', {
+            method:'GET', cache:'no-store'
+        }).then((res)=>res.json());
+        console.log(caseStudies);
+        
+        // validate caseStudies
+        if (caseStudies.caseStudies.length > 0) {
+            console.log(caseStudies.caseStudies);
+            
+            return caseStudies.caseStudies
+        } else {
+            return {error:true, message:caseStudies.message}
+        }
+    } catch (error) {
+        return null
+    }
+}

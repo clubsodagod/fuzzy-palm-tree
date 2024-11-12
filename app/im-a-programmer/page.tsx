@@ -17,7 +17,7 @@ const ImAProgrammerPage = () => {
 		isMobile,
 	} = useScreenContext();
 
-	const { scrollYPro, setScrollYPro, windowScrollHeight, setWindowScrollHeight, setWindowHeight, windowHeight } = scroll();
+	const { windowScrollHeight, setWindowScrollHeight, setWindowHeight, windowHeight } = scroll();
 
 	const {
 		scrollRef, bodyRef, mainRef, overviewRef, overviewDynamicRefs, whyDigitalDynamicRefs, refs, areasRef, whyDigitalRef
@@ -132,7 +132,7 @@ const ImAProgrammerPage = () => {
 
 	useEffect(() => {
 		if (windowScrollHeight === 0) {
-			setWindowScrollHeight(scrollRef?.current?.scrollHeight!);
+			setWindowScrollHeight(scrollRef?.current?.scrollHeight! - window.innerHeight);
 		}
 		if (windowHeight === 0) {
 			setWindowHeight(window?.innerHeight);
@@ -141,7 +141,7 @@ const ImAProgrammerPage = () => {
 		}
 		{ windowScrollHeight && windowScrollHeight }
 		{ windowHeight && windowHeight }
-	}, [windowScrollHeight, setWindowScrollHeight, scrollYPro, scrollRef, windowHeight, setWindowHeight]);
+	}, [windowScrollHeight, setWindowScrollHeight, scrollRef, windowHeight, setWindowHeight]);
 
 	return (
 		<AppContainer

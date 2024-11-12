@@ -10,7 +10,7 @@ Title: Tropical Island
 
 import * as THREE from 'three'
 import React from 'react'
-import { useGraph } from '@react-three/fiber'
+import { useFrame, useGraph } from '@react-three/fiber'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { GLTF, SkeletonUtils } from 'three-stdlib'
 
@@ -53,14 +53,23 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
-export default function Model(props: JSX.IntrinsicElements['group']) {
+export interface TropicalIslandThreeProps  {
+  animation: ActionName;
+  props: JSX.IntrinsicElements['group'];
+}
+export default function Model(props: TropicalIslandThreeProps) {
   const group = React.useRef<THREE.Group>(null)
   const { scene, animations } = useGLTF('/3d-objects/core-values/tropical-island/TropicalIsland-transformed.glb')
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
   const { nodes, materials } = useGraph(clone) as GLTFResult
   const { actions } = useAnimations(animations, group)
+  useFrame(()=> {
+    if (actions[props.animation]) {
+      actions[props.animation]!.play()
+    }
+  });
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref={group} {...props.props} dispose={null}>
       <group name="Sketchfab_Scene">
         <primitive object={nodes.GLTF_created_0_rootJoint} />
         <mesh name="Object_4" geometry={nodes.Object_4.geometry} material={materials.Cat_Palm} position={[3.492, -0.398, 1.482]} rotation={[0.053, -0.004, -0.111]} scale={0.01} />

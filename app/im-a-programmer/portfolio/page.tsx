@@ -1,21 +1,30 @@
-'use client'
+
 
 import { AppContainer } from '@/app/_components';
-import React, { useRef } from 'react'
+import React from 'react'
 import { CaseStudies, Demos, PortfolioMainHero, SocialValidation, Visuals } from '../_components/portfolio';
+import { getAllTechnicalApplicationsClient } from '@/library/db/controllers/technical-applications';
+import PortfolioModule from '../_components/portfolio/PortfolioModule';
+import { getAllCaseStudiesClient } from '@/library/db/controllers/case-study';
 
-const PortfolioPage = () => {
+// Next.js will invalidate the cache when a
+// request comes in, at most once every 60 seconds.
+export const revalidate = 3600;
+
+
+
+export default async function PortfolioPage () {
+
     
-    const ctnRef = useRef<HTMLDivElement>(null);
-    return (
-        <AppContainer ctnRef={ctnRef}>
-            <PortfolioMainHero />
-            <CaseStudies />
-            <Demos />
-            <SocialValidation />
-            {/* <Visuals /> */}
-        </AppContainer>
-    )
+    const technicalApplications = await getAllTechnicalApplicationsClient();
+    const caseStudies = await getAllCaseStudiesClient();
+    console.log(caseStudies);
+    
+    if (technicalApplications && caseStudies) {
+        return (
+            <PortfolioModule technicalApplications={technicalApplications} caseStudies={caseStudies}/>
+        )        
+    }
+
 }
 
-export default PortfolioPage

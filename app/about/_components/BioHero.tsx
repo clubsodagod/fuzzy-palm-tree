@@ -10,6 +10,7 @@ import { MotionDiv } from '@/app/_components/framer/MotionDiv';
 import ButtonPro from '@/app/_components/common/buttons/ButtonPro';
 import { MotionImg } from '@/app/_components/framer/MotionImg';
 import { VoidOneParameterFunction } from '@/app/im-a-programmer/_components/DigitalSolutionsHeroMain';
+import { useResponsiveValues as rv } from '@/utility/functions';
 
 
 export interface HeroProps {
@@ -32,9 +33,11 @@ const BioHero: React.FC<HeroProps> = ({
         setStoryTime(!storyTime);
     }
 
+    const scalingFactor = window && Math.min(Math.max(window?.innerWidth / 480,  0.2), 100);
+
 
     const variants = {
-        storyTime: { opacity: 0.25, scale: 0.75, y: 50 },
+        storyTime: { opacity: 0.25, scale: 0.75, y: 65*scalingFactor  },
         other: { opacity: 1, scale: 1 },
         clampedText: { opacity: 1, scale: 1 },
         hideClampedText: { opacity: 0, scale: 0 },

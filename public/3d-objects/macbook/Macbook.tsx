@@ -12,10 +12,12 @@ import * as THREE from 'three'
 import React, { useEffect, useState } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
-import { useFrame } from '@react-three/fiber'
+import { useFrame, useLoader } from '@react-three/fiber'
 import { motion } from 'framer-motion-3d'
 import { JoinGrowthProps } from '@/library/types/common';
 import { useResponsiveValues as useRVs } from '@/utility/functions'
+import { LoopRepeat } from 'three'
+import { MacBookThreeProps } from '../macbook-pro/MacBookPro'
 
 type ActionName = 'Animation'
 
@@ -45,37 +47,31 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
-export default function MacBook(props: JSX.IntrinsicElements["group"], ...rest:any) {
-  
+export default function MacBook(props: MacBookThreeProps) {
+  const imageTexture = useLoader(THREE.TextureLoader, props.link ? props.link : '/images/maliek-davis_com.png' );
+
   const group = React.useRef<THREE.Group>(null)
-  const { nodes, materials, animations } = useGLTF('3d-objects/macbook/macbook-transformed.glb') as GLTFResult
+  const { nodes, materials, animations } = useGLTF('/3d-objects/macbook/macbook-transformed.glb') as GLTFResult
   const { actions } = useAnimations(animations, group)
   const [currentInView, setCurrentInView] = useState(null);
   const [startAnimation, setStartAnimation] = useState<boolean>(true);
 
+  const animationRef = React.useRef(actions.Animation);
   const radius = useRVs([0.25, 0.25, 1]);
-  const radiusZ = useRVs([0,0,1]);
+  const radiusZ = useRVs([0, 0, 1]);
   // console.log(ctnRefs);
-  
-  useFrame(({ clock }) => {
-    const elapsedTime = clock.getElapsedTime();
-  
-    // if (group.current) {  // Ensure that group.current is defined
-    //   if (animate?.animationOrbit) {
-    //     group.current.position.x = radius * Math.sin(elapsedTime / 1.5);
-    //     group.current.position.y = radius * Math.cos(elapsedTime / 1.5);
-    //     group.current.position.z = radiusZ * Math.sin(elapsedTime / 1);
-    //   }
-    // }
-  
+
+  useFrame(() => {
+
+
     if (actions.Animation) {
-      actions.Animation?.play();
-      
+      actions.Animation.play()
+
       // Loop through each ref in ctnRefs
       // if(ctnRefs)
       // ctnRefs.forEach((element) => {
       // // console.log(element.current);
-    
+
       //   if (element && element.current) { // Check if element and element.current are defined
       //     const a = element.current.id; // Access ID or any property of the object
 
@@ -103,7 +99,7 @@ export default function MacBook(props: JSX.IntrinsicElements["group"], ...rest:a
 
 
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref={group} {...props.props} dispose={null}>
       <group name="Sketchfab_Scene">
         <group name="GLTF_SceneRootNode">
           <group name="Bevels_2" position={[0, 0.008, -0.104]} scale={0.275}>
@@ -114,7 +110,11 @@ export default function MacBook(props: JSX.IntrinsicElements["group"], ...rest:a
             </group>
             <mesh castShadow name="Object_4" geometry={nodes.Object_4.geometry} material={materials.PaletteMaterial001} />
             <mesh castShadow name="Object_6" geometry={nodes.Object_6.geometry} material={materials.PaletteMaterial002} />
-            <mesh castShadow name="Object_7" geometry={nodes.Object_7.geometry} material={materials['Material.002']} />
+            <mesh castShadow name="Object_7" geometry={nodes.Object_7.geometry}  >
+
+              {/* Apply the texture to the material */}
+              <meshStandardMaterial map={imageTexture} />
+            </mesh>
           </group>
           <group name="Circle001_12" position={[0.203, 0.008, -0.104]} rotation={[0.011, -0.75, 1.274]} />
         </group>

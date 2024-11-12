@@ -12,6 +12,7 @@ import * as THREE from 'three'
 import React from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
+import { useFrame } from '@react-three/fiber'
 
 type ActionName = 'Main'
 
@@ -39,12 +40,22 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
-export default function City(props: JSX.IntrinsicElements['group']) {
+export interface CityThreeProps  {
+  animation: ActionName;
+  props: JSX.IntrinsicElements['group'];
+}
+export default function City(props: CityThreeProps) {
   const group = React.useRef<THREE.Group>(null)
   const { nodes, materials, animations } = useGLTF('/3d-objects/core-values/city/City-transformed.glb') as GLTFResult
   const { actions } = useAnimations(animations, group)
+
+  useFrame(()=> {
+    if (actions[props.animation]) {
+      actions[props.animation]!.play()
+    }
+  })
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref={group} {...props.props} dispose={null}>
       <group name="Sketchfab_Scene">
         <group name="RootNode" scale={0.01}>
           <group name="Blimp" position={[8184.433, 31244.307, -26948.424]} rotation={[0, 1.484, 0]}>

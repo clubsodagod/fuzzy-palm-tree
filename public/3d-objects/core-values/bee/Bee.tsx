@@ -10,7 +10,7 @@ Title: Honey Bee | 🦟
 
 import * as THREE from 'three'
 import React from 'react'
-import { useGraph } from '@react-three/fiber'
+import { useFrame, useGraph } from '@react-three/fiber'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { GLTF, SkeletonUtils } from 'three-stdlib'
 
@@ -31,14 +31,24 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
-export default function Model(props: JSX.IntrinsicElements['group']) {
+export interface BeeThreeProps  {
+  animation: ActionName;
+  props: JSX.IntrinsicElements['group'];
+}
+export default function Model(props: BeeThreeProps) {
   const group = React.useRef<THREE.Group>(null)
   const { scene, animations } = useGLTF('/3d-objects/core-values/bee/Bee-transformed.glb')
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
   const { nodes, materials } = useGraph(clone) as GLTFResult
   const { actions } = useAnimations(animations, group)
+
+  useFrame(()=> {
+    if (actions[props.animation]) {
+      actions[props.animation]!.play()
+    }
+  })
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref={group} {...props.props} dispose={null}>
       <group name="Sketchfab_Scene">
         <primitive object={nodes.GLTF_created_0_rootJoint} />
         <skinnedMesh name="Object_116" geometry={nodes.Object_116.geometry} material={materials.material_0} skeleton={nodes.Object_116.skeleton} scale={0.01} />

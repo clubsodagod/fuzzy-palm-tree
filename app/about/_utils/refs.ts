@@ -11,12 +11,14 @@ export type RefIDObject = {
 
 // Custom hook to create and manage refs
 export const useAboutSectionRefs = (): {
+    ctnRef: RefObject<HTMLDivElement>;
     bioRef: RefObject<HTMLDivElement>;
     coreValuesRef: RefObject<HTMLDivElement>;
     missionStatementRef: RefObject<HTMLDivElement>;
     bodyRef: RefObject<HTMLBodyElement>;
     refs: RefIDObject[];
 } => {
+    const ctnRef = useRef<HTMLDivElement>(null);
     const bioRef = useRef<HTMLDivElement>(null);
     const coreValuesRef = useRef<HTMLDivElement>(null);
     const missionStatementRef = useRef<HTMLDivElement>(null);
@@ -32,6 +34,6 @@ export const useAboutSectionRefs = (): {
 
 
     return {
-        bioRef, coreValuesRef, missionStatementRef,refs, bodyRef
+        bioRef, coreValuesRef, missionStatementRef,refs, bodyRef, ctnRef
     };
 };

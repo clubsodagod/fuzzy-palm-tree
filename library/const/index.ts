@@ -14,21 +14,21 @@ export const clientDomain = process.env.NEXT_PUBLIC_NODE_ENVIROMENT === 'develop
     ? process.env.NEXT_PUBLIC_DOMAIN_DEVELOPMENT
     : process.env.NEXT_PUBLIC_DOMAIN_PRODUCTIONS;
 
-export const fromEmail:string = process.env.NEXT_PUBLIC_FROM_EMAIL as string;
+export const fromEmail: string = process.env.NEXT_PUBLIC_FROM_EMAIL as string;
 
-export const pearlBox:string = "Pearl Box";
+export const pearlBox: string = "Pearl Box";
 
-export const firstName:string = "maliek";
+export const firstName: string = "maliek";
 
-export const lastName:string = "davis";
+export const lastName: string = "davis";
 
-export const middleInitial:string = "j";
+export const middleInitial: string = "j";
 
-export const missionStatement:string = "Increasing the quality of life through the advancement of technology.";
+export const missionStatement: string = "Increasing the quality of life through the advancement of technology.";
 
-export const bioImg:string = "/images/suited.png"
+export const bioImg: string = "/images/suited.png"
 
-export const bio:string = `Maliek Davis is a dedicated real estate investor with a passion for revitalizing communities through strategic multifamily investments. With a focus on properties that offer significant value-add potential, Maliek is committed to creating positive change in Metro Detroit, Grand Rapids, and Lansing, Michigan. His approach to real estate is driven by a deep understanding of market dynamics, an eye for underperforming properties, and a commitment to long-term value creation.
+export const bio: string = `Maliek Davis is a dedicated real estate investor with a passion for revitalizing communities through strategic multifamily investments. With a focus on properties that offer significant value-add potential, Maliek is committed to creating positive change in Metro Detroit, Grand Rapids, and Lansing, Michigan. His approach to real estate is driven by a deep understanding of market dynamics, an eye for underperforming properties, and a commitment to long-term value creation.
 
 Growing up in Rochester Hills, Michigan, Maliek has always had a strong connection to the local communities. This connection fuels his desire to not only achieve financial success but also to make a meaningful impact on the neighborhoods he invests in. By targeting multifamily properties with 20+ units, Maliek aims to provide quality, affordable housing while generating sustainable returns for his investors.
 
@@ -36,7 +36,7 @@ Maliek's background in software engineering and project management has equipped 
 
 Beyond real estate, Maliek is a lifelong learner who is constantly seeking ways to improve his craft and expand his knowledge. He believes in the power of collaboration and is always looking to build strong relationships with like-minded investors, partners, and community leaders. Maliek's ultimate goal is to leave a lasting legacy by helping to build thriving, resilient communities across Michigan.`;
 
-export const navItems:NavItem[] = [
+export const navItems: NavItem[] = [
     {
         label: 'home',
         path: '/',
@@ -132,11 +132,11 @@ export const navItems:NavItem[] = [
 
 // Investments Page 
 
-export const realEstateQuote:string = "Success in real estate starts when you believe you are worthy of it.";
-export const realEstatePassion:string = "Real estate is my path to wealth, community growth, and early retirement—it's the freedom to live life on my terms.";
+export const realEstateQuote: string = "Success in real estate starts when you believe you are worthy of it.";
+export const realEstatePassion: string = "Real estate is my path to wealth, community growth, and early retirement—it's the freedom to live life on my terms.";
 
 
-export const blogHeroH1:string = "The Daily Davis";
+export const blogHeroH1: string = "The Daily Davis";
 
 
 
@@ -204,44 +204,44 @@ export interface Chapter {
 }
 
 export interface Point {
-    label:string;
-    point:string;
+    label: string;
+    point: string;
 }
-export const overview:Chapter[] = [
+export const overview: Chapter[] = [
     {
-        chapter:"I'm a digital innovator passionate about using computer science to make a real impact. "
+        chapter: "I'm a digital innovator passionate about using computer science to make a real impact. "
     },
     {
-        chapter:"I bring creativity and technical expertise together to offer a range of services that include custom software development, data science, and AI integration.",
+        chapter: "I bring creativity and technical expertise together to offer a range of services that include custom software development, data science, and AI integration.",
     },
     {
-        chapter:"Whether it's crafting seamless mobile payment solutions..."
+        chapter: "Whether it's crafting seamless mobile payment solutions..."
     },
     {
-        chapter:"developing engaging web and mobile applications..."
+        chapter: "developing engaging web and mobile applications..."
     },
     {
-        chapter:"or providing strategic digital transformation consulting..."
+        chapter: "or providing strategic digital transformation consulting..."
     },
     {
-        chapter:"My mission is clear!"
+        chapter: "My mission is clear!"
     },
     {
-        chapter:"To enhance the quality of life through the advancement of technology!"
+        chapter: "To enhance the quality of life through the advancement of technology!"
     },
     {
-        chapter:"I believe in creating dynamic and robust applications and systems that are not only powerful but also intuitive and simple to use."
+        chapter: "I believe in creating dynamic and robust applications and systems that are not only powerful but also intuitive and simple to use."
     },
     {
-        chapter:"My approach is driven by a commitment to building technology that serves people, empowering them to reach their full potential in a digital world."
+        chapter: "My approach is driven by a commitment to building technology that serves people, empowering them to reach their full potential in a digital world."
     },
     {
-        chapter:"By leveraging the latest innovations and a deep understanding of user needs, I deliver solutions that make a difference."
+        chapter: "By leveraging the latest innovations and a deep understanding of user needs, I deliver solutions that make a difference."
     },
 
 ]
 
-export const importantFactors:Point[] = [
+export const importantFactors: Point[] = [
     {
         label: "Efficiency and Productivity",
         point: "Digital solutions streamline operations, automate repetitive tasks, and free up valuable time, boosting overall productivity.",
@@ -272,185 +272,185 @@ export const importantFactors:Point[] = [
     },
 ]
 
-export const agileDevelopment:Point[] = [
+export const agileDevelopment: Point[] = [
     {
         label: "Iterative Progress",
-        point:"Breaking down projects into small, manageable units to deliver features incrementally, allowing for continuous improvement.",
+        point: "Breaking down projects into small, manageable units to deliver features incrementally, allowing for continuous improvement.",
     },
     {
         label: "Customer Collaboration",
-        point:"Regular interaction with clients to ensure that the product aligns with their needs and expectations.",
+        point: "Regular interaction with clients to ensure that the product aligns with their needs and expectations.",
     },
     {
         label: "Adaptability",
-        point:"Responding to change over following a fixed plan, enabling teams to adapt to shifting requirements or market conditions.",
+        point: "Responding to change over following a fixed plan, enabling teams to adapt to shifting requirements or market conditions.",
     },
     {
         label: "Cross-Functional Teams",
-        point:"Encouraging collaboration across diverse skills and expertise to foster innovation and reduce bottlenecks.",
+        point: "Encouraging collaboration across diverse skills and expertise to foster innovation and reduce bottlenecks.",
     },
     {
         label: "Continuous Feedback",
-        point:"Regularly seeking feedback from stakeholders and users to refine and enhance the product in real time.",
+        point: "Regularly seeking feedback from stakeholders and users to refine and enhance the product in real time.",
     },
     {
         label: "Transparency",
-        point:"Keeping all team members and stakeholders informed about progress, challenges, and changes to ensure alignment.",
+        point: "Keeping all team members and stakeholders informed about progress, challenges, and changes to ensure alignment.",
     },
     {
         label: "Sustainable Development",
-        point:"Promoting a pace of work that can be maintained long-term without burnout, ensuring consistent productivity and quality.",
+        point: "Promoting a pace of work that can be maintained long-term without burnout, ensuring consistent productivity and quality.",
     },
 ]
-export const designThinking:Point[] = [
+export const designThinking: Point[] = [
     {
         label: "Empathy",
-        point:"Understanding the end-user's needs, challenges, and desires to design solutions that truly address their problems.",
+        point: "Understanding the end-user's needs, challenges, and desires to design solutions that truly address their problems.",
     },
     {
         label: "Ideation",
-        point:"Encouraging brainstorming sessions to generate a wide range of creative ideas and innovative solutions.",
+        point: "Encouraging brainstorming sessions to generate a wide range of creative ideas and innovative solutions.",
     },
     {
         label: "Prototyping",
-        point:"Developing simple, testable versions of a product or feature to explore ideas and gather user feedback quickly.",
+        point: "Developing simple, testable versions of a product or feature to explore ideas and gather user feedback quickly.",
     },
     {
         label: "User-Centric Approach",
-        point:"Keeping the user at the center of the design process, ensuring that solutions are intuitive and meet real needs.",
+        point: "Keeping the user at the center of the design process, ensuring that solutions are intuitive and meet real needs.",
     },
     {
         label: "Problem Framing",
-        point:"Clearly defining the problem to be solved to guide the design process and focus on what matters most.",
+        point: "Clearly defining the problem to be solved to guide the design process and focus on what matters most.",
     },
     {
         label: "Testing and Iteration",
-        point:"Continuously testing prototypes with users and iterating based on their feedback to refine and improve the solution.",
+        point: "Continuously testing prototypes with users and iterating based on their feedback to refine and improve the solution.",
     },
     {
         label: "Collaboration",
-        point:"Leveraging diverse perspectives and expertise through collaborative teamwork to drive creativity and innovation.",
+        point: "Leveraging diverse perspectives and expertise through collaborative teamwork to drive creativity and innovation.",
     },
 ]
-export const workflow:Point[] = [
+export const workflow: Point[] = [
     {
         label: "Clear Objectives",
-        point:"Defining specific, measurable goals for each phase of the project to maintain focus and direction.",
+        point: "Defining specific, measurable goals for each phase of the project to maintain focus and direction.",
     },
     {
         label: "Structured Planning",
-        point:"Outlining detailed plans and timelines to organize tasks, allocate resources, and manage dependencies effectively.",
+        point: "Outlining detailed plans and timelines to organize tasks, allocate resources, and manage dependencies effectively.",
     },
     {
         label: "Task Prioritization",
-        point:"Identifying and prioritizing tasks based on their impact and urgency to optimize time and resources.",
+        point: "Identifying and prioritizing tasks based on their impact and urgency to optimize time and resources.",
     },
     {
         label: "Automation",
-        point:"Utilizing tools and technologies to automate repetitive tasks, increase efficiency, and reduce human error.",
+        point: "Utilizing tools and technologies to automate repetitive tasks, increase efficiency, and reduce human error.",
     },
     {
         label: "Communication",
-        point:"Establishing strong communication channels to ensure that all team members are aligned and informed throughout the process.",
+        point: "Establishing strong communication channels to ensure that all team members are aligned and informed throughout the process.",
     },
     {
         label: "Monitoring and Evaluation",
-        point:"Regularly tracking progress and evaluating performance to identify areas for improvement and adjust the workflow as needed.",
+        point: "Regularly tracking progress and evaluating performance to identify areas for improvement and adjust the workflow as needed.",
     },
     {
         label: "Continuous Improvement",
-        point:"Committing to ongoing process evaluation and optimization to enhance efficiency and effectiveness over time.",
+        point: "Committing to ongoing process evaluation and optimization to enhance efficiency and effectiveness over time.",
     },
 ]
 
 export interface ExtendedPointUseCase extends Point {
     useCase: string;
-    photo:string;
+    photo: string;
 }
 
-export const customSoftware:ExtendedPointUseCase[] = [
+export const customSoftware: ExtendedPointUseCase[] = [
     {
-        label:'Streamlining Operations',
+        label: 'Streamlining Operations',
         point: 'Custom software can integrate various business processes into a single system, reducing manual work and errors.',
         useCase: 'A manufacturing company implements a custom ERP (Enterprise Resource Planning) solution to integrate inventory management, production schedules, and accounting. This reduces production downtime, improves resource allocation, and lowers costs by automating workflows.',
-        photo:"https://images.pexels.com/photos/4483862/pexels-photo-4483862.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        photo: "https://images.pexels.com/photos/4483862/pexels-photo-4483862.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {
-        label:'Improving Customer Experience',
+        label: 'Improving Customer Experience',
         point: 'Tailored software can provide a personalized experience to customers, enhancing satisfaction and loyalty.',
         useCase: 'An e-commerce platform uses custom software to offer personalized product recommendations based on browsing history and purchase behavior. This increases customer engagement, boosts sales, and improves retention rates.',
-        photo:"https://images.pexels.com/photos/7564241/pexels-photo-7564241.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        photo: "https://images.pexels.com/photos/7564241/pexels-photo-7564241.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {
-        label:'Facilitating Compliance and Reporting',
+        label: 'Facilitating Compliance and Reporting',
         point: "Custom solutions can automate compliance processes, ensuring that businesses meet regulatory requirements without extensive manual oversight.",
         useCase: "A financial services firm adopts a custom compliance tracking tool that automates reporting, tracks regulatory changes, and ensures all client transactions meet the latest legal standards. This minimizes the risk of non-compliance and associated penalties.",
-        photo:"https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        photo: "https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
 ];
 
 
-export const dataScienceAI:ExtendedPointUseCase[] = [
+export const dataScienceAI: ExtendedPointUseCase[] = [
     {
-        label:"Predictive Maintenance",
+        label: "Predictive Maintenance",
         point: "AI-driven predictive analytics can forecast equipment failures before they happen, reducing downtime and maintenance costs.",
         useCase: " A logistics company uses data science and AI to analyze sensor data from its fleet, predicting which vehicles are likely to require maintenance soon. This proactive approach prevents breakdowns, reduces repair costs, and keeps the fleet operational.",
-        photo:"https://images.pexels.com/photos/5550510/pexels-photo-5550510.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        photo: "https://images.pexels.com/photos/5550510/pexels-photo-5550510.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {
-        label:"Enhanced Customer Insights",
+        label: "Enhanced Customer Insights",
         point: "Data science can analyze customer data to uncover insights about behavior and preferences, enabling targeted marketing strategies.",
         useCase: "A retail chain uses data science to analyze customer purchase patterns and predict future buying behavior. This allows for personalized marketing campaigns, optimized inventory management, and improved customer satisfaction, leading to increased sales.",
-        photo:"https://images.pexels.com/photos/355952/pexels-photo-355952.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        photo: "https://images.pexels.com/photos/355952/pexels-photo-355952.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {
-        label:"Fraud Detection and Prevention",
+        label: "Fraud Detection and Prevention",
         point: "AI algorithms can identify unusual patterns in data that may indicate fraudulent activity, protecting businesses from financial losses.",
         useCase: "A bank implements a real-time fraud detection system using AI to analyze transaction data and identify potential fraudulent activities. This system quickly flags suspicious transactions, preventing unauthorized access and protecting customer accounts.",
-        photo:"https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        photo: "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
 ];
 
 
-export const webMobileApp:ExtendedPointUseCase[] = [
+export const webMobileApp: ExtendedPointUseCase[] = [
     {
-        label:"Expanding Market Reach",
+        label: "Expanding Market Reach",
         point: "Mobile applications enable businesses to reach customers anytime, anywhere, increasing accessibility and market reach.",
         useCase: "A restaurant chain develops a mobile app for online ordering and delivery tracking. Customers can easily place orders from their phones, increasing the restaurant’s customer base and boosting sales, especially during off-peak hours.",
-        photo:"https://png.pngtree.com/background/20230626/original/pngtree-high-speed-internet-connection-3d-rendered-earth-rotating-with-global-network-picture-image_4056551.jpg",
+        photo: "https://png.pngtree.com/background/20230626/original/pngtree-high-speed-internet-connection-3d-rendered-earth-rotating-with-global-network-picture-image_4056551.jpg",
     },
     {
-        label:"Enhancing Customer Engagement",
+        label: "Enhancing Customer Engagement",
         point: "Interactive and user-friendly web applications can engage users effectively, fostering loyalty and long-term relationships.",
         useCase: "A fitness brand launches a web app that offers personalized workout plans, tracks progress, and integrates with wearable devices. This keeps users engaged, provides added value, and helps the brand build a strong community of loyal customers.",
-        photo:"https://images.pexels.com/photos/7351150/pexels-photo-7351150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        photo: "https://images.pexels.com/photos/7351150/pexels-photo-7351150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {
-        label:"Improving Business Efficiency",
+        label: "Improving Business Efficiency",
         point: "Web and mobile apps can automate tasks, streamline processes, and improve internal communication.",
         useCase: "A real estate company uses a mobile app to manage property listings, track leads, and communicate with clients. This centralizes operations, reduces paperwork, and ensures that agents have all necessary information at their fingertips, enhancing productivity.",
-        photo:"https://images.pexels.com/photos/3184289/pexels-photo-3184289.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        photo: "https://images.pexels.com/photos/3184289/pexels-photo-3184289.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
 ];
 
-export const digitalTransformation:ExtendedPointUseCase[] = [
+export const digitalTransformation: ExtendedPointUseCase[] = [
     {
-        label:"Adapting to Market Changes",
+        label: "Adapting to Market Changes",
         point: "Digital transformation allows businesses to quickly adapt to changing market conditions, staying competitive.",
         useCase: "A traditional retail store transitions to a digital model by launching an online store and using digital marketing strategies. This adaptation allows the store to reach customers during lockdowns, keeping sales steady despite physical store closures.",
-        photo:"https://images.pexels.com/photos/691067/pexels-photo-691067.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        photo: "https://images.pexels.com/photos/691067/pexels-photo-691067.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {
-        label:"Enhancing Collaboration and Remote Work",
+        label: "Enhancing Collaboration and Remote Work",
         point: "Digital tools enable effective remote work, improving collaboration and flexibility.",
         useCase: "A consulting firm adopts cloud-based collaboration tools and project management software, enabling seamless remote work for its employees. This ensures that projects continue smoothly regardless of location, improving employee satisfaction and productivity.",
-        photo:"https://images.pexels.com/photos/7974/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        photo: "https://images.pexels.com/photos/7974/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {
-        label:"Driving Innovation",
+        label: "Driving Innovation",
         point: "Digital transformation fosters a culture of innovation, helping businesses to develop new products and services.",
         useCase: "A healthcare provider leverages digital transformation to implement telehealth services, allowing patients to consult with doctors via video calls. This innovation improves patient access to healthcare, reduces wait times, and expands the provider's reach to rural areas.",
-        photo:"https://images.pexels.com/photos/8533144/pexels-photo-8533144.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        photo: "https://images.pexels.com/photos/8533144/pexels-photo-8533144.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
 ];
 
@@ -817,8 +817,8 @@ export interface SDLCPhase {
 export const sdlc: SDLCPhase[] = [
     {
         phaseName: "Requirements Gathering & Analysis",
-        photo:"https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        video:"https://videos.pexels.com/video-files/3255275/3255275-uhd_2560_1440_25fps.mp4",
+        photo: "https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        video: "https://videos.pexels.com/video-files/3255275/3255275-uhd_2560_1440_25fps.mp4",
         overview: "Identify and document the functional and non-functional requirements of the project.",
         challenges: [
             "Inadequate understanding of customer needs",
@@ -844,8 +844,8 @@ export const sdlc: SDLCPhase[] = [
     {
         phaseName: "System Design",
         overview: "Create an architecture for the project, outlining the components and interactions within the system.",
-        photo:"https://images.pexels.com/photos/17483871/pexels-photo-17483871/free-photo-of-an-artist-s-illustration-of-artificial-intelligence-ai-this-image-was-inspired-neural-networks-used-in-deep-learning-it-was-created-by-novoto-studio-as-part-of-the-visualising-ai-proje.png",
-        video:"https://videos.pexels.com/video-files/852063/852063-hd_1920_1080_30fps.mp4",
+        photo: "https://images.pexels.com/photos/17483871/pexels-photo-17483871/free-photo-of-an-artist-s-illustration-of-artificial-intelligence-ai-this-image-was-inspired-neural-networks-used-in-deep-learning-it-was-created-by-novoto-studio-as-part-of-the-visualising-ai-proje.png",
+        video: "https://videos.pexels.com/video-files/852063/852063-hd_1920_1080_30fps.mp4",
         challenges: [
             "Balancing performance with scalability",
             "Selecting the right tech stack",
@@ -870,8 +870,8 @@ export const sdlc: SDLCPhase[] = [
     {
         phaseName: "Implementation (Coding)",
         overview: "Translate the system design into functional code using the chosen tech stack and frameworks.",
-        photo:"https://images.pexels.com/photos/1181359/pexels-photo-1181359.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        video:"https://videos.pexels.com/video-files/6330779/6330779-hd_1920_1080_30fps.mp4",
+        photo: "https://images.pexels.com/photos/1181359/pexels-photo-1181359.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        video: "https://videos.pexels.com/video-files/6330779/6330779-hd_1920_1080_30fps.mp4",
         challenges: [
             "Maintaining code quality",
             "Ensuring team collaboration on code",
@@ -896,8 +896,8 @@ export const sdlc: SDLCPhase[] = [
     {
         phaseName: "Testing",
         overview: "Verify that the system functions as intended and meets the requirements.",
-        photo:"https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        video:"https://videos.pexels.com/video-files/8328045/8328045-uhd_2560_1440_25fps.mp4",
+        photo: "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        video: "https://videos.pexels.com/video-files/8328045/8328045-uhd_2560_1440_25fps.mp4",
         challenges: [
             "Identifying all potential edge cases",
             "Balancing testing coverage with time constraints",
@@ -922,8 +922,8 @@ export const sdlc: SDLCPhase[] = [
     {
         phaseName: "Deployment",
         overview: "Deploy the completed project into a production environment for user access.",
-        photo:"https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        video:"https://videos.pexels.com/video-files/1085656/1085656-uhd_2560_1440_25fps.mp4",
+        photo: "https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        video: "https://videos.pexels.com/video-files/1085656/1085656-uhd_2560_1440_25fps.mp4",
         challenges: [
             "Minimizing downtime during deployment",
             "Ensuring compatibility with production environment",
@@ -948,8 +948,8 @@ export const sdlc: SDLCPhase[] = [
     {
         phaseName: "Maintenance",
         overview: "Monitor, update, and refine the project post-deployment to address issues and ensure performance.",
-        photo:"https://images.pexels.com/photos/1181330/pexels-photo-1181330.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        video:"https://videos.pexels.com/video-files/6804109/6804109-uhd_2732_1440_25fps.mp4",
+        photo: "https://images.pexels.com/photos/1181330/pexels-photo-1181330.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        video: "https://videos.pexels.com/video-files/6804109/6804109-uhd_2732_1440_25fps.mp4",
         challenges: [
             "Handling bug fixes without affecting existing functionality",
             "Managing resources for new features vs. bug fixes",
@@ -970,5 +970,87 @@ export const sdlc: SDLCPhase[] = [
             "Patching vulnerabilities in legacy code",
             "Introducing new functionality while maintaining stability"
         ]
+    }
+];
+
+
+export type CoreValue = {
+    key: string;
+    title: string;
+    description: string;
+    photo: string; // URL or path to a representative photo
+    video: string; // URL or path to a representative video
+};
+
+export const coreValues: CoreValue[] = [
+    {
+        key: 'innovation-adaptability',
+        title: 'Innovation & Adaptability',
+        description: 'Constantly embracing change and advancing with the latest technological and scientific breakthroughs.',
+        photo: 'path/to/innovation-photo.jpg',
+        video: 'path/to/innovation-video.mp4'
+    },
+    {
+        key: 'integrity-transparency',
+        title: 'Integrity & Transparency',
+        description: 'Upholding honesty and clear communication in all professional dealings.',
+        photo: 'path/to/integrity-photo.jpg',
+        video: 'path/to/integrity-video.mp4'
+    },
+    {
+        key: 'commitment-excellence',
+        title: 'Commitment to Excellence',
+        description: 'Striving for high-quality results in every project, ensuring satisfaction and value.',
+        photo: 'path/to/excellence-photo.jpg',
+        video: 'path/to/excellence-video.mp4'
+    },
+    {
+        key: 'lifelong-learning',
+        title: 'Lifelong Learning',
+        description: 'Passion for continuous education, staying updated with emerging trends in technology and science.',
+        photo: 'path/to/learning-photo.jpg',
+        video: 'path/to/learning-video.mp4'
+    },
+    {
+        key: 'collaboration-teamwork',
+        title: 'Collaboration & Teamwork',
+        description: 'Valuing partnerships and leveraging collective expertise for successful outcomes.',
+        photo: 'path/to/collaboration-photo.jpg',
+        video: 'path/to/collaboration-video.mp4'
+    },
+    {
+        key: 'problem-solving',
+        title: 'Problem Solving',
+        description: 'Tackling challenges with a solution-oriented mindset and creative approach.',
+        photo: 'path/to/problem-solving-photo.jpg',
+        video: 'path/to/problem-solving-video.mp4'
+    },
+    {
+        key: 'empowerment-mentorship',
+        title: 'Empowerment & Mentorship',
+        description: 'Encouraging knowledge sharing, inspiring others, and mentoring peers or clients.',
+        photo: 'path/to/mentorship-photo.jpg',
+        video: 'path/to/mentorship-video.mp4'
+    },
+    {
+        key: 'community-impact',
+        title: 'Community Impact',
+        description: 'Aiming to contribute positively to the communities where work and innovations are applied.',
+        photo: 'path/to/community-impact-photo.jpg',
+        video: 'path/to/community-impact-video.mp4'
+    },
+    {
+        key: 'customer-centric',
+        title: 'Customer-Centric Approach',
+        description: 'Prioritizing the needs of clients and partners, ensuring tailored and effective solutions.',
+        photo: 'path/to/customer-centric-photo.jpg',
+        video: 'path/to/customer-centric-video.mp4'
+    },
+    {
+        key: 'sustainability-responsibility',
+        title: 'Sustainability & Responsibility',
+        description: 'Making decisions that consider long-term impacts on society and the environment.',
+        photo: 'path/to/sustainability-photo.jpg',
+        video: 'path/to/sustainability-video.mp4'
     }
 ];

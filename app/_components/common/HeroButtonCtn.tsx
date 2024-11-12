@@ -15,7 +15,7 @@ const HeroButtonCtn:React.FC<{
 }) => {
     return (
         <MotionDiv
-        className={`${styles.btnCtn}`}
+        className={`${styles.btnCtn} z-50`}
         id={id}>
             {children}
         </MotionDiv>
