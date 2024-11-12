@@ -21,13 +21,13 @@ export const dynamicParams = false // or false, to 404 on unknown paths
 // Generate static paths for categories.
 export async function generateStaticParams() {
     
-    const categoryResponse = await getAllIdentifiers(CategoryModel)
+    const categoryResponse = await CategoryModel.find();
     const categories = categoryResponse
 
-    if (categories) 
+    
     return categories.map((category: ICategory) => ({
         category: category.slug,
-    }))!;
+    }));
 }
 
 // Page component for the category.
