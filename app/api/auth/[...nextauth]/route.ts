@@ -7,10 +7,7 @@ import { UserModel } from "@/library/db/models";
 import { IUser } from "@/library/db/models/user";
 
 
-// Generate static paths for categories.
-export async function generateStaticParams() {
-  return []
-}
+
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
