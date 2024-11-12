@@ -8,12 +8,13 @@ import slugify from 'slugify';
 import CategoryHero from '../../_components/slug-page/CategoryHero';
 import MotionPageWrapper from '@/app/_components/common/MotionPageWrapper';
 import MotionSectionWrapper from '@/app/_components/common/MotionSectionWrapper';
-import { getAllIdentifiers } from '@/library/db/controllers/identifiers';
+import { getAllIdentifiers, getIdentifier } from '@/library/db/controllers/identifiers';
+import { connectToMongoDB } from '@/library/db/db';
 
 
 // Next.js will invalidate the cache when a
 // request comes in, at most once every 60 seconds.
-export const revalidate = 60;
+export const revalidate = 3600;
 
 // Next.js will server-render the page on-demand.
 export const dynamicParams = false // or false, to 404 on unknown paths
@@ -21,11 +22,12 @@ export const dynamicParams = false // or false, to 404 on unknown paths
 // Generate static paths for categories.
 export async function generateStaticParams() {
     
-    const categoryResponse = await CategoryModel.find();
+    
+    const categoryResponse = await getAllIdentifiers(CategoryModel);
     const categories = categoryResponse
 
     
-    return categories.map((category: ICategory) => ({
+    return categories?.map((category: ICategory) => ({
         category: category.slug,
     }));
 }
