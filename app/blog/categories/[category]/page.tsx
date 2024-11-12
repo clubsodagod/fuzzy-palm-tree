@@ -24,9 +24,10 @@ export async function generateStaticParams() {
     const categoryResponse = await getAllIdentifiers(CategoryModel)
     const categories = categoryResponse
 
-    return categories?.map((category: ICategory) => ({
+    if (categories) 
+    return categories.map((category: ICategory) => ({
         category: category.slug,
-    }));
+    }))!;
 }
 
 // Page component for the category.
