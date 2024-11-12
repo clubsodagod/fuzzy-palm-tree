@@ -71,7 +71,7 @@ const AboutPage = () => {
 
 
     return (
-        <MotionPageWrapper
+        <AppContainer
             ctnRef={ctnRef}
             controls={controls}
             gradientVariants={aboutPageGradientAnimations}
@@ -104,7 +104,7 @@ const AboutPage = () => {
             value={coreValue}
             carouselHandler={carouselHandler}
             />
-        </MotionPageWrapper>
+        </AppContainer>
     )
 }
 

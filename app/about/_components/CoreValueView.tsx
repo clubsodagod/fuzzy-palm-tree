@@ -1,3 +1,4 @@
+'use client'
 import React, { useRef } from 'react'
 import { ScrollableItemCtnProps } from '@/app/_components/common/ScrollableItemCtn';
 import { MotionDiv } from '@/app/_components/framer/MotionDiv';
