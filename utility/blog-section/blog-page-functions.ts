@@ -13,14 +13,12 @@ export type InitBlogHomePageFunction = () => Promise<{
 // Initialize the blog home page data.
 export const initBlogHomePageClient: InitBlogHomePageFunction = async () => {
     try {
-        const featuredResponse = await fetch('https://fuzzy-palm-tree.vercel.app/api/blog/get/featured', {
+        const featuredResponse = await fetch('https://fuzzy-palm-tree.vercel.app//api/blog/get/featured', {
             method: 'GET',
-            cache: 'no-store',
         });
 
         const allPostsResponse = await fetch('https://fuzzy-palm-tree.vercel.app/api/blog/get/all', {
             method: 'GET',
-            cache: 'no-store',
         });
 
         // Validate responses by checking their status.
