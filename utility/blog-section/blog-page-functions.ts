@@ -87,6 +87,24 @@ export async function getAllCategoriesClient() {
     }
 }
 // get all categories client function
+export async function getAllCategories() {
+
+    // use fetch request to get categories
+    const categoriesResponse = await fetch('https://fuzzy-palm-tree.vercel.app/api/blog/identifiers/category/get-all', {
+        method: "GET", cache: "no-store",
+    });
+
+    // validate response
+    if (categoriesResponse.ok) {
+        const categories = await categoriesResponse.json().then((res) => res.categories);
+        return categories
+    } else {
+        return null
+    }
+}
+
+
+// get all categories client function
 export async function getAllCategoriesDynamicClient() {
 
     // use fetch request to get categories

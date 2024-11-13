@@ -2,7 +2,7 @@
 import { AppContainer } from '@/app/_components';
 import { AnimatePresencePro } from '@/app/_components/framer/AnimatePresencePro';
 import { MotionDiv } from '@/app/_components/framer/MotionDiv';
-import CategoryModel, { ICategory } from '@/library/db/models/category'
+import CategoryModel, { ICategory, ICategoryPopulated } from '@/library/db/models/category'
 import { useRef } from 'react';
 import slugify from 'slugify';
 import CategoryHero from '../../_components/slug-page/CategoryHero';
