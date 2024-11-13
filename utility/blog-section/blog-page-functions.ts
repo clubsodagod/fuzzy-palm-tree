@@ -91,7 +91,7 @@ export async function getAllCategories() {
 
     // use fetch request to get categories
     const categoriesResponse = await fetch('https://fuzzy-palm-tree.vercel.app/api/blog/identifiers/category/get-all', {
-        method: "GET", cache: "no-store",
+        method: "GET"
     });
 
     // validate response
