@@ -69,10 +69,10 @@ export default async function Page({ params }: { params: { category: string } })
 
 
     return (
-        <MotionPageWrapper>
+        <AppContainer>
             <MotionSectionWrapper>
                 <CategoryHero category={category} featuredPosts={featuredPosts} allPosts={allPosts} />
             </MotionSectionWrapper>
-        </MotionPageWrapper>
+        </AppContainer>
     );
 }

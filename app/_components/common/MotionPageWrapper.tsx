@@ -28,9 +28,6 @@ const MotionPageWrapper: React.FC<{
 }) => {
 
         return (
-            <AnimatePresencePro>
-                <body>
-                    <Navbar />
                     <MotionDiv
                         className={`app-ctn ${className}`}
                         ref={ctnRef}
@@ -42,8 +39,6 @@ const MotionPageWrapper: React.FC<{
                     >
                         {children}
                     </MotionDiv>
-                </body>
-            </AnimatePresencePro>
         )
     }
 

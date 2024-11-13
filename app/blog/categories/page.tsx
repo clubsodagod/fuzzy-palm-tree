@@ -21,7 +21,8 @@ export default async function CategoriesPage() {
     await connectToMongoDB()
     await SubcategoryModel.find()
     const categoriesResponse = await CategoryModel.find().populate('subcategories') as unknown as ICategoryPopulated[];
-
+    console.log(categoriesResponse);
+    
     let categories
 
     if (categories) {
