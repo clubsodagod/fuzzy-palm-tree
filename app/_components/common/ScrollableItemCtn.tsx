@@ -1,12 +1,11 @@
 'use client'
 
 import React, { useRef } from 'react'
-import styles from './styles.module.css'
 import ArrowCircleDownRoundedIcon from '@mui/icons-material/ArrowCircleDownRounded';
-import { MotionDiv } from '../framer/MotionDiv';
 import type { HTMLMotionProps } from 'framer-motion';
-import { useScroll } from '@/app/_context/sub-context/ScrollContext';
-import { useScreenContext } from '@/app/_context/sub-context/ScreenContext';
+import { useAppContext } from '@/app/_context/AppContext';
+import { MotionDiv } from './framer/MotionDiv';
+import styles from './scrollable-item-ctn.module.css'
 
 export type MotionDivProps = HTMLMotionProps<'div'>;
 
@@ -29,9 +28,11 @@ const ScrollableItemCtn: React.FC<ScrollableItemCtnProps> = ({
     ...rest
 }) => {
     const {
-        isMobile, currentBreakpoint
-    } = useScreenContext()
+        screen: { isMobile, currentBreakpoint },
+    } = useAppContext()
     const scrollCtnRef = useRef<HTMLDivElement>(null);
+
+
     // Function to scroll the container by the window width
     const scrollContainer = (direction: 'left' | 'right') => {
         if (scrollCtnRef?.current) {
@@ -43,7 +44,7 @@ const ScrollableItemCtn: React.FC<ScrollableItemCtnProps> = ({
             }
 
             if (direction === 'left') {
-                
+
                 if (portfolio) {
                     if (index && totalIndex && setIndex) {
                         if (index == 0) {
@@ -82,6 +83,7 @@ const ScrollableItemCtn: React.FC<ScrollableItemCtnProps> = ({
     };
 
     const ctnRef = useRef(null);
+
     return (
         <MotionDiv
             ref={elementRef ? elementRef : ctnRef}
@@ -106,9 +108,13 @@ const ScrollableItemCtn: React.FC<ScrollableItemCtnProps> = ({
                     className={`${styles.leftArrowCtn}`}
                     onClick={() => scrollContainer('left')} // Scroll left on click
                 >
-                    <ArrowCircleDownRoundedIcon
-                        className={`${styles.leftArrow}`}
-                    />
+                    <MotionDiv
+                        className={`${styles.arrowWrapper}`}
+                    >
+                        <ArrowCircleDownRoundedIcon
+                            className={`${styles.leftArrow}`}
+                        />
+                    </MotionDiv>
                 </MotionDiv>
             }
 
@@ -136,9 +142,14 @@ const ScrollableItemCtn: React.FC<ScrollableItemCtnProps> = ({
                     className={`${styles.rightArrowCtn}`}
                     onClick={() => scrollContainer('right')} // Scroll right on click
                 >
-                    <ArrowCircleDownRoundedIcon
-                        className={`${styles.rightArrow}`}
-                    />
+                    <MotionDiv
+                        className={`${styles.arrowWrapper}`}
+                    >
+                        <ArrowCircleDownRoundedIcon
+                            className={`${styles.rightArrow}`}
+                        />
+                    </MotionDiv>
+
                 </MotionDiv>
             }
 

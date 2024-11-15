@@ -1,4 +1,4 @@
-import { useScroll } from "@/app/_context/sub-context/ScrollContext";
+import { useScroll } from "@/app/_hide/_context/sub-context/ScrollContext";
 
 const ScrollValue = () => {
     return useScroll().windowScrollHeight;

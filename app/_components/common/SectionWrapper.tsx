@@ -1,32 +1,44 @@
+"use client"
+import React, { RefObject } from 'react'
+import { AnimationControls, Variants } from 'framer-motion';
+import { MotionDivProps } from '@/app/_library/types/common';
+import { MotionDiv } from './framer/MotionDiv';
 
-'use client'
-import React, { RefObject, useEffect, useRef } from 'react'
-import styles from './styles.module.css'
-import { motion } from 'framer-motion'
 
-const SectionWrapper:React.FC<{
-    children:React.ReactNode,
-    id?:string,
-    ctnRef?:RefObject<HTMLDivElement>
-}> = ({
+interface PageWrapperProps extends MotionDivProps {
+    children: React.ReactNode,
+    ctnRef?: RefObject<HTMLDivElement>,
+    className?: string,
+    controls?: AnimationControls,
+    gradientVariants?: Variants,
+    id?: string
+}
+
+
+const MotionSectionWrapper: React.FC<PageWrapperProps> = ({
     children,
+    ctnRef,
+    controls,
+    gradientVariants,
     id,
-    ctnRef
+    ...props
 }) => {
 
-useEffect(() => {
-    {ctnRef && ctnRef}
-})
     return (
-        <motion.div
-        ref={ctnRef!}
-        id={id?id:''}
-        className={`${styles.sectionWrapper} section-wrapper`}
+        <MotionDiv
+            {...props}
+            className={`app-ctn `}
+            ref={ctnRef}
+            animate={controls}
+            variants={gradientVariants}
+            transition={{ duration: 1 }}
+            id={id}
         >
-            {/* name */}
             {children}
-        </motion.div>
+        </MotionDiv>
     )
 }
 
-export default SectionWrapper
+
+
+export default MotionSectionWrapper;

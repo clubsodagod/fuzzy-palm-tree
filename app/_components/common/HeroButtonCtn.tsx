@@ -2,20 +2,26 @@
 
 
 import React from 'react'
-import styles from '../investment-page/investments.module.css'
-import { motion } from 'framer-motion';
-import { MotionDiv } from '../framer/MotionDiv';
+import { MotionDiv } from './framer/MotionDiv'
+import { MotionDivProps } from '@/app/_library/types/common'
 
-const HeroButtonCtn:React.FC<{
-    children:React.ReactNode,
-    id?:string,
-}> = ({
+
+interface HeroButtonCtnProps extends MotionDivProps {
+    children: React.ReactNode;
+    id?:string;
+}
+
+const HeroButtonCtn:React.FC<HeroButtonCtnProps> = ({
     children,
     id,
+    ...props
 }) => {
+    const {className} = props
+    const classNames = props.className  ? `${props.className} btn-ctn` : 'btn-ctn';
     return (
         <MotionDiv
-        className={`${styles.btnCtn} z-50`}
+        {...props}
+        className={classNames}
         id={id}>
             {children}
         </MotionDiv>

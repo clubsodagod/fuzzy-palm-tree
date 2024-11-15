@@ -1,0 +1,109 @@
+/* Scrollable Arrow Container */
+
+
+.scrollableCtnWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-height: 100%;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+}
+
+.childWrapper {
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    overflow-y: hidden;
+    overflow-x: auto;
+    height: max-content;
+    /* min-height: 100%; */
+    scroll-behavior: smooth;
+    scroll-snap-type: proximity;
+
+    @media screen and (min-width:769px) {
+        padding-inline: 12vw;
+    }
+
+    @media screen and (min-width:1033px) {
+        padding-inline: 12vw 0;
+        overflow-x: hidden;
+    }
+}
+
+.aboutChildWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 100%;
+
+    @media screen and (min-width:769px) {
+        padding-inline: 12vw;
+    }
+
+    @media screen and (min-width:1025px) {
+        padding-inline: 33vw;
+    }
+}
+
+.leftArrowCtn,
+.rightArrowCtn {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    z-index: 15;
+}
+
+.leftArrowCtn {
+    left: 1vw;
+
+    @media screen and (min-width:769px) {
+        left: 3vw;
+    }
+}
+
+.rightArrowCtn {
+    right: 1vw;
+
+    @media screen and (min-width:769px) {
+        right: 3vw;
+    }
+}
+
+
+.leftArrow,
+.rightArrow {
+    color: rgb(255, 255, 255);
+    font-size: 2rem;
+    z-index: 24;
+    position: relative;
+
+    @media screen and (min-width:769px) {
+        font-size: 4rem;
+    }
+}
+
+.leftArrow {
+    rotate: 90deg;
+}
+
+.rightArrow {
+    rotate: -90deg;
+}
+
+.arrowWrapper {
+    border-radius: 100%;
+    backdrop-filter: blur(2.5px);
+    background-color: #f5f5f517;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}

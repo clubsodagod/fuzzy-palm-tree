@@ -1,0 +1,67 @@
+/* ------- Main Hero Styles ------ 
+    start------------------------------
+ ------ Main Hero Styles -------- */
+
+
+.imgWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    z-index: 0;
+    padding: 0;
+    position: absolute;
+    justify-content: center;
+
+    height: 100dvh;
+    align-items: end;
+    top: 0;
+    left: 0;
+
+    transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+
+    @media screen and (min-width:769px) {
+        align-items: end;
+    }
+}
+
+.ftImg {
+    object-fit: contain;
+    height: 50dvh;
+
+    @media screen and (min-width:769px) and (max-width:1024px) {
+        width: 100%;
+        position: relative;
+        /* bottom: -20vh; */
+    }
+
+    @media screen and (min-width:1025px) {
+        width: 66%;
+        height: 70dvh;
+    }
+}
+
+
+/* ------- Main Hero Styles ------ 
+--------------------------------------end
+ ------- Main Hero Styles ------ */
+
+
+
+/* ------ Blog Section -------- 
+    start------------------------------
+ ------ Blog Section -------- */
+
+
+.postsCtn {
+    height: 100%;
+    flex-grow: 1;
+}
+
+
+
+
+
+/* ------ Blog Section -------- 
+--------------------------------------end
+ ------ Blog Section -------- */

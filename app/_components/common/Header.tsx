@@ -1,14 +1,11 @@
 "use client"
-import React from "react";
-import type { MotionDivProps } from "./ScrollableItemCtn";
-import { MotionDiv } from "../framer/MotionDiv";
-import { MotionH1 } from "../framer/MotionH1";
-import { MotionH4 } from "../framer/MotionH4";
-import styles from "./styles.module.css"
+import { MotionDivProps } from "@/app/_library/types/common";
 import { Typography } from "@mui/material";
+import React from "react";
+import { MotionDiv } from "./framer/MotionDiv";
 
 interface HeaderProps extends MotionDivProps {
-    headerLabel:any;
+    headerLabel:string|React.ReactNode|undefined;
     tagLine:string;
     right?:boolean;
     size?: 'sm' | 'md' | 'lg';
@@ -25,19 +22,20 @@ const Header: React.FC<HeaderProps> = (
     return (
         <MotionDiv
         {...props}
-        className={`headerCtn ${className}`}
+        className={` header-wrapper ${className}`}
         >
             
             <MotionDiv>
-                <Typography variant={variant}>
+                <Typography className={'header-text'} variant={variant}>
                     {headerLabel}
                 </Typography>
             </MotionDiv>
-            <MotionH4
-            className="subheader"
+            <Typography
+            className={'subheader-text'}
+            variant='subtitle1'
             >
                 {tagLine}
-            </MotionH4>
+            </Typography>
         </MotionDiv>
     )
 }

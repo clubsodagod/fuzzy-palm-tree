@@ -1,63 +1,38 @@
-'use client'
-
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
+import AppProvider from "./_context/AppContext";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
-import { ThemeProvider } from "@mui/material";
-import { theme } from "@/library/themes";
-import { Footer, Navbar } from "./_components";
-import AppContext from "./_context/AppContext";
-import { useEffect } from "react";
-import { SessionProvider } from "next-auth/react";
-import { AnimatePresencePro } from "./_components/framer/AnimatePresencePro";
+import DefaultLayout from "./_components/common/layouts/DefaultLayout";
+import { AnimatePresencePro } from "./_components/common/framer/AnimatePresencePro";
 
 
-const inter = Inter({ subsets: ["latin"] });
-
-
-
-
+export const metadata: Metadata = {
+  title: "Maliek Davis",
+  description: "The Future",
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-  useEffect(() => {
-    const setBodyHeight = () => {
-      document.body.style.height = `${window.innerHeight}px`;
-    };
-
-    window.addEventListener('resize', setBodyHeight);
-    setBodyHeight();
-
-
-    return () => {
-      window.removeEventListener('resize', setBodyHeight);
-    };
-  }, []);
-
   return (
     <html lang="en">
 
-      <AppRouterCacheProvider options={{ key: 'css', enableCssLayer: true }}>
-        <SessionProvider>
-          <AppContext>
-            <ThemeProvider theme={theme}>
-              <AnimatePresencePro>
+      <AppProvider>
+        <AppRouterCacheProvider
+          options={{ key: 'css', enableCssLayer: true }}
+        >
+          <AnimatePresencePro>
+              <DefaultLayout>
+                {children}
+              </DefaultLayout>
+          </AnimatePresencePro>
 
-                <body>
-                  <Navbar />
-                  {children}
-                </body>
-              </AnimatePresencePro>
+        </AppRouterCacheProvider>
 
-            </ThemeProvider>
-          </AppContext>
-        </SessionProvider>
-      </AppRouterCacheProvider>
+      </AppProvider>
+
     </html>
   );
 }

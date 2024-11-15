@@ -15,11 +15,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { navItems } from '@/library/const';
-import Link from 'next/link';
-import { color } from 'framer-motion';
-import zIndex from '@mui/material/styles/zIndex';
-import { NavItem, NavItemChild } from '@/library/types/common';
+import { NavItem } from '@/app/_library/types/common';
+import { navItems } from '@/app/_library/const/nav';
 
 
 
@@ -54,8 +51,9 @@ export default function DrawerAppBar() {
                                 {
                                     item.children.map((child) => (
                                         <ListItem key={`${child.label} child item`} disablePadding>
-                                            <ListItemButton sx={{ textAlign: 'left', paddingLeft: '10vw' }} href={child.path}>
-                                                <ListItemText primary={child.label} />
+                                            <ListItemButton  sx={{ textAlign: 'left', paddingLeft: '10vw' }}>
+                                                <Button href={child.path}>{child.label}</Button>
+                                                {/* <ListItemText primary={child.label} /> */}
                                             </ListItemButton>
                                         </ListItem>
                                     ))
@@ -77,7 +75,7 @@ export default function DrawerAppBar() {
     }
 
     return (
-        <Box sx={{ display: 'flex', zIndex: 10, position: "relative" }}>
+        <Box sx={{ display: 'flex', position:'relative', width:'100%' }}>
             <CssBaseline />
             {
                 childPaths?.children && childPaths.children.length > 0 &&
@@ -95,7 +93,7 @@ export default function DrawerAppBar() {
                                     {childPaths.label}
                                 </Button>
                         {
-                            childPaths.children.map((item, i) => (
+                            childPaths.children.map((item, ) => (
                                 <Button
                                     key={item.label}
                                     sx={{ display: { xs: 'none', sm: 'block', color: 'white' } }}
@@ -134,7 +132,7 @@ export default function DrawerAppBar() {
                     </Button>
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                         {navItems.map((item) => (
-                            <Button key={item.label} sx={{ color: '#fff' }} href={!item.children ? item.path : null}
+                            <Button key={item.label} sx={{ color: '#fff' }} href={!item.children ? item.path : ''}
                             onClick={()=>{ handleClick(item)}}
                             >
                                 {item.label}
