@@ -1,5 +1,5 @@
+import ContactModel, { ContactDocumentType } from "@/app/_database/models/contact";
 import { connectToMongoDB } from "../../db";
-import ContactModel, { ContactDocumentType } from "../../models/contact";
 
 
 

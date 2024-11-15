@@ -1,7 +1,5 @@
 import { RegisterForm } from "@/library/types/form/register";
 import { connectToMongoDB } from "../../db";
-import { PortfolioModel, UserModel } from "../../models";
-import { IUser } from "../../models/user";
 require('dotenv').config();
 import { v4 as uuidv4 } from 'uuid';
 import bcrypt from "bcrypt"
@@ -9,6 +7,8 @@ import { clientDomain, fromEmail } from "@/library/const";
 import { useRegisterHtmlContent as registerHtmlContent } from "@/library/const/html-content/register";
 import mongoose from "mongoose";
 import type { ObjectId } from "mongoose";
+import { PortfolioModel, UserModel } from "@/app/_database/models";
+import { IUser } from "../../models/user";
 
 const sgMail = require('@sendgrid/mail')
 

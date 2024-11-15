@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { ITag } from "../../models/tag";
 import { connectToMongoDB } from "../../db";
-import { TagModel } from "../../models";
+import { ITag } from "@/app/_database/models/tag";
+import { TagModel } from "@/app/_database/models";
 
 
 

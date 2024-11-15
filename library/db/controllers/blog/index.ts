@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { BlogDocumentType, IBlog } from "../../models/blog";
 import { connectToMongoDB } from "../../db";
 import mongoose, { ObjectId } from "mongoose";
-import Author from "../../models/author";
-import { IUser } from "../../models/user";
 import slugify from "slugify";
 import { Category } from "@mui/icons-material";
 import { BlogModel, UserModel, CategoryModel, SubcategoryModel } from "@/app/_database/models";
+import { BlogDocumentType, IBlog } from "@/app/_database/models/blog";
+import Author from "@/app/_database/models/author";
+
 
 
 // types

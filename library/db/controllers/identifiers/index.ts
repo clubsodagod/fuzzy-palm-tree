@@ -1,14 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectToMongoDB } from "../../db";
-import { CategoryModel, SubcategoryModel } from "../../models";
-import { CategoryDocumentType, ICategory } from "../../models/category";
-import { ISubcategory, SubcategoryDocumentType } from "../../models/subcategory";
 import { Photo, Video } from "@/library/types/common";
 import mongoose,{ Model as MongooseModel, ObjectId, Document, model } from 'mongoose';
-import { IUser } from "../../models/user";
 import { Model } from 'mongoose';
 import slugify from "slugify";
 import { isCategory } from "@/utility/admin/identifiers";
+import { CategoryModel, SubcategoryModel } from "@/app/_database/models";
+import { ICategory } from "../../models/category";
+import { ISubcategory } from "../../models/subcategory";
 
 
 export type IdentifierModelsType = typeof CategoryModel | typeof SubcategoryModel;

@@ -1,8 +1,8 @@
 
 import { connectToMongoDB } from "../../db";
-import { PropertyModel, TechnicalApplicationModel } from "../../models";
 import slugify from "slugify";
-import { PropertyDocumentType } from "../../models/property";
+import { PropertyModel } from "@/app/_database/models";
+import { PropertyDocumentType } from "@/app/_database/models/property";
 
 
 

@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 import { connectToMongoDB } from "../../db";
-import { CaseStudyDocumentType } from "../../models/case-study";
 import slugify from "slugify";
 import { CaseStudyModel } from "@/app/_database/models";
+import { CaseStudyDocumentType } from "@/app/_database/models/case-study";
 
 
 
