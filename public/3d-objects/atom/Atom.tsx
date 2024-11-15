@@ -42,7 +42,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   const group = React.useRef<THREE.Group>(null);
   const { nodes, materials, animations } = useGLTF('/3d-objects/atom/atom.gltf') as GLTFResult
   const { actions } = useAnimations(animations, group)
-
+  const colorValue = (value:string) => parseInt ( value.replace("#","0x"), 16 )
   const radius = 6;
   useFrame(({ clock }) => {
     const elapsedTime = clock.getElapsedTime();
@@ -71,7 +71,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
 								clearcoatRoughness={0.1}
 								metalness={0.9}
 								roughness={0.5}
-								color={"0x0000ff"}
+								color={new THREE.Color(colorValue("0x0000ff"))}
 								normalScale={new THREE.Vector2( 0.15, 0.15 )}
                 />
               </mesh>
@@ -83,7 +83,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
 								clearcoatRoughness={0.1}
 								metalness={0.9}
 								roughness={0.5}
-								color={"0x0000ff"}
+								color={new THREE.Color(colorValue("0x0000ff"))}
 								normalScale={new THREE.Vector2( 0.15, 0.15 )}
                 />
               </mesh>
@@ -95,7 +95,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
 								clearcoatRoughness={0.1}
 								metalness={0.9}
 								roughness={0.5}
-								color={"0x0000ff"}
+								color={new THREE.Color(colorValue("0x0000ff"))}
 								normalScale={new THREE.Vector2( 0.15, 0.15 )}
                 />
               </mesh>
@@ -110,7 +110,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
 								clearcoatRoughness={0.1}
 								metalness={0.9}
 								roughness={0.5}
-								color={"0x0000ff"}
+								color={new THREE.Color(colorValue("0x0000ff"))}
 								normalScale={new THREE.Vector2( 0.15, 0.15 )}
                 />
               </mesh>

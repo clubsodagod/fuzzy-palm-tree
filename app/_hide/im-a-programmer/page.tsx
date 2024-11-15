@@ -152,7 +152,7 @@ const ImAProgrammerPage = () => {
 		>
 
 
-			<Overview ctnRef={overviewRef} />
+			{/* <Overview ctnRef={overviewRef} />
 			{
 				overview.map((c: Chapter, i: number) => {
 					const currentRef = overviewDynamicRefs[i];
@@ -175,7 +175,7 @@ const ImAProgrammerPage = () => {
 					}
 
 				})
-			}
+			} */}
 			{/* <RealWorldImpact />
             <HomeVisuals /> */}
 			<div className='three-scene'>

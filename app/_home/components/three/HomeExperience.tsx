@@ -6,6 +6,8 @@ import { Float } from '@react-three/drei';
 import MacBook from '@/public/3d-objects/macbook/Macbook';
 import { MotionGroup } from '@/app/_components/common/framer/MotionGroup';
 import { useScroll } from 'framer-motion';
+import VisibilityManager from '@/app/_utility/three/VisibilityManager';
+import { VisibilityThreeType } from '@/app/_library/types/common';
 
 const HomeExperience = () => {
 
@@ -27,7 +29,7 @@ const HomeExperience = () => {
 
     const [scalingFactor, setScalingFactor] = useState<number>(1);
 
-    const [visible, setVisible] = useState({
+    const [visible, setVisible] = useState<VisibilityThreeType>({
         macbook: true,
     });
 
@@ -41,41 +43,8 @@ const HomeExperience = () => {
 
     const prevScalesRef = useRef<typeof scales | null>(null);
 
-    // Assuming scales is a prop or state
-    useEffect(() => {
-        // Store the previous scales values using a ref to compare
-
-        // Create a deep comparison function or use lodash's _.isEqual for deep comparison if needed
-        const hasScalesChanged = (prev: typeof scales | null, next: typeof scales) => {
-            if (!prev) return true; // Initial render case
-            return Object.keys(next).some((key) => prev[key as keyof typeof prev] !== next[key as keyof typeof next]);
-        };
-
-        // If scales object has changed, update the visibility
-        if (hasScalesChanged(prevScalesRef.current, scales)) {
-            Object.keys(scales).forEach((key) => {
-                const value = scales[key as keyof typeof scales];
-
-                if (value > 0 || value < 0) {
-                    setVisible((prev) => ({
-                        ...prev,
-                        [key]: true,
-                    }));
-                } else {
-                    setVisible((prev) => ({
-                        ...prev,
-                        [key]: false,
-                    }));
-                }
-
-            });
-
-            // Update the ref to the latest scales
-            prevScalesRef.current = scales;
-            console.log(visible);
-
-        }
-    }, [scales, visible]);
+    // Visibility manager
+    VisibilityManager({scales,visible,setVisible})
 
     useEffect(() => {
         if (scalingFactor) {

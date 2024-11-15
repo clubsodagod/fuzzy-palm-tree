@@ -1,42 +1,58 @@
-"use client"
-import { MotionGroup } from '@/app/_hide/_components/framer/MotionGroup';
-import { useScroll } from '@/app/_hide/_context/sub-context/ScrollContext';
-import { Atom, BankVault, CoinGrowthModel, DollarSign, IPhoneModel, LightBulbModel, MacbookModel, POSMachineModel, PuzzleModel, RobotModel, SmilingEmojiOneModel, SmilingEmojiTwoModel, SphereBotModel, SwissArmyKnifeModel } from '@/public/3d-objects';
-import { useMotionLogic } from '@/utility/animation/programmer-page';
-import { Environment, Float } from '@react-three/drei';
-import { Canvas, GroupProps } from '@react-three/fiber';
-import { MotionValue } from 'framer-motion';
-import React, { RefObject, Suspense, useEffect, useRef, useState } from 'react';
-import * as THREE from 'three';
-import { useThree } from '@react-three/fiber';
-import DigitalDataHighway from '@/public/3d-objects/digital-data-highway/DigitalDataHighway';
+'use client'
+import { useAppContext } from '@/app/_context/AppContext';
+import { ScalesThreeType, VisibilityThreeType } from '@/app/_library/types/common';
+import { Atom } from '@/public/3d-objects';
+import CoinGrowth from '@/public/3d-objects/coin-growth/CoinGrowth';
 import CombinationLock from '@/public/3d-objects/combination-lock/CombinationLock';
+import DigitalDataHighway from '@/public/3d-objects/digital-data-highway/DigitalDataHighway';
+import DollarSign from '@/public/3d-objects/dollar-sign/DollarSign';
+import SmilingEmojiOne from '@/public/3d-objects/emoji-smile-one/SmilingEmojiOne';
+import SmilingEmojiTwo from '@/public/3d-objects/emoji-smile-two/SmilingEmojiTwo';
+import IPhone from '@/public/3d-objects/iphone/IPhone';
+import LightBulb from '@/public/3d-objects/light-bulb/LightBulb';
+import Macbook from '@/public/3d-objects/macbook/Macbook';
+import POSMachine from '@/public/3d-objects/pos-machine/POSMachine';
+import Puzzle from '@/public/3d-objects/puzzle/Puzzle';
+import SphereBot from '@/public/3d-objects/sphere-bot/SphereBot';
+import SwissArmyKnife from '@/public/3d-objects/swiss-army-knife/SwissArmyKnife';
+import React from 'react'
+import { programmerPageMotionLogic } from '../../_utility/motion';
+import { useScroll } from 'framer-motion';
+import ScalingFactorManager from '@/app/_utility/three/ScalingFactorManager';
+import VisibilityManager from '@/app/_utility/three/VisibilityManager';
+import ScaleManager from '@/app/_utility/three/ScaleManager';
+import { MotionGroup } from '@/app/_components/common/framer/MotionGroup';
+import { Float } from '@react-three/drei';
 
+const ProgrammerPageExperience = () => {
 
-
-
-const Experience = ({ scrollY }: { scrollY: MotionValue }) => {
-
+    // app context values and functions
+    const { scroll: { dynamicIncrement: dI, }, appContainer:{scrollRef}} = useAppContext();
+    
+    // scroll motion values for scroll animations
+    const {scrollY,} = useScroll({container:scrollRef,}); 
 
     // memoized 3D assets
-    const MemoizedLightBulb = React.memo(LightBulbModel);
-    const MemoizedSphereBot = React.memo(SphereBotModel);
-    const MemoizedPOSMachine = React.memo(POSMachineModel);
-    const MemoizedIPhone = React.memo(IPhoneModel);
-    const MemoizedPuzzle = React.memo(PuzzleModel);
-    const MemoizedEmoji = React.memo(SmilingEmojiTwoModel);
-    const MemoizedSwissArmyKnife = React.memo(SwissArmyKnifeModel);
-    const MemoizedMacbook = React.memo(MacbookModel);
-    const MemoizedCoinGrowth = React.memo(CoinGrowthModel);
-    const MemoizedDataHighway = React.memo(DigitalDataHighway);
-    const MemoizedEmojiTwo = React.memo(SmilingEmojiOneModel);
-    const MemoizedDollarSign = React.memo(DollarSign);
-    const MemoizedCombinationLock = React.memo(CombinationLock);
-    const MemoizedAtom = React.memo(Atom);
+    const CachedLightBulb = React.memo(LightBulb);
+    const CachedSphereBot = React.memo(SphereBot);
+    const CachedPOSMachine = React.memo(POSMachine);
+    const CachedIPhone = React.memo(IPhone);
+    const CachedPuzzle = React.memo(Puzzle);
+    const CachedEmoji = React.memo(SmilingEmojiTwo);
+    const CachedSwissArmyKnife = React.memo(SwissArmyKnife);
+    const CachedMacbook = React.memo(Macbook);
+    const CachedCoinGrowth = React.memo(CoinGrowth);
+    const CachedDataHighway = React.memo(DigitalDataHighway);
+    const CachedEmojiTwo = React.memo(SmilingEmojiOne);
+    const CachedDollarSign = React.memo(DollarSign);
+    const CachedCombinationLock = React.memo(CombinationLock);
+    const CachedAtom = React.memo(Atom);
 
-    // initialize state variables
-    const [scalingFactor, setScalingFactor] = useState<number>(1);
-    const [visible, setVisible] = useState({
+
+    // create visible states
+    const [scalingFactor, setScalingFactor] = React.useState<number>(1);
+
+    const [visible, setVisible] = React.useState<VisibilityThreeType>({
         lightBulb: true,
         bot: false,
         pos: false,
@@ -53,16 +69,13 @@ const Experience = ({ scrollY }: { scrollY: MotionValue }) => {
         atom: false,
     });
 
-
-    const { dynamicIncrement: dI, windowScrollHeight } = useScroll();
-
     // event points for calculating 3d assets
     const homeEventPoints = [
         0, dI(0.5), dI(1), dI(1.5), dI(2 ), dI(2.5), dI(3 ), dI(3.5),
         dI(4 ), dI(4.5), dI(5 ), dI(5.5), dI(6 ), dI(6.5), dI(7 ), dI(7.5),
         dI(8 ), dI(8.5), dI(9 ), dI(9.5), dI(10 ), dI(10.5), dI(11 ), dI(11.5),
         dI(12 ), dI(12.5), dI(13 ), dI(13.5), dI(14 ), dI(14.5), dI(15 ), dI(15.5),
-        dI(16 ), dI(16.5), dI(17 ), dI(17.5), dI(18 ), dI(18.5), dI(19 ), dI(19.5),dI(20), dI(20.5), dI(21), dI(21.5)
+        dI(16 ), dI(16.5), dI(17 ), dI(17.5), dI(18 ), dI(18.5), dI(19 ), dI(19.5),dI(20),
     ];
 
     // motion paths for 3d objects
@@ -72,14 +85,12 @@ const Experience = ({ scrollY }: { scrollY: MotionValue }) => {
         swissMotion, macbookMotion, coinGrowthMotion,
         dataHighwayMotion, emojiTwoMotion, dollarSignMotion,
         combinationLockMotion, atomMotion,
-    } = useMotionLogic(scrollY, homeEventPoints);
+    } = programmerPageMotionLogic(scrollY, homeEventPoints);
 
-    // 
-    const scrollFactor = scrollY.getPrevious();
-
+    // Scaling value for responsive experience
     const mainScalingFactor = window ? Math.min(Math.max(window.innerWidth / 1920, window.innerWidth > 700 && window.innerWidth < window.innerHeight ? 0.4 :0.6), 3) : 1;
-    const mainHeightScalingFactor = window ? Math.min(Math.max(window.innerHeight / 911, 0.6), 3) : 1;
 
+    // scale const for managing visibility
     const lightBulb = lightBulbMotion().scale.get() * mainScalingFactor;
     const bot = robotMotion().scale.get() * mainScalingFactor;
     const pos = posMachineMotion().scale.get() * mainScalingFactor;
@@ -95,8 +106,8 @@ const Experience = ({ scrollY }: { scrollY: MotionValue }) => {
     const lock = combinationLockMotion().scale.get() * mainScalingFactor;
     const atom = atomMotion().scale.get() * mainScalingFactor;
 
-
-    const [scales, setScales] = useState({
+    // scales object for visibility manager
+    const [scales, setScales] = React.useState<ScalesThreeType>({
         lightBulb, bot, pos,
         iPhone, puzzle, emoji,
         swiss, macbook, coin,
@@ -104,63 +115,20 @@ const Experience = ({ scrollY }: { scrollY: MotionValue }) => {
         lock, atom
     });
 
-    useEffect(() => {
-        if (scalingFactor) {
-            setScalingFactor(mainScalingFactor);
-        }
+    // update scaling factor when it changes
+    ScalingFactorManager({scalingFactor,setScalingFactor,mainScalingFactor});
 
-    }, [mainScalingFactor, scalingFactor]);
+    // manage visibility of 3d  models
+    VisibilityManager({scales,visible,setVisible});
 
-        const prevScalesRef = useRef<typeof scales | null>(null);
-
-
-    // Assuming scales is a prop or state
-    useEffect(() => {
-        // Store the previous scales values using a ref to compare
-
-        // Create a deep comparison function or use lodash's _.isEqual for deep comparison if needed
-        const hasScalesChanged = (prev: typeof scales | null, next: typeof scales) => {
-            if (!prev) return true; // Initial render case
-            return Object.keys(next).some((key) => prev[key as keyof typeof prev] !== next[key as keyof typeof next]);
-        };
-
-        // If scales object has changed, update the visibility
-        if (hasScalesChanged(prevScalesRef.current, scales)) {
-            Object.keys(scales).forEach((key) => {
-                const value = scales[key as keyof typeof scales];
-
-                if (value > 0 || value < 0) {
-                    setVisible((prev) => ({
-                        ...prev,
-                        [key]: true,
-                    }));                    
-                } else {
-                    setVisible((prev) => ({
-                        ...prev,
-                        [key]: false,
-                    }));  
-                }
-
-            });
-
-            // Update the ref to the latest scales
-            prevScalesRef.current = scales;
-            console.log(visible);
-            
-        }
-    }, [scales]);
-
-    useEffect(()=> {
-        if (scrollFactor != scrollY.get()) {
-            setScales({
-                lightBulb,
-                bot, pos, iPhone, puzzle, emoji, swiss, macbook, coin, dataHighway, emojiTwo, dollar, atom, lock
-            });            
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[scrollFactor])
+    // manage scales of object for scroll changes
+    ScaleManager({scrollY,setScales,scalesPayload:{
+        lightBulb,bot,pos,iPhone,puzzle,emoji,swiss,macbook,coin,
+        dataHighway,emojiTwo,dollar,lock,atom
+    }});
 
     return (
+        
         <group
         scale={mainScalingFactor}
         >
@@ -178,7 +146,7 @@ const Experience = ({ scrollY }: { scrollY: MotionValue }) => {
                     floatIntensity={1.5}
                     rotationIntensity={3}
                 >
-                    <MemoizedLightBulb />
+                    <CachedLightBulb />
                 </Float>
             </MotionGroup>
 
@@ -190,7 +158,7 @@ const Experience = ({ scrollY }: { scrollY: MotionValue }) => {
                 position={[robotMotion().x, robotMotion().y, robotMotion().z]}
                 rotation={[robotMotion().rotationX, robotMotion().rotationY, robotMotion().rotationZ]}
             >
-                <MemoizedSphereBot />
+                <CachedSphereBot />
 
             </MotionGroup>
 
@@ -202,7 +170,7 @@ const Experience = ({ scrollY }: { scrollY: MotionValue }) => {
                 position={[posMachineMotion().x, posMachineMotion().y, posMachineMotion().z]}
                 rotation={[posMachineMotion().rotationX, posMachineMotion().rotationY, posMachineMotion().rotationZ]}
             >
-                <MemoizedPOSMachine />
+                <CachedPOSMachine />
             </MotionGroup>
 
             {/* iPhone model */}
@@ -217,7 +185,7 @@ const Experience = ({ scrollY }: { scrollY: MotionValue }) => {
                     floatIntensity={1.5}
                     rotationIntensity={1.5}
                 >
-                    <MemoizedIPhone />
+                    <CachedIPhone />
                 </Float>
             </MotionGroup>
 
@@ -229,7 +197,7 @@ const Experience = ({ scrollY }: { scrollY: MotionValue }) => {
                 position={[puzzleMotion().x, puzzleMotion().y, puzzleMotion().z]}
                 rotation={[puzzleMotion().rotationX, puzzleMotion().rotationY, puzzleMotion().rotationZ]}
             >
-                <MemoizedPuzzle />
+                <CachedPuzzle />
             </MotionGroup>
 
             {/* emoji model */}
@@ -244,7 +212,7 @@ const Experience = ({ scrollY }: { scrollY: MotionValue }) => {
                 // floatIntensity={1.5}
                 // rotationIntensity={1.5}
                 >
-                    <MemoizedEmoji />
+                    <CachedEmoji />
                 </Float>
             </MotionGroup>
 
@@ -260,7 +228,7 @@ const Experience = ({ scrollY }: { scrollY: MotionValue }) => {
                             // floatIntensity={1.5}
                             // rotationIntensity={1.5}
                             > */}
-                <MemoizedSwissArmyKnife />
+                <CachedSwissArmyKnife />
                 {/* </Float> */}
             </MotionGroup>
 
@@ -276,7 +244,7 @@ const Experience = ({ scrollY }: { scrollY: MotionValue }) => {
                     floatIntensity={0.25}
                     rotationIntensity={1.5}
                 >
-                    <MemoizedMacbook />
+                    <CachedMacbook />
                 </Float>
             </MotionGroup>
 
@@ -292,7 +260,7 @@ const Experience = ({ scrollY }: { scrollY: MotionValue }) => {
                     floatIntensity={0.25}
                     rotationIntensity={1.5}
                 >
-                    <MemoizedCoinGrowth />
+                    <CachedCoinGrowth />
                 </Float>
             </MotionGroup>
 
@@ -308,7 +276,7 @@ const Experience = ({ scrollY }: { scrollY: MotionValue }) => {
                     floatIntensity={0.25}
                     rotationIntensity={1.5}
                 >
-                    <MemoizedDataHighway />
+                    <CachedDataHighway />
                 </Float>
             </MotionGroup>
 
@@ -324,7 +292,7 @@ const Experience = ({ scrollY }: { scrollY: MotionValue }) => {
                     floatIntensity={0.25}
                     rotationIntensity={1.5}
                 >
-                    <MemoizedEmojiTwo />
+                    <CachedEmojiTwo />
                 </Float>
             </MotionGroup>
 
@@ -340,7 +308,7 @@ const Experience = ({ scrollY }: { scrollY: MotionValue }) => {
                     floatIntensity={0.25}
                     rotationIntensity={1.5}
                 >
-                    <MemoizedDollarSign />
+                    <CachedDollarSign />
                 </Float>
             </MotionGroup>
 
@@ -352,7 +320,7 @@ const Experience = ({ scrollY }: { scrollY: MotionValue }) => {
                 position={[combinationLockMotion().x, combinationLockMotion().y, combinationLockMotion().z]}
                 rotation={[combinationLockMotion().rotationX, combinationLockMotion().rotationY, combinationLockMotion().rotationZ]}
             >
-                <MemoizedCombinationLock />
+                <CachedCombinationLock />
             </MotionGroup>
 
             {/* atom model */}
@@ -363,71 +331,10 @@ const Experience = ({ scrollY }: { scrollY: MotionValue }) => {
                 position={[atomMotion().x, atomMotion().y, atomMotion().z]}
                 rotation={[atomMotion().rotationX, atomMotion().rotationY, atomMotion().rotationZ]}
             >
-                <MemoizedAtom />
+                <CachedAtom />
             </MotionGroup>
         </group>
     )
 }
 
-
-
-const MainProgrammerScene: React.FC<{
-    scrollY: MotionValue,
-}> = ({
-    scrollY,
-}) => {
-
-
-
-
-        return (
-            <Canvas
-                dpr={[1, 1.5]}
-                style={{
-                    pointerEvents: 'none',
-                    position: 'fixed',
-                    top: 0,
-                    zIndex: 1,
-                }}
-                shadows
-                camera={{
-                    position: [0, 0, 60],
-                    fov: 50,
-                }}
-            >
-                <Suspense fallback={null}>
-
-                    <Experience
-                        scrollY={scrollY}
-                    />
-
-                    <ambientLight />
-                    <Environment preset='warehouse' />
-                    <directionalLight
-                        castShadow
-                        position={[0, 0, 3]} // Adjust position as needed
-                        intensity={1}
-                        shadow-mapSize-width={256}
-                        shadow-mapSize-height={256}
-                        shadow-camera-far={1000}
-                        shadow-camera-near={-100}
-                        shadow-camera-right={100}
-                        shadow-camera-left={-100}
-                        shadow-camera-top={100}
-                        shadow-camera-bottom={-100}
-                    />
-
-                    <mesh rotation={[-Math.PI / 6, 0, 0]} position={[0, -5, -10]} receiveShadow >
-                        <circleGeometry args={[150]} />
-                        <shadowMaterial
-                            opacity={0.3}
-                        />
-                    </mesh>
-                </Suspense>
-            </Canvas>
-        )
-    }
-
-
-
-export default MainProgrammerScene;
+export default ProgrammerPageExperience

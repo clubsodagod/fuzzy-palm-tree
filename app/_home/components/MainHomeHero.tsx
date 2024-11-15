@@ -34,9 +34,9 @@ const MainHomeHero: React.FC<HeroProps> = ({
             <HeroButtonCtn >
                 <ButtonPro
                     variant='contained'
-                    label={`Free Consultation`}
+                    label={`I'm A Programmer`}
                     color='primary'
-                    onClick={() => { scrollTo('top') }}
+                    href='/im-a-programmer'
                 />
                 <ButtonPro
                     variant='contained'
@@ -64,7 +64,7 @@ const MainHomeHero: React.FC<HeroProps> = ({
                         y: 0,
                         transition: {
                             duration: 1,
-                            delay: 2.4,
+                            delay: 0.5,
                         },
                     }}
                     exit={{ opacity: 0 }}

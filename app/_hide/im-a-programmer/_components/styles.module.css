@@ -91,16 +91,17 @@
     height: 100vh;
     align-items: end;
     top: 0;
-    left: -15vw;
+    left: -30vw;
 
     @media screen and (min-width:769px) {
         align-items: end;
+        left: -10vw;
     }
 }
 
 .ftImg {
     object-fit: contain;
-    height: 40dvh;
+    height: 50dvh;
 
     @media screen and (min-width:769px) and (max-width:1024px) {
         /* position: relative; */

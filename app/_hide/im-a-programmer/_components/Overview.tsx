@@ -7,88 +7,100 @@ import { motion } from 'framer-motion';
 import styles from './styles.module.css';
 import { Button, Typography } from '@mui/material';
 import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv';
+import MotionPageWrapper from '../../_components/common/MotionPageWrapper';
+import { MotionH5 } from '../../_components/framer/MotionH5';
+import { MotionImg } from '@/app/_components/common/framer/MotionImg';
+import ArrowCircleDownRoundedIcon from '@mui/icons-material/ArrowCircleDownRounded';
+import { HeroProps } from '@/app/_library/types/common';
+import ButtonPro from '@/app/_components/common/ButtonPro';
+import { MotionP } from '../../_components/framer/MotionP';
+import HeroButtonCtn from '@/app/_components/common/HeroButtonCtn';
+import IconButton from '@/app/_components/common/IconButton'
+import { MotionH6 } from '@/app/_components/common/framer/MotionH6';
+import { MotionH4 } from '../../_components/framer/MotionH4';
 
-const Overview: React.FC<{
-    ctnRef: RefObject<HTMLDivElement>,
-}> = ({
-    ctnRef,
+const Overview: React.FC<HeroProps> = ({
+    ctnRef, scrollTo, id
 }) => {
 
-        return (
-            <PageWrapper
-                id='programmer-overview'
-                ctnRef={ctnRef}
+    return (
+        <MotionPageWrapper
+            id={id}
+            ctnRef={ctnRef}
+        >
+
+            <MotionDiv className={`${styles.imgWrapper}`} id='img-maliek_home'>
+                <MotionImg
+                    src='/images/programmer.png'
+                    className={`${styles.ftImg} `}
+                    id='home' alt=''
+                    initial={{
+                        opacity: 0,
+                        y: -200,
+                    }}
+                    whileInView={{
+                        opacity: 1,
+                        y: 0,
+                        transition: {
+                            duration: 1,
+                            delay: 0.5,
+                        },
+                    }}
+                    exit={{ opacity: 0 }}
+
+                />
+            </MotionDiv>
+
+
+            {/*  Top Typography Ctn */}
+
+            <MotionDiv
+                className='hero-wrapper'
             >
+                <Header
+                size='sm'
+                    headerLabel={<Typography variant='h2'
+                        className={`right`}
+                    >
+                        I&apos;m <span className={`my-name`}>Maliek Davis</span>
 
-                <div className={`${styles.imgWrapper}`} id='img-maliek_home'>
-                    <motion.img
-                        src='/images/programmer.png'
-                        className={`${styles.ftImg} `}
-                        id='home' alt=''
-                        initial={{
-                            opacity: 0,
-                            y: -200,
-                        }}
-                        whileInView={{
-                            opacity: 1,
-                            y: 0,
-                            transition: {
-                                duration: 1,
-                                delay: 2.4,
-                            },
-                        }}
-                        exit={{ opacity: 0 }}
+                    </Typography>}
+                    tagLine={<MotionH4
+                        className={`right`}
+                    >
+                        Much More Than Just Another <span className={`dynamic-text`}>Developer</span>
+                    </MotionH4>}
+                />
+            </MotionDiv>
 
+            <MotionDiv className={`btm-hero-ctn-wrapper right`} id='investments'>
+
+                <MotionP className={` right`} id='programmer'>
+                    Bringing Your Ideas to Life with Innovation and Expertise
+                </MotionP>
+                <HeroButtonCtn  className=' right-btn-ctn'>
+                    <ButtonPro
+                        variant='contained'
+                        label={`Approach`}
+                        color='primary'
+                        onClick={() => { scrollTo('top') }}
                     />
-                </div>
+                    <ButtonPro
+                        variant='contained'
+                        label={`Portfolio`}
+                        color='secondary'
+                        onClick={() => { scrollTo('home-blog') }}
+                    />
+                    <IconButton
+                        label={<ArrowCircleDownRoundedIcon onClick={() => { scrollTo('next') }} />}
+                        onClick={() => { scrollTo('next') }}
+                    />
+                </HeroButtonCtn>
+            </MotionDiv>
 
 
-                {/*  Top Typography Ctn */}
-                <motion.div
-                    className={`${styles.topHeroCtn} top-hero-ctn right`}
-                >
-                    <MotionDiv>
-                        <Typography variant='h2'
-                            className={`${styles.header} header right`}
-                        >
-                            I&apos;m <span className={`${styles.myName} my-name`}>Maliek Davis</span>
-
-                        </Typography>
-                    </MotionDiv>
-
-
-                    <MotionDiv>
-                        <Typography
-                            variant='h6'
-                            className={`${styles.subheader} subheader right`}
-                        >
-                            Much More Than Just Another <span className={`$styles.dynamicText} dynamic-text`}>Developer</span>
-                        </Typography>
-                    </MotionDiv>
-
-
-                </motion.div>
-
-
-                {/*  Top Typography Ctn */}
-                <motion.div
-                    className={`${styles.btmHeroCtn} btm-hero-ctn right`}
-                >
-
-                    {/*  Bottom Container for navigation buttons */}
-                    <motion.div className={`${styles.btmHeroCtn} btm-hero-ctn right`}>
-
-                        <motion.h5 className={styles.excerpt}>
-                            Bringing Your Ideas to Life with Innovation and Expertise
-                        </motion.h5>
-                        <motion.div className={`${styles.btnCtn} btn-ctn rightBtn`}>
-                            <Button variant='contained' href={'/im-a-programmer/approach'}>My Approach</Button>
-                            <Button variant='outlined' href={'/im-a-programmer/portfolio'}>Featured Solutions</Button>
-                        </motion.div>
-                    </motion.div>
-                </motion.div>
-            </PageWrapper>
-        )
-    }
+        </MotionPageWrapper>
+    )
+}
 
 export default Overview

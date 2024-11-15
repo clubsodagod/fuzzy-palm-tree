@@ -1,11 +1,11 @@
-// import { Environment } from '@react-three/drei'
+import { Environment } from '@react-three/drei'
 import React from 'react'
 
 const StandardLights = () => {
     return (
         <>
             <ambientLight />
-            {/* <Environment preset='warehouse' /> */}
+            <Environment preset='warehouse' />
             <directionalLight
                 castShadow
                 position={[0, 0, 3]} // Adjust position as needed

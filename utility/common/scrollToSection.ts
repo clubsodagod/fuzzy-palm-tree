@@ -3,7 +3,7 @@ import { RefIDObject } from "../refs/programmer-page-refs";
 export function scrollToSection(
     id: string, 
     refs:RefIDObject[], 
-    currentSection:string,
+    currentSection:string|undefined,
 ) {
     // Find the index of the current section in the refs array
     const currentIndex = refs.findIndex(section => section.id === currentSection);

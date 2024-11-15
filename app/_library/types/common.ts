@@ -1,3 +1,4 @@
+import { Chapter, Point } from "@/library/const";
 import type { HTMLMotionProps } from "framer-motion";
 import { RefObject } from "react";
 
@@ -26,6 +27,11 @@ export interface HeroProps extends MotionDivProps {
     scrollTo:(arg0:string)=>void|undefined;
 }
 
+export interface DynamicSectionProps extends HeroProps {
+    chapter?:Chapter;
+    factor?:Point;
+    index?:number;
+}
 
 export type NavItemChild = {
     label:string;
@@ -37,4 +43,12 @@ export type NavItem = {
     label:string;
     path:string;
     children?: NavItemChild[]
+}
+
+export interface VisibilityThreeType {
+    [key:string]:boolean
+}
+
+export interface ScalesThreeType {
+    [key:string]:number
 }

@@ -8,14 +8,14 @@ import styles from "./styles.module.css"
 import { Typography } from "@mui/material";
 
 interface HeaderProps extends MotionDivProps {
-    headerLabel:any;
-    tagLine:string;
-    right?:boolean;
+    headerLabel: any;
+    tagLine: any;
+    right?: boolean;
     size?: 'sm' | 'md' | 'lg';
 }
 
 const Header: React.FC<HeaderProps> = (
-    {headerLabel, tagLine, right, size, ...props}
+    { headerLabel, tagLine, right, size, ...props }
 ) => {
 
     const className = right ? "right" : "left";
@@ -24,20 +24,39 @@ const Header: React.FC<HeaderProps> = (
 
     return (
         <MotionDiv
-        {...props}
-        className={`headerCtn ${className}`}
+            {...props}
+            className={`headerCtn ${className}`}
         >
-            
+
             <MotionDiv>
-                <Typography variant={variant}>
-                    {headerLabel}
-                </Typography>
+                {
+                    typeof headerLabel == 'string' ?
+                        <Typography variant={variant}>
+                            {headerLabel}
+                        </Typography> :
+                        <>
+                            {headerLabel}
+                        </>
+                }
+
             </MotionDiv>
+
+            <MotionDiv>
+                {
+                    typeof tagLine === 'string' ? 
             <MotionH4
-            className="subheader"
+                className="subheader"
             >
                 {tagLine}
             </MotionH4>
+                    :
+                    <>
+                    {tagLine}
+                    </>
+                    
+                }
+            </MotionDiv>
+
         </MotionDiv>
     )
 }

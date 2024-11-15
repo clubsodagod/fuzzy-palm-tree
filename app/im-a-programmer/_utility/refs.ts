@@ -1,6 +1,6 @@
 import { useRef, useEffect, RefObject, createRef } from "react";
 import React from "react";
-import { createDynamicRefs } from "../functions";
+import { createDynamicRefs } from "@/utility/functions";
 import { agileDevelopment, customSoftware, designThinking, digitalTransformation, importantFactors, overview } from "@/library/const";
 
 export type RefIDObject = {
