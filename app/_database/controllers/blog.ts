@@ -36,6 +36,8 @@ export type InitBlogHomePageFunction = () => Promise<{
 
 // Initialize the blog home page data.
 export const getBlogs: InitBlogHomePageFunction = async () => {
+
+    await connectToMongoDB()
     try {
         const featuredResponse = await fetch('https://fuzzy-palm-tree.vercel.app/api/blog/get/featured',);
 

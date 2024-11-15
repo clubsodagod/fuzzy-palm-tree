@@ -18,7 +18,6 @@ interface ProgrammerApproachModuleProps {
 }
 
 const ProgrammerApproachModule: React.FC<ProgrammerApproachModuleProps> = ({
-    posts
 }) => {
 
     const {
