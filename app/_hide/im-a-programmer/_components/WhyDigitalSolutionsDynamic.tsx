@@ -71,8 +71,8 @@ const WhyDigitalSolutionsDynamic: React.FC<DynamicSectionProps> = ({
                 {
                     index === importantFactors.length - 1 ?
                         <IconButton
-                            label={<KeyboardDoubleArrowUpRoundedIcon onClick={() => { scrollTo('next') }} />}
-                            onClick={() => { scrollTo('next') }}
+                            label={<KeyboardDoubleArrowUpRoundedIcon onClick={() => { scrollTo('top') }} />}
+                            onClick={() => { scrollTo('top') }}
                         />
                         :
                         <IconButton

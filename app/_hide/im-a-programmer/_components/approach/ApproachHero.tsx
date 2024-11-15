@@ -1,6 +1,6 @@
 'use client'
 import React, { RefObject, useEffect, useRef, useState } from 'react'
-import { PageWrapper, ScrollableItemCtn } from '@/app/_hide/_components'
+import ScrollableItemCtn from '@/app/_components/common/ScrollableItemCtn';
 import styles from '../styles.module.css';
 import { motion } from 'framer-motion';
 import { Button, Typography } from '@mui/material';
@@ -9,9 +9,14 @@ import { IBlogPopulated } from '@/library/db/models/blog';
 import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv';
 import BlogCard2D from '@/app/_hide/blog/_components/BlogCard';
 import ArrowCircleDownRoundedIcon from '@mui/icons-material/ArrowCircleDownRounded';
-import { useScroll } from '@/app/_hide/_context/sub-context/ScrollContext';
-import { useScreenContext } from '@/app/_hide/_context/sub-context/ScreenContext';
 import ButtonPro from '@/app/_hide/_components/common/buttons/ButtonPro';
+import { useAppContext } from '@/app/_context/AppContext';
+import Header from '@/app/_components/common/Header';
+import HeroButtonCtn from '@/app/_components/common/HeroButtonCtn';
+import MotionPageWrapper from '@/app/_hide/_components/common/MotionPageWrapper';
+import IconButton from '@/app/_components/common/IconButton';
+import BlogCard from '@/app/_components/common/blog/BlogCard';
+import ScrollCtnWrapper from '@/app/_components/common/ScrollCtnWrapper';
 
 const ApproachHero: React.FC<{
     ctnRef: RefObject<HTMLDivElement>;
@@ -22,8 +27,8 @@ const ApproachHero: React.FC<{
 }) => {
 
         const {
-            isMobile,
-        } = useScreenContext();
+            screen: { isMobile, }
+        } = useAppContext();
         const [posts, setPosts] = useState<IBlogPopulated[] | undefined>();
 
         useEffect(() => {
@@ -57,66 +62,28 @@ const ApproachHero: React.FC<{
         };
 
         return (
-            <PageWrapper
+            <MotionPageWrapper
                 ctnRef={ctnRef}
                 id='approach-main'
             >
-
-                <motion.div
-                    className={`${styles.topHeroCtn} top-hero-ctn right`}
-                >
-
+                <MotionDiv className='hero-wrapper'>
+                    <Header
+                        headerLabel='My Approach'
+                        tagLine='Empowering Vision Through Strategic Implementation'
+                        right
+                    />
                     <MotionDiv>
-                        <Typography variant='h1'>
-                            My Approach
-                        </Typography>
-                    </MotionDiv>
-                    <motion.h4 className={`${styles.subheader} subheader right`} >
-                        Empowering Vision Through Strategic Implementation
-                    </motion.h4>
 
-                </motion.div>
-
-                <motion.div
-                    className={`flex gap-12 lg:justify-end`}
-                >
-
-
-                    {
-                        !isMobile &&
-                        <MotionDiv
-                            className={styles.scrollableCtnWrapper}
-                        >
-                            <MotionDiv
-                                initial={{
-                                    opacity: 0,
-                                }}
-                                whileInView={{
-                                    opacity: "100%",
-                                    transition: {
-                                        duration: 2,
-                                    }
-                                }}
-                                whileHover={{
-                                    scale: 1.25
-                                }}
-                                className={`${styles.leftArrowCtn}`}
-                                onClick={() => scrollContainer('left')} // Scroll left on click
-                            >
-                                <ArrowCircleDownRoundedIcon
-                                    className={`${styles.leftArrow}`}
-                                />
-                            </MotionDiv>
-
-                            <div ref={scrollCtnRef} className={styles.childWrapper} >
+                        <ScrollCtnWrapper>
+                            <ScrollableItemCtn>
                                 {
                                     posts && posts.length > 0 ?
                                         <>
                                             {
                                                 posts.map((p, i: number) => {
                                                     return (
-                                                        <MotionDiv key={`${p._id} ${p.title}`}>
-                                                            <BlogCard2D blog={p} />
+                                                        <MotionDiv key={`${p._id} ${p.title}`} className='snap-x-wrapper'>
+                                                            <BlogCard post={p} />
                                                         </MotionDiv>
                                                     )
                                                 })
@@ -125,58 +92,38 @@ const ApproachHero: React.FC<{
                                         :
                                         null
                                 }
-                            </div>
+                            </ScrollableItemCtn>
+                        </ScrollCtnWrapper>
+
+                    </MotionDiv>
+                </MotionDiv>
 
 
-                            <MotionDiv
-                                initial={{
-                                    opacity: 0,
-                                }}
-                                whileInView={{
-                                    opacity: "100%",
-                                    transition: {
-                                        duration: 2.5,
-                                    }
-                                }}
-                                whileHover={{
-                                    scale: 1.25
-                                }}
-                                className={`${styles.rightArrowCtn}`}
-                                onClick={() => scrollContainer('right')} // Scroll right on click
-                            >
-                                <ArrowCircleDownRoundedIcon
-                                    className={`${styles.rightArrow}`}
-                                />
-                            </MotionDiv>
-                        </MotionDiv>
-                    }
-
-
-                    <motion.div
-                        className={`${styles.btmHeroCtn} btm-hero-ctn right`}
-                    >
-
-                        <motion.div className={`${styles.btnCtn} btn-ctn rightBtn flex gap-3`}>
+                <MotionDiv className='right-btn-ctn right  w-full'>
+                    <HeroButtonCtn className={`right-btn-ctn`}>
 
                         <ButtonPro
-                                variant='contained'
-                                label='SOLID'
-                                color='primary'
-                                onClick={() => { scrollTo('approach-solid-principles') }}
-                            />
-                            
-                            <ButtonPro
-                                variant='contained'
-                                label='Free Consultation'
-                                color='secondary'
-                                onClick={() => {console.log('Free consultation!'); alert('Free consultation!')}}
-                            />
-                            
-                        </motion.div>
-                    </motion.div>
-                </motion.div>
+                            variant='contained'
+                            label="Let's Work"
+                            color='primary'
+                            href={'/im-a-programmer/lets-work'}
+                        />
 
-            </PageWrapper>
+                        <ButtonPro
+                            variant='contained'
+                            label='Free Consultation'
+                            color='secondary'
+                            onClick={() => { console.log('Free consultation!'); alert('Free consultation!') }}
+                        />
+
+                        <IconButton
+                            label={<ArrowCircleDownRoundedIcon onClick={() => { scrollTo('next') }} />}
+                            onClick={() => { scrollTo('next') }}
+                        />
+                    </HeroButtonCtn>
+                </MotionDiv>
+
+            </MotionPageWrapper>
         )
     }
 

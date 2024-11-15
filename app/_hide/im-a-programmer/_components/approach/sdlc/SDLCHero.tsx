@@ -2,12 +2,14 @@ import { Header, PageWrapper } from '@/app/_hide/_components'
 import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv'
 import React, { RefObject, useRef } from 'react'
 import styles from "../../styles.module.css"
-import ButtonPro from '@/app/_hide/_components/common/buttons/ButtonPro'
+import ButtonPro from '@/app/_components/common/ButtonPro'
 import { motion } from 'framer-motion'
 import { MotionDivProps } from '@/app/_hide/_components/common/ScrollableItemCtn';
 import ArrowCircleDownRoundedIcon from '@mui/icons-material/ArrowCircleDownRounded';
 import SDLCCard from './SDLCCard'
 import { sdlc } from '@/library/const'
+import ScrollCtnWrapper from '@/app/_components/common/ScrollCtnWrapper'
+import ScrollableItemCtn from '@/app/_components/common/ScrollableItemCtn'
 
 export interface SDLCHeroProps extends MotionDivProps {
     ctnRef: RefObject<HTMLDivElement>;
@@ -50,8 +52,9 @@ const SDLCHero: React.FC<SDLCHeroProps> = ({
                 <Header
                     headerLabel='Software Development Life Cycle'
                     tagLine='Mastering the Phases: From Idea to Deployment'
+                    size='sm'
                 />
-                
+
                 <MotionDiv
                     className={`${styles.solidPrinciplesCtnWrapper}`}
                 >
@@ -60,70 +63,25 @@ const SDLCHero: React.FC<SDLCHeroProps> = ({
                     <MotionDiv
                         className={`${styles.solidPrinciplesCtn}`}
                     >
-
-                        {/* left arrow component */}
-                        <MotionDiv
-                            initial={{
-                                opacity: 0,
-                            }}
-                            whileInView={{
-                                opacity: "100%",
-                                transition: {
-                                    duration: 2,
+                        <ScrollCtnWrapper>
+                            <ScrollableItemCtn
+                                id='programmer-approach-sdlc-section'
+                            >
+                                {
+                                    sdlc.map((p, i: number) => {
+                                        return (
+                                            <MotionDiv key={`${i}: solid principle`}
+                                                className={`${styles.solidCardWrapperOut} snap-center`}
+                                            >
+                                                <SDLCCard
+                                                    phase={p} index={i}
+                                                />
+                                            </MotionDiv>
+                                        )
+                                    })
                                 }
-                            }}
-                            whileHover={{
-                                scale: 1.25
-                            }}
-                            className={`${styles.leftArrowSolidCtn}`}
-                            onClick={() => scrollContainer('left')} // Scroll left on click
-                        >
-                            <ArrowCircleDownRoundedIcon
-                                className={`${styles.leftSolidArrow}`}
-                            />
-                        </MotionDiv>
-
-                        {/* overflow container */}
-                        <div
-                            ref={scrollCtnRef}
-                            className={`${styles.solidPrinciplesScrollCtn} snap-x snap-mandatory`}
-                        >
-                            {
-                                sdlc.map((p, i: number) => {
-                                    return (
-                                        <MotionDiv key={`${i}: solid principle`}
-                                            className={`${styles.solidCardWrapperOut} snap-center`}
-                                        >
-                                            <SDLCCard
-                                                phase={p} index={i}
-                                            />
-                                        </MotionDiv>
-                                    )
-                                })
-                            }
-                        </div>
-
-                        {/* right arrow component */}
-                        <MotionDiv
-                            initial={{
-                                opacity: 0,
-                            }}
-                            whileInView={{
-                                opacity: "100%",
-                                transition: {
-                                    duration: 2.5,
-                                }
-                            }}
-                            whileHover={{
-                                scale: 1.25
-                            }}
-                            className={`${styles.rightArrowSolidCtn}`}
-                            onClick={() => scrollContainer('right')} // Scroll right on click
-                        >
-                            <ArrowCircleDownRoundedIcon
-                                className={`${styles.rightSolidArrow}`}
-                            />
-                        </MotionDiv>
+                            </ScrollableItemCtn>
+                        </ScrollCtnWrapper>
                     </MotionDiv>
                 </MotionDiv>
             </MotionDiv>
@@ -136,14 +94,14 @@ const SDLCHero: React.FC<SDLCHeroProps> = ({
                 <MotionDiv className={`${styles.btnCtn} btn-ctn leftBtn flex gap-3`}>
 
                     <ButtonPro
-                        variant='contained'
+                        variant='outlined'
                         label='Design Patterns'
                         color='primary'
                         onClick={() => { scrollTo('approach-design-patterns') }}
                     />
 
                     <ButtonPro
-                        variant='contained'
+                        variant='outlined'
                         label='To Top'
                         color='secondary'
                         onClick={() => { scrollTo('approach-main') }}

@@ -8,6 +8,7 @@ import { Divider, Typography } from '@mui/material';
 import { MotionUL } from '@/app/_hide/_components/framer/MotionUL';
 import { MotionLI } from '@/app/_hide/_components/framer/MotionLI';
 import { useScreenContext } from '@/app/_hide/_context/sub-context/ScreenContext';
+import { useAppContext } from '@/app/_context/AppContext';
 
 export interface DesignPatternCardProps extends MotionDivProps {
     pattern: DesignPattern
@@ -22,8 +23,8 @@ const DesignPatternCard: React.FC<DesignPatternCardProps> = ({
 }) => {
 
     const {
-        currentBreakpoint
-    } = useScreenContext()
+        screen:{currentBreakpoint}
+    } = useAppContext()
 
     return (
         <>

@@ -1,5 +1,7 @@
-import { Photo, Video } from '@/app/_library/types/common';
+import { Photo, Video } from '@/library/types/common';
 import mongoose, { Document, Schema, Model, model } from 'mongoose';
+import slugify from 'slugify'
+import { sluggerPlugin } from 'mongoose-slugger-plugin';
 
 // Define category document type
 export interface SubcategoryDocumentType {
@@ -66,6 +68,23 @@ const subcategorySchema = new Schema<ISubcategory>({
     default: Date.now,
   }
 });
+
+// create a unique index for slug generation;
+// here, the slugs must be unique for each name
+subcategorySchema.index({ name: 1, slug: 1 }, { name: 'name_slug', unique: true });
+
+// add the plugin
+subcategorySchema.plugin(sluggerPlugin, {
+  // the property path which stores the slug value
+  slugPath: 'slug',
+  // specify the properties which will be used for generating the slug
+  generateFrom: ['name'],
+  // specify the max length for the slug
+  maxLength: 30,
+  // the unique index, see above
+  index: 'name_slug'
+});
+
 
 // Define the Subcategory model
 const Subcategory: Model<ISubcategory> = mongoose.models.Subcategory || model<ISubcategory>('Subcategory', subcategorySchema);

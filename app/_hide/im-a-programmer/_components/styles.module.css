@@ -456,6 +456,8 @@
     /* min-height: 70vh; */
     padding-block: 0 2vh;
     height: min-content;
+    scroll-snap-type: x mandatory;
+    scroll-snap-align: start;
 
     @media screen and (min-width:1025px) {
         overflow-x: hidden;

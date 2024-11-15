@@ -73,7 +73,7 @@ const Overview: React.FC<HeroProps> = ({
                 />
             </MotionDiv>
 
-            <MotionDiv className={`btm-hero-ctn-wrapper right`} id='investments'>
+            <MotionDiv className={`btm-hero-ctn-wrapper right`} >
 
                 <MotionP className={` right`} id='programmer'>
                     Bringing Your Ideas to Life with Innovation and Expertise
@@ -83,13 +83,13 @@ const Overview: React.FC<HeroProps> = ({
                         variant='contained'
                         label={`Approach`}
                         color='primary'
-                        onClick={() => { scrollTo('top') }}
+                        href={'/im-a-programmer/approach'}
                     />
                     <ButtonPro
                         variant='contained'
                         label={`Portfolio`}
                         color='secondary'
-                        onClick={() => { scrollTo('home-blog') }}
+                        href={'/im-a-programmer/portfolio'}
                     />
                     <IconButton
                         label={<ArrowCircleDownRoundedIcon onClick={() => { scrollTo('next') }} />}

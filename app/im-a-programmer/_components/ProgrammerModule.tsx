@@ -11,7 +11,6 @@ import React from 'react'
 import ProgrammerScene from './three/ProgrammerScene';
 
 const ProgrammerModule = () => {
-    const [numberOfSections, setNumberOfSections] = React.useState<number>(2);
 
     const {
         appContainer: {

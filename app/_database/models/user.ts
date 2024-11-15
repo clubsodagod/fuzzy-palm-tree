@@ -1,4 +1,4 @@
-import { Photo, Video } from '@/app/_library/types/common';
+import { Photo, Video } from '@/library/types/common';
 import mongoose, { Document, Schema, Model, model } from 'mongoose';
 
 // Define an interface for the User model

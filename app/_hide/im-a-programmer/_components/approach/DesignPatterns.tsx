@@ -8,7 +8,11 @@ import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv'
 import ArrowCircleDownRoundedIcon from '@mui/icons-material/ArrowCircleDownRounded';
 import DesignPatternCard from './design-patterns/DesignPatternCard'
 import { designPatterns } from '@/library/const'
-import ButtonPro from '@/app/_hide/_components/common/buttons/ButtonPro'
+import ButtonPro from '@/app/_components/common/ButtonPro'
+import MotionPageWrapper from '@/app/_hide/_components/common/MotionPageWrapper'
+import HeroButtonCtn from '@/app/_components/common/HeroButtonCtn'
+import ScrollCtnWrapper from '@/app/_components/common/ScrollCtnWrapper'
+import ScrollableItemCtn from '@/app/_components/common/ScrollableItemCtn'
 
 const DesignPatterns: React.FC<{
     ctnRef: RefObject<HTMLDivElement>,
@@ -37,13 +41,13 @@ const DesignPatterns: React.FC<{
         };
 
         return (
-            <PageWrapper
+            <MotionPageWrapper
                 ctnRef={ctnRef}
                 id='approach-design-thinking'
             >
 
                 <MotionDiv
-                    className={`${styles.heroWrapper}`}
+                    className={`hero-wrapper`}
                 >
                     <Header
                         className='top-hero-ctn'
@@ -61,35 +65,11 @@ const DesignPatterns: React.FC<{
                         <MotionDiv
                             className={`${styles.designPatternsCtn}`}
                         >
-
-                            {/* left arrow component */}
-                            <MotionDiv
-                                initial={{
-                                    opacity: 0,
-                                }}
-                                whileInView={{
-                                    opacity: "100%",
-                                    transition: {
-                                        duration: 2,
-                                    }
-                                }}
-                                whileHover={{
-                                    scale: 1.25
-                                }}
-                                className={`${styles.leftArrowSolidCtn}`}
-                                onClick={() => scrollContainer('left')} // Scroll left on click
-                            >
-                                <ArrowCircleDownRoundedIcon
-                                    className={`${styles.leftSolidArrow}`}
-                                />
-                            </MotionDiv>
-
-
-                        {/* overflow container */}
-                        <div
-                            ref={scrollCtnRef}
+                            <ScrollCtnWrapper>
+                                <ScrollableItemCtn
+                                id='programmer-approach-design-section'
                             className={`${styles.designPatternsScrollCtn} snap-x snap-mandatory`}
-                        >
+                            >
                         {
                             designPatterns.creation.map((p, i: number) => {
                                 return (
@@ -129,62 +109,39 @@ const DesignPatterns: React.FC<{
                                 )
                             })
                         }
-                        </div>
 
-                            {/* right arrow component */}
-                            <MotionDiv
-                                initial={{
-                                    opacity: 0,
-                                }}
-                                whileInView={{
-                                    opacity: "100%",
-                                    transition: {
-                                        duration: 2.5,
-                                    }
-                                }}
-                                whileHover={{
-                                    scale: 1.25
-                                }}
-                                className={`${styles.rightArrowSolidCtn}`}
-                                onClick={() => scrollContainer('right')} // Scroll right on click
-                            >
-                                <ArrowCircleDownRoundedIcon
-                                    className={`${styles.rightSolidArrow}`}
-                                />
-                            </MotionDiv>
+                                </ScrollableItemCtn>
+                            </ScrollCtnWrapper>
 
                         </MotionDiv>
                     </MotionDiv>
 
 
                 </MotionDiv>
-                    <motion.div
-                        className={`${styles.btmHeroCtn} btm-hero-ctn left mt-auto`}
-                    >
 
-                        <motion.div className={`${styles.btnCtn} btn-ctn leftBtn flex gap-3`}>
-
+                <MotionDiv className='  w-full'>
+                        <HeroButtonCtn className={``}>
                         <ButtonPro
-                                variant='contained'
+                                variant='outlined'
                                 label='SOLID'
                                 color='primary'
                                 onClick={() => { scrollTo('approach-solid-principles') }}
                             />
                             
                             <ButtonPro
-                                variant='contained'
+                                variant='outlined'
                                 label='SDLC'
                                 color='secondary'
                                 onClick={() => {scrollTo('approach-sdlc') }}
                             />
                             
-                        </motion.div>
-                    </motion.div>
+                        </HeroButtonCtn>
+                    </MotionDiv>
 
 
 
 
-            </PageWrapper>
+            </MotionPageWrapper>
         )
     }
 

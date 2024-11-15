@@ -100,6 +100,7 @@ body {
   display: flex;
 }
 
+
 .card-wrapper {
   width: 100%;
   height: max-content;
@@ -143,6 +144,21 @@ body {
   @media screen and (min-width:1033px) {
     margin-right: 16.5vw;
     min-width: fit-content;
+  }
+}
+
+div.snap-x-wrapper#programmer-approach-solid-hero {
+  min-width: 100%;
+  padding-inline: 6vw;
+  display: flex;
+  gap: 6vw;
+
+  justify-content: center;
+
+  /* align-items: center; */
+  @media screen and (min-width:1025px) {
+    width: fit-content;
+      padding-inline: 6vw;
   }
 }
 .subheader-text {

@@ -119,7 +119,13 @@ const ScrollableItemCtn: React.FC<ScrollableItemCtnProps> = ({
             }
 
 
-            <div ref={scrollCtnRef} className={styles.childWrapper} >
+            <div ref={scrollCtnRef} id={rest.id ? rest.id : '' } 
+            className={ 
+                rest.id == 'programmer-approach-solid-hero' || rest.id == 'programmer-approach-sdlc-section' ? styles['solidChildWrapper'] 
+                : rest.id == 'programmer-approach-design-section' ? styles['designPatternsChildWrapper'] 
+                :styles.childWrapper
+            } 
+            >
                 {children}
             </div>
 

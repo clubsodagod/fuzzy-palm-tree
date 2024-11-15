@@ -7,8 +7,10 @@ import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv';
 import { solidPrinciples } from '@/library/const';
 import SolidCard from './SolidCard';
 import ArrowCircleDownRoundedIcon from '@mui/icons-material/ArrowCircleDownRounded';
-import ButtonPro from '@/app/_hide/_components/common/buttons/ButtonPro';
+import ButtonPro from '@/app/_components/common/ButtonPro';
 import { motion } from 'framer-motion';
+import ScrollableItemCtn from '@/app/_components/common/ScrollableItemCtn';
+import ScrollCtnWrapper from '@/app/_components/common/ScrollCtnWrapper';
 
 export interface SolidHeroProps extends MotionDivProps {
     ctnRef: RefObject<HTMLDivElement>;
@@ -63,95 +65,54 @@ const SolidHero: React.FC<SolidHeroProps> = ({
                     <MotionDiv
                         className={`${styles.solidPrinciplesCtn}`}
                     >
+                        <ScrollCtnWrapper>
+                            <ScrollableItemCtn
+                                id='programmer-approach-solid-hero'
+                            >
 
-                        {/* left arrow component */}
-                        <MotionDiv
-                            initial={{
-                                opacity: 0,
-                            }}
-                            whileInView={{
-                                opacity: "100%",
-                                transition: {
-                                    duration: 2,
+                                {
+                                    solidPrinciples.map((p, i: number) => {
+                                        return (
+                                            <MotionDiv key={`${i}: solid principle`}
+                                                className={`snap-x-wrapper snap-center`}
+                                                id='programmer-approach-solid-hero'
+                                            >
+                                                <SolidCard
+                                                    principle={p}
+                                                />
+                                            </MotionDiv>
+                                        )
+                                    })
                                 }
-                            }}
-                            whileHover={{
-                                scale: 1.25
-                            }}
-                            className={`${styles.leftArrowSolidCtn}`}
-                            onClick={() => scrollContainer('left')} // Scroll left on click
-                        >
-                            <ArrowCircleDownRoundedIcon
-                                className={`${styles.leftSolidArrow}`}
-                            />
-                        </MotionDiv>
+                            </ScrollableItemCtn>
+                        </ScrollCtnWrapper>
 
-                        {/* overflow container */}
-                        <div
-                            ref={scrollCtnRef}
-                            className={`${styles.solidPrinciplesScrollCtn} snap-x snap-mandatory`}
-                        >
-                            {
-                                solidPrinciples.map((p, i: number) => {
-                                    return (
-                                        <MotionDiv key={`${i}: solid principle`}
-                                            className={`${styles.solidCardWrapperOut} snap-center`}
-                                        >
-                                            <SolidCard
-                                                principle={p}
-                                            />
-                                        </MotionDiv>
-                                    )
-                                })
-                            }
-                        </div>
 
-                        {/* right arrow component */}
-                        <MotionDiv
-                            initial={{
-                                opacity: 0,
-                            }}
-                            whileInView={{
-                                opacity: "100%",
-                                transition: {
-                                    duration: 2.5,
-                                }
-                            }}
-                            whileHover={{
-                                scale: 1.25
-                            }}
-                            className={`${styles.rightArrowSolidCtn}`}
-                            onClick={() => scrollContainer('right')} // Scroll right on click
-                        >
-                            <ArrowCircleDownRoundedIcon
-                                className={`${styles.rightSolidArrow}`}
-                            />
-                        </MotionDiv>
                     </MotionDiv>
                 </MotionDiv>
             </MotionDiv>
-                    <motion.div
-                        className={`${styles.btmHeroCtn} btm-hero-ctn left mt-auto`}
-                    >
+            <motion.div
+                className={`${styles.btmHeroCtn} btm-hero-ctn left mt-auto`}
+            >
 
-                        <motion.div className={`${styles.btnCtn} btn-ctn leftBtn flex gap-3`}>
+                <motion.div className={`${styles.btnCtn} btn-ctn leftBtn flex gap-3`}>
 
-                        <ButtonPro
-                                variant='contained'
-                                label='To Top'
-                                color='primary'
-                                onClick={() => { scrollTo('approach-main') }}
-                            />
-                            
-                            <ButtonPro
-                                variant='contained'
-                                label='Design Patterns'
-                                color='secondary'
-                                onClick={() => {scrollTo('approach-design-patterns') }}
-                            />
-                            
-                        </motion.div>
-                    </motion.div>
+                    <ButtonPro
+                        variant='outlined'
+                        label='To Top'
+                        color='primary'
+                        onClick={() => { scrollTo('approach-main') }}
+                    />
+
+                    <ButtonPro
+                        variant='outlined'
+                        label='Design Patterns'
+                        color='secondary'
+                        onClick={() => { scrollTo('approach-design-patterns') }}
+                    />
+
+                </motion.div>
+            </motion.div>
 
 
 

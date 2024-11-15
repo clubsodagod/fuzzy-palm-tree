@@ -33,6 +33,39 @@
         overflow-x: hidden;
     }
 }
+.solidChildWrapper {
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    overflow-y: hidden;
+    overflow-x: auto;
+    height: max-content;
+    /* min-height: 100%; */
+    scroll-snap-type: x mandatory;
+    scroll-snap-align: start;
+
+    @media screen and (min-width:1033px) {
+        overflow-x: hidden;
+    }
+}
+
+.designPatternsChildWrapper {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    flex-direction: row;
+    /* min-height: 70vh; */
+    padding-block: 0 2vh;
+    height: min-content;
+    scroll-snap-type: x mandatory;
+    scroll-snap-align: start;
+
+    @media screen and (min-width:1025px) {
+        overflow-x: hidden;
+    }
+}
 
 .aboutChildWrapper {
     width: 100%;

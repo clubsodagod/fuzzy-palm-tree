@@ -7,7 +7,7 @@ import { MotionImg } from '@/app/_hide/_components/framer/MotionImg';
 import { Typography, Divider } from '@mui/material';
 import { MotionLI } from '@/app/_hide/_components/framer/MotionLI';
 import { MotionUL } from '@/app/_hide/_components/framer/MotionUL';
-import { useScreenContext } from '@/app/_hide/_context/sub-context/ScreenContext';
+import { useAppContext } from '@/app/_context/AppContext';
 
 
 interface SDLCCardProps extends MotionDivProps {
@@ -25,8 +25,8 @@ const SDLCCard: React.FC<SDLCCardProps> = ({
 }) => {
 
     const {
-        isMobile, currentBreakpoint
-    } = useScreenContext();
+        screen:{isMobile, currentBreakpoint}
+    } = useAppContext();
 
     const step = index + 1;
 
