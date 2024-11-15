@@ -17,29 +17,22 @@ import IconButton from '@/app/_components/common/IconButton';
 import BlogCard from '@/app/_components/common/blog/BlogCard';
 import ScrollCtnWrapper from '@/app/_components/common/ScrollCtnWrapper';
 import { IBlogPopulated } from '@/app/_database/models/blog';
+import { HeroProps } from '@/app/_library/types/common';
 
-const ApproachHero: React.FC<{
-    ctnRef: RefObject<HTMLDivElement>;
-    scrollTo: (id: string) => void;
-}> = ({
+interface ApproachHeroProps extends HeroProps {
+    posts: IBlogPopulated[]|undefined;
+}
+
+const ApproachHero: React.FC<ApproachHeroProps> = ({
     ctnRef,
     scrollTo,
+    posts,
 }) => {
 
         const {
             screen: { isMobile, }
         } = useAppContext();
-        const [posts, setPosts] = useState<IBlogPopulated[] | undefined>();
 
-        useEffect(() => {
-
-            const initBlogs = async () => {
-                const data = await getAllPostsClient();
-                setPosts(await data);
-            };
-
-            initBlogs();
-        }, [])
 
         const scrollCtnRef = useRef<HTMLDivElement>(null);
 

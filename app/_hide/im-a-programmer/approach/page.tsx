@@ -82,7 +82,7 @@ const ApproachPage = () => {
             controls={controls}
         >
 
-            <ApproachHero ctnRef={approachMainRef} scrollTo={scrollToSection} />
+            {/* <ApproachHero ctnRef={approachMainRef} scrollTo={scrollToSection} /> */}
             <SolidHero ctnRef={approachSolidRef} scrollTo={scrollToSection} />
             <DesignPatterns ctnRef={designPatternsRef}  scrollTo={scrollToSection}/>
             <SDLCHero ctnRef={sdlcRef}  scrollTo={scrollToSection}/>

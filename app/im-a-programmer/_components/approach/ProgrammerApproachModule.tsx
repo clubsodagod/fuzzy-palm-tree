@@ -16,6 +16,7 @@ interface ProgrammerApproachModuleProps {
 }
 
 const ProgrammerApproachModule: React.FC<ProgrammerApproachModuleProps> = ({
+    posts,
 }) => {
 
     const {
@@ -43,7 +44,7 @@ const ProgrammerApproachModule: React.FC<ProgrammerApproachModuleProps> = ({
     return (
         <>
 
-            <ApproachHero ctnRef={approachMainRef} scrollTo={scrollToSectionHandler} />
+            <ApproachHero posts={posts} ctnRef={approachMainRef} scrollTo={scrollToSectionHandler} id='programmer-approach-main' />
             <SolidHero ctnRef={approachSolidRef} scrollTo={scrollToSectionHandler} />
             <DesignPatterns ctnRef={designPatternsRef} scrollTo={scrollToSectionHandler} />
             <SDLCHero ctnRef={sdlcRef} scrollTo={scrollToSectionHandler} />
