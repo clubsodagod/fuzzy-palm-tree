@@ -1,15 +1,12 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import styles from './components.module.css';
-import { CaseStudyDocumentType } from '@/library/db/models/case-study';
 import { ErrorObject, ErrorResponseMessage } from '@/library/types/common';
 import { StatusResponseObject } from '@/utility/admin/identifiers/create-card';
 import { MotionForm } from '@/app/_hide/_components/framer/MotionForm';
 import { technicalApplicationFormDocument } from '@/library/const/forms/technicalProject';
 import { Avatar, Badge, Button, Chip, FabProps, Stack, TextField } from '@mui/material';
 import { FormDocumentType, FormField } from '@/library/types/form/identifiers';
-import { BlogDocumentType } from '@/library/db/models/blog';
-import { TechnicalApplicationDocumentType } from '@/library/db/models/technicalApplication';
 import { FormFieldsFor } from '@/library/types/form/identifiers';
 import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv';
 import { MotionP } from '@/app/_hide/_components/framer/MotionP';
@@ -23,6 +20,7 @@ import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import { red } from '@mui/material/colors';
 import DynamicAlert from '@/app/_hide/_components/common/DynamicAlert';
 import { MotionH5 } from '@/app/_hide/_components/framer/MotionH5';
+import { TechnicalApplicationDocumentType } from '@/app/_database/models/technicalApplication';
 
 
 const TechnicalApplicationForm: React.FC<{

@@ -1,4 +1,4 @@
-import { PortfolioDocumentType } from "@/library/db/models/portfolio";
+import { PortfolioDocumentType } from "@/app/_database/models/portfolio";
 import { FormFieldsFor } from "@/library/types/form/identifiers";
 
 export const portfolioFormDocument: FormFieldsFor<PortfolioDocumentType> = [

@@ -1,8 +1,8 @@
 'use client'
+import { ICaseStudy } from '@/app/_database/models/case-study';
 import { MotionGroup } from '@/app/_hide/_components/framer/MotionGroup';
 import { useScroll } from '@/app/_hide/_context/sub-context/ScrollContext';
 import { usePortfolioMotionLogic } from '@/app/_hide/im-a-programmer/portfolio/_utils/portfolio-motion';
-import { ICaseStudy } from '@/library/db/models/case-study';
 import Desk from '@/public/3d-objects/desk/Desk';
 import MacBook from '@/public/3d-objects/macbook/Macbook';
 import Paper from '@/public/3d-objects/paper/Paper';

@@ -4,8 +4,9 @@ import styles from '../../../styles.module.css';
 import { motion } from 'framer-motion';
 import { Button } from '@mui/material';
 import { CategorySubcategoriesType, handleInclusiveSubcategories } from '@/utility/admin/identifiers';
-import { ICategory } from '@/library/db/models/category';
-import { ISubcategory } from '@/library/db/models/subcategory';
+import { ICategory } from '@/app/_database/models/category';
+import { ISubcategory } from '@/app/_database/models/subcategory';
+
 
 
 const IdentifiersActions: React.FC<{

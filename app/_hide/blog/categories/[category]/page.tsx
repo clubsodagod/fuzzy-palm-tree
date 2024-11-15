@@ -2,7 +2,6 @@
 import { AppContainer } from '@/app/_hide/_components';
 import { AnimatePresencePro } from '@/app/_hide/_components/framer/AnimatePresencePro';
 import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv';
-import CategoryModel, { ICategory, ICategoryPopulated } from '@/library/db/models/category'
 import { useRef } from 'react';
 import slugify from 'slugify';
 import CategoryHero from '../../_components/slug-page/CategoryHero';
@@ -10,6 +9,8 @@ import MotionPageWrapper from '@/app/_hide/_components/common/MotionPageWrapper'
 import MotionSectionWrapper from '@/app/_hide/_components/common/MotionSectionWrapper';
 import { getAllIdentifiers } from '@/library/db/controllers/identifiers';
 import { connectToMongoDB } from '@/library/db/db';
+import { CategoryModel } from '@/app/_database/models';
+import { ICategory } from '@/app/_database/models/category';
 
 
 // Next.js will invalidate the cache when a

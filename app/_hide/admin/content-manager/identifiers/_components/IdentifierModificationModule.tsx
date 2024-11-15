@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../../../styles.module.css';
 import { motion } from 'framer-motion';
-import { ICategory } from '@/library/db/models/category';
-import { ISubcategory } from '@/library/db/models/subcategory';
+
 import IdentifierModificationCard from './IdentifierModificationCard';
 import { IdentifiersType } from '../update/page';
+import { ICategory } from '@/app/_database/models/category';
+import { ISubcategory } from '@/app/_database/models/subcategory';
 
 const IdentifierModificationModule: React.FC<{
 }> = ({
@@ -46,6 +47,8 @@ const IdentifierModificationModule: React.FC<{
         // evoke function and get identifiers
         handleInitIdentifiers();
         setInit(!init);
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     useEffect(()=>{
@@ -73,6 +76,7 @@ const IdentifierModificationModule: React.FC<{
             }
         }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[categories, subcategories])
     
     useEffect(()=>{

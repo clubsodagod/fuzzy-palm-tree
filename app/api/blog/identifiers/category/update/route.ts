@@ -1,7 +1,6 @@
+import { CategoryModel } from "@/app/_database/models";
 import { updateIdentifier } from "@/library/db/controllers/identifiers";
 import { connectToMongoDB } from "@/library/db/db";
-import CategoryModel from "@/library/db/models/category";
-import { ICategory } from "@/library/db/models/category";
 import { getAllCategoriesClient, getAllCategoriesDynamicClient } from "@/utility/blog-section/blog-page-functions";
 import { NextRequest, NextResponse } from "next/server";
 

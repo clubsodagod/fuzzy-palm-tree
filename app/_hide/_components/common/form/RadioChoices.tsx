@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from '../styles.module.css'
-import { CaseStudyDocumentType } from '@/library/db/models/case-study'
 import { FormField } from '@/library/types/form/register'
 import { RadioGroup, FormControlLabel, Radio } from '@mui/material'
 import { MotionDiv } from '../../framer/MotionDiv'

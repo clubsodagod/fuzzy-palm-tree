@@ -1,5 +1,5 @@
-import { CategoryDocumentType, ICategory } from "@/library/db/models/category";
-import { ISubcategory, SubcategoryDocumentType } from "@/library/db/models/subcategory";
+import { ICategory, CategoryDocumentType } from "@/app/_database/models/category";
+import { ISubcategory, SubcategoryDocumentType } from "@/app/_database/models/subcategory";
 import { StatusResponseObject } from "./create-card";
 
 export type IsCategoryFunction = (identifier: ICategory | ISubcategory) => boolean

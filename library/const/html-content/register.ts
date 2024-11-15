@@ -1,5 +1,4 @@
-import { UserModel } from "@/library/db/models";
-import { IUser } from "@/library/db/models/user";
+import { IUser } from "@/app/_database/models/user";
 
 
       // HTML content for the email with background color

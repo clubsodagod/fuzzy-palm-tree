@@ -3,12 +3,11 @@ import React from 'react';
 import styles from '../styles.module.css';
 import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv';
 import { Badge, Chip, Divider, Typography } from '@mui/material';
-import { ITechnicalApplication } from '@/library/db/models/technicalApplication';
-import { color } from 'framer-motion';
-import { green } from '@mui/material/colors';
+
 import { MotionImg } from '@/app/_hide/_components/framer/MotionImg';
 import { MotionP } from '@/app/_hide/_components/framer/MotionP';
 import { useScreenContext } from '@/app/_hide/_context/sub-context/ScreenContext';
+import { ITechnicalApplication } from '@/app/_database/models/technicalApplication';
 
 
 interface PortfolioCardProps {

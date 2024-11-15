@@ -1,5 +1,5 @@
-import { CategoryDocumentType } from "@/library/db/models/category";
-import { SubcategoryDocumentType } from "@/library/db/models/subcategory";
+import { CategoryDocumentType } from "@/app/_database/models/category";
+import { SubcategoryDocumentType } from "@/app/_database/models/subcategory";
 import { FormFieldsFor } from "@/library/types/form/identifiers";
 
 

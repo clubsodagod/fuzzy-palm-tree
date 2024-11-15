@@ -3,16 +3,18 @@ import { motion } from 'framer-motion';
 import styles from '../styles.module.css';
 import PostPreview from '../preview/PostPreview';
 import { ErrorObject, Post } from '@/library/types/common';
-import { BlogDocumentType } from '@/library/db/models/blog';
-import { ISubcategory } from '@/library/db/models/subcategory';
+
 require('dotenv').config();
 import { handleBlogChange, handleSubcategoryToggleBlogCreate, initBlogDocument, initBlogErrorFields, initCategoriesBlogCreate, initSubcategoriesBlogCreate } from '@/utility/admin/blog/create';
 import { FormField } from '@/library/types/form/identifiers';
-import { ICategory } from '@/library/db/models/category';
+
 import BlogFormDocument from './BlogForm';
 import { useMDSession } from '@/app/_hide/_context/sub-context/SessionContext';
 import mongoose from 'mongoose';
 import { Stack, Alert } from '@mui/material';
+import { BlogDocumentType } from '@/app/_database/models/blog';
+import { ICategory } from '@/app/_database/models/category';
+import { ISubcategory } from '@/app/_database/models/subcategory';
 
 const RichTextEditor: React.FC<{
   editorMode: boolean;
@@ -123,6 +125,7 @@ const RichTextEditor: React.FC<{
       } 
       console.log(article);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userSet,]);
 
     useEffect(() => {
@@ -189,6 +192,7 @@ const RichTextEditor: React.FC<{
       {
         article.user && console.log(article.user, article);
       }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[article.user])
 
     return (

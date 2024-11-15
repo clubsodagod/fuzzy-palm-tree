@@ -3,8 +3,6 @@ import { useAppContext } from '@/app/_context/AppContext';
 import MotionPageWrapper from '@/app/_hide/_components/common/MotionPageWrapper';
 import IntersectionWatcher from '@/app/_utility/window/IntersectionWatcher';
 import WindowUpdater from '@/app/_utility/window/WindowUpdater';
-import { ICaseStudy } from '@/library/db/models/case-study';
-import { ITechnicalApplication } from '@/library/db/models/technicalApplication'
 import { scrollToSection } from '@/app/_utility/scroll/scroll-to-section';
 import { useProgrammerPageSectionRefs } from '../../_utility/refs';
 import React from 'react'

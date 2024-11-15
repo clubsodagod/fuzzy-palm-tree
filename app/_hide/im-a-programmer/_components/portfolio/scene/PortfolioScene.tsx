@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { MotionValue } from 'framer-motion'
 import React, { Suspense } from 'react'
 import PortfolioExperience from './PortfolioExperience'
-import { ICaseStudy } from '@/library/db/models/case-study'
+import { ICaseStudy } from '@/app/_database/models/case-study'
 
 const PortfolioScene: React.FC<{
     scrollY: MotionValue;

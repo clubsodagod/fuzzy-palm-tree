@@ -1,8 +1,8 @@
+import { ICaseStudy } from '@/app/_database/models/case-study';
 import { Header, HeroButtonCtn, PageWrapper } from '@/app/_hide/_components';
 import ButtonPro from '@/app/_hide/_components/common/buttons/ButtonPro';
 import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv';
 import { HeroProps } from '@/app/_hide/about/_components/BioHero';
-import { ICaseStudy } from '@/library/db/models/case-study';
 import React from 'react'
 
 interface PortfolioMainProps extends HeroProps {

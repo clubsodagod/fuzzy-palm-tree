@@ -5,13 +5,13 @@ import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv';
 import { MotionImg } from '@/app/_hide/_components/framer/MotionImg';
 import { MotionH6 } from '@/app/_hide/_components/framer/MotionH6';
 import { MotionP } from '@/app/_hide/_components/framer/MotionP';
-import { ICategory, ICategoryPopulated } from '@/library/db/models/category';
 import { useScreenContext } from '@/app/_hide/_context/sub-context/ScreenContext';
 import { goTo } from '@/utility/blog-section/blog-page-functions';
 import { useRouter } from 'next/navigation';
-import { ISubcategory } from '@/library/db/models/subcategory';
 import { Avatar, Chip } from '@mui/material';
 import { grey } from '@mui/material/colors';
+import { ICategoryPopulated } from '@/app/_database/models/category';
+import { ISubcategory } from '@/app/_database/models/subcategory';
 
 
 const MotionCategoryCard: React.FC<{

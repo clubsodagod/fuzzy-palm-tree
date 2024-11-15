@@ -8,9 +8,8 @@ import MotionSectionWrapper from '@/app/_hide/_components/common/MotionSectionWr
 import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv'
 import { MotionH5 } from '@/app/_hide/_components/framer/MotionH5'
 import { MotionP } from '@/app/_hide/_components/framer/MotionP'
-import { IBlogPopulated } from '@/library/db/models/blog'
-import { Typography } from '@mui/material'
 import BlogCard2D from './BlogCard'
+import { IBlogPopulated } from '@/app/_database/models/blog'
 
 export interface BlogModuleProps {
     featuredPosts: IBlogPopulated[];

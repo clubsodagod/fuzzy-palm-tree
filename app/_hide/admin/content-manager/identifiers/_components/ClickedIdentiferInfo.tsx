@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from '../../../styles.module.css';
-import { ISubcategory } from '@/library/db/models/subcategory';
 import { Chip, Avatar } from '@mui/material';
 import { motion } from 'framer-motion';
 import { CategorySubcategoriesType } from '@/utility/admin/identifiers';
+import { ISubcategory } from '@/app/_database/models/subcategory';
 
 
 

@@ -1,7 +1,5 @@
-import { IUser } from "@/library/db/models/user";
-import { Photo, Video } from ".";
-import NextAuth, { DefaultSession, DefaultUser } from "next-auth";
-import { JWT } from "next-auth/jwt";
+import { IUser } from "@/app/_database/models/user";
+import  { DefaultSession } from "next-auth";
 
 
 

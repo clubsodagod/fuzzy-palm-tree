@@ -2,8 +2,9 @@ import React from 'react'
 import styles from '../../../styles.module.css'
 import { CategorySubcategoriesType, handleClick } from '@/utility/admin/identifiers';
 import { motion } from 'framer-motion';
-import { ISubcategory } from '@/library/db/models/subcategory';
-import { ICategory } from '@/library/db/models/category';
+import { ISubcategory } from '@/app/_database/models/subcategory';
+import { ICategory } from '@/app/_database/models/category';
+
 
 
 const CardTop: React.FC<{

@@ -5,7 +5,6 @@ import styles from '../styles.module.css';
 import { motion } from 'framer-motion';
 import { Button, Typography } from '@mui/material';
 import { getAllPostsClient } from '@/utility/blog-section/blog-page-functions';
-import { IBlogPopulated } from '@/library/db/models/blog';
 import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv';
 import BlogCard2D from '@/app/_hide/blog/_components/BlogCard';
 import ArrowCircleDownRoundedIcon from '@mui/icons-material/ArrowCircleDownRounded';
@@ -17,6 +16,7 @@ import MotionPageWrapper from '@/app/_hide/_components/common/MotionPageWrapper'
 import IconButton from '@/app/_components/common/IconButton';
 import BlogCard from '@/app/_components/common/blog/BlogCard';
 import ScrollCtnWrapper from '@/app/_components/common/ScrollCtnWrapper';
+import { IBlogPopulated } from '@/app/_database/models/blog';
 
 const ApproachHero: React.FC<{
     ctnRef: RefObject<HTMLDivElement>;

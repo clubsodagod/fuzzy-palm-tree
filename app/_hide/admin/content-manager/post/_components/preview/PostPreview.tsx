@@ -3,10 +3,11 @@ import parse from "html-react-parser";
 import { Typography, CardMedia, Chip } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { motion } from 'framer-motion';
-import { BlogDocumentType } from '@/library/db/models/blog';
 import { useScreenContext } from '@/app/_hide/_context/sub-context/ScreenContext';
-import { ISubcategory } from '@/library/db/models/subcategory';
-import { ICategory } from '@/library/db/models/category';
+import { BlogDocumentType } from '@/app/_database/models/blog';
+import { ICategory } from '@/app/_database/models/category';
+import { ISubcategory } from '@/app/_database/models/subcategory';
+
 
 type ChipsType = {
     subcategories:Partial<ISubcategory[]>,
@@ -45,6 +46,7 @@ const PostPreview: React.FC<{
 
     useEffect(()=> {
         handleChips();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     

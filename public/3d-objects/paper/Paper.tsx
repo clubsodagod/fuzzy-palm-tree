@@ -12,7 +12,7 @@ import * as THREE from 'three'
 import React from 'react'
 import { Html, useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
-import { ICaseStudy } from '@/library/db/models/case-study'
+import { ICaseStudy } from '@/app/_database/models/case-study'
 
 type GLTFResult = GLTF & {
   nodes: {

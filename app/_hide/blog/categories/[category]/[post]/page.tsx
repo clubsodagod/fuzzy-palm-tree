@@ -6,13 +6,14 @@ import { MotionImg } from '@/app/_hide/_components/framer/MotionImg';
 import { MotionP } from '@/app/_hide/_components/framer/MotionP';
 import { useScreenContext } from '@/app/_hide/_context/sub-context/ScreenContext';
 import { getAllPosts, getPostBySlug } from '@/library/db/controllers/blog';
-import { IBlog, IBlogPopulated } from '@/library/db/models/blog';
 import { getAllPostsClient, getAllPostsSlugClient, getPostBySlugClient } from '@/utility/blog-section/blog-page-functions';
 import { Avatar } from '@mui/material';
 import React from 'react';
 import parse from "html-react-parser";
-import CategoryModel, { ICategory } from '@/library/db/models/category';
 import { getAllIdentifiers } from '@/library/db/controllers/identifiers';
+import { CategoryModel } from '@/app/_database/models';
+import { IBlog, IBlogPopulated } from '@/app/_database/models/blog';
+import { ICategory } from '@/app/_database/models/category';
 
 
 // Next.js will invalidate the cache when a

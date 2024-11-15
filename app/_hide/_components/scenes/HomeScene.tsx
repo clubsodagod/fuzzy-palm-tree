@@ -12,7 +12,6 @@ import { Float } from '@react-three/drei';
 import { MotionDiv } from '../framer/MotionDiv';
 import ScrollableItemCtn from '../common/ScrollableItemCtn';
 import { getAllPostsClient } from '@/utility/blog-section/blog-page-functions';
-import { IBlog, IBlogPopulated } from '@/library/db/models/blog';
 import { useScreenContext } from '@/app/_hide/_context/sub-context/ScreenContext';
 import BlogCard2D from '@/app/_hide/blog/_components/BlogCard';
 import styles from './styles.module.css'
@@ -20,6 +19,7 @@ import { useMotionLogic as useMotionLogicPro } from '@/utility/functions';
 import { group } from 'console';
 import MacBookPro from '@/public/3d-objects/macbook-pro/MacBookPro';
 import MacBook from '@/public/3d-objects/macbook/Macbook';
+import { IBlogPopulated } from '@/app/_database/models/blog';
 
 
 

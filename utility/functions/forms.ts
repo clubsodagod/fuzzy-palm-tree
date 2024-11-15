@@ -1,9 +1,9 @@
-import { BlogDocumentType } from "@/library/db/models/blog";
-import { CaseStudyDocumentType } from "@/library/db/models/case-study";
-import { PropertyDocumentType } from "@/library/db/models/property";
-import { TechnicalApplicationDocumentType } from "@/library/db/models/technicalApplication";
 import { FormDocumentType, FormField } from "@/library/types/form/identifiers";
 import { isCaseStudyDocument, isPropertyDocument, isTechnicalApplicationDocument } from "../admin/case-study/create";
+import { BlogDocumentType } from "@/app/_database/models/blog";
+import { CaseStudyDocumentType } from "@/app/_database/models/case-study";
+import { PropertyDocumentType } from "@/app/_database/models/property";
+import { TechnicalApplicationDocumentType } from "@/app/_database/models/technicalApplication";
 
 // Validation logic for BlogDocumentType fields
 export function validateBlogField(

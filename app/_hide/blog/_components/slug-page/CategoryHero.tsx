@@ -2,12 +2,12 @@ import React from 'react'
 import styles from '../components.module.css'
 import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv';
 import { MotionH3 } from '@/app/_hide/_components/framer/MotionH3';
-import { ICategory } from '@/library/db/models/category';
 import { MotionP } from '@/app/_hide/_components/framer/MotionP';
-import { IBlogPopulated } from '@/library/db/models/blog';
 import BlogCard2D from '../BlogCard';
 import { MotionH6 } from '@/app/_hide/_components/framer/MotionH6';
 import { MotionH5 } from '@/app/_hide/_components/framer/MotionH5';
+import { IBlogPopulated } from '@/app/_database/models/blog';
+import { ICategory } from '@/app/_database/models/category';
 
 
 const CategoryHero: React.FC<{ 

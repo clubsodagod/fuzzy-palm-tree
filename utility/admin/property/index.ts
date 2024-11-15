@@ -1,5 +1,4 @@
-import { propertyFormDocument } from "@/library/const/forms/property";
-import { PropertyDocumentType } from "@/library/db/models/property";
+import { PropertyDocumentType } from "@/app/_database/models/property";
 import React from "react";
 
 

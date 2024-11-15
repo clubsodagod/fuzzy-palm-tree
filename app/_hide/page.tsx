@@ -9,12 +9,12 @@ import { homePage as gradientVariants } from "@/library/const/animation-gradient
 import { RefIDObject, useSectionRefs } from "@/utility/refs/home-page-refs";
 import { log } from "console";
 import { getAllPostsClient } from "@/utility/blog-section/blog-page-functions";
-import { IBlogPopulated } from "@/library/db/models/blog";
 import BlogCard2D from "./blog/_components/BlogCard";
 import { MotionDiv } from "./_components/framer/MotionDiv";
 import styles from "./components/scenes/styles.module.css"
 import { useScreenContext } from "./_context/sub-context/ScreenContext";
 import { MotionH6 } from "./_components/framer/MotionH6";
+import { IBlogPopulated } from "../_database/models/blog";
 
 
 export default function Home() {

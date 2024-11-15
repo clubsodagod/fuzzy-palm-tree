@@ -3,8 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 import { connectToMongoDB } from "@/library/db/db";
-import { UserModel } from "@/library/db/models";
-import { IUser } from "@/library/db/models/user";
+import { UserModel } from "@/app/_database/models";
 
 
 

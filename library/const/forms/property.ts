@@ -1,4 +1,4 @@
-import { PropertyDocumentType } from "@/library/db/models/property";
+import { PropertyDocumentType } from "@/app/_database/models/property";
 import { FormFieldsFor } from "@/library/types/form/identifiers";
 
 export const propertyFormDocument: FormFieldsFor<PropertyDocumentType> = [

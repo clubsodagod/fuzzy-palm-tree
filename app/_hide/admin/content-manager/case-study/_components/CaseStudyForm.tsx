@@ -4,7 +4,6 @@ import styles from './components.module.css'
 import { MotionForm } from '@/app/_hide/_components/framer/MotionForm';
 import { blogFormDocument } from '@/library/const/forms/blog';
 import { caseStudyFormDocument } from '@/library/const/forms/case-study';
-import { CaseStudyDocumentType } from '@/library/db/models/case-study';
 import { ErrorObject, ErrorResponseMessage } from '@/library/types/common';
 import TextField from '@mui/material/TextField';
 import { FormField, FormFieldsFor } from '@/library/types/form/identifiers';
@@ -19,6 +18,7 @@ import { Description } from '@mui/icons-material';
 import { MotionH6 } from '@/app/_hide/_components/framer/MotionH6';
 import DynamicAlert from '@/app/_hide/_components/common/DynamicAlert';
 import { MotionH5 } from '@/app/_hide/_components/framer/MotionH5';
+import { CaseStudyDocumentType } from '@/app/_database/models/case-study';
 
 export type MediaFields = ErrorObject<CaseStudyDocumentType['featuredImg']> | ErrorObject<CaseStudyDocumentType['featuredVideo']>;
 

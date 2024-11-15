@@ -1,5 +1,4 @@
 import { getFeaturedPosts, getPostsOfCategory } from "@/library/db/controllers/blog";
-import { IBlog } from "@/library/db/models/blog";
 import { NextRequest, NextResponse } from "next/server";
 
 

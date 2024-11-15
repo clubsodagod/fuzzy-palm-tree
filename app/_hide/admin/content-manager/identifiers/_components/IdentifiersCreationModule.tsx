@@ -2,9 +2,8 @@
 import React, { useState } from 'react'
 import styles from '../../../styles.module.css';
 import { motion } from 'framer-motion';
-import { CategoryDocumentType } from '@/library/db/models/category';
 import IdentifierCreateCard from './IdentifierCreateCard';
-import { categoryFormDocument } from '@/library/const/forms/identifiers';
+import { CategoryDocumentType } from '@/app/_database/models/category';
 
 
 const CreationModule: React.FC<{}> = ({}) => {

@@ -1,4 +1,4 @@
-import { CaseStudyDocumentType } from "@/library/db/models/case-study";
+import { CaseStudyDocumentType } from "@/app/_database/models/case-study";
 import { FormFieldsFor } from "@/library/types/form/identifiers";
 
 export const caseStudyFormDocument: FormFieldsFor<CaseStudyDocumentType> = [

@@ -1,15 +1,16 @@
 import React, { ChangeEvent, useRef, useState } from 'react'
 import styles from '../styles.module.css'
-import { BlogDocumentType } from '@/library/db/models/blog';
 import { ErrorObject } from '@/library/types/common';
 import { FormField } from '@/library/types/form/identifiers';
 import { TextField, FormControl, RadioGroup, FormControlLabel, Radio, Checkbox, Button, Chip, Stack } from '@mui/material';
 import { Editor } from '@tinymce/tinymce-react';
 import { motion } from 'framer-motion';
 import { blogFormDocument } from '@/library/const/forms/blog';
-import { ICategory } from '@/library/db/models/category';
-import { ISubcategory } from '@/library/db/models/subcategory';
+
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import { BlogDocumentType } from '@/app/_database/models/blog';
+import { ICategory } from '@/app/_database/models/category';
+import { ISubcategory } from '@/app/_database/models/subcategory';
 
 
 const BlogFormDocument: React.FC<{

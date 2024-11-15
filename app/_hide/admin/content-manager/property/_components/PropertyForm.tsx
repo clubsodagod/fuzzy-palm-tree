@@ -1,7 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import styles from './components.module.css'
-import { PropertyDocumentType } from '@/library/db/models/property';
 import { ErrorObject, ErrorResponseMessage } from '@/library/types/common';
 import { initPropertyDocument } from '@/utility/admin/property';
 import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv';
@@ -18,6 +17,7 @@ import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import { validateField } from '@/utility/functions/forms';
 import DynamicAlert from '@/app/_hide/_components/common/DynamicAlert';
 import { MotionH5 } from '@/app/_hide/_components/framer/MotionH5';
+import { PropertyDocumentType } from '@/app/_database/models/property';
 
 const investmentTypeChoices: string[] = ["Rental", "Wholesale", "Fix and Flip"];
 const booleanChoices = [{ label: "Yes", value: true }, { label: "No", value: false }];

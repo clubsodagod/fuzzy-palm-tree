@@ -1,5 +1,5 @@
+import { TechnicalApplicationDocumentType } from "@/app/_database/models/technicalApplication";
 import { technicalApplicationFormDocument } from "@/library/const/forms/technicalProject";
-import { TechnicalApplicationDocumentType } from "@/library/db/models/technicalApplication";
 import React from "react";
 
 

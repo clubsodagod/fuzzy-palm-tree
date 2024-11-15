@@ -1,13 +1,13 @@
 import React from 'react'
 import styles from '../../../styles.module.css';
 import { categoryFormDocument, subcategoryFormDocument } from '@/library/const/forms/identifiers';
-import category, { CategoryDocumentType } from '@/library/db/models/category';
-import { ISubcategory, SubcategoryDocumentType } from '@/library/db/models/subcategory';
 import { StatusObject } from '@/library/types/form/identifiers';
 import { FormField } from '@/library/types/form/identifiers';
 import { Alert, TextField, FormControlLabel, Checkbox } from '@mui/material';
 import { motion } from 'framer-motion';
 import { StatusResponseObject } from '@/utility/admin/identifiers/create-card';
+import { CategoryDocumentType } from '@/app/_database/models/category';
+import { SubcategoryDocumentType, ISubcategory } from '@/app/_database/models/subcategory';
 
 
 const CreateIdentifiersForm: React.FC<{

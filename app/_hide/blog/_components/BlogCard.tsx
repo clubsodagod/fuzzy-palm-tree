@@ -3,10 +3,10 @@ import React from 'react'
 import styles from './components.module.css'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
 import { Avatar } from '@mui/material'
-import { IBlog, IBlogPopulated } from '@/library/db/models/blog'
 import parse from "html-react-parser";
 import { useRouter } from 'next/navigation'
 import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv'
+import { IBlogPopulated } from '@/app/_database/models/blog'
 
 
 const BlogCard2D: React.FC<{

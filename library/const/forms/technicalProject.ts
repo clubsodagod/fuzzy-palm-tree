@@ -1,4 +1,4 @@
-import { TechnicalApplicationDocumentType } from "@/library/db/models/technicalApplication";
+import { TechnicalApplicationDocumentType } from "@/app/_database/models/technicalApplication";
 import { FormFieldsFor } from "@/library/types/form/identifiers";
 
 export const technicalApplicationFormDocument: FormFieldsFor<TechnicalApplicationDocumentType> = [

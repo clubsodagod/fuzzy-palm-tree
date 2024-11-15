@@ -7,11 +7,11 @@ import { MotionH3 } from '@/app/_hide/_components/framer/MotionH3'
 import { MotionH5 } from '@/app/_hide/_components/framer/MotionH5'
 import { MotionH6 } from '@/app/_hide/_components/framer/MotionH6'
 import { MotionP } from '@/app/_hide/_components/framer/MotionP'
-import { ICategoryPopulated } from '@/library/db/models/category'
 import { getAllCategoriesClient } from '@/utility/blog-section/blog-page-functions'
 import React from 'react'
 import MotionCategoryCard from '../_components/MotionCategoryCard'
 import styles from '../styles.module.css'
+import { ICategoryPopulated } from '@/app/_database/models/category'
 
 export default async function CategoriesPage() {
 

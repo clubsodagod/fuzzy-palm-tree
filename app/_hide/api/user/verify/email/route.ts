@@ -1,5 +1,5 @@
+import { UserModel } from "@/app/_database/models";
 import { connectToMongoDB } from "@/library/db/db";
-import { UserModel } from "@/library/db/models";
 import { type NextRequest, NextResponse } from "next/server";
 
 

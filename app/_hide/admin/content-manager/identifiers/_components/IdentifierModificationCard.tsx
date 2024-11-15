@@ -2,9 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import styles from '../../../styles.module.css';
-import { CategoryDocumentType, ICategory } from '@/library/db/models/category';
 import { Avatar, Chip, } from '@mui/material';
-import { ISubcategory, SubcategoryDocumentType } from '@/library/db/models/subcategory';
 import IdentifiersActions from './IdentifiersActions';
 import { handleAddSubcategory, handleClick, handlePopulateFields, handleRemoveSubcategory, handleSubmit, isCategory, } from '@/utility/admin/identifiers';
 import CardForm from './IdentifierCardForm';
@@ -14,6 +12,8 @@ import { ObjectId } from 'mongoose';
 import { initErrorFields, StatusResponseObject } from '@/utility/admin/identifiers/create-card';
 import { FormField, StatusObject } from '@/library/types/form/identifiers';
 import { handleModifyCardChange } from '@/utility/admin/identifiers/modify-card';
+import { ICategory, CategoryDocumentType } from '@/app/_database/models/category';
+import { ISubcategory, SubcategoryDocumentType } from '@/app/_database/models/subcategory';
 
 export type ManageAddRemoveSubcategoryFunction = (method: "add" | "remove", subcategoryId: string, category: Partial<ICategory>) => void
 
@@ -76,6 +76,8 @@ const IdentifierModificationCard: React.FC<{
     useEffect(() => {
         handlePopulateFields(setIdentifierDocument, identifier,category);
         initErrorFields(setErrorFields);
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const manageAddRemoveSubcategory: ManageAddRemoveSubcategoryFunction = async (method, subcategoryId, categoryParameter) => {
@@ -119,6 +121,7 @@ const IdentifierModificationCard: React.FC<{
             setNoninclusive(noninclusiveInit());
             setUpdate(!update)
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [inclusive, noninclusive,]);
 
     useEffect(() => {
@@ -127,6 +130,8 @@ const IdentifierModificationCard: React.FC<{
             setInclusive(inclusiveInit());
             setNoninclusive(noninclusiveInit());
         }
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [identifier])
 
     useEffect(() => {

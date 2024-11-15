@@ -1,6 +1,6 @@
+import { CategoryDocumentType } from "@/app/_database/models/category";
+import { SubcategoryDocumentType } from "@/app/_database/models/subcategory";
 import { categoryFormDocument, subcategoryFormDocument } from "@/library/const/forms/identifiers";
-import { CategoryDocumentType } from "@/library/db/models/category";
-import { SubcategoryDocumentType } from "@/library/db/models/subcategory";
 import { FormField, StatusObject } from "@/library/types/form/identifiers";
 
 

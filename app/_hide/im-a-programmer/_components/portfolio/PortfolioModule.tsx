@@ -6,7 +6,6 @@ import CaseStudies from './CaseStudies';
 import Demos from './Demos';
 import PortfolioMainHero from './PortfolioMainHero';
 import SocialValidation from './SocialValidation';
-import { ITechnicalApplication } from '@/library/db/models/technicalApplication';
 import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv';
 import PortfolioScene from './scene/PortfolioScene';
 import { usePortfolioRefs } from '../../portfolio/_utils/refs';
@@ -16,7 +15,8 @@ import { scrollToSection } from '@/utility/common/scrollToSection';
 import { useAnimationControls } from 'framer-motion';
 import { portfolioPageGradientAnimations } from '../../portfolio/_utils/animation-gradients';
 import ScrollGradientUtil from '@/utility/common/ScrollGradientUtil';
-import { ICaseStudy } from '@/library/db/models/case-study';
+import { ICaseStudy } from '@/app/_database/models/case-study';
+import { ITechnicalApplication } from '@/app/_database/models/technicalApplication';
 
 interface PortfolioModuleProps {
     technicalApplications: ITechnicalApplication[];

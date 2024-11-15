@@ -1,14 +1,14 @@
 import { categoryFormDocument, subcategoryFormDocument } from "@/library/const/forms/identifiers";
-import { CategoryDocumentType, ICategory } from "@/library/db/models/category";
-import { ISubcategory, SubcategoryDocumentType } from "@/library/db/models/subcategory";
 import { FormField, StatusObject } from "@/library/types/form/identifiers";
 import { InitDataFunction, InitFieldsFunction } from "../identifiers/create-card";
-import { BlogDocumentType } from "@/library/db/models/blog";
 import { ErrorObject } from "@/library/types/common";
 import { blogFormDocument } from "@/library/const/forms/blog";
 import { validateBlogField } from "@/utility/functions/forms";
 import { debounce } from '@/utility/functions';
 import { useMDSession } from "@/app/_hide/_context/sub-context/SessionContext";
+import { BlogDocumentType } from "@/app/_database/models/blog";
+import { ICategory } from "@/app/_database/models/category";
+import { ISubcategory } from "@/app/_database/models/subcategory";
 
 
 const isValidObjectId = (id: string): boolean => {

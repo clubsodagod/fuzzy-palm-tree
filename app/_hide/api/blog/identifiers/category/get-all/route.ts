@@ -1,5 +1,5 @@
+import { CategoryModel } from "@/app/_database/models";
 import { getAllIdentifiers } from "@/library/db/controllers/identifiers";
-import { CategoryModel } from "@/library/db/models";
 import { NextRequest, NextResponse } from "next/server";
 
 

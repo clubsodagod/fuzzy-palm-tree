@@ -8,9 +8,9 @@ import { MotionH2 } from '@/app/_hide/_components/framer/MotionH2'
 import CaseStudyForm from '../_components/CaseStudyForm'
 import MotionSectionWrapper from '@/app/_hide/_components/common/MotionSectionWrapper';
 import { handleSubmitClient } from '@/utility/functions/forms';
-import { CaseStudyDocumentType } from '@/library/db/models/case-study';
 import { ErrorResponseMessage } from '@/library/types/common';
 import { MotionSection } from '@/app/_hide/_components/framer/MotionSection';
+import { CaseStudyDocumentType } from '@/app/_database/models/case-study';
 
 
 const CaseStudyCreatePage: React.FC<{}> = ({ }) => {

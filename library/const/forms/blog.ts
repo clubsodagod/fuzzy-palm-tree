@@ -1,4 +1,4 @@
-import { BlogDocumentType } from "@/library/db/models/blog";
+import { BlogDocumentType } from "@/app/_database/models/blog";
 import { FormFieldsFor } from "@/library/types/form/identifiers";
 
 

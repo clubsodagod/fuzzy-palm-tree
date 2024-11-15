@@ -10,7 +10,7 @@ import TechnicalProjectForm from '../../technical-project/_components/TechnicalA
 import PropertyForm from '../_components/PropertyForm';
 import { handleSubmitClient } from '@/utility/functions/forms';
 import { ErrorResponseMessage } from '@/library/types/common';
-import { PropertyDocumentType } from '@/library/db/models/property';
+import { PropertyDocumentType } from '@/app/_database/models/property';
 
 
 const CreatePropertyPage: React.FC<{}> = ({ }) => {

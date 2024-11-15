@@ -1,8 +1,8 @@
-import category, { CategoryDocumentType } from "@/library/db/models/category";
-import { SubcategoryDocumentType } from "@/library/db/models/subcategory";
 import { StatusObject } from "@/library/types/form/identifiers";
 import { FormField } from "@/library/types/form/identifiers";
 import { validateIdentifierField } from "./create-card";
+import { CategoryDocumentType } from "@/app/_database/models/category";
+import { SubcategoryDocumentType } from "@/app/_database/models/subcategory";
 
 export type IdentifierDocument = Partial<CategoryDocumentType>;
 

@@ -6,7 +6,7 @@ import { RichTextEditor } from '../_components';
 import styles from '../_components/styles.module.css';
 import { Button } from '@mui/material';
 import { useScreenContext } from '@/app/_hide/_context/sub-context/ScreenContext';
-import { BlogDocumentType } from '@/library/db/models/blog';
+import { BlogDocumentType } from '@/app/_database/models/blog';
 
 const CreatePostsPage = () => {
 

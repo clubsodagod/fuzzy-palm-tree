@@ -7,9 +7,9 @@ import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv';
 import { MotionH2 } from '@/app/_hide/_components/framer/MotionH2';
 import { EmployeeArea } from '@/app/_hide/_components';
 import TechnicalApplicationForm from '../_components/TechnicalApplicationForm';
-import { TechnicalApplicationDocumentType } from '@/library/db/models/technicalApplication';
 import { handleSubmitClient } from '@/utility/functions/forms';
 import { ErrorResponseMessage } from '@/library/types/common';
+import { TechnicalApplicationDocumentType } from '@/app/_database/models/technicalApplication';
 
 
 const CreateTechnicalApplicationPage: React.FC<{}> = ({ }) => {

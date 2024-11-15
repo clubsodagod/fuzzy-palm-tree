@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../../../styles.module.css'
-import { ISubcategory, SubcategoryDocumentType } from '@/library/db/models/subcategory'
 import { handleRemoveSubcategory, handleAddSubcategory, CategorySubcategoriesType, handleInclusiveSubcategories, handlePopulateFields, isCategory } from '@/utility/admin/identifiers'
 import { TextField, Chip, Avatar, Checkbox, FormControlLabel, Alert } from '@mui/material'
 import { motion } from 'framer-motion'
-import { CategoryDocumentType, ICategory } from '@/library/db/models/category'
 import { ManageAddRemoveSubcategoryFunction } from './IdentifierModificationCard'
 import { categoryFormDocument, subcategoryFormDocument } from '@/library/const/forms/identifiers'
 import { FormField, StatusObject } from '@/library/types/form/identifiers'
 import { StatusResponseObject } from '@/utility/admin/identifiers/create-card'
+import { CategoryDocumentType, ICategory } from '@/app/_database/models/category'
+import { ISubcategory, SubcategoryDocumentType } from '@/app/_database/models/subcategory'
 
 
 const CardForm: React.FC<{

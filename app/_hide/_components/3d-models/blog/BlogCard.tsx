@@ -3,7 +3,7 @@ import { Html, RoundedBox } from '@react-three/drei'
 import React, { forwardRef, MutableRefObject } from 'react'
 import * as THREE from 'three'
 import { GroupType } from '../../scenes/BlogScene'
-import { BlogDocumentType, IBlogPopulated } from '@/library/db/models/blog'
+import { IBlogPopulated } from '@/app/_database/models/blog'
 
 
 

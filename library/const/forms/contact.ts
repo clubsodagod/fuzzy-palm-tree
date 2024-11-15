@@ -1,4 +1,4 @@
-import { ContactDocumentType } from "@/library/db/models/contact";
+import { ContactDocumentType } from "@/app/_database/models/contact";
 import { FormFieldsFor } from "@/library/types/form/identifiers";
 
 export const contactFormDocument: FormFieldsFor<ContactDocumentType> = [

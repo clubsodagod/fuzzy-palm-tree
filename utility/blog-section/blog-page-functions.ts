@@ -2,7 +2,7 @@ import { Router } from "next/router";
 import { InitDataFunction } from "../admin/identifiers/create-card";
 import parse from "html-react-parser";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { IBlogPopulated } from "@/library/db/models/blog";
+import { IBlogPopulated } from "@/app/_database/models/blog";
 
 
 export type InitBlogHomePageFunction = () => Promise<{

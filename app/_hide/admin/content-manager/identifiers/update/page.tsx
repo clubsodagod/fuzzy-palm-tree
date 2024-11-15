@@ -4,8 +4,9 @@ import React, { useEffect, useState } from 'react';
 import styles from '../../../styles.module.css';
 import { motion } from 'framer-motion';
 import IdentifierModificationModule from '../_components/IdentifierModificationModule';
-import { ICategory } from '@/library/db/models/category';
-import { ISubcategory } from '@/library/db/models/subcategory';
+import { ICategory } from '@/app/_database/models/category';
+import { ISubcategory } from '@/app/_database/models/subcategory';
+
 
 export type IdentifiersType = {
     categories:ICategory[]|null;

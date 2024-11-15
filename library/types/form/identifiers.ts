@@ -1,11 +1,12 @@
-import { BlogDocumentType } from "@/library/db/models/blog";
-import { CaseStudyDocumentType } from "@/library/db/models/case-study";
-import { CategoryDocumentType } from "@/library/db/models/category";
-import { ContactDocumentType } from "@/library/db/models/contact";
-import { PortfolioDocumentType } from "@/library/db/models/portfolio";
-import { PropertyDocumentType } from "@/library/db/models/property";
-import { SubcategoryDocumentType } from "@/library/db/models/subcategory";
-import { TechnicalApplicationDocumentType } from "@/library/db/models/technicalApplication";
+import { BlogDocumentType } from "@/app/_database/models/blog";
+import { CaseStudyDocumentType } from "@/app/_database/models/case-study";
+import { CategoryDocumentType } from "@/app/_database/models/category";
+import { ContactDocumentType } from "@/app/_database/models/contact";
+import { PortfolioDocumentType } from "@/app/_database/models/portfolio";
+import { PropertyDocumentType } from "@/app/_database/models/property";
+import { SubcategoryDocumentType } from "@/app/_database/models/subcategory";
+import { TechnicalApplicationDocumentType } from "@/app/_database/models/technicalApplication";
+
 
 
 export type FormDocumentTypeV2 = 

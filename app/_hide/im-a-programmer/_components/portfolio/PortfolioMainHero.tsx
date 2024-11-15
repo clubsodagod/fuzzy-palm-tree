@@ -3,13 +3,13 @@ import { Header, HeroButtonCtn, PageWrapper, ScrollableItemCtn } from '@/app/_hi
 import MotionPageWrapper from '@/app/_hide/_components/common/MotionPageWrapper'
 import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv'
 import { HeroProps } from '@/app/_hide/about/_components/BioHero'
-import { ITechnicalApplication } from '@/library/db/models/technicalApplication'
 import { Badge, Typography } from '@mui/material'
 import React, { useEffect, useRef, useState } from 'react'
 import PortfolioCard from './PortfolioCard'
 import PortfolioScene from './scene/PortfolioScene'
 import ButtonPro from '@/app/_hide/_components/common/buttons/ButtonPro'
 import { motion, MotionValue } from 'framer-motion'
+import { ITechnicalApplication } from '@/app/_database/models/technicalApplication'
 
 
 interface PortfolioMainProps extends HeroProps {

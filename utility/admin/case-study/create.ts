@@ -1,13 +1,13 @@
 import { blogFormDocument } from "@/library/const/forms/blog";
-import { CaseStudyDocumentType } from "@/library/db/models/case-study";
 import { caseStudyFormDocument } from "@/library/const/forms/case-study";
 import { InitFieldsFunction } from "../identifiers/create-card";
 import { FormDocumentType, FormDocumentTypeV2, FormField } from "@/library/types/form/identifiers";
 import { validateField } from "@/utility/functions/forms";
 import { ErrorObject } from "@/library/types/common";
-import { PortfolioDocumentType } from "@/library/db/models/portfolio";
-import { PropertyDocumentType } from "@/library/db/models/property";
-import { TechnicalApplicationDocumentType } from "@/library/db/models/technicalApplication";
+import { CaseStudyDocumentType } from "@/app/_database/models/case-study";
+import { PortfolioDocumentType } from "@/app/_database/models/portfolio";
+import { PropertyDocumentType } from "@/app/_database/models/property";
+import { TechnicalApplicationDocumentType } from "@/app/_database/models/technicalApplication";
 
 
 // Initialize the category document with default values
