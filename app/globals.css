@@ -37,12 +37,12 @@ body {
   scroll-snap-type: y mandatory;
   /* Enable vertical snap scrolling */
   scroll-behavior: smooth;
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
 }
 
 .main {
   flex-grow: 1;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   width: 100%;
   z-index: 0;

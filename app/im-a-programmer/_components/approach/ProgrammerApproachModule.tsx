@@ -13,8 +13,8 @@ import SDLCHero from '@/app/_hide/im-a-programmer/_components/approach/sdlc/SDLC
 import SolidHero from '@/app/_hide/im-a-programmer/_components/approach/solid/SolidHero';
 
 interface ProgrammerApproachModuleProps {
-    technicalApplications: ITechnicalApplication[];
-    caseStudies: ICaseStudy[];
+    technicalApplications: ITechnicalApplication[]|undefined|null;
+    caseStudies: ICaseStudy[]|undefined|null;
 }
 
 const ProgrammerApproachModule: React.FC<ProgrammerApproachModuleProps> = ({

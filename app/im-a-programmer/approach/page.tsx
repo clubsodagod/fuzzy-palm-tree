@@ -1,7 +1,7 @@
 import React from 'react'
 import ProgrammerApproachModule from '../_components/approach/ProgrammerApproachModule';
-import { getAllTechnicalApplicationsClient } from '@/app/_database/controllers/technical-application';
-import { getAllCaseStudiesClient } from '@/app/_database/controllers/case-study';
+import { getAllTechnicalApplications, getAllTechnicalApplicationsClient } from '@/app/_database/controllers/technical-application';
+import { getAllCaseStudies, getAllCaseStudiesClient } from '@/app/_database/controllers/case-study';
 
 
 // Next.js will invalidate the cache when a
@@ -12,8 +12,8 @@ export const revalidate = 3600;
 
 export default async function ProgrammerApproachPage() {
 
-    const technicalApplications = await getAllTechnicalApplicationsClient();
-    const caseStudies = await getAllCaseStudiesClient();
+    const technicalApplications = await getAllTechnicalApplications();
+    const caseStudies = await getAllCaseStudies();
 
     return (
         <ProgrammerApproachModule
