@@ -14,7 +14,9 @@ export default async function ProgrammerApproachPage() {
 
     const technicalApplications = await getAllTechnicalApplicationsClient();
     const caseStudies = await getAllCaseStudiesClient();
-
+    
+    console.log(caseStudies, technicalApplications);
+    
     return (
         <ProgrammerApproachModule
             caseStudies={caseStudies}
