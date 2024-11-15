@@ -11,15 +11,14 @@ import React from 'react'
 import { ApproachHero, DesignPatterns } from '@/app/_hide/im-a-programmer/_components/approach';
 import SDLCHero from '@/app/_hide/im-a-programmer/_components/approach/sdlc/SDLCHero';
 import SolidHero from '@/app/_hide/im-a-programmer/_components/approach/solid/SolidHero';
+import { IBlogPopulated } from '@/app/_database/models/blog';
 
 interface ProgrammerApproachModuleProps {
-    technicalApplications: ITechnicalApplication[]|undefined|null;
-    caseStudies: ICaseStudy[]|undefined|null;
+    posts:IBlogPopulated[]|undefined;
 }
 
 const ProgrammerApproachModule: React.FC<ProgrammerApproachModuleProps> = ({
-    technicalApplications,
-    caseStudies
+    posts
 }) => {
 
     const {

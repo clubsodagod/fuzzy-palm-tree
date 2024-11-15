@@ -17,6 +17,7 @@ import MotionPageWrapper from '@/app/_hide/_components/common/MotionPageWrapper'
 import IconButton from '@/app/_components/common/IconButton';
 import BlogCard from '@/app/_components/common/blog/BlogCard';
 import ScrollCtnWrapper from '@/app/_components/common/ScrollCtnWrapper';
+import { getBlogs } from '@/app/_database/controllers/blog';
 
 const ApproachHero: React.FC<{
     ctnRef: RefObject<HTMLDivElement>;
@@ -34,8 +35,8 @@ const ApproachHero: React.FC<{
         useEffect(() => {
 
             const initBlogs = async () => {
-                const data = await getAllPostsClient();
-                setPosts(await data);
+                const data = await getBlogs();
+                setPosts(data?.featuredPosts);
             };
 
             initBlogs();
