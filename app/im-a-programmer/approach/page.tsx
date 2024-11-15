@@ -12,8 +12,8 @@ export const revalidate = 3600;
 
 export default async function ProgrammerApproachPage() {
 
-    const technicalApplications = await getAllTechnicalApplications();
-    const caseStudies = await getAllCaseStudies();
+    const technicalApplications = await getAllTechnicalApplicationsClient();
+    const caseStudies = await getAllCaseStudiesClient();
 
     return (
         <ProgrammerApproachModule

@@ -2,7 +2,7 @@
 import { connectToMongoDB } from "@/library/db/db";
 import slugify from "slugify";
 import { TechnicalApplicationModel } from "../models";
-import { TechnicalApplicationDocumentType } from "../models/technicalApplication";
+import { ITechnicalApplication, TechnicalApplicationDocumentType } from "../models/technicalApplication";
 
 
 
@@ -82,10 +82,6 @@ export async function getAllTechnicalApplications() {
 export async function getAllTechnicalApplicationsClient() {
 
     try {
-        
-        // connect to database
-        await connectToMongoDB();
-
         // find technical applications
         const technicalApplications = await fetch('https://fuzzy-palm-tree.vercel.app/api/user/portfolio/technical-application/get/all', {
             method:'GET'
@@ -96,9 +92,9 @@ export async function getAllTechnicalApplicationsClient() {
         if (technicalApplications.technicalApplications.length > 0) {
             console.log(technicalApplications.technicalApplications);
             
-            return technicalApplications.technicalApplications
+            return technicalApplications.technicalApplications as ITechnicalApplication[]
         } else {
-            return {error:true, message:technicalApplications.message}
+            return null
         }
     } catch (error) {
         return null
