@@ -31,6 +31,10 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
         }
     }, [scrollYPro, scrollYProPrevious])
 
+    useEffect(()=> {
+        window.scrollTo(0,1)
+    },[])
+
 
 
     return (
@@ -43,12 +47,12 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
                     variants={gradientVariants}
                 >
                         <Navbar />
-                    <main
-                        ref={scrollRef}
+                    {/* <main
+                        // ref={scrollRef}
                         className='main'
-                    >
+                    > */}
                         {children}
-                    </main>
+                    {/* </main> */}
 
                 </MotionBody>
             </ThemeProvider>

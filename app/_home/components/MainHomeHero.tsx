@@ -31,24 +31,27 @@ const MainHomeHero: React.FC<HeroProps> = ({
             </MotionDiv>
 
 
-            <HeroButtonCtn >
-                <ButtonPro
-                    variant='contained'
-                    label={`I'm A Programmer`}
-                    color='primary'
-                    href='/im-a-programmer'
-                />
-                <ButtonPro
-                    variant='contained'
-                    label={`About`}
-                    color='secondary'
-                    onClick={() => { scrollTo('home-blog') }}
-                />
-                <IconButton
-                    label={<ArrowCircleDownRoundedIcon onClick={() => { scrollTo('next') }}/>}
-                    onClick={() => { scrollTo('next') }}
-                />
-            </HeroButtonCtn>
+            <MotionDiv>
+                <HeroButtonCtn >
+                    <ButtonPro
+                        variant='contained'
+                        label={`I'm A Programmer`}
+                        color='primary'
+                        href='/im-a-programmer'
+                    />
+                    <ButtonPro
+                        variant='contained'
+                        label={`About`}
+                        color='secondary'
+                        onClick={() => { scrollTo('home-blog') }}
+                    />
+                    <IconButton
+                        label={<ArrowCircleDownRoundedIcon onClick={() => { scrollTo('next') }} />}
+                        onClick={() => { scrollTo('next') }}
+                    />
+                </HeroButtonCtn>
+            </MotionDiv>
+
 
             <MotionDiv className={`${styles.imgWrapper}`} id='img-maliek_home'>
                 <MotionImg
