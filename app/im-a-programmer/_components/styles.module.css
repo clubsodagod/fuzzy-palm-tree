@@ -1,0 +1,678 @@
+.header,
+.subheader,
+.topHeroCtn,
+.excerpt,
+.btmHeroCtn,
+.storyText {
+    color: white;
+    position: relative;
+    z-index: 25;
+}
+
+.btmHeroCtn {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width:769px) {
+        flex-direction: row;
+    }
+}
+
+.overviewCtn {
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 75vh;
+    width: 100%;
+    text-align: center;
+
+    @media screen and (min-width:769px) {
+        padding-inline: 12%;
+    }
+}
+
+.overviewFlexCtn {
+    display: flex;
+    flex-direction: column;
+    gap: 3vw;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (min-width:1025px) {
+        flex-direction: row;
+    }
+}
+
+.dynamicImgWrapper {
+    height: min-content;
+    width: 100%;
+    border-radius: 25px;
+}
+
+.dynamicImg {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+    box-shadow: 5px 5px 5px #0000004e;
+
+    @media screen and (min-width:769px) and (max-width:1024px) {
+        height: 24vh;
+    }
+
+    @media screen and (min-width:1025px) {
+        height: 45vh;
+    }
+}
+
+.pointCtn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100dvh;
+    padding-bottom: 20vh;
+}
+
+
+
+.imgWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    z-index: 0;
+    padding: 0;
+    position: absolute;
+    justify-content: start;
+
+    height: 100vh;
+    align-items: end;
+    top: 0;
+    left: -30vw;
+
+    @media screen and (min-width:769px) {
+        align-items: end;
+        left: -10vw;
+    }
+}
+
+.ftImg {
+    object-fit: contain;
+    height: 50dvh;
+
+    @media screen and (min-width:769px) and (max-width:1024px) {
+        /* position: relative; */
+        height: 60dvh;
+        color: #565656;
+        /* bottom: -20vh; */
+    }
+
+    @media screen and (min-width:1025px) {
+        width: 66%;
+        height: 70dvh;
+    }
+}
+
+
+/* Scrollable Arrow Container */
+
+
+.scrollableCtnWrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    height: 30vh;
+    position: absolute;
+    z-index: 10;
+    width: 66%;
+    left: 0;
+    bottom: 6vh;
+}
+
+.childWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 135%;
+
+    @media screen and (min-width:769px) {
+        padding-inline: 12vw;
+    }
+
+    @media screen and (min-width:1025px) {
+        padding-inline: 0;
+    }
+}
+
+.leftArrowSolidCtn,
+.rightArrowSolidCtn {
+    display: none;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    z-index: 15;
+
+    @media screen and (min-width:1025px) {
+        display: flex;
+    }
+}
+
+.leftArrowSolidCtn {
+    left: 1vw;
+
+    @media screen and (min-width:769px) {
+        left: 6vw;
+    }
+}
+
+.rightArrowSolidCtn {
+    right: 1vw;
+    top: 0;
+
+    @media screen and (min-width:769px) {
+        right: 6vw;
+    }
+}
+
+.leftSolidArrow,
+.rightSolidArrow {
+    display: none;
+    color: rgb(249, 164, 255);
+    font-size: 2rem;
+
+    @media screen and (min-width:769px) {
+        font-size: 4rem;
+    }
+
+    @media screen and (min-width:1025px) {
+        display: block;
+    }
+}
+
+.leftSolidArrow {
+    rotate: 90deg;
+}
+
+.rightSolidArrow {
+    rotate: -90deg;
+}
+
+.leftArrowCtn,
+.rightArrowCtn {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    z-index: 15;
+}
+
+.leftArrowCtn {
+    left: 1vw;
+
+    @media screen and (min-width:769px) {
+        left: 6vw;
+    }
+}
+
+.rightArrowCtn {
+    right: 1vw;
+
+    @media screen and (min-width:769px) {
+        right: 6vw;
+    }
+}
+
+.leftArrow,
+.rightArrow {
+    color: rgb(249, 164, 255);
+    font-size: 2rem;
+
+    @media screen and (min-width:769px) {
+        font-size: 4rem;
+    }
+}
+
+.leftArrow {
+    rotate: 90deg;
+}
+
+.rightArrow {
+    rotate: -90deg;
+}
+
+.sectionWrapper {
+    padding-block: 10vh 3vh;
+    padding-inline: 6vw;
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+.solidHeroWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6vh;
+    width: 100%;
+}
+
+.heroWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6vh;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+}
+
+/* ----- Solid Card -------- */
+
+.solidCardWrapper,
+.solidImgWrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.solidCardWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    padding: 2vh;
+    background-color: #ffffff5f;
+    border-radius: 25px;
+    min-height: 30vh;
+    max-height: min-content;
+    box-shadow: 4px 4px 4px #0000004e;
+    width: 85vw;
+
+    @media screen and (min-width:769px) and (max-width:1024px) {
+        width: 100%;
+    }
+
+    @media screen and (min-width:1025px) {
+        width: 33vw;
+    }
+}
+
+.designPatternCardWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    padding: 2vh;
+    background-color: #ffffff5f;
+    border-radius: 25px;
+    min-height: 30vh;
+    max-height: min-content;
+    box-shadow: 4px 4px 4px #0000004e;
+    width: 100%;
+
+
+}
+
+.designPatternUseCaseCardWrapper,
+.designPatternCommonMisuseCardWrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 2vh;
+    background-color: #ffffff5f;
+    border-radius: 25px;
+    max-height: min-content;
+    box-shadow: 4px 4px 4px #0000004e;
+    width: 100%;
+
+}
+
+.solidImg {
+    object-fit: cover;
+    width: 100%;
+    height: 15vh;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
+.solidImgWrapper {
+    height: fit-content;
+}
+
+.card {
+    display: flex;
+    flex-direction: row;
+    gap: 3vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.solidCardLabelText,
+.designPatternCardLabelText {
+    font-weight: bold;
+}
+
+.designPatternCardLabelText {
+    text-align: center;
+}
+
+.solidCardBigLetter {
+    font-size: 8em;
+    line-height: 1;
+}
+
+.solidPrinciplesCtnWrapper {
+    min-height: 50vh;
+    min-width: 100%;
+}
+
+.solidPrinciplesCtn {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.solidPrinciplesScrollCtn {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    flex-direction: row;
+    /* min-height: 70vh; */
+    padding-block: 0 2vh;
+
+    @media screen and (min-width:1025px) {
+        overflow-x: hidden;
+    }
+}
+
+.solidCardWrapperOut {
+    min-width: 100%;
+    padding-inline: 6vw;
+    display: flex;
+    gap: 6vw;
+
+    justify-content: center;
+
+    /* align-items: center; */
+    @media screen and (min-width:1025px) {
+        padding-inline: 12vw;
+    }
+}
+
+.behavioralWrapper,
+.creationWrapper,
+.structuralWrapper {
+    min-width: 100%;
+    padding-inline: 18vw;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    gap: 6vw;
+
+    @media screen and (min-width:769px) {
+        flex-direction: row;
+        padding-inline: 6vw;
+    }
+
+    @media screen and (min-width:1025px) {
+        padding-inline: 12vw;
+    }
+}
+
+
+.designPatternImg {
+    object-fit: cover;
+    width: 100%;
+    height: 15vh;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
+.designPatternImgWrapper {
+    height: min-content;
+}
+
+
+.designPatternsCtnWrapper {
+    min-width: 100%;
+    display: flex;
+    flex-grow: 1;
+}
+
+.designPatternsCtn {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.designPatternsScrollCtn {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    flex-direction: row;
+    /* min-height: 70vh; */
+    padding-block: 0 2vh;
+    height: min-content;
+    scroll-snap-type: x mandatory;
+    scroll-snap-align: start;
+
+    @media screen and (min-width:1025px) {
+        overflow-x: hidden;
+    }
+}
+
+.designPatternsLeftColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (min-width:768px) {
+        width: 60%;
+
+    }
+}
+
+.designPatternsRightColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 6vh;
+    justify-content: center;
+
+    @media screen and (min-width:768px) {
+        width: 60%;
+        height: 100%;
+
+    }
+}
+
+.leftSolidColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 3;
+    justify-content: center;
+
+    @media screen and (min-width:769px) {
+        width: 45%;
+    }
+}
+
+.rightSolidColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3vh;
+    width: 55%;
+    height: 100%;
+}
+
+.leftSDLCColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+    justify-content: center;
+
+    @media screen and (min-width:1025px) {
+        width: 35%;
+    }
+}
+
+.rightSDLCColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3vh;
+    height: 100%;
+
+    @media screen and (min-width:1025px) {
+        width: 30%;
+    }
+
+}
+
+.middleSDLCColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3vh;
+    height: 100%;
+
+    @media screen and (min-width:1025px) {
+        width: 35%;
+    }
+}
+
+.sdlcCardWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    padding: 2vh;
+    background-color: #ffffff5f;
+    border-radius: 25px;
+    min-height: 30vh;
+    max-height: min-content;
+    box-shadow: 4px 4px 4px #0000004e;
+    width: 85vw;
+
+    @media screen and (min-width:769px) and (max-width:1024px) {
+        width: 100%;
+    }
+
+    @media screen and (min-width:1025px) {
+        width: 100%;
+    }
+}
+
+
+
+.sdlcImg {
+    object-fit: cover;
+    width: 100%;
+    height: 15vh;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+
+    @media screen and (min-width:769px) and (max-width:1024px) {
+        height: 10vh;
+    }
+}
+
+.sdlcImgWrapper {
+    height: fit-content;
+}
+
+.btnCtn {}
+
+.btmLetsWorkCtn {
+    display: flex;
+    flex-direction: column;
+    height:fit-content;
+    justify-content: center;
+    @media screen and (min-width:769px) {
+        max-height: max-content;
+        flex-direction: row;
+    }
+}
+
+.contactFormColumn {
+    @media screen and (min-width:1025px) {
+        width: 40%;
+    }
+}
+
+.threeScenePro {
+    height: 100%;
+    @media screen and (min-width:769px) {
+        width: 60%;
+    }
+}
+
+
+.contactFormWrapper {
+    width: 100%;
+    padding: 1.5vh;
+    border-radius: 25px;
+    background-color: #ffffff5e;
+
+    @media screen and (min-width:1025px) {
+        max-width: 50vw;
+    }
+}
+
+.contactForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.radioWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.radioCtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.letsWorkHeroWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+.formHeader {
+    font-weight: bold;
+    text-align: center;
+    color: whitesmoke;
+    text-shadow: 1px 1px lightgray;
+}
+
+
+
+.chipWrapper {
+    border-radius: 50px;
+    background-color: #f5f5f517;
+    backdrop-filter: blur(2.5px);
+    padding:0.5vh;
+}
+
+.portfolioCardImg {
+    border-radius: 25px;
+}
+
+.portfolioCardWrapper {
+    border-radius: 25px;
+    background-color: #f5f5f517;
+    backdrop-filter: blur(2.5px);
+    padding:12.5px;
+    min-width: 100%;
+    @media screen and (min-width:1025px) {
+        min-width: 0;
+        width: 33%;
+    }
+}

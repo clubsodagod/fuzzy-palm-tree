@@ -1,4 +1,4 @@
-import { Chapter, Point } from "@/library/const";
+import { Chapter, ExtendedPointUseCase, Point } from "@/library/const";
 import type { HTMLMotionProps } from "framer-motion";
 import { RefObject } from "react";
 
@@ -30,7 +30,9 @@ export interface HeroProps extends MotionDivProps {
 export interface DynamicSectionProps extends HeroProps {
     chapter?:Chapter;
     factor?:Point;
+    exFactor?:ExtendedPointUseCase;
     index?:number;
+    left?:Boolean;
 }
 
 export type NavItemChild = {
@@ -52,3 +54,7 @@ export interface VisibilityThreeType {
 export interface ScalesThreeType {
     [key:string]:number
 }
+
+export type VoidOneParameterFunction = (id: string) => void;
+
+export type VoidTwoParameterFunction = (event: MouseEvent, id: string) => void;
