@@ -9,6 +9,10 @@ import { AnimatePresencePro } from "./_components/common/framer/AnimatePresenceP
 export const metadata: Metadata = {
   title: "Maliek Davis",
   description: "The Future",
+  appleWebApp: {
+    statusBarStyle: 'black-translucent',
+    capable: true,
+  }
 };
 
 export default function RootLayout({

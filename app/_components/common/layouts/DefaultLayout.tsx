@@ -18,7 +18,7 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
         }
     } = useAppContext()
 
-    const { scrollY } = useScroll({ container: scrollRef, });
+    const { scrollY } = useScroll({target:scrollRef});
 
 
     const scrollYPro = scrollY.get();
@@ -42,11 +42,11 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
                     animate={controls}
                     variants={gradientVariants}
                 >
-                    <main
-                        className='main'
-                        ref={scrollRef}
-                    >
                         <Navbar />
+                    <main
+                        ref={scrollRef}
+                        className='main'
+                    >
                         {children}
                     </main>
 
