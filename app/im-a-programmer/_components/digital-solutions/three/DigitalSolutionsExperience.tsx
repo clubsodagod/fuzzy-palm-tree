@@ -122,13 +122,7 @@ const DigitalSolutionsExperience = () => {
                 </Float>
             </MotionGroup>
 
-            <MotionGroup
-                position={[motorMotion().x, motorMotion().y, motorMotion().z]}
-                rotation={[motorMotion().rotationX, motorMotion().rotationY, motorMotion().rotationZ]}
-                scale={motorMotion().scale}
-            >
-                {/* <Motor /> */}
-            </MotionGroup>
+            
 
             <MotionGroup
                 position={[ghostInShellMotion().x, ghostInShellMotion().y, ghostInShellMotion().z]}

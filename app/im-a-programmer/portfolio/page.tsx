@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { getAllTechnicalApplications } from '@/library/db/controllers/technical-applications';
-import PortfolioModule from '../_components/portfolio/PortfolioModule';
+import PortfolioModule from './_components/PortfolioModule';
 import { getAllCaseStudies, } from '@/library/db/controllers/case-study';
 
 // Next.js will invalidate the cache when a
@@ -17,11 +17,11 @@ export default async function PortfolioPage () {
     const technicalApplications = await getAllTechnicalApplications();
     const caseStudies = await getAllCaseStudies();
     
-    if (technicalApplications && caseStudies) {
+    
         return (
-            <PortfolioModule technicalApplications={technicalApplications} caseStudies={caseStudies}/>
+            <PortfolioModule technicalApplications={technicalApplications && technicalApplications} caseStudies={caseStudies && caseStudies}/>
         )        
-    }
+   
 
 }
 

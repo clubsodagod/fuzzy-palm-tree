@@ -28,7 +28,7 @@ export interface ThreeProps {
 };
 
 interface PaperThreeProps extends ThreeProps {
-  caseStudy: ICaseStudy;
+  caseStudy?: ICaseStudy|undefined|null;
 }
 
 export default function Paper(props: PaperThreeProps) {
@@ -53,6 +53,7 @@ export default function Paper(props: PaperThreeProps) {
                 width: '40vw',
                 height: '100vh',
                 background: '#fff9db',
+                color:'black'
               }}
             >
               <div style={{ background: '#fff9db', padding: '4px 8px', }}>
