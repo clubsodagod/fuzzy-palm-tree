@@ -102,7 +102,7 @@ const LetsWorkForm: React.FC<{}> = ({ }) => {
     return (
         <>
             <MotionDiv
-            className={`min-h-[5vh] w-full mb-3`}
+                className={`min-h-[5vh] w-full mb-3`}
             >
                 {
                     eRM &&
@@ -125,28 +125,103 @@ const LetsWorkForm: React.FC<{}> = ({ }) => {
                     onSubmit={(e) => { submitHandler(e) }}
                     className={`${styles.contactForm}`}
                 >
+                    <MotionDiv
+                        className='flex gap-3'
+                    >
+                        {
+                            contactFormDocument?.map((f, i) => {
+                                if (('text').includes(f?.type!)) {
+                                    if ((['firstName', 'lastName']).includes(f?.key as string)) {
+                                        return (
+                                            <MotionDiv className='flex gap-3 w-full'
+                                                key={`${f?.label}: ${i}`}
+                                            >
+                                                <TextField
+                                                fullWidth
+                                                    error={eFs && eFs[f?.key as keyof ContactDocumentType]?.error!}
+                                                    value={contactForm && contactForm[f?.key as keyof ContactDocumentType]}
+                                                    label={f?.label}
+                                                    variant='filled'
+                                                    size='small'
+                                                    color='secondary'
+                                                    onChange={(e) => { changeHandler(f as FormField<ContactDocumentType>, e, null, null) }}
+                                                />
+                                            </MotionDiv>
+                                        )
+                                    }
+                                }
+                            })
+                        }
+                    </MotionDiv>
+                    <MotionDiv
+                        className='flex gap-3'
+                    >
+                        {
+                            contactFormDocument?.map((f, i) => {
+                                if (('text').includes(f?.type!)) {
+                                    if ((['company']).includes(f?.key as string)) {
+                                        return (
+                                            <MotionDiv className='flex gap-3 md:w-1/2 pr-1'
+                                                key={`${f?.label}: ${i}`}
+                                            >
+                                                <TextField
+                                                fullWidth
+                                                    error={eFs && eFs[f?.key as keyof ContactDocumentType]?.error!}
+                                                    value={contactForm && contactForm[f?.key as keyof ContactDocumentType]}
+                                                    label={f?.label}
+                                                    variant='filled'
+                                                    size='small'
+                                                    color='secondary'
+                                                    onChange={(e) => { changeHandler(f as FormField<ContactDocumentType>, e, null, null) }}
+                                                />
+                                            </MotionDiv>
+                                        )
+                                    }
+                                }
+                            })
+                        }
+                    </MotionDiv>
+                    <MotionDiv
+                        className='flex gap-3 justify-center'
+                    >
+                        {
+                            contactFormDocument?.map((f, i) => {
+                                if (('text').includes(f?.type!)) {
+                                    if ((['textarea']).includes(f?.key as string)) {
+                                        return null
+                                    }
+                                    if ((['email', 'phone']).includes(f?.key as string)) {
+                                        return (
+                                            <MotionDiv className='flex gap-3 w-full'
+                                                key={`${f?.label}: ${i}`}
+                                            >
+                                                <TextField
+                                                fullWidth
+                                                    error={eFs && eFs[f?.key as keyof ContactDocumentType]?.error!}
+                                                    value={contactForm && contactForm[f?.key as keyof ContactDocumentType]}
+                                                    label={f?.label}
+                                                    variant='filled'
+                                                    size='small'
+                                                    color='secondary'
+                                                    onChange={(e) => { changeHandler(f as FormField<ContactDocumentType>, e, null, null) }}
+                                                />
+                                            </MotionDiv>
+                                        )
+                                    }
+                                }
+                            })
+                        }
+                    </MotionDiv>
                     {
                         contactFormDocument?.map((f, i) => {
 
-                            if (('text').includes(f?.type!)) {
-                                return (
-                                    <TextField
-                                        error={eFs && eFs[f?.key as keyof ContactDocumentType]?.error!}
-                                        value={contactForm && contactForm[f?.key as keyof ContactDocumentType]}
-                                        key={`${f?.label}: ${i}`}
-                                        label={f?.label}
-                                        variant='filled'
-                                        size='small'
-                                        color='secondary'
-                                        onChange={(e) => { changeHandler(f as FormField<ContactDocumentType>, e, null, null) }}
-                                    />
-                                )
-                            } else if (('textarea').includes(f?.type!)) {
+                            if (('message').includes(f?.key as string)) {
                                 return (
                                     <TextField
                                         error={eFs && eFs[f?.key as keyof ContactDocumentType]?.error!}
                                         value={contactForm && contactForm[f?.key as keyof ContactDocumentType]}
                                         multiline
+                                        fullWidth
                                         rows={3}
                                         key={`${f?.label}: ${i}`}
                                         label={f?.label}
@@ -202,7 +277,7 @@ const LetsWorkForm: React.FC<{}> = ({ }) => {
                         className='mt-3'
                     >
                         <ButtonPro
-                        className='w-full flex justify-center'
+                            className='w-full flex justify-center'
                             type='submit'
                             label={'Submit'}
                             variant='contained'

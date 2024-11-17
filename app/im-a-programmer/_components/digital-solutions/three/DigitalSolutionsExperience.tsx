@@ -102,6 +102,7 @@ const DigitalSolutionsExperience = () => {
         >
 <OrbitControls />
             <MotionGroup
+            visible={visible.matrix}
                 position={[matrixMotion().x, matrixMotion().y, matrixMotion().z]}
                 rotation={[matrixMotion().rotationX, matrixMotion().rotationY, matrixMotion().rotationZ]}
                 scale={matrixMotion().scale}
@@ -110,6 +111,7 @@ const DigitalSolutionsExperience = () => {
             </MotionGroup>
 
             <MotionGroup
+            visible={visible.ideaLamp}
                 position={[ideaLampMotion().x, ideaLampMotion().y, ideaLampMotion().z]}
                 rotation={[ideaLampMotion().rotationX, ideaLampMotion().rotationY, ideaLampMotion().rotationZ]}
                 scale={ideaLampMotion().scale}
@@ -125,6 +127,7 @@ const DigitalSolutionsExperience = () => {
             
 
             <MotionGroup
+            visible={visible.ghostInShell}
                 position={[ghostInShellMotion().x, ghostInShellMotion().y, ghostInShellMotion().z]}
                 rotation={[ghostInShellMotion().rotationX, ghostInShellMotion().rotationY, ghostInShellMotion().rotationZ]}
                 scale={ghostInShellMotion().scale}
@@ -134,6 +137,7 @@ const DigitalSolutionsExperience = () => {
 
             {/* web and mobile apps experience */}
             <MotionGroup
+            visible={visible.webMobile}
                 position={[webMobileMotion().x, webMobileMotion().y, webMobileMotion().z]}
                 rotation={[webMobileMotion().rotationX, webMobileMotion().rotationY, webMobileMotion().rotationZ]}
                 scale={webMobileMotion().scale}
@@ -179,6 +183,7 @@ const DigitalSolutionsExperience = () => {
             </MotionGroup>
      
             <MotionGroup
+            visible={visible.chip}
                 position={[chipMotion().x, chipMotion().y, chipMotion().z]}
                 rotation={[chipMotion().rotationX, chipMotion().rotationY, chipMotion().rotationZ]}
                 scale={chipMotion().scale}

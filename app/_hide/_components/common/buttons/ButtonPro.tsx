@@ -30,6 +30,7 @@ const ButtonPro: React.FC<ButtonProps> = ({
     return (
         <MotionDiv
         {...props}
+        // className='flex flex-col justify-center items-center h-full w-min '
         >
             <Button
             href={href && href}

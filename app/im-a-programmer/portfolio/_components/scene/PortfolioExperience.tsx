@@ -4,6 +4,10 @@ import { ICaseStudy } from '@/app/_database/models/case-study';
 import { MotionGroup } from '@/app/_hide/_components/framer/MotionGroup';
 import { useScroll } from '@/app/_hide/_context/sub-context/ScrollContext';
 import { usePortfolioMotionLogic } from '@/app/_hide/im-a-programmer/portfolio/_utils/portfolio-motion';
+import { ScalesThreeType, VisibilityThreeType } from '@/app/_library/types/common';
+import ScaleManager from '@/app/_utility/three/ScaleManager';
+import ScalingFactorManager from '@/app/_utility/three/ScalingFactorManager';
+import VisibilityManager from '@/app/_utility/three/VisibilityManager';
 import Desk from '@/public/3d-objects/desk/Desk';
 import MacBook from '@/public/3d-objects/macbook/Macbook';
 import Paper from '@/public/3d-objects/paper/Paper';
@@ -19,6 +23,21 @@ const PortfolioExperience: React.FC<{
     scrollY, link, caseStudy
 }) => {
 
+        // memoized 3D assets
+        const MemoizedMacBook = React.memo(MacBook);
+        const MemoizedDesk = React.memo(Desk);
+        const MemoizedPaper = React.memo(Paper);
+
+
+    // create visible states
+    const [scalingFactor, setScalingFactor] = React.useState<number>(1);
+
+    const [visible, setVisible] = React.useState<VisibilityThreeType>({
+        macbook: true,
+        desk: false,
+        paper: false,
+    });
+
         const { scroll:{dynamicIncrement: dI, windowScrollHeight} } = useAppContext();
 
         // event points for calculating 3d assets
@@ -29,11 +48,31 @@ const PortfolioExperience: React.FC<{
         const { macbookMotion, deskMotion, paperMotion } = usePortfolioMotionLogic(scrollY, homeEventPoints)
 
 
-        // memoized 3D assets
-        const MemoizedMacBook = React.memo(MacBook);
-        const MemoizedDesk = React.memo(Desk);
-        const MemoizedPaper = React.memo(Paper);
+    // Scaling value for responsive experience
+    const mainScalingFactor = window ? Math.min(Math.max(window.innerWidth / 1920, window.innerWidth > 700 && window.innerWidth < window.innerHeight ? 0.4 : 0.5), 3) : 1;
 
+    // scale const for managing visibility
+    const macbook = macbookMotion().scale.get() * mainScalingFactor;
+    const desk = deskMotion().scale.get() * mainScalingFactor;
+    const paper = paperMotion().scale.get() * mainScalingFactor;
+
+    // scales object for visibility manager
+    const [scales, setScales] = React.useState<ScalesThreeType>({
+        macbook, desk, paper, 
+    });
+
+    // update scaling factor when it changes
+    ScalingFactorManager({ scalingFactor, setScalingFactor, mainScalingFactor });
+
+    // manage visibility of 3d  models
+    VisibilityManager({ scales, visible, setVisible });
+
+    // manage scales of object for scroll changes
+    ScaleManager({
+        scrollY, setScales, scalesPayload: {
+            macbook,desk,paper
+        }
+    });
 
 
         return (
@@ -41,6 +80,7 @@ const PortfolioExperience: React.FC<{
 
                 {/* MacBook Pro */}
                 <MotionGroup
+                    visible={visible.macbook}
                     initial={{
                         scale: 0.01,
                         x: -30,
@@ -63,6 +103,7 @@ const PortfolioExperience: React.FC<{
 
                 {/* Desk */}
                 <MotionGroup
+                    visible={visible.desk}
                     position={[deskMotion().x, deskMotion().y, deskMotion().z]}
                     rotation={[deskMotion().rotationX, deskMotion().rotationY, deskMotion().rotationZ]}
                     scale={deskMotion().scale}
@@ -72,12 +113,13 @@ const PortfolioExperience: React.FC<{
 
                 {/* Paper */}
                 <MotionGroup
+                    visible={visible.paper}
                     position={[paperMotion().x, paperMotion().y, paperMotion().z]}
                     rotation={[paperMotion().rotationX, paperMotion().rotationY, paperMotion().rotationZ]}
                     scale={paperMotion().scale}
                 >
                     {/* <OrbitControls /> */}
-                    <MemoizedPaper caseStudy={caseStudy && caseStudy} />
+                    <MemoizedPaper props={{scale:paperMotion().scale.get()}} caseStudy={caseStudy && caseStudy} />
                 </MotionGroup>
             </MotionGroup>
 

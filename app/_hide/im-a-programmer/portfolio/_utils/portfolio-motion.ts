@@ -25,10 +25,10 @@ export const usePortfolioMotionLogic = (scrollY: MotionValue, homeEventPoints: n
 
 
     let paper_scale = [0, 0.015, 1.25,];
-    let paper_x = [0, 0, -35,];
+    let paper_x = [0, 0, rv([0,0,-35])];
     let paper_y = [0, 0, -5,];
     let paper_z = [0, 0, 0,];
-    let paper_rotation_x = [0, 0, 2.5,];
+    let paper_rotation_x = [0, 0,rv([1.75,1.75,2.5]),];
     let paper_rotation_y = [0, 0, 0,];
     let paper_rotation_z = [0, 0, 1.5,];
 

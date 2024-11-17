@@ -9,7 +9,7 @@ Title: Folded Wrinkled Paper
 */
 
 import * as THREE from 'three'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Html, useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 import { ICaseStudy } from '@/app/_database/models/case-study'
@@ -31,12 +31,47 @@ interface PaperThreeProps extends ThreeProps {
   caseStudy?: ICaseStudy|undefined|null;
 }
 
+
+
 export default function Paper(props: PaperThreeProps) {
   const { nodes, materials } = useGLTF('/3d-objects/paper/Paper-transformed.glb') as GLTFResult
 
+  const calculateScalingFactor = (width: number) => {
+    // As the window gets smaller, the scaling factor increases
+    if (width >= 1920) return 1; // Max width, smallest scaling factor
+    if (width > 700) return Math.min(Math.max(1920 / width, 1), 6); // Moderate scaling for medium screens
+    return Math.min(Math.max(1920 / width, 0.5), 5); // Higher scaling for very small screens
+};
+const calculateScalingHeightFactor = (width: number) => {
+    // As the window gets smaller, the scaling factor increases
+    if (width >= 1920) return 1; // Max width, smallest scaling factor
+    if (width > 700) return Math.min(Math.max(1920 / width, 0.3), 0.7); // Moderate scaling for medium screens
+    return Math.min(Math.max(1920 / width, 0.5), 5); // Higher scaling for very small screens
+};
+
+const [scalingFactor, setScalingFactor] = useState(() =>
+  calculateScalingFactor(window.innerWidth)
+);
+const [heightScalingFactor, setHeightScalingFactor] = useState(() =>
+  calculateScalingHeightFactor(window.innerWidth)
+);
+useEffect(() => {
+    const handleResize = () => {
+        setScalingFactor(calculateScalingFactor(window.innerWidth));
+        setHeightScalingFactor(calculateScalingHeightFactor(window.innerWidth));
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup event listener on component unmount
+    return () => {
+        window.removeEventListener('resize', handleResize);
+    };
+}, []);
+
   if (props.caseStudy) {
     return (
-      <group {...props.props} dispose={null}>
+      <group  dispose={null}>
         <group name="Sketchfab_Scene">
           <mesh castShadow receiveShadow name="Object_2" geometry={nodes.Object_2.geometry} material={materials.blinn1SG} rotation={[-Math.PI / 2, 0, 0]} >
 
@@ -45,18 +80,18 @@ export default function Paper(props: PaperThreeProps) {
             <Html
               position={[0, 0, 0.155]}   // Adjust as needed to align with surface
               rotation={[0, 0, -Math.PI / 2]}
-              scale={1}
               transform
               occlude="blending"
               zIndexRange={[1, 0]}      // Controls layering depth to stay on top
+              scale={1}
               style={{
-                width: '40vw',
-                height: '100vh',
+                width: `${40 * scalingFactor}vw`,
+                height: `${100 * heightScalingFactor}vh`,
                 background: '#fff9db',
                 color:'black'
               }}
             >
-              <div style={{ background: '#fff9db', padding: '4px 8px', }}>
+              <div style={{ background: '#fff9db', padding: '4px 8px', width:'100%'   }}>
                 <h1>
                   {props.caseStudy.title}
                 </h1>
