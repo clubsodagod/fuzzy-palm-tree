@@ -32,8 +32,8 @@ type GLTFResult = GLTF & {
   }
 }
 
-export function Model(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('/IPadPro-transformed.glb') as GLTFResult
+export default function IpadPro(props: JSX.IntrinsicElements['group']) {
+  const { nodes, materials } = useGLTF('/3d-objects/iPad-Pro/IPadPro-transformed.glb') as GLTFResult
   return (
     <group {...props} dispose={null}>
       <group name="Sketchfab_Scene">
@@ -48,4 +48,4 @@ export function Model(props: JSX.IntrinsicElements['group']) {
   )
 }
 
-useGLTF.preload('/IPadPro-transformed.glb')
+useGLTF.preload('/3d-objects/iPad-Pro/IPadPro-transformed.glb')

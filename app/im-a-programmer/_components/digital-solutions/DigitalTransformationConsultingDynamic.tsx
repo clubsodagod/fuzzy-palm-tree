@@ -30,7 +30,7 @@ const DigitalTransformationConsultingDynamic: React.FC<DynamicSectionProps> = ({
 
 
     const {
-        screen:{currentBreakpoint,}
+        screen: { currentBreakpoint, }
     } = useAppContext()
 
     const orientation = (['sm', 'md', 'lg']).includes(currentBreakpoint) ? "horizontal" : "vertical";
@@ -53,6 +53,7 @@ const DigitalTransformationConsultingDynamic: React.FC<DynamicSectionProps> = ({
                         className={`${styles.overviewFlexCtn} `}
                     >
 
+
                         <MotionDiv
                             initial={{ opacity: 0, x: -250 }}
                             whileInView={{
@@ -62,54 +63,76 @@ const DigitalTransformationConsultingDynamic: React.FC<DynamicSectionProps> = ({
                             }}
                             className={`${styles.dynamicImgWrapper}`}
                         >
-                            <MotionImg src={exFactor?.photo} className={`${styles.dynamicImg}`} />
-                        </MotionDiv>
+                            <MotionDiv className='blur-wrapper'
+                                initial={{ opacity: 0, x: -250 }}
+                                whileInView={{
+                                    opacity: 1,
+                                    x: 0,
+                                    transition: { duration: 2.25 }
+                                }}
+                            >
+                                <MotionImg src={exFactor?.photo} className={`${styles.dynamicImg}`} />
+
+                            </MotionDiv></MotionDiv>
+
 
                         <MotionDiv>
                             <Divider orientation={orientation} variant="middle" flexItem className={`xl:h-[50vh]`} />
                         </MotionDiv>
-                        <MotionH4
+
+                        <MotionDiv className='blur-wrapper'
                             initial={{ opacity: 0, x: 250 }}
                             whileInView={{
                                 opacity: 1,
                                 x: 0,
                                 transition: { duration: 2 }
                             }}
-                            className={`${styles.storyText} story-text`}
                         >
-                            {exFactor?.point}
-                        </MotionH4>
+                            <MotionH4
+                                initial={{ opacity: 0, x: 250 }}
+                                whileInView={{
+                                    opacity: 1,
+                                    x: 0,
+                                    transition: { duration: 2.5 }
+                                }}
+                                className={`${styles.storyText} story-text`}
+                            >
+                                {exFactor?.point}
+                            </MotionH4>
+                        </MotionDiv>
+
+
                     </MotionDiv>
 
 
                 </MotionDiv>
             </MotionDiv>
 
-         
-                <HeroButtonCtn >
 
-                    <ButtonPro
-                        variant='outlined'
-                        label={<KeyboardDoubleArrowUpRoundedIcon />}
-                        color='secondary'
-                        onClick={() => { scrollTo("top") }}
-                    />
+            <HeroButtonCtn >
 
-                    <ButtonPro
-                        variant='outlined'
-                        label="Previous"
-                        color='primary'
-                        onClick={() => { scrollTo('previous') }}
-                    />
+                <ButtonPro
+                    variant='outlined'
+                    label={<KeyboardDoubleArrowUpRoundedIcon />}
+                    color='secondary'
+                    onClick={() => { scrollTo("top") }}
+                />
 
-                    <ButtonPro
-                        variant='outlined'
-                        label={index != 2 ? "Next" : "To Top"}
-                        color='secondary'
-                        onClick={index != 2 ? () => { scrollTo('next') } : () => { scrollTo('digital-solutions-main') }}
-                    />
+                <ButtonPro
+                    variant='outlined'
+                    label="Previous"
+                    color='primary'
+                    onClick={() => { scrollTo('previous') }}
+                />
 
-                </HeroButtonCtn>
+                <ButtonPro
+                    variant='outlined'
+                    label={index != 2 ? "Next" : "To Top"}
+                    color='secondary'
+                    onClick={index != 2 ? () => { scrollTo('next') } : () => { scrollTo('digital-solutions-main') }}
+                />
+
+            </HeroButtonCtn>
 
 
 

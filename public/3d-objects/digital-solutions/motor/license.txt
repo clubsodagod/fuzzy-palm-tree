@@ -1,0 +1,11 @@
+Model Information:
+* title:	Oscillating Cylinder Motor for LEGO (3d Print)
+* source:	https://sketchfab.com/3d-models/oscillating-cylinder-motor-for-lego-3d-print-f66c6dc8059e4fa2b2a05c421cff81df
+* author:	Slava Z. (https://sketchfab.com/slava)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Oscillating Cylinder Motor for LEGO (3d Print)" (https://sketchfab.com/3d-models/oscillating-cylinder-motor-for-lego-3d-print-f66c6dc8059e4fa2b2a05c421cff81df) by Slava Z. (https://sketchfab.com/slava) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

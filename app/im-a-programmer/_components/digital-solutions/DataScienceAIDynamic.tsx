@@ -20,11 +20,11 @@ const DataScienceAIDynamic: React.FC<DynamicSectionProps> = ({
     exFactor,
     left,
     ctnRef,
-    index, scrollTo, 
+    index, scrollTo,
 }) => {
 
     const {
-        screen:{currentBreakpoint,}
+        screen: { currentBreakpoint, }
     } = useAppContext()
 
     const orientation = (['sm', 'md', 'lg']).includes(currentBreakpoint) ? "horizontal" : "vertical"
@@ -49,7 +49,7 @@ const DataScienceAIDynamic: React.FC<DynamicSectionProps> = ({
 
 
                         <MotionDiv
-                            initial={{ opacity: 0, x: 250 }}
+                            initial={{ opacity: 0, x: -250 }}
                             whileInView={{
                                 opacity: 1,
                                 x: 0,
@@ -57,24 +57,44 @@ const DataScienceAIDynamic: React.FC<DynamicSectionProps> = ({
                             }}
                             className={`${styles.dynamicImgWrapper}`}
                         >
-                            <MotionImg src={exFactor?.photo} className={`${styles.dynamicImg}`} />
+                            <MotionDiv className='blur-wrapper'
+                                initial={{ opacity: 0, x: -250 }}
+                                whileInView={{
+                                    opacity: 1,
+                                    x: 0,
+                                    transition: { duration: 2.25 }
+                                }}
+                            >
+                                <MotionImg src={exFactor?.photo} className={`${styles.dynamicImg}`} />
+                            </MotionDiv>
                         </MotionDiv>
                         <MotionDiv>
                             <Divider orientation={orientation} variant="middle" flexItem className={`xl:h-[50vh]`} />
                         </MotionDiv>
 
-
-                        <MotionH4
-                            initial={{ opacity: 0, x: -250 }}
+                        <MotionDiv
+                            className='blur-wrapper'
+                            initial={{ opacity: 0, x: 250 }}
                             whileInView={{
                                 opacity: 1,
                                 x: 0,
                                 transition: { duration: 2 }
                             }}
-                            className={`${styles.storyText} story-text`}
                         >
-                            {exFactor?.point}
-                        </MotionH4>
+                            <MotionH4
+                                initial={{ opacity: 0, x: 250 }}
+                                whileInView={{
+                                    opacity: 1,
+                                    x: 0,
+                                    transition: { duration: 2.25 }
+                                }}
+                                className={`${styles.storyText} story-text`}
+                            >
+                                {exFactor?.point}
+                            </MotionH4>
+                        </MotionDiv>
+
+
                     </MotionDiv>
 
                 </MotionDiv>

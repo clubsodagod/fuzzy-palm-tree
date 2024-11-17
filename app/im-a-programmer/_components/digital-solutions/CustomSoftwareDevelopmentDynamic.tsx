@@ -11,6 +11,7 @@ import { useAppContext } from '@/app/_context/AppContext';
 import { DynamicSectionProps } from '@/app/_library/types/common';
 import MotionPageWrapper from '@/app/_hide/_components/common/MotionPageWrapper';
 import ButtonPro from '@/app/_components/common/ButtonPro';
+import { MotionH4 } from '@/app/_components/common/framer/MotionH4';
 
 
 
@@ -22,9 +23,9 @@ const CustomSoftwareDevelopmentDynamic: React.FC<DynamicSectionProps> = ({
     scrollTo,
 }) => {
     console.log(exFactor);
-    
+
     const {
-        screen:{currentBreakpoint},
+        screen: { currentBreakpoint },
     } = useAppContext()
 
     const orientation = (['sm', 'md', 'lg']).includes(currentBreakpoint) ? "horizontal" : "vertical"
@@ -50,17 +51,26 @@ const CustomSoftwareDevelopmentDynamic: React.FC<DynamicSectionProps> = ({
                         className={`${styles.overviewFlexCtn} flex-row-reverse`}
                     >
 
-                        <motion.h4
-                            initial={{ opacity: 0, x: -250 }}
-                            whileInView={{
-                                opacity: 1,
-                                x: 0,
-                                transition: { duration: 2 }
-                            }}
-                            className={`${styles.storyText} story-text`}
-                        >
-                            {exFactor?.point}
-                        </motion.h4>
+                        <MotionDiv
+                                initial={{ opacity: 0, x: -250 }}
+                                whileInView={{
+                                    opacity: 1,
+                                    x: 0,
+                                    transition: { duration: 2 }
+                                }} className='blur-wrapper'>
+                            <MotionH4
+                                className={`${styles.storyText} story-text`}
+                                initial={{ opacity: 0, x: -250 }}
+                                whileInView={{
+                                    opacity: 1,
+                                    x: 0,
+                                    transition: { duration: 2.25 }
+                                }}
+                            >
+                                {exFactor?.point}
+                            </MotionH4>
+                        </MotionDiv>
+
 
                         <MotionDiv>
                             <Divider orientation={orientation} variant="middle" flexItem className={`xl:h-[50vh]`} />
@@ -69,15 +79,25 @@ const CustomSoftwareDevelopmentDynamic: React.FC<DynamicSectionProps> = ({
 
 
                         <MotionDiv
+                            className={`${styles.dynamicImgWrapper}`}
                             initial={{ opacity: 0, x: 250 }}
                             whileInView={{
                                 opacity: 1,
                                 x: 0,
                                 transition: { duration: 2 }
                             }}
-                            className={`${styles.dynamicImgWrapper}`}
                         >
-                            <MotionImg src={exFactor?.photo} className={`${styles.dynamicImg}`} />
+                            <MotionDiv className='blur-wrapper'
+                            initial={{ opacity: 0, x: 250 }}
+                            whileInView={{
+                                opacity: 1,
+                                x: 0,
+                                transition: { duration: 2.25 }
+                            }}
+                            >
+                                <MotionImg src={exFactor?.photo} className={`${styles.dynamicImg}`} />
+                            </MotionDiv>
+                            
                         </MotionDiv>
                     </MotionDiv>
 

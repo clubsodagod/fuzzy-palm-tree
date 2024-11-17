@@ -28,10 +28,15 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[]
 }
 
-const WindyDay: React.FC<JoinGrowthProps> = ({ animate, ...props }) => {
+export default function WindyDay(props:JSX.IntrinsicElements['group']) {
   const group = React.useRef<THREE.Group>(null)
   const { nodes, materials, animations } = useGLTF('/3d-objects/windy-day/WindyDay-transformed.glb') as GLTFResult
   const { actions } = useAnimations(animations, group)
+
+  if (actions.Object_0) {
+    actions
+  }
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">
@@ -293,4 +298,4 @@ const WindyDay: React.FC<JoinGrowthProps> = ({ animate, ...props }) => {
 }
 
 useGLTF.preload('/3d-objects/windy-day/WindyDay-transformed.glb');
-export default WindyDay;
+
