@@ -2,17 +2,19 @@
 import React from 'react'
 import styles from './styles.module.css'
 import { motion } from 'framer-motion'
-import { Avatar } from '@mui/material'
+import { Avatar, Chip } from '@mui/material'
 import parse from "html-react-parser";
 import { useRouter } from 'next/navigation'
 import { IBlogPopulated } from '@/app/_database/models/blog'
 import { MotionDiv } from '../framer/MotionDiv'
 import { MotionP } from '../framer/MotionP'
 import CardWrapper from '../CardWrapper'
+import ButtonPro from '../ButtonPro'
 
 
 const BlogCard: React.FC<{
-    post: IBlogPopulated
+    post: IBlogPopulated;
+    id?: string;
 }> = ({
     post: {
         title,
@@ -22,7 +24,9 @@ const BlogCard: React.FC<{
         createdAt,
         category,
         slug,
-    }
+        subcategories
+    },
+    id
 }) => {
 
         const router = useRouter();
@@ -40,7 +44,7 @@ const BlogCard: React.FC<{
             <CardWrapper>
 
                 <MotionDiv
-                    className={`${styles.blogCard}`}
+                    className={id && id == 'blog-page-featured' ? styles.blogCardFeatured : styles.blogCard}
                 >
 
                     <MotionDiv
@@ -95,6 +99,26 @@ const BlogCard: React.FC<{
 
                     </MotionDiv>
                 </MotionDiv>
+
+                {/* <MotionDiv
+                    className={id && id == 'blog-page-featured' ? styles.blogCardFeatured : styles.blogCard}
+                >
+                    <MotionDiv
+                        className='flex gap-2'
+                    >
+                        <ButtonPro label={category.name} variant='contained' color='primary' />
+                    </MotionDiv>
+                    {
+                        subcategories.map((s,i)=>{
+
+                            if (i%2==0) {
+                                return <ButtonPro key={`subcategory ${s._id}: ${s._id} ${i}`}  label={s.name} variant='outlined' color='secondary' />
+                            } else {
+                                return <ButtonPro key={`subcategory ${s._id}: ${s._id} ${i}`}  label={s.name} variant='outlined' color='primary' />
+                            }
+                        })
+                    }
+                </MotionDiv> */}
             </CardWrapper>
 
 

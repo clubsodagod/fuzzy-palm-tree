@@ -1,3 +1,4 @@
+import { IBlogPopulated } from "@/app/_database/models/blog";
 import { getFeaturedPosts } from "@/library/db/controllers/blog";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -9,7 +10,7 @@ export async function GET (req:NextRequest, res:NextResponse) {
     if(req.method == "GET") {
 
         // access featured posts
-        const featuredPosts = await getFeaturedPosts();
+        const featuredPosts = await getFeaturedPosts() as IBlogPopulated[];
 
         // validate featured posts object 
         if (featuredPosts) {

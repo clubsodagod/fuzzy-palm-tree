@@ -74,16 +74,16 @@ export const navItems: NavItem[] = [
     //         // },
     //     ]
     // },
-    // {
-    //     label: 'blog',
-    //     path: '/blog',
-    //     children: [
-    //         {
-    //             label: 'categories',
-    //             path: '/blog/categories'
-    //         }
-    //     ]
-    // },
+    {
+        label: 'blog',
+        path: '/blog',
+        children: [
+            {
+                label: 'categories',
+                path: '/blog/categories'
+            }
+        ]
+    },
     // {
     //     label: 'about',
     //     path: '/about',

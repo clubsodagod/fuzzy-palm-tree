@@ -4,7 +4,7 @@ import mongoose, { ObjectId } from "mongoose";
 import slugify from "slugify";
 import { Category } from "@mui/icons-material";
 import { BlogModel, UserModel, CategoryModel, SubcategoryModel } from "@/app/_database/models";
-import { BlogDocumentType, IBlog } from "@/app/_database/models/blog";
+import { BlogDocumentType, IBlog, IBlogPopulated } from "@/app/_database/models/blog";
 import Author from "@/app/_database/models/author";
 
 
@@ -83,12 +83,14 @@ export const getAllPosts = async() => {
 
         await  UserModel.find()
         await CategoryModel.find()
+        await SubcategoryModel.find()
         // access featured blog posts
-        const allPosts = await BlogModel.find().populate(['author','category']);
-
+        const allPosts = await BlogModel.find().populate(['author','category','subcategories',]);
+        console.log(allPosts);
+        
         // validate featured blog posts 
         if (allPosts) {
-            return allPosts
+            return allPosts as unknown as IBlogPopulated[]
         } else {
             return null
         }
@@ -107,12 +109,13 @@ export const getFeaturedPosts = async() => {
 
         await  UserModel.find()
         await CategoryModel.find()
+        await SubcategoryModel.find()
         // access featured blog posts
-        const featuredPosts = await BlogModel.find({featured:true}).populate(['author','category']);
+        const featuredPosts = await BlogModel.find({featured:true}).populate(['author','category','subcategories']);
 
         // validate featured blog posts 
         if (featuredPosts) {
-            return featuredPosts
+            return featuredPosts as unknown as IBlogPopulated[]
         } else {
             return null
         }
@@ -160,9 +163,9 @@ export const getPostBySlug = async(slug:string) => {
 
         // validate blog posts 
         if (postBySlug) {
-            console.log(postBySlug);
+            // console.log(postBySlug);
             
-            return postBySlug
+            return postBySlug as unknown as IBlogPopulated
         } else {
             return null
         }

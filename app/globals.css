@@ -137,6 +137,9 @@ main {
   padding-inline: 6vw;
   min-width: 100%;
   display: flex;
+  scroll-snap-type: x mandatory;
+  scroll-snap-align: center;
+  scroll-behavior: smooth;
   @media screen and (min-width:769px) {
     padding-inline: 0;
   }
@@ -184,6 +187,17 @@ div.snap-x-wrapper#programmer-approach-solid-hero {
   overflow-x: auto;
   width: 100%;
   padding-inline: 6vw;
+}
+
+
+.posts-ctn {
+  min-height: min-content;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.posts-ctn#blog-home{
+    height: 60vh;
 }
 
 .btn-pro-wrapper {

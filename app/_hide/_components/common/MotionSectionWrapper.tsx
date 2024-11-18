@@ -1,9 +1,8 @@
 "use client"
 import React, { RefObject } from 'react'
 import styles from './styles.module.css';
-import { MotionDiv } from '../framer/MotionDiv';
 import { motion, MotionProps } from "framer-motion";
-import { MotionSection } from '../framer/MotionSection';
+import { MotionSection } from '@/app/_components/common/framer/MotionSection';
 
 interface MotionSectionWrapperProps extends MotionProps {
     children: React.ReactNode;

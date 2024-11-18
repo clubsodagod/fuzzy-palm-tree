@@ -123,7 +123,7 @@ const ScrollableItemCtn: React.FC<ScrollableItemCtnProps> = ({
             className={ 
                 rest.id == 'programmer-approach-solid-hero' || rest.id == 'programmer-approach-sdlc-section' ? styles['solidChildWrapper'] 
                 : rest.id == 'programmer-approach-design-section' || rest.id == 'programmer-portfolio-main' ? styles['designPatternsChildWrapper'] 
-                :styles.childWrapper
+                :  rest.id == 'blog-posts-ctn' ? styles['blogChildWrapper'] :styles.childWrapper
             } 
             >
                 {children}

@@ -1,7 +1,7 @@
 'use client'
 import React, { RefObject} from 'react';
 import { AnimationControls, Variants } from 'framer-motion';
-import { MotionDiv } from '../framer/MotionDiv';
+import { MotionDiv } from '@/app/_components/common/framer/MotionDiv';
 
 
 const AppContainer:React.FC<{

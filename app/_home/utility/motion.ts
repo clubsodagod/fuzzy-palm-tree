@@ -25,16 +25,28 @@ export const useHomePageMotion = (scrollY: MotionValue, homeEventPoints: number[
 
 
 
+    // Define your animation arrays here
+    const newspaper_scale = [0,0,0,0.1,24,];
+    const newspaper_x = [0,-120,0,120,35,];
+    const newspaper_y = [useRVs([-5,-5,10]),0,useRVs([-15,-15,-10]),72,-20,];
+    const newspaper_z = [0,-150,0,0,0,];
+    const newspaper_rotation_x = [0,0,-5,0,5,];
+    const newspaper_rotation_y = [0,0,0,0,0,];
+    const newspaper_rotation_z = [0,0,0,0,0,];
+
+
+
 
 
     // Functions to handle animations    
     const mainMotion = () => Animate(useTransform, scrollY, main_scale, main_x, main_y, main_z, main_rotation_x,main_rotation_y,main_rotation_z, homeEventPoints);
     const programmerMotion = () => Animate(useTransform, scrollY, developer_scale, developer_x, developer_y, developer_z, developer_rotation_x,developer_rotation_y,developer_rotation_z, homeEventPoints);
+    const newspaperMotion = () => Animate(useTransform, scrollY, newspaper_scale, newspaper_x, newspaper_y, newspaper_z, newspaper_rotation_x,newspaper_rotation_y,newspaper_rotation_z, homeEventPoints);
    
     // Return the motions
     return {
         programmerMotion,
         mainMotion,
-     
+        newspaperMotion,
     };
 }

@@ -3,10 +3,11 @@
 import React, { useRef } from 'react'
 import styles from './styles.module.css'
 import ArrowCircleDownRoundedIcon from '@mui/icons-material/ArrowCircleDownRounded';
-import { MotionDiv } from '../framer/MotionDiv';
 import type { HTMLMotionProps } from 'framer-motion';
 import { useScroll } from '@/app/_hide/_context/sub-context/ScrollContext';
 import { useScreenContext } from '@/app/_hide/_context/sub-context/ScreenContext';
+import { useAppContext } from '@/app/_context/AppContext';
+import { MotionDiv } from '@/app/_components/common/framer/MotionDiv';
 
 export type MotionDivProps = HTMLMotionProps<'div'>;
 
@@ -29,8 +30,8 @@ const ScrollableItemCtn: React.FC<ScrollableItemCtnProps> = ({
     ...rest
 }) => {
     const {
-        isMobile, currentBreakpoint
-    } = useScreenContext()
+        screen:{isMobile, currentBreakpoint}
+    } = useAppContext()
     const scrollCtnRef = useRef<HTMLDivElement>(null);
     // Function to scroll the container by the window width
     const scrollContainer = (direction: 'left' | 'right') => {

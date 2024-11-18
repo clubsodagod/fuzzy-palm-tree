@@ -1,0 +1,43 @@
+.featuredPostsCtn {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    overflow-x: auto;
+}
+
+.sectionHeaderCtn {
+    margin-top: 6vh;
+}
+
+.sectionHeaderTxt {
+    
+}
+
+.sectionCtn {
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width:769px) {
+        flex-direction: row;
+    }
+}
+
+
+/* categories page ---- categories page ------ categories page */
+
+.categoryPageMainHero {
+    margin-bottom: 6vh;
+}
+
+.categoriesCardCtn {
+    display: flex;
+    flex-direction: column;
+    gap: 6vh;
+}
+
+
+.postsCtn {
+    height: 100%;
+    flex-grow: 1;
+    min-height: content;
+}

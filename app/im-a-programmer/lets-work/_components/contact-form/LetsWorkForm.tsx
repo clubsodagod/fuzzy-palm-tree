@@ -72,7 +72,7 @@ const LetsWorkForm: React.FC<{}> = ({ }) => {
                 setErrorFields({});
                 setTimeout(() => {
                     setErrorResponseMessage(undefined);
-                }, 1500)
+                }, 2500)
             } else {
                 setErrorResponseMessage({
                     error: true,

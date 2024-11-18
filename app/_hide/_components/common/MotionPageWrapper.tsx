@@ -1,10 +1,9 @@
 "use client"
 import React, { RefObject } from 'react'
 import styles from './styles.module.css'
-import { AnimatePresencePro } from '../framer/AnimatePresencePro';
 import { Navbar } from '..';
-import { MotionDiv } from '../framer/MotionDiv';
 import { AnimationControls, Variants } from 'framer-motion';
+import { MotionDiv } from '@/app/_components/common/framer/MotionDiv';
 
 
 const MotionPageWrapper: React.FC<{

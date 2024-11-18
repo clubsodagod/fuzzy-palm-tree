@@ -32,6 +32,7 @@ export const getAllPosts = async() => {
 export type InitBlogHomePageFunction = () => Promise<{
     featuredPosts: IBlogPopulated[];
     allPosts: IBlogPopulated[];
+    slugPost: IBlogPopulated;
 } | null>;
 
 // Initialize the blog home page data.
@@ -43,15 +44,19 @@ export const getBlogs: InitBlogHomePageFunction = async () => {
 
         const allPostsResponse = await fetch('https://fuzzy-palm-tree.vercel.app/api/blog/get/all',);
 
+        const slugResponse = await fetch('https://fuzzy-palm-tree.vercel.app/api/blog/get/slug?slug=sample-one',);
+
         // Validate responses by checking their status.
-        if (featuredResponse.ok && allPostsResponse.ok) {
+        if (featuredResponse.ok && allPostsResponse.ok && slugResponse.ok) {
             const featuredPosts = await featuredResponse.json().then((res) => res.featuredPosts as IBlogPopulated[]);
             const allPostsUnfiltered = await allPostsResponse.json().then((res) => res.posts as IBlogPopulated[]);
-
+            const slugPost = await slugResponse.json().then((res) => res.post as IBlogPopulated);
+            console.log(featuredPosts, '&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&');
+            
             // Filter out posts that are already featured.
             const allPostsFiltered = allPostsUnfiltered.filter((p) => !p.featured);
 
-            return { featuredPosts, allPosts:allPostsFiltered };
+            return { featuredPosts, allPosts:allPostsFiltered, slugPost };
         } else {
             return null;
         }
