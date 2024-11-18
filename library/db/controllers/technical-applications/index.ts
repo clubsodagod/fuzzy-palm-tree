@@ -2,7 +2,7 @@
 import { TechnicalApplicationModel } from "@/app/_database/models";
 import { connectToMongoDB } from "../../db";
 import slugify from "slugify";
-import { TechnicalApplicationDocumentType } from "../../models/technicalApplication";
+import { TechnicalApplicationDocumentType } from "@/app/_database/models/technicalApplication";
 
 
 

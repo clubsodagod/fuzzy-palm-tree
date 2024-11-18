@@ -6,8 +6,8 @@ import { Model } from 'mongoose';
 import slugify from "slugify";
 import { isCategory } from "@/utility/admin/identifiers";
 import { CategoryModel, SubcategoryModel } from "@/app/_database/models";
-import { ICategory } from "../../models/category";
-import { ISubcategory } from "../../models/subcategory";
+import { ICategory } from "@/app/_database/models/category";
+import { ISubcategory } from "@/app/_database/models/subcategory";
 
 
 export type IdentifierModelsType = typeof CategoryModel | typeof SubcategoryModel;

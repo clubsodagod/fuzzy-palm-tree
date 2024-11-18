@@ -1,22 +1,26 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import styles from '../styles.module.css'
 import { AppContainer } from '@/app/_hide/_components';
 import CaseStudies from './CaseStudies';
+import Demos from './Demos';
 import PortfolioMainHero from './PortfolioMainHero';
+import SocialValidation from './SocialValidation';
+import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv';
 import PortfolioScene from './scene/PortfolioScene';
+import { useScreenContext } from '@/app/_hide/_context/sub-context/ScreenContext';
 import { useScroll } from '@/app/_hide/_context/sub-context/ScrollContext';
 import { scrollToSection } from '@/utility/common/scrollToSection';
 import { useAnimationControls } from 'framer-motion';
 import ScrollGradientUtil from '@/utility/common/ScrollGradientUtil';
 import { ICaseStudy } from '@/app/_database/models/case-study';
 import { ITechnicalApplication } from '@/app/_database/models/technicalApplication';
-import { usePortfolioPageRefs } from '../_utils/refs';
-import { portfolioPageGradientAnimations } from '../_utils/animation-gradients';
-import { useAppContext } from '@/app/_context/AppContext';
+import { portfolioPageGradientAnimations } from '../../portfolio/_utils/animation-gradients';
+import { usePortfolioPageRefs } from '../../portfolio/_utils/refs';
 
 interface PortfolioModuleProps {
-    technicalApplications: ITechnicalApplication[]|undefined|null;
-    caseStudies: ICaseStudy[]|undefined|null;
+    technicalApplications: ITechnicalApplication[];
+    caseStudies: ICaseStudy[];
 }
 
 const PortfolioModule: React.FC<PortfolioModuleProps> = ({
@@ -24,14 +28,14 @@ const PortfolioModule: React.FC<PortfolioModuleProps> = ({
 }) => {
 
     const [currentSection, setCurrentSection] = useState<string>('portfolio-main');
-    const [caseStudy, setCaseStudy] = useState<ICaseStudy|undefined|null>(caseStudies && caseStudies[0]);
+    const [caseStudy, setCaseStudy] = useState<ICaseStudy>(caseStudies[0]);
 
     const [index, setIndex] = useState<number>(0);
     const [link, setLink] = useState<string>('/images/desktop-pearl-box.png');
 
     const {
-        scroll: { windowScrollHeight, setWindowScrollHeight, scrollY, windowHeight, setWindowHeight, scrollYProgress }
-    } = useAppContext();
+        windowScrollHeight, setWindowScrollHeight, scrollY, windowHeight, setWindowHeight, scrollYProgress
+    } = useScroll();
 
     const controls = useAnimationControls();
 
@@ -59,15 +63,19 @@ const PortfolioModule: React.FC<PortfolioModuleProps> = ({
         { windowScrollHeight && windowScrollHeight }
         { windowHeight && windowHeight }
     }, [windowScrollHeight, setWindowScrollHeight, ctnRef, windowHeight, setWindowHeight]);
-    console.log(caseStudy);
+console.log(caseStudy);
 
     return (
-        <>
+        <AppContainer
+            ctnRef={ctnRef}
+            controls={controls}
+            gradientVariants={portfolioPageGradientAnimations}
+        >
             <PortfolioMainHero
                 id='portfolio-main'
                 scrollTo={scrollToSectionHandler}
                 ctnRef={mainRef}
-                technicalApplications={technicalApplications ? technicalApplications : undefined}
+                technicalApplications={technicalApplications}
                 scrollY={scrollY}
                 index={index}
                 setIndex={setIndex}
@@ -79,21 +87,21 @@ const PortfolioModule: React.FC<PortfolioModuleProps> = ({
                 ctnRef={caseStudiesRef}
                 id='portfolio-case-studies'
                 scrollTo={scrollToSectionHandler}
-                caseStudies={caseStudies ? caseStudies : undefined}
-                caseStudy={caseStudy ? caseStudy : undefined}
+                caseStudies={caseStudies}
+                caseStudy={caseStudy}
                 setCaseStudy={setCaseStudy}
             />
 
             <PortfolioScene
                 link={link}
                 scrollY={scrollY}
-                caseStudy={caseStudy ? caseStudy : undefined}
+                caseStudy={caseStudy}
             />
 
             {/* <Demos /> */}
             {/* <SocialValidation /> */}
             {/* <Visuals /> */}
-        </>
+        </AppContainer>
     )
 }
 

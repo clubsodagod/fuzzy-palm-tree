@@ -8,7 +8,6 @@ import PortfolioMainHero from './PortfolioMainHero';
 import SocialValidation from './SocialValidation';
 import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv';
 import PortfolioScene from './scene/PortfolioScene';
-import { usePortfolioRefs } from '../../portfolio/_utils/refs';
 import { useScreenContext } from '@/app/_hide/_context/sub-context/ScreenContext';
 import { useScroll } from '@/app/_hide/_context/sub-context/ScrollContext';
 import { scrollToSection } from '@/utility/common/scrollToSection';
@@ -17,6 +16,7 @@ import { portfolioPageGradientAnimations } from '../../portfolio/_utils/animatio
 import ScrollGradientUtil from '@/utility/common/ScrollGradientUtil';
 import { ICaseStudy } from '@/app/_database/models/case-study';
 import { ITechnicalApplication } from '@/app/_database/models/technicalApplication';
+import { usePortfolioPageRefs } from '@/app/im-a-programmer/portfolio/_utils/refs';
 
 interface PortfolioModuleProps {
     technicalApplications: ITechnicalApplication[];
@@ -41,7 +41,7 @@ const PortfolioModule: React.FC<PortfolioModuleProps> = ({
 
     const {
         mainRef, caseStudiesRef, refs, ctnRef, bodyRef
-    } = usePortfolioRefs();
+    } = usePortfolioPageRefs();
 
     function scrollToSectionHandler(id: string) {
         scrollToSection(id, refs, currentSection);

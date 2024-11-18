@@ -1,7 +1,6 @@
 'use client'
 import { firstName, lastName } from '@/library/const'
 import React, { RefObject, useRef } from 'react'
-import { HomeScene } from '../scenes'
 import ExpandCircleDownOutlinedIcon from '@mui/icons-material/ExpandCircleDownOutlined';
 import Image from 'next/image'
 import { AnimatePresence, motion, MotionValue, useScroll, useTransform, } from 'framer-motion';

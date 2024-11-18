@@ -2,7 +2,6 @@
 import { blogHeroH1 } from '@/library/const'
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { RefObject } from 'react'
-import { BlogScene, HomeScene } from '../scenes'
 import styles from './home-page.module.css'
 import { Button } from '@mui/material'
 import OuterSceneWrapper from '../common/OuterSceneWrapper'

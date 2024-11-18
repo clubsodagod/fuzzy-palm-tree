@@ -1,6 +1,5 @@
 'use client'
 import { useAppContext } from '@/app/_context/AppContext';
-import { Overview, OverviewDynamic, WhyDigitalSolutions, WhyDigitalSolutionsDynamic } from '@/app/_hide/im-a-programmer/_components';
 import IntersectionWatcher from '@/app/_utility/window/IntersectionWatcher';
 import WindowUpdater from '@/app/_utility/window/WindowUpdater';
 import { overview, Chapter, importantFactors, Point } from '@/library/const';
@@ -9,6 +8,10 @@ import { numberToWord } from '@/utility/functions';
 import { useProgrammerPageSectionRefs } from '@/utility/refs/programmer-page-refs';
 import React from 'react'
 import ProgrammerScene from './three/ProgrammerScene';
+import OverviewDynamic from './OverviewDynamic';
+import Overview from './Overview';
+import WhyDigitalSolutions from './WhyDigitalSolutions';
+import WhyDigitalSolutionsDynamic from './WhyDigitalSolutionsDynamic';
 
 const ProgrammerModule = () => {
 

@@ -2,7 +2,6 @@
 
 
 
-export { default as HomeScene } from './HomeScene';
 export { default as InvestmentScene } from './InvestmentScene';
 export { default as ProgrammerScene } from './ProgrammerScene';
 export { default as BlogScene } from './BlogScene';

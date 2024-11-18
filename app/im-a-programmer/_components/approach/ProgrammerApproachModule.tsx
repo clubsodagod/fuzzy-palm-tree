@@ -1,15 +1,15 @@
 'use client'
 import { useAppContext } from '@/app/_context/AppContext';
-import MotionPageWrapper from '@/app/_hide/_components/common/MotionPageWrapper';
 import IntersectionWatcher from '@/app/_utility/window/IntersectionWatcher';
 import WindowUpdater from '@/app/_utility/window/WindowUpdater';
 import { scrollToSection } from '@/app/_utility/scroll/scroll-to-section';
 import { useProgrammerPageSectionRefs } from '../../_utility/refs';
 import React from 'react'
-import { ApproachHero, DesignPatterns } from '@/app/_hide/im-a-programmer/_components/approach';
-import SDLCHero from '@/app/_hide/im-a-programmer/_components/approach/sdlc/SDLCHero';
-import SolidHero from '@/app/_hide/im-a-programmer/_components/approach/solid/SolidHero';
 import { IBlogPopulated } from '@/app/_database/models/blog';
+import ApproachHero from '../ApproachHero';
+import DesignPatterns from '../DesignPatterns';
+import SDLCHero from './sdlc/SDLCHero';
+import SolidHero from './solid/SolidHero';
 
 interface ProgrammerApproachModuleProps {
     posts:IBlogPopulated[]|undefined;

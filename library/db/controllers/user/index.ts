@@ -8,7 +8,7 @@ import { useRegisterHtmlContent as registerHtmlContent } from "@/library/const/h
 import mongoose from "mongoose";
 import type { ObjectId } from "mongoose";
 import { PortfolioModel, UserModel } from "@/app/_database/models";
-import { IUser } from "../../models/user";
+import { IUser } from "@/app/_database/models/user";
 
 const sgMail = require('@sendgrid/mail')
 
