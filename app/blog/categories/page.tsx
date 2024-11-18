@@ -1,17 +1,13 @@
-import MotionPageWrapper from '@/app/_hide/_components/common/MotionPageWrapper'
-import MotionSectionWrapper from '@/app/_hide/_components/common/MotionSectionWrapper'
-import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv'
-import { MotionH1 } from '@/app/_hide/_components/framer/MotionH1'
-import { MotionH2 } from '@/app/_hide/_components/framer/MotionH2'
-import { MotionH3 } from '@/app/_hide/_components/framer/MotionH3'
-import { MotionH5 } from '@/app/_hide/_components/framer/MotionH5'
-import { MotionH6 } from '@/app/_hide/_components/framer/MotionH6'
-import { MotionP } from '@/app/_hide/_components/framer/MotionP'
 import { getAllCategoriesClient } from '@/utility/blog-section/blog-page-functions'
 import React from 'react'
 import MotionCategoryCard from '../_components/MotionCategoryCard'
-import styles from '../styles.module.css'
+import styles from '../_components/styles.module.css'
 import { ICategoryPopulated } from '@/app/_database/models/category'
+import { MotionDiv } from '@/app/_components/common/framer/MotionDiv'
+import { MotionH2 } from '@/app/_components/common/framer/MotionH2'
+import { MotionH6 } from '@/app/_components/common/framer/MotionH6'
+import MotionPageWrapper from '@/app/_components/common/MotionPageWrapper'
+import MotionSectionWrapper from '@/app/_components/common/SectionWrapper'
 
 export default async function CategoriesPage() {
 
