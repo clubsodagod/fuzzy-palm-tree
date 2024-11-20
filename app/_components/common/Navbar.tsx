@@ -33,7 +33,7 @@ export default function DrawerAppBar() {
 
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'left' }} id="navbar-drawer">
-            <Typography variant="h6" sx={{ my: 2 }}>
+            <Typography variant="h4" sx={{ my: 2 }}>
                 Maliek Davis
             </Typography>
             <Divider />
@@ -125,9 +125,9 @@ export default function DrawerAppBar() {
                         sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block', color: 'white' } }}
                         href={'/'}
                     >
-                        <h6>
+                        <h3>
                             Maliek Davis
-                        </h6>
+                        </h3>
 
                     </Button>
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>

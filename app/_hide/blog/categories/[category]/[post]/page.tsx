@@ -30,7 +30,7 @@ export async function generateStaticParams() {
     
     return [
         categories?.map((c:ICategory)=>{
-            posts?.map((p:IBlog)=>(
+            posts?.map((p:IBlogPopulated)=>(
                 {category:c.slug, post:p.slug}
             ))
         })

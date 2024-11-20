@@ -42,7 +42,7 @@ export default async function CategoriesPage() {
 
                 {/* category cards */}
                 {
-                    categories.length > 0 &&
+                    categories && categories.length > 0 &&
                     <MotionDiv
                     className={`${styles.categoriesCardCtn}`}
                     >
