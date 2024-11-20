@@ -1,3 +1,4 @@
+'use client'
 import { useAppContext } from '@/app/_context/AppContext';
 import { ScalesThreeType, VisibilityThreeType } from '@/app/_library/types/common';
 import ScaleManager from '@/app/_utility/three/ScaleManager';
@@ -31,10 +32,7 @@ const DigitalSolutionsExperience = () => {
 
     // memoized 3D assets
     const CachedIdeaLamp = React.memo(IdeaLamp);
-    const CachedMatrix = React.memo(Matrix);
-    const CachedGhostInShell = React.memo(GhostInShell);
-    const CachedNetwork = React.memo(Network);
-    const CachedMotor = React.memo(Motor);
+    const CachedChip = React.memo(Chip);
     const CachediPhone = React.memo(IPhoneProMax);
     const CachediPad = React.memo(IpadPro);
 
@@ -43,12 +41,12 @@ const DigitalSolutionsExperience = () => {
 
     const [visible, setVisible] = React.useState<VisibilityThreeType>({
         matrix: true,
-        ideaLamp: true,
-        ghostInShell: true,
-        iPhone: true,
-        iPad: true,
-        webMobile: true,
-        chip: true,
+        ideaLamp: false,
+        ghostInShell: false,
+        iPhone: false,
+        iPad: false,
+        webMobile: false,
+        chip: false,
     });
 
     // event points for calculating 3d assets
@@ -69,18 +67,19 @@ const DigitalSolutionsExperience = () => {
     const mainScalingFactor = window ? Math.min(Math.max(window.innerWidth / 1920, window.innerWidth > 700 && window.innerWidth < window.innerHeight ? 0.4 : 0.6), 3) : 1;
 
     // scale const for managing visibility
-    const matrix = ideaLampMotion().scale.get() * mainScalingFactor;
+    const matrix = matrixMotion().scale.get() * mainScalingFactor;
     const ideaLamp = ideaLampMotion().scale.get() * mainScalingFactor;
-    const chip = ideaLampMotion().scale.get() * mainScalingFactor;
-    const iPad = ideaLampMotion().scale.get() * mainScalingFactor;
-    const iPhone = ideaLampMotion().scale.get() * mainScalingFactor;
-    const webMobile = ideaLampMotion().scale.get() * mainScalingFactor;
-    const ghostInShell = ideaLampMotion().scale.get() * mainScalingFactor;
+    const chip = chipMotion().scale.get() * mainScalingFactor;
+    const iPad = iPadMotion().scale.get() * mainScalingFactor;
+    const iPhone = iPhoneMotion().scale.get() * mainScalingFactor;
+    const webMobile = webMobileMotion().scale.get() * mainScalingFactor;
+    const macbook = macbookMotion().scale.get() * mainScalingFactor;
+    const ghostInShell = ghostInShellMotion().scale.get() * mainScalingFactor;
 
     // scales object for visibility manager
     const [scales, setScales] = React.useState<ScalesThreeType>({
         matrix, ideaLamp, chip, iPad, iPhone,
-        webMobile, ghostInShell
+        webMobile, ghostInShell, macbook
     });
 
     // update scaling factor when it changes
@@ -91,18 +90,15 @@ const DigitalSolutionsExperience = () => {
 
     // manage scales of object for scroll changes
     ScaleManager({
-        scrollY, setScales, scalesPayload: {
-            ideaLamp
-        }
+        scrollY, setScales, scalesPayload: scales
     });
 
     return (
         <MotionGroup
             scale={scalingFactor}
         >
-<OrbitControls />
             <MotionGroup
-            visible={visible.matrix}
+                visible={visible.matrix}
                 position={[matrixMotion().x, matrixMotion().y, matrixMotion().z]}
                 rotation={[matrixMotion().rotationX, matrixMotion().rotationY, matrixMotion().rotationZ]}
                 scale={matrixMotion().scale}
@@ -111,7 +107,7 @@ const DigitalSolutionsExperience = () => {
             </MotionGroup>
 
             <MotionGroup
-            visible={visible.ideaLamp}
+                visible={visible.ideaLamp}
                 position={[ideaLampMotion().x, ideaLampMotion().y, ideaLampMotion().z]}
                 rotation={[ideaLampMotion().rotationX, ideaLampMotion().rotationY, ideaLampMotion().rotationZ]}
                 scale={ideaLampMotion().scale}
@@ -124,10 +120,10 @@ const DigitalSolutionsExperience = () => {
                 </Float>
             </MotionGroup>
 
-            
+
 
             <MotionGroup
-            visible={visible.ghostInShell}
+                visible={visible.ghostInShell}
                 position={[ghostInShellMotion().x, ghostInShellMotion().y, ghostInShellMotion().z]}
                 rotation={[ghostInShellMotion().rotationX, ghostInShellMotion().rotationY, ghostInShellMotion().rotationZ]}
                 scale={ghostInShellMotion().scale}
@@ -137,7 +133,7 @@ const DigitalSolutionsExperience = () => {
 
             {/* web and mobile apps experience */}
             <MotionGroup
-            visible={visible.webMobile}
+                visible={visible.webMobile}
                 position={[webMobileMotion().x, webMobileMotion().y, webMobileMotion().z]}
                 rotation={[webMobileMotion().rotationX, webMobileMotion().rotationY, webMobileMotion().rotationZ]}
                 scale={webMobileMotion().scale}
@@ -152,7 +148,7 @@ const DigitalSolutionsExperience = () => {
                         scale={iPhoneMotion().scale}
                     >
                         <Float
-                        floatIntensity={5}
+                            floatIntensity={5}
                         >
                             <CachediPhone />
                         </Float>
@@ -164,7 +160,7 @@ const DigitalSolutionsExperience = () => {
                         scale={iPadMotion().scale}
                     >
                         <Float
-                        floatIntensity={5}
+                            floatIntensity={5}
                         >
                             <CachediPad />
                         </Float>
@@ -181,9 +177,9 @@ const DigitalSolutionsExperience = () => {
 
 
             </MotionGroup>
-     
+
             <MotionGroup
-            visible={visible.chip}
+                visible={visible.chip}
                 position={[chipMotion().x, chipMotion().y, chipMotion().z]}
                 rotation={[chipMotion().rotationX, chipMotion().rotationY, chipMotion().rotationZ]}
                 scale={chipMotion().scale}
@@ -192,7 +188,7 @@ const DigitalSolutionsExperience = () => {
                     floatIntensity={5}
                     rotationIntensity={5}
                 >
-                    <Chip  />
+                    <CachedChip />
                 </Float>
             </MotionGroup>
 

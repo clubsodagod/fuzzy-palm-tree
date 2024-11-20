@@ -17,6 +17,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { NavItem } from '@/app/_library/types/common';
 import { navItems } from '@/app/_library/const/nav';
+import { MotionDiv } from './framer/MotionDiv';
 
 
 
@@ -32,17 +33,24 @@ export default function DrawerAppBar() {
     };
 
     const drawer = (
-        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'left' }} id="navbar-drawer">
-            <Typography variant="h4" sx={{ my: 2 }}>
-                Maliek Davis
-            </Typography>
+        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'left', color:'whitesmoke' }} id="navbar-drawer">
+            <MotionDiv
+            className='flex justify-center items-center py-3'
+            >
+                <Typography variant="h5" sx={{ my: 2 }}>
+                    Maliek Davis
+                </Typography>
+            </MotionDiv>
+
             <Divider />
             <List>
                 {navItems.map((item, i) => (
                     <div key={`${item.label} drawer ${i}`}>
                         <ListItem >
                             <ListItemButton sx={{ textAlign: 'left' }} href={item.path}>
-                                <ListItemText primary={item.label} />
+                                <Typography variant='h6'>
+                                    {item.label.toUpperCase()}
+                                </Typography>
                             </ListItemButton>
                         </ListItem>
                         {
@@ -51,9 +59,10 @@ export default function DrawerAppBar() {
                                 {
                                     item.children.map((child) => (
                                         <ListItem key={`${child.label} child item`} disablePadding>
-                                            <ListItemButton  sx={{ textAlign: 'left', paddingLeft: '10vw' }}>
-                                                <Button href={child.path}>{child.label}</Button>
-                                                {/* <ListItemText primary={child.label} /> */}
+                                            <ListItemButton href={child.path} sx={{ textAlign: 'left', paddingLeft: '10vw', color:'whitesmoke' }}>
+                                                <Typography variant='subtitle1'>
+                                                    {child.label.toUpperCase()}
+                                                </Typography>
                                             </ListItemButton>
                                         </ListItem>
                                     ))
@@ -66,8 +75,8 @@ export default function DrawerAppBar() {
         </Box>
     );
 
-    function handleClick(child:NavItem) {
-        if(childPaths) {
+    function handleClick(child: NavItem) {
+        if (childPaths) {
             setChildPaths(null);
         } else {
             setChildPaths(child)
@@ -75,42 +84,45 @@ export default function DrawerAppBar() {
     }
 
     return (
-        <Box sx={{ display: 'flex', position:'relative', width:'100%' }}>
+        <Box sx={{ display: 'flex', position: 'relative', width: '100%' }}>
             <CssBaseline />
             {
                 childPaths?.children && childPaths.children.length > 0 &&
-                <AppBar component="nav" sx={{ marginTop:'6vh',
+                <AppBar component="nav" sx={{
+                    marginTop: '8vh',
                 }}>
                     <Toolbar>
-                    <Box sx={{ display: { xs: 'none', sm: 'flex' },  }}
-                    className={`justify-center w-full gap-[3vw]`}
-                    >
-                        
-                        <Button
-                                    sx={{ display: { xs: 'none', sm: 'block', color: 'white' } }}
-                                    href={childPaths.path}
-                                >
-                                    {childPaths.label}
-                                </Button>
-                        {
-                            childPaths.children.map((item, ) => (
-                                <Button
-                                    key={item.label}
-                                    sx={{ display: { xs: 'none', sm: 'block', color: 'white' } }}
-                                    href={item.path}
-                                >
-                                    {item.label}
-                                </Button>
-                            ))
-                        }                        
-                    </Box>
+                        <Box sx={{ display: { xs: 'none', sm: 'flex' }, }}
+                            className={`justify-center w-full gap-[3vw]`}
+                        >
+
+                            <Button
+                                sx={{ display: { xs: 'none', sm: 'block', color: 'white' } }}
+                                href={childPaths.path}
+                            >
+                                {childPaths.label}
+                            </Button>
+                            {
+                                childPaths.children.map((item,) => (
+                                    <Button
+                                        key={item.label}
+                                        sx={{ display: { xs: 'none', sm: 'block', color: 'white' } }}
+                                        href={item.path}
+                                    >
+                                        {item.label}
+                                    </Button>
+                                ))
+                            }
+                        </Box>
 
 
                     </Toolbar>
                 </AppBar>
             }
-            <AppBar component="nav">
-                <Toolbar>
+            <AppBar component="nav" className={`py-2`}>
+                <Toolbar
+                    className={`items-center`}
+                >
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -120,20 +132,18 @@ export default function DrawerAppBar() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Button
-                        component="div"
+                    <Box
                         sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block', color: 'white' } }}
-                        href={'/'}
                     >
-                        <h3>
+                        <Typography component='div' variant='h4'>
                             Maliek Davis
-                        </h3>
+                        </Typography>
+                    </Box>
 
-                    </Button>
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                         {navItems.map((item) => (
                             <Button key={item.label} sx={{ color: '#fff' }} href={!item.children ? item.path : ''}
-                            onClick={()=>{ handleClick(item)}}
+                                onClick={() => { handleClick(item) }}
                             >
                                 {item.label}
                             </Button>

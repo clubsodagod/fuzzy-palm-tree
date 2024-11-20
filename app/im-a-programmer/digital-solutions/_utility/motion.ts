@@ -89,7 +89,7 @@ export const programmerDigitalSolutionsMotion = (scrollY: MotionValue, homeEvent
         0,0,0,0,0,
     ];
     const matrix_y = [
-        0,0,0,0,0,
+        -1.5,0,0,0,0,
         0,0,0,0,0,
         0,0,0,0,0,
         0,0,0,0,0,

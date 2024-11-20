@@ -67,15 +67,15 @@ const SolidHero: React.FC<SolidHeroProps> = ({
                     >
                         <ScrollCtnWrapper>
                             <ScrollableItemCtn
-                                id='programmer-approach-solid-hero'
+                            elementRef={scrollCtnRef}
+                                id='programmer-approach-design-section'
                             >
 
                                 {
                                     solidPrinciples.map((p, i: number) => {
                                         return (
                                             <MotionDiv key={`${i}: solid principle`}
-                                                className={`snap-x-wrapper snap-center`}
-                                                id='programmer-approach-solid-hero'
+                                                className={`${styles.creationWrapper} snap-center `}
                                             >
                                                 <SolidCard
                                                     principle={p}

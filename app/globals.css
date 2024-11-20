@@ -126,6 +126,9 @@ main {
 .btm-hero-ctn-wrapper {
   z-index: 1;
   color: #b1b1b1;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
 }
 
 .header-wrapper {

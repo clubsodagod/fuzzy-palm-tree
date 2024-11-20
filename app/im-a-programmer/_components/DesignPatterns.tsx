@@ -73,7 +73,7 @@ const DesignPatterns: React.FC<{
                         {
                             designPatterns.creation.map((p, i: number) => {
                                 return (
-                                    <MotionDiv key={`${i}: solid principle`}
+                                    <MotionDiv key={`${i}: design principle`}
                                         className={`${styles.creationWrapper} snap-center`}
                                     >
                                         <DesignPatternCard

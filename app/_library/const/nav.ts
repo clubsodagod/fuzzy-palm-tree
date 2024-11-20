@@ -88,8 +88,8 @@ export const navItems: NavItem[] = [
         label: 'about',
         path: '/about',
     },
-    // {
-    //     label: 'contact',
-    //     path: '/contact'
-    // },
+    {
+        label: 'contact',
+        path: '/contact'
+    },
 ]

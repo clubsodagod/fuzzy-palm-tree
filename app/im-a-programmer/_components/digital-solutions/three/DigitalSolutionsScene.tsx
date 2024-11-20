@@ -1,3 +1,4 @@
+'use client'
 import ShadowCatcher from '@/app/_components/common/three/lights/ShadowCatcher'
 import StandardLights from '@/app/_components/common/three/lights/StandardLights'
 import { Canvas } from '@react-three/fiber'
