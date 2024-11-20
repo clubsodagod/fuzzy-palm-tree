@@ -5,14 +5,14 @@ import React from "react";
 import { MotionDiv } from "./framer/MotionDiv";
 
 interface HeaderProps extends MotionDivProps {
-    headerLabel:string|React.ReactNode|undefined;
-    tagLine:string;
-    right?:boolean;
+    headerLabel: string | React.ReactNode | undefined;
+    tagLine?: string;
+    right?: boolean;
     size?: 'sm' | 'md' | 'lg';
 }
 
 const Header: React.FC<HeaderProps> = (
-    {headerLabel, tagLine, right, size, ...props}
+    { headerLabel, tagLine, right, size, ...props }
 ) => {
 
     const className = right ? "right" : "left";
@@ -21,21 +21,26 @@ const Header: React.FC<HeaderProps> = (
 
     return (
         <MotionDiv
-        {...props}
-        className={` header-wrapper ${className}`}
+            {...props}
+            className={` header-wrapper ${className}`}
         >
-            
+
             <MotionDiv>
                 <Typography className={'header-text'} variant={variant}>
                     {headerLabel}
                 </Typography>
             </MotionDiv>
-            <Typography
-            className={'subheader-text'}
-            variant='subtitle1'
-            >
-                {tagLine}
-            </Typography>
+
+            {
+                tagLine &&
+                <Typography
+                    className={'subheader-text'}
+                    variant='subtitle1'
+                >
+                    {tagLine}
+                </Typography>
+            }
+
         </MotionDiv>
     )
 }

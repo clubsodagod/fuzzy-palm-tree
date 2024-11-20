@@ -3,6 +3,7 @@ import mongoose, { Document, Schema, Model, model, ObjectId } from 'mongoose';
 import { IUser } from './user';
 import { sluggerPlugin } from 'mongoose-slugger-plugin';
 import { ICategory } from './category';
+import { ISubcategory } from './subcategory';
 
 // Define an interface for Blog Document 
 export interface BlogDocumentType {
@@ -39,7 +40,7 @@ export interface IBlogPopulated extends Document {
   content: string;
   author: IUser;
   category: ICategory;
-  subcategories: mongoose.Types.ObjectId[];
+  subcategories: ISubcategory[];
   tags: string[];
   createdAt: Date;
   updatedAt: Date;

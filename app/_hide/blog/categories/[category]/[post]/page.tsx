@@ -14,7 +14,6 @@ import { getAllIdentifiers } from '@/library/db/controllers/identifiers';
 import { CategoryModel } from '@/app/_database/models';
 import { IBlog, IBlogPopulated } from '@/app/_database/models/blog';
 import { ICategory } from '@/app/_database/models/category';
-import SlugPageModule from './_components/SlugPageModule';
 
 
 // Next.js will invalidate the cache when a
@@ -31,7 +30,7 @@ export async function generateStaticParams() {
     
     return [
         categories?.map((c:ICategory)=>{
-            posts?.map((p:IBlogPopulated)=>(
+            posts?.map((p:IBlog)=>(
                 {category:c.slug, post:p.slug}
             ))
         })
@@ -50,38 +49,41 @@ export default async function BlogSlugPage ({ params }: { params: { post: string
         };
     }
     
-   
+    const {
+        title,
+        content,
+        author,
+        featuredImg,
+        createdAt
+    } = post;
     
     // Parse the HTML content only if post content exists
-    const parsedContent = post.content ? parse(post.content) : null;
+    const parsedContent = content ? parse(content) : null;
 
     return (
-        <SlugPageModule
-         post={post}
-        />
-        // <MotionPageWrapper>
-        //     <MotionDiv className={`w-full h-[45vh] overflow-hidden`}>
-        //         <MotionImg className={`object-cover w-full h-full`} src={featuredImg.portrait} />
-        //     </MotionDiv>
-        //     <MotionSectionWrapper>
-        //         <MotionDiv>
-        //             <MotionH1>{title} Page</MotionH1>
+        <MotionPageWrapper>
+            <MotionDiv className={`w-full h-[45vh] overflow-hidden`}>
+                <MotionImg className={`object-cover w-full h-full`} src={featuredImg.portrait} />
+            </MotionDiv>
+            <MotionSectionWrapper>
+                <MotionDiv>
+                    <MotionH1>{title} Page</MotionH1>
 
-        //             {/* Author component */}
-        //             <MotionDiv className={`flex flex-row gap-[1vw] justify-center items-center`}>
-        //                 <MotionDiv>
-        //                     <Avatar label={`${author.firstName}`} />
-        //                 </MotionDiv>
-        //                 <MotionDiv>
-        //                     <MotionP>{author.firstName} {author.lastName}</MotionP>
-        //                     <MotionP>{new Date(createdAt).toLocaleString()}</MotionP>
-        //                 </MotionDiv>
-        //             </MotionDiv>
+                    {/* Author component */}
+                    <MotionDiv className={`flex flex-row gap-[1vw] justify-center items-center`}>
+                        <MotionDiv>
+                            <Avatar label={`${author.firstName}`} />
+                        </MotionDiv>
+                        <MotionDiv>
+                            <MotionP>{author.firstName} {author.lastName}</MotionP>
+                            <MotionP>{new Date(createdAt).toLocaleString()}</MotionP>
+                        </MotionDiv>
+                    </MotionDiv>
 
-        //             {/* Content component */}
-        //             <MotionDiv>{parsedContent}</MotionDiv>
-        //         </MotionDiv>
-        //     </MotionSectionWrapper>
-        // </MotionPageWrapper>
+                    {/* Content component */}
+                    <MotionDiv>{parsedContent}</MotionDiv>
+                </MotionDiv>
+            </MotionSectionWrapper>
+        </MotionPageWrapper>
     );
 }

@@ -48,3 +48,42 @@ export class MotionModel implements MotionObject {
         );
     }
 }
+
+
+export type VisibleType = {
+    coreValue: boolean,
+    moon: boolean,
+    powerTower: boolean,
+    atom: boolean,
+    diamonds: boolean,
+    book: boolean,
+    bee: boolean,
+    beeBuddy: boolean,
+    hive: boolean,
+    rubiksCube: boolean,
+    compass: boolean,
+    city: boolean,
+    pumpingHeart: boolean,
+    marbleColumn: boolean,
+    scale: boolean,
+    tropicalIsland: boolean,
+};
+
+export type VariantType = {
+    coreValue: string,
+    moon: string,
+    powerTower: string,
+    atom: string,
+    diamonds: string,
+    book: string,
+    bee: string,
+    beeBuddy: string,
+    hive: string,
+    rubiksCube: string,
+    compass: string,
+    city: string,
+    pumpingHeart: string,
+    marbleColumn: string,
+    scale: string,
+    tropicalIsland: string,
+}

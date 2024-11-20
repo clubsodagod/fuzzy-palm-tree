@@ -109,10 +109,3 @@
 .categoryCardImgWrapper {
     height: 15vh;
 }
-
-.categoryCardChipCtn {
-    display:grid;
-    column-count: 2;
-    /* flex-direction: row; */
-    gap: 1vw;
-}

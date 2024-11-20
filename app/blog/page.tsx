@@ -16,7 +16,6 @@ export default async function BlogPage() {
     
     
 
-    console.log(featuredPosts, '......###########################################EDDDDDDDDDDDDD#');
     
 
 

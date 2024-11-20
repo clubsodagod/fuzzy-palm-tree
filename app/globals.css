@@ -148,6 +148,13 @@ main {
     min-width: fit-content;
   }
 }
+.snap-x-wrapper#category-card {
+  @media screen and (min-width:1033px) {
+    width: 25vw;
+    margin-right: 16.5vw;
+    /* min-width: fit-content; */
+  }
+}
 
 div.snap-x-wrapper#programmer-approach-solid-hero {
   min-width: 100%;

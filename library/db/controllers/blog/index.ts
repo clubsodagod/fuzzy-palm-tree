@@ -6,6 +6,7 @@ import { Category } from "@mui/icons-material";
 import { BlogModel, UserModel, CategoryModel, SubcategoryModel } from "@/app/_database/models";
 import { BlogDocumentType, IBlog, IBlogPopulated } from "@/app/_database/models/blog";
 import Author from "@/app/_database/models/author";
+import Subcategory from "@/app/_database/models/subcategory";
 
 
 
@@ -83,7 +84,7 @@ export const getAllPosts = async() => {
 
         await  UserModel.find()
         await CategoryModel.find()
-        await SubcategoryModel.find()
+        await Subcategory.find()
         // access featured blog posts
         const allPosts = await BlogModel.find().populate(['author','category','subcategories',]);
         console.log(allPosts);
@@ -109,7 +110,7 @@ export const getFeaturedPosts = async() => {
 
         await  UserModel.find()
         await CategoryModel.find()
-        await SubcategoryModel.find()
+        await Subcategory.find()
         // access featured blog posts
         const featuredPosts = await BlogModel.find({featured:true}).populate(['author','category','subcategories']);
 

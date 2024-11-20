@@ -1,6 +1,9 @@
+import mongoose from "mongoose";
 import { connectToMongoDB } from "../db";
+import { SubcategoryModel } from "../models";
 import Blog, { IBlogPopulated } from "../models/blog";
 import CategoryModel from "../models/category";
+import Subcategory from "../models/subcategory";
 import User from "../models/user";
 
 // GET featured blog post
@@ -13,8 +16,9 @@ export const getAllPosts = async() => {
 
         await  User.find()
         await CategoryModel.find()
+        await Subcategory.find()
         // access featured blog posts
-        const allPosts = await Blog.find().populate(['author','category']);
+        const allPosts = await Blog.find().populate(['author','category','subcategories']);
 
         // validate featured blog posts 
         if (allPosts) {
@@ -56,6 +60,7 @@ export const getBlogs: InitBlogHomePageFunction = async () => {
             // Filter out posts that are already featured.
             const allPostsFiltered = allPostsUnfiltered.filter((p) => !p.featured);
 
+
             return { featuredPosts, allPosts:allPostsFiltered, slugPost };
         } else {
             return null;
@@ -65,3 +70,24 @@ export const getBlogs: InitBlogHomePageFunction = async () => {
         return null;
     }
 };
+
+export async function populateSubcategories (subcategories:mongoose.Types.ObjectId[]) {
+
+    try {
+        let payload = undefined;
+
+        await connectToMongoDB()
+
+        const sc = await SubcategoryModel.find();
+
+        payload = sc.filter((c)=> (subcategories).includes(c._id as mongoose.Types.ObjectId) );
+
+        if (payload) {
+            console.log(payload);
+            return payload
+        }
+    } catch (error) {
+        console.log(error);
+        return null
+    }
+}

@@ -1,0 +1,125 @@
+/* Scrollable Arrow Container */
+
+
+.scrollableCtnWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+.childWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow-y: hidden;
+    overflow-x: auto;
+    height: 135%;
+    scroll-behavior: smooth;
+    scroll-snap-type: proximity;
+
+    @media screen and (min-width:769px) {
+        padding-inline: 12vw;
+    }
+
+    @media screen and (min-width:1025px) {
+        padding-inline: 0;
+        overflow-x: hidden;
+    }
+}
+
+.aboutChildWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 100%;
+
+    @media screen and (min-width:769px) {
+        padding-inline: 12vw;
+    }
+
+    @media screen and (min-width:1025px) {
+        padding-inline: 33vw;
+    }
+}
+
+.leftArrowCtn,
+.rightArrowCtn {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    z-index: 15;
+}
+
+.leftArrowCtn {
+    left: 1vw;
+
+    @media screen and (min-width:769px) {
+        left: 6vw;
+    }
+}
+
+.rightArrowCtn {
+    right: 1vw;
+
+    @media screen and (min-width:769px) {
+        right: 6vw;
+    }
+}
+
+.leftAboutArrowCtn {
+    padding-top: 33vh;
+    left: 3vw;
+    z-index: 24;
+    position: absolute;
+
+    @media screen and (min-width:769px) {
+        left: 6vw;
+    }
+}
+
+.rightAboutArrowCtn {
+    padding-top: 33vh;
+    right: 3vw;
+    z-index: 50;
+    position: absolute;
+
+    @media screen and (min-width:769px) {
+        right: 6vw;
+    }
+}
+
+.leftArrow,
+.rightArrow {
+    color: rgb(249, 164, 255);
+    font-size: 2rem;
+    z-index: 24;
+    position: relative;
+
+    @media screen and (min-width:769px) {
+        font-size: 4rem;
+    }
+}
+
+.leftArrow {
+    rotate: 90deg;
+}
+
+.rightArrow {
+    rotate: -90deg;
+}
+
+.sectionWrapper {
+    padding-block: 10vh 3vh;
+    padding-inline: 6vw;
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}

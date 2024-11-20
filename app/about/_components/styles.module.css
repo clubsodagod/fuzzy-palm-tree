@@ -1,0 +1,146 @@
+
+
+
+
+
+.bioFlexCtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 3vw;
+}
+
+.bioTxtCtn {
+
+    
+    @media screen and (max-width:768px) {
+        z-index: 1;
+    }
+    @media screen and (min-width:769px) {
+    width: 40%;
+    }
+}
+.bioTextBox {
+    z-index: 10;
+    height: auto;
+
+    @media screen and (min-width:769px) {
+        padding-inline: 16vw;
+    }
+}
+.bioTextt {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 1;
+    line-clamp: 3; /* Specifies the number of lines to show */
+    -webkit-line-clamp: 3; /* Works in most browsers */
+    line-height: 1.15rem; /* Adjust this based on your font size */
+    max-height: calc(1.15rem * 3); 
+    color: whitesmoke;
+}
+.bioBioTxt {
+
+    @media screen and (max-width:768px) {
+        height: 40vh;
+    }
+    white-space: pre-line;
+    text-align: left;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+
+
+/* bio image css */
+
+.bioImgWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: end;
+    position: absolute;
+    bottom:0;
+    width: 100%;
+    height:100%;
+
+    @media screen and (min-width:675px) {
+        right: 0;
+        max-width: 75vw;
+    } @media screen and (min-width:840px) {
+        max-width: 65vw;
+    } @media screen and (min-width:1025px) {
+        max-width: 35vw;
+    }
+}
+
+.bioImgMain {
+    object-fit: cover;
+    width: 100%;
+    @media screen and (min-width:769px) {
+    }
+
+}
+
+.storyTimeTextBox {
+    position: absolute;
+    left: 0;
+    top: 30vh;
+    padding-inline: 6vw;
+    max-height: 60vh;
+    overflow-y: auto;
+    @media screen and (min-width:769px) {
+        padding-inline: 16.5vw;
+    } @media screen and (min-width:1025px) {
+        padding-inline: 24vw;
+    }
+}
+
+.missionText {
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    @media screen and (min-width:769px) {
+        padding-inline: 12vw;
+    }
+}
+
+.carouselWrapper {
+    height: 75vh;
+    position: absolute;
+    width: 100%;
+    left: 0;
+}
+
+.textBoxWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6vh;
+    text-align: center;
+    padding-block: 20vh 0;
+
+    @media screen and (min-width:769px){
+        padding-inline: 16.5vw;
+    } @media screen and (min-width:1025px){
+        width: 50%;
+        padding-inline: 0;
+    }
+}
+
+.coreValueTextBoxWrapper {
+    border-radius: 25px;
+    background-color: #f5f5f517;
+    backdrop-filter: blur(2.5px);
+    padding:1vh;
+}
+
+.chipWrapper {
+    border-radius: 50px;
+    background-color: #f5f5f517;
+    backdrop-filter: blur(2.5px);
+    padding:0.25vh;
+}

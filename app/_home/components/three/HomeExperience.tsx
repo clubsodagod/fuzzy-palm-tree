@@ -44,7 +44,6 @@ const HomeExperience = () => {
         macbook, newspaper
     });
 
-    const prevScalesRef = useRef<typeof scales | null>(null);
 
     // Visibility manager
     VisibilityManager({ scales, visible, setVisible })

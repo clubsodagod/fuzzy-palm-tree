@@ -5,13 +5,13 @@ import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv';
 import { MotionImg } from '@/app/_hide/_components/framer/MotionImg';
 import { MotionH6 } from '@/app/_hide/_components/framer/MotionH6';
 import { MotionP } from '@/app/_hide/_components/framer/MotionP';
+import { useScreenContext } from '@/app/_hide/_context/sub-context/ScreenContext';
 import { goTo } from '@/utility/blog-section/blog-page-functions';
 import { useRouter } from 'next/navigation';
-import { Avatar, Chip, Stack } from '@mui/material';
+import { Avatar, Chip } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { ICategoryPopulated } from '@/app/_database/models/category';
 import { ISubcategory } from '@/app/_database/models/subcategory';
-import { useAppContext } from '@/app/_context/AppContext';
 
 
 const MotionCategoryCard: React.FC<{
@@ -23,8 +23,8 @@ const MotionCategoryCard: React.FC<{
         const router = useRouter();
 
         const {
-            screen:{isMobile, currentBreakpoint},
-        } = useAppContext();
+            isMobile,
+        } = useScreenContext();
 
         const {
             name, photo, slug, description, subcategories
@@ -77,25 +77,18 @@ const MotionCategoryCard: React.FC<{
                     {/* identifiers chip  component */}
                     {
                         subcategories.length > 0 &&
-                        <Stack
-                        spacing={{ xs: 1, sm: 2 }}
-                        direction="row"
-                        useFlexGap
-                        sx={{ flexWrap: 'wrap', p:'7.5px' }}
+                        <MotionDiv
+                            className={`${styles.categoryCardChipCtn}`}
                         >
                             {
                                 subcategories.map((sc: ISubcategory, i: number) => {
-
-                                    if (i>4) {
-                                        return null
-                                    }
                                     if (i % 2 == 0) {
                                         return (
                                             <Chip
                                                 avatar={<Avatar alt={`${sc.name}`} src={isMobile ? sc.photo.portrait : sc.photo.landscape} />}
                                                 label={sc.name}
                                                 key={sc._id}
-                                                sx={{ color: "white", fontWeight: "bold", backgroundColor: grey[900], maxWidth:'45%' }}
+                                                sx={{ color: "white", fontWeight: "bold", backgroundColor: grey[900] }}
                                             />
                                         )
                                     } else {
@@ -105,13 +98,13 @@ const MotionCategoryCard: React.FC<{
                                                 label={sc.name}
                                                 key={sc._id}
                                                 variant="outlined"
-                                                sx={{ color: "black", borderWidth: "2px", borderColor: grey[900], fontWeight: "bold", maxWidth:'45%' }}
+                                                sx={{ color: "black", borderWidth: "2px", borderColor: grey[900], fontWeight: "bold" }}
                                             />
                                         )
                                     }
                                 })
                             }
-                        </Stack>
+                        </MotionDiv>
                     }
                 </MotionDiv>
 

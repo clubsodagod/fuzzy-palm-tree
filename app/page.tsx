@@ -14,6 +14,8 @@ export default async function Home() {
   const featuredPosts = posts?.featuredPosts;
   // const allPosts = posts?.allPosts;
 
+  console.log(featuredPosts);
+  
 
   return (
     <>

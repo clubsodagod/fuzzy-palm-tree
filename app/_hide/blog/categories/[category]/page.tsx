@@ -1,6 +1,13 @@
 
-
+import { AppContainer } from '@/app/_hide/_components';
+import { AnimatePresencePro } from '@/app/_hide/_components/framer/AnimatePresencePro';
+import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv';
+import { useRef } from 'react';
+import slugify from 'slugify';
 import CategoryHero from '../../_components/slug-page/CategoryHero';
+import MotionPageWrapper from '@/app/_hide/_components/common/MotionPageWrapper';
+import MotionSectionWrapper from '@/app/_hide/_components/common/MotionSectionWrapper';
+import { getAllIdentifiers } from '@/library/db/controllers/identifiers';
 import { connectToMongoDB } from '@/library/db/db';
 import { CategoryModel } from '@/app/_database/models';
 import { ICategory } from '@/app/_database/models/category';
@@ -56,11 +63,17 @@ export default async function Page({ params }: { params: { category: string } })
     const allPostsData = await allBlogResponse.json()
     const allPosts = allPostsData.postsOfCategory;
 
-
+    // Return a loading state or error handling if needed
+    if (!category) {
+        return <body><div>Category not found</div></body>;
+    }
 
 
     return (
-      
+        <AppContainer>
+            <MotionSectionWrapper>
                 <CategoryHero category={category} featuredPosts={featuredPosts} allPosts={allPosts} />
+            </MotionSectionWrapper>
+        </AppContainer>
     );
 }
