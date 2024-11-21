@@ -71,7 +71,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
 								clearcoatRoughness={0.1}
 								metalness={0.9}
 								roughness={0.5}
-								color={new THREE.Color(colorValue("0x0000ff"))}
+								color={new THREE.Color(colorValue("0x0030ff"))}
 								normalScale={new THREE.Vector2( 0.15, 0.15 )}
                 />
               </mesh>

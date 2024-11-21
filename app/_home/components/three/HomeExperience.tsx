@@ -5,26 +5,25 @@ import { useHomePageMotion } from '../../utility/motion';
 import { Float } from '@react-three/drei';
 import MacBook from '@/public/3d-objects/macbook/Macbook';
 import { MotionGroup } from '@/app/_components/common/framer/MotionGroup';
-import { useScroll } from 'framer-motion';
+import { useMotionValueEvent, useScroll } from 'framer-motion';
 import VisibilityManager from '@/app/_utility/three/VisibilityManager';
 import { VisibilityThreeType } from '@/app/_library/types/common';
 import NewspaperBox from '@/public/3d-objects/newspaper-box/Scene';
+import { useFrame } from '@react-three/fiber';
 
 const HomeExperience = () => {
 
     // 3D objects
     const CachedMacBook = React.memo(MacBook);
 
-    const { scroll: { dynamicIncrement: dI, }, appContainer: { scrollRef } } = useAppContext();
+    const { scroll: { dynamicIncrement: dI, windowHeight, windowScrollHeight, setWindowScrollHeight, setWindowHeight }, appContainer: { scrollRef } } = useAppContext();
     const { scrollY, } = useScroll({ container: scrollRef, });
     // create event points for handling scroll animations
-    const homeEventPoints = useMemo(() => {
-        return [
+    const homeEventPoints = [
             0, (dI(0.5)),
             (dI(1)), (dI(1.5)),
             (dI(2)),
-        ]
-    }, [dI]);
+        ];
 
     const { programmerMotion, newspaperMotion } = useHomePageMotion(scrollY, homeEventPoints,);
 
@@ -54,6 +53,12 @@ const HomeExperience = () => {
         }
 
     }, [mainScalingFactor, scalingFactor]);
+
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        if (window && window.innerHeight != windowHeight) {
+            setWindowHeight(window.innerHeight)
+        }
+    })
 
 
     return (
