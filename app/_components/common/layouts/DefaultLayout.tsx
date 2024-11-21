@@ -6,7 +6,8 @@ import { ThemeProvider } from '@mui/material'
 import { theme } from '@/app/_library/themes'
 import Navbar from '../Navbar'
 import { gradientVariants } from '@/app/_library/const/gradient-variants'
-import { useScroll } from 'framer-motion'
+import { useMotionValueEvent, useScroll } from 'framer-motion'
+import WindowUpdater from '@/app/_utility/window/WindowUpdater'
 
 const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
 
@@ -18,7 +19,8 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
         }
     } = useAppContext()
 
-    const { scrollY } = useScroll({target:scrollRef});
+    const { scrollY } = useScroll({ target: scrollRef });
+
 
 
     const scrollYPro = scrollY.get();
@@ -27,13 +29,14 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
     useEffect(() => {
         if (scrollYPro !== scrollYProPrevious) {
             console.log(scrollYPro);
-
         }
     }, [scrollYPro, scrollYProPrevious])
 
-    useEffect(()=> {
-        window.scrollTo(0,1)
-    },[])
+    useEffect(() => {
+        window.scrollTo(0, 1)
+    }, [])
+
+    WindowUpdater(scrollRef)
 
 
 
@@ -46,12 +49,12 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
                     animate={controls}
                     variants={gradientVariants}
                 >
-                        <Navbar />
+                    <Navbar />
                     {/* <main
                         // ref={scrollRef}
                         className='main'
                     > */}
-                        {children}
+                    {children}
                     {/* </main> */}
 
                 </MotionBody>
