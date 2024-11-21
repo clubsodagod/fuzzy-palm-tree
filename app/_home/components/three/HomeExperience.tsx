@@ -10,6 +10,7 @@ import VisibilityManager from '@/app/_utility/three/VisibilityManager';
 import { VisibilityThreeType } from '@/app/_library/types/common';
 import NewspaperBox from '@/public/3d-objects/newspaper-box/Scene';
 import { useFrame } from '@react-three/fiber';
+import ThreeWindowUpdater from '@/app/_utility/window/ThreeWindowUpdater';
 
 const HomeExperience = () => {
 
@@ -20,10 +21,10 @@ const HomeExperience = () => {
     const { scrollY, } = useScroll({ container: scrollRef, });
     // create event points for handling scroll animations
     const homeEventPoints = [
-            0, (dI(0.5)),
-            (dI(1)), (dI(1.5)),
-            (dI(2)),
-        ];
+        0, (dI(0.5)),
+        (dI(1)), (dI(1.5)),
+        (dI(2)),
+    ];
 
     const { programmerMotion, newspaperMotion } = useHomePageMotion(scrollY, homeEventPoints,);
 
@@ -54,11 +55,7 @@ const HomeExperience = () => {
 
     }, [mainScalingFactor, scalingFactor]);
 
-    useMotionValueEvent(scrollY, "change", (latest) => {
-        if (window && window.innerHeight != windowHeight) {
-            setWindowHeight(window.innerHeight)
-        }
-    })
+    ThreeWindowUpdater(scrollRef, scrollY)
 
 
     return (

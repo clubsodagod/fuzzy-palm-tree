@@ -21,6 +21,7 @@ import { Float, OrbitControls } from '@react-three/drei';
 import MacBook from '@/public/3d-objects/macbook/Macbook';
 import Chip from '@/public/3d-objects/digital-solutions/chip/Scene';
 import ChipPro from '@/public/3d-objects/digital-solutions/chip-pro/Scene';
+import ThreeWindowUpdater from '@/app/_utility/window/ThreeWindowUpdater';
 
 const DigitalSolutionsExperience = () => {
 
@@ -92,6 +93,9 @@ const DigitalSolutionsExperience = () => {
     ScaleManager({
         scrollY, setScales, scalesPayload: scales
     });
+
+    ThreeWindowUpdater(scrollRef, scrollY)
+
 
     return (
         <MotionGroup

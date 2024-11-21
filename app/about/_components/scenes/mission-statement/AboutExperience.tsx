@@ -17,6 +17,7 @@ import ScalingFactorManager from '@/app/_utility/three/ScalingFactorManager'
 import VisibilityManager from '@/app/_utility/three/VisibilityManager'
 import { ScalesThreeType, VisibilityThreeType } from '@/app/_library/types/common'
 import CoreValueAnimationHandler from '@/app/about/_utils/CoreValueAnimationHandler'
+import ThreeWindowUpdater from '@/app/_utility/window/ThreeWindowUpdater'
 
 export type VisibleType = {
     coreValue: boolean,
@@ -84,10 +85,10 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
     const [previousValue, setPreviousValue] = useState<number>(coreValues.length - 1);
     const {
-        scroll: { scrollYProgress, windowScrollHeight, dynamicIncrement: dI, scrollY }
+        scroll: { scrollYProgress, windowScrollHeight, dynamicIncrement: dI, scrollY,  }, 
+        appContainer: { scrollRef }
     } = useAppContext();
 
-    const { refs } = useAboutSectionRefs();
 
     const MemoizedMoon = React.memo(Moon);
     const MemoizedPowerTower = React.memo(PowerTower);
@@ -223,6 +224,9 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
         previousValue, setPreviousValue,
         setVariantStatus, value
     })
+
+    ThreeWindowUpdater(scrollRef, scrollY)
+
 
     return (
         <group

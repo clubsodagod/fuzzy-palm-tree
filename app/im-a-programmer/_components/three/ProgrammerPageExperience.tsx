@@ -23,14 +23,15 @@ import VisibilityManager from '@/app/_utility/three/VisibilityManager';
 import ScaleManager from '@/app/_utility/three/ScaleManager';
 import { MotionGroup } from '@/app/_components/common/framer/MotionGroup';
 import { Float } from '@react-three/drei';
+import ThreeWindowUpdater from '@/app/_utility/window/ThreeWindowUpdater';
 
 const ProgrammerPageExperience = () => {
 
     // app context values and functions
-    const { scroll: { dynamicIncrement: dI, }, appContainer:{scrollRef}} = useAppContext();
-    
+    const { scroll: { dynamicIncrement: dI, }, appContainer: { scrollRef } } = useAppContext();
+
     // scroll motion values for scroll animations
-    const {scrollY,} = useScroll({container:scrollRef,}); 
+    const { scrollY, } = useScroll({ container: scrollRef, });
 
     // memoized 3D assets
     const CachedLightBulb = React.memo(LightBulb);
@@ -71,11 +72,11 @@ const ProgrammerPageExperience = () => {
 
     // event points for calculating 3d assets
     const homeEventPoints = [
-        0, dI(0.5), dI(1), dI(1.5), dI(2 ), dI(2.5), dI(3 ), dI(3.5),
-        dI(4 ), dI(4.5), dI(5 ), dI(5.5), dI(6 ), dI(6.5), dI(7 ), dI(7.5),
-        dI(8 ), dI(8.5), dI(9 ), dI(9.5), dI(10 ), dI(10.5), dI(11 ), dI(11.5),
-        dI(12 ), dI(12.5), dI(13 ), dI(13.5), dI(14 ), dI(14.5), dI(15 ), dI(15.5),
-        dI(16 ), dI(16.5), dI(17 ), dI(17.5), dI(18 ), dI(18.5), dI(19 ), dI(19.5),dI(20),
+        0, dI(0.5), dI(1), dI(1.5), dI(2), dI(2.5), dI(3), dI(3.5),
+        dI(4), dI(4.5), dI(5), dI(5.5), dI(6), dI(6.5), dI(7), dI(7.5),
+        dI(8), dI(8.5), dI(9), dI(9.5), dI(10), dI(10.5), dI(11), dI(11.5),
+        dI(12), dI(12.5), dI(13), dI(13.5), dI(14), dI(14.5), dI(15), dI(15.5),
+        dI(16), dI(16.5), dI(17), dI(17.5), dI(18), dI(18.5), dI(19), dI(19.5), dI(20),
     ];
 
     // motion paths for 3d objects
@@ -88,7 +89,7 @@ const ProgrammerPageExperience = () => {
     } = programmerPageMotionLogic(scrollY, homeEventPoints);
 
     // Scaling value for responsive experience
-    const mainScalingFactor = window ? Math.min(Math.max(window.innerWidth / 1920, window.innerWidth > 700 && window.innerWidth < window.innerHeight ? 0.4 :0.6), 3) : 1;
+    const mainScalingFactor = window ? Math.min(Math.max(window.innerWidth / 1920, window.innerWidth > 700 && window.innerWidth < window.innerHeight ? 0.4 : 0.6), 3) : 1;
 
     // scale const for managing visibility
     const lightBulb = lightBulbMotion().scale.get() * mainScalingFactor;
@@ -116,21 +117,25 @@ const ProgrammerPageExperience = () => {
     });
 
     // update scaling factor when it changes
-    ScalingFactorManager({scalingFactor,setScalingFactor,mainScalingFactor});
+    ScalingFactorManager({ scalingFactor, setScalingFactor, mainScalingFactor });
 
     // manage visibility of 3d  models
-    VisibilityManager({scales,visible,setVisible});
+    VisibilityManager({ scales, visible, setVisible });
 
     // manage scales of object for scroll changes
-    ScaleManager({scrollY,setScales,scalesPayload:{
-        lightBulb,bot,pos,iPhone,puzzle,emoji,swiss,macbook,coin,
-        dataHighway,emojiTwo,dollar,lock,atom
-    }});
+    ScaleManager({
+        scrollY, setScales, scalesPayload: {
+            lightBulb, bot, pos, iPhone, puzzle, emoji, swiss, macbook, coin,
+            dataHighway, emojiTwo, dollar, lock, atom
+        }
+    });
+
+    ThreeWindowUpdater(scrollRef, scrollY)
 
     return (
-        
+
         <group
-        scale={mainScalingFactor}
+            scale={mainScalingFactor}
         >
 
 
