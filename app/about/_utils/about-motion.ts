@@ -6,7 +6,7 @@ import { Animate } from '@/utility/functions';
 export const useAboutMotionLogic = (scrollY: MotionValue, homeEventPoints: number[]) => {
 
 
-    let moon_scale = [0.01,7,38,0,0,];
+    let moon_scale = [0,7,38,0,0,];
     let moon_x = [95,0,0,0,0,];
     let moon_y = [0,0,0,0,0,];
     let moon_z = [0,0,0,0,0,];
@@ -26,7 +26,7 @@ export const useAboutMotionLogic = (scrollY: MotionValue, homeEventPoints: numbe
     let powerTower_rotation_z = [0,0,0.15,0,0,];
 
     // Define your animation arrays here
-    const main_scale = [1,1,1,1,0,];
+    const main_scale = [1,1,1,0,0,];
     const main_x = [0,-75,rv([0,0,35]),70,rv([0,0,140]),];
     const main_y = [0,0,-45,0,0,];
     const main_z = [0,0,0,0,0,];

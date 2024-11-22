@@ -3,7 +3,7 @@
 import { coreValues } from '@/library/const'
 import { Atom, Bee, Book, City, Compass, Diamonds, Hive, MarbleColumn, Moon, PowerTower, PumpingHeart, RubiksCube, Scale, TropicalIsland } from '@/public/3d-objects'
 import { Float } from '@react-three/drei'
-import {  useFrame } from '@react-three/fiber'
+import { useFrame } from '@react-three/fiber'
 import { Variants } from 'framer-motion'
 import React, { RefObject, useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
@@ -136,7 +136,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
         pumpingHeart: false,
         marbleColumn: true,
         tropicalIsland: false,
-        coreValue: true,
+        coreValue: false,
     });
 
     const [variantStatus, setVariantStatus] = useState<VariantType>({
@@ -172,17 +172,17 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
 
 
-    useFrame(() => {
-        const ref = mainRef as RefObject<THREE.Group>
-        const refDiamonds = diamondsRef as RefObject<THREE.Group>
-        if (ref.current?.rotation && scrollYProgress.get() > 0.25 && scrollYProgress.get() < 0.75) {
-            ref.current.rotation.y += 0.0025
-        }
-        if (refDiamonds.current?.rotation && scrollYProgress.get() > 0.75) {
-            refDiamonds.current.rotation.y += 0.0015
-        }
-        
-    });
+    // useFrame(() => {
+    //     const ref = mainRef as RefObject<THREE.Group>
+    //     const refDiamonds = diamondsRef as RefObject<THREE.Group>
+    //     if (ref.current?.rotation && scrollYProgress.get() > 0.25 && scrollYProgress.get() < 0.75) {
+    //         ref.current.rotation.y += 0.0025
+    //     }
+    //     if (refDiamonds.current?.rotation && scrollYProgress.get() > 0.75) {
+    //         refDiamonds.current.rotation.y += 0.0015
+    //     }
+
+    // });
 
 
     const moon = moonMotion().scale.get() * scalingFactor;
@@ -208,12 +208,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
 
 
-    useEffect(()=> {
-        if (mainScalingFactor !== scalingFactor) {
-            setScalingFactor(mainScalingFactor);
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
+
 
     // update scaling factor when it changes
     ScalingFactorManager({ scalingFactor, setScalingFactor, mainScalingFactor });
@@ -337,7 +332,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
                         {/* rubiks cube */}
                         <MotionGroup
-                            position={[rv([0,-5,-5]), 45, 0]}
+                            position={[rv([0, -5, -5]), 45, 0]}
                             visible={visible.rubiksCube}
                         >
 
@@ -351,7 +346,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
                                     <MemoizedRubiksCube
                                         rotation-y={3.75}
-                                        scale={rv([2.25,3,3])}
+                                        scale={rv([2.25, 3, 3])}
                                     />
                                 </Float>
                             </MotionGroup>
@@ -360,7 +355,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
                         {/* pumping heart */}
                         <MotionGroup
-                            position={[rv([0,-3,-3]), 39, 5]}
+                            position={[rv([0, -3, -3]), 39, 5]}
                             visible={visible.pumpingHeart}
                         >
 
@@ -384,7 +379,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
                         {/* diamonds */}
                         <MotionGroup
-                            position={[rv([0,-5,-5]), -5, 5]}
+                            position={[rv([0, -5, -5]), -5, 5]}
                             visible={visible.diamonds}
                             ref={diamondsRef}
                         >
@@ -411,7 +406,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
                         {/* bee and hive */}
                         <MotionGroup
-                        position-x={rv([7,0,0])}
+                            position-x={rv([7, 0, 0])}
                         >
 
                             <Float
@@ -457,25 +452,25 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
                                 </MotionGroup>
 
                             </Float>
-                        {/* bee buddy */}
-                        <MotionGroup
-                            position={[-14, 52, 5]}
-                            visible={visible.beeBuddy}
-                        >
-
+                            {/* bee buddy */}
                             <MotionGroup
-                                variants={variants}
-                                animate={variantStatus.beeBuddy}
+                                position={[-14, 52, 5]}
+                                visible={visible.beeBuddy}
                             >
-                                <MemoizedBeeBuddy
-                                    animation='_bee_hover'
-                                    props={{
-                                        scale: 0.25
-                                    }}
-                                />
-                            </MotionGroup>
 
-                        </MotionGroup>
+                                <MotionGroup
+                                    variants={variants}
+                                    animate={variantStatus.beeBuddy}
+                                >
+                                    <MemoizedBeeBuddy
+                                        animation='_bee_hover'
+                                        props={{
+                                            scale: 0.25
+                                        }}
+                                    />
+                                </MotionGroup>
+
+                            </MotionGroup>
                         </MotionGroup>
 
 
@@ -483,7 +478,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
                         {/* city */}
                         <MotionGroup
-                            position={[rv([0,-1,-10]), 45, 15]}
+                            position={[rv([0, -1, -10]), 45, 15]}
                             rotation-x={0.45}
                             rotation-y={0.45}
                             visible={visible.city}
@@ -500,7 +495,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
                                     <MemoizedCity
                                         animation='Main'
                                         props={{
-                                            scale:rv([0.03, 0.0375, 0.0375]),
+                                            scale: rv([0.03, 0.0375, 0.0375]),
                                         }}
                                     />
                                 </MotionGroup>
