@@ -26,7 +26,7 @@ import { connectToMongoDB } from '@/app/_database/db';
 export const revalidate = 3600;
 
 // Next.js will server-render the page on-demand.
-export const dynamicParams = false // or false, to 404 on unknown paths
+export const dynamicParams = true // or false, to 404 on unknown paths
 
 
 // Generate static paths for categories.
@@ -38,6 +38,8 @@ export async function generateStaticParams() {
     const categoryResponse = await CategoryModel.find();
     const categories = categoryResponse;
 
+    console.log();
+    
     
     return [
         categories?.map((c:ICategory)=>{
