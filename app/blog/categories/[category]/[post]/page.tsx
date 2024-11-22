@@ -26,6 +26,7 @@ import { connectToMongoDB } from '@/app/_database/db';
 export const revalidate = 3600;
 
 // Next.js will server-render the page on-demand.
+export const dynamicParams = false // or false, to 404 on unknown paths
 
 
 // Generate static paths for categories.
