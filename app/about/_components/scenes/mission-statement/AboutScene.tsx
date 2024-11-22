@@ -1,12 +1,16 @@
 'use client'
-import { Environment } from '@react-three/drei'
-import { MotionValue } from 'framer-motion'
-import React, { Suspense, useEffect, lazy, useState } from 'react'
+import React, { Suspense, useEffect, lazy, useState, StrictMode } from 'react'
 import MissionStatementExperience from './AboutExperience'
 import { Canvas } from '@react-three/offscreen'
+import AppProvider from '@/app/_context/AppContext'
+import dynamic from 'next/dynamic';
+
+const AboutExperience = dynamic(() => import('./AboutExperience'), {
+  ssr: false, // Optional: Disable server-side rendering for this component
+});
 
 
-const Scene = lazy(() => import("./AboutExperience"));
+
 
 
 const AboutScene: React.FC<{
@@ -17,6 +21,7 @@ const AboutScene: React.FC<{
 
 
         const [worker, setWorker] = useState<Worker | null>(null);
+        console.debug('Experience')
 
         useEffect(() => {
             // Only initialize the worker in the browser
@@ -36,28 +41,33 @@ const AboutScene: React.FC<{
 
 
         return (
-            <Suspense fallback={null}>
+            <StrictMode>
+                <Suspense fallback={null}>
 
-                {worker && (
-                    <Canvas
-                        worker={worker}
-                        fallback={<Scene value={value} />}
-                        dpr={[1, 1.5]}
-                        style={{
-                            pointerEvents: 'none',
-                            position: 'fixed',
-                            top: 0,
-                            zIndex: -1,
-                        }}
-                        shadows
-                        camera={{
-                            position: [0, 0, 60],
-                            fov: 50,
-                        }}
-                    />
-                )}
+                    {worker && (
+                        <Canvas
+                            worker={worker}
+                            fallback={<AboutExperience value={value} />}
+                            dpr={[1, 1.5]}
+                            style={{
+                                pointerEvents: 'none',
+                                position: 'fixed',
+                                top: 0,
+                                zIndex: -1,
+                            }}
+                            shadows
+                            camera={{
+                                position: [0, 0, 60],
+                                fov: 50,
+                            }}
+                        />
 
-            </Suspense>
+                    )}
+
+                </Suspense>
+            </StrictMode>
+
+
         )
     }
 

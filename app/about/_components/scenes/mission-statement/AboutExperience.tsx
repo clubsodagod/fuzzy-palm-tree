@@ -3,10 +3,8 @@
 import { coreValues } from '@/library/const'
 import { Atom, Bee, Book, City, Compass, Diamonds, Hive, MarbleColumn, Moon, PowerTower, PumpingHeart, RubiksCube, Scale, TropicalIsland } from '@/public/3d-objects'
 import { Float } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber'
 import { Variants } from 'framer-motion'
-import React, { RefObject, useEffect, useRef, useState } from 'react'
-import * as THREE from 'three'
+import React, {  useRef, useState } from 'react'
 import { useResponsiveValues as rv } from '@/utility/functions';
 import { useAppContext } from '@/app/_context/AppContext'
 import { MotionGroup } from '@/app/_components/common/framer/MotionGroup'
@@ -84,7 +82,6 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
         }
     };
 
-
     const [previousValue, setPreviousValue] = useState<number>(coreValues.length - 1);
 
     const {
@@ -92,6 +89,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
         appContainer: { scrollRef }
     } = useAppContext();
 
+    console.debug('Experience')
 
     const MemoizedMoon = React.memo(Moon);
     const MemoizedPowerTower = React.memo(PowerTower);
