@@ -27,7 +27,7 @@ const DataScienceAIDynamic: React.FC<DynamicSectionProps> = ({
         screen: { currentBreakpoint, }
     } = useAppContext()
 
-    const orientation = (['sm', 'md', 'lg']).includes(currentBreakpoint) ? "horizontal" : "vertical"
+    const orientation = (['xs','sm', 'md', 'lg']).includes(currentBreakpoint) ? "horizontal" : "vertical"
     const [animationComplete, setAnimationComplete] = useState(false);
 
     return (
@@ -38,7 +38,7 @@ const DataScienceAIDynamic: React.FC<DynamicSectionProps> = ({
 
 
             <MotionDiv
-                className={`${styles.heroWrapper}`}
+                className={` hero-wrapper`}
             >
                 <MotionDiv
                     className={`${styles.overviewCtn} overview-ctn`}
@@ -68,7 +68,7 @@ const DataScienceAIDynamic: React.FC<DynamicSectionProps> = ({
                                 <MotionImg src={exFactor?.photo} className={`${styles.dynamicImg}`} />
                             </MotionDiv>
                         </MotionDiv>
-                        <MotionDiv>
+                        <MotionDiv className='w-full md:w-auto'>
                             <Divider orientation={orientation} variant="middle" flexItem className={`xl:h-[50vh]`} />
                         </MotionDiv>
 

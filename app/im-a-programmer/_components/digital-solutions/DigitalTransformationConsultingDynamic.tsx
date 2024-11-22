@@ -76,7 +76,8 @@ const DigitalTransformationConsultingDynamic: React.FC<DynamicSectionProps> = ({
                             </MotionDiv></MotionDiv>
 
 
-                        <MotionDiv>
+
+                        <MotionDiv className='w-full md:w-auto'>
                             <Divider orientation={orientation} variant="middle" flexItem className={`xl:h-[50vh]`} />
                         </MotionDiv>
 

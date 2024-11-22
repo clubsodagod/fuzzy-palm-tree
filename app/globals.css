@@ -269,7 +269,7 @@ div.snap-x-wrapper#programmer-approach-solid-hero {
   min-height: 75vh;
   width: 100%;
   text-align: center;
-
+  overflow-x: hidden;
   @media screen and (min-width:769px) {
       padding-inline: 12%;
   }

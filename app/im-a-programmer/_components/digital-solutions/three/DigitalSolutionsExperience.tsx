@@ -8,28 +8,23 @@ import { programmerDigitalSolutionsMotion } from '@/app/im-a-programmer/digital-
 import IdeaLamp from '@/public/3d-objects/digital-solutions/idea-lamp/Scene';
 import { useScroll } from 'framer-motion';
 import React from 'react'
-import IdeaLampExperience from './building-blocks/IdeaLampExperience';
 import { MotionGroup } from '@/app/_components/common/framer/MotionGroup';
 import Matrix from '@/public/3d-objects/digital-solutions/matrix/Scene';
 import GhostInShell from '@/public/3d-objects/digital-solutions/ghost-in-shell/Scene';
-import WindyDay from '@/public/3d-objects/windy-day/WindyDay';
-import Network from '@/public/3d-objects/digital-solutions/chip/Scene';
-import Motor from '@/public/3d-objects/digital-solutions/motor/Scene';
+
 import IPhoneProMax from '@/public/3d-objects/iPhone-pro-max/IPhoneProMax';
 import IpadPro from '@/public/3d-objects/iPad-Pro/IPadPro';
 import { Float, OrbitControls } from '@react-three/drei';
 import MacBook from '@/public/3d-objects/macbook/Macbook';
 import Chip from '@/public/3d-objects/digital-solutions/chip/Scene';
-import ChipPro from '@/public/3d-objects/digital-solutions/chip-pro/Scene';
 import ThreeWindowUpdater from '@/app/_utility/window/ThreeWindowUpdater';
 
 const DigitalSolutionsExperience = () => {
 
     // app context values and functions
-    const { scroll: { dynamicIncrement: dI, }, appContainer: { scrollRef } } = useAppContext();
+    const { scroll: { dynamicIncrement: dI, scrollY}, appContainer: { scrollRef, } } = useAppContext();
 
     // scroll motion values for scroll animations
-    const { scrollY, } = useScroll({ container: scrollRef, });
 
     // memoized 3D assets
     const CachedIdeaLamp = React.memo(IdeaLamp);

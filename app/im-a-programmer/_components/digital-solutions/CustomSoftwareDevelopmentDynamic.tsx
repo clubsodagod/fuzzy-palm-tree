@@ -52,12 +52,12 @@ const CustomSoftwareDevelopmentDynamic: React.FC<DynamicSectionProps> = ({
                     >
 
                         <MotionDiv
-                                initial={{ opacity: 0, x: -250 }}
-                                whileInView={{
-                                    opacity: 1,
-                                    x: 0,
-                                    transition: { duration: 2 }
-                                }} className='blur-wrapper'>
+                            initial={{ opacity: 0, x: -250 }}
+                            whileInView={{
+                                opacity: 1,
+                                x: 0,
+                                transition: { duration: 2 }
+                            }} className='blur-wrapper'>
                             <MotionH4
                                 className={`${styles.storyText} story-text`}
                                 initial={{ opacity: 0, x: -250 }}
@@ -72,7 +72,8 @@ const CustomSoftwareDevelopmentDynamic: React.FC<DynamicSectionProps> = ({
                         </MotionDiv>
 
 
-                        <MotionDiv>
+
+                        <MotionDiv className='w-full md:w-auto'>
                             <Divider orientation={orientation} variant="middle" flexItem className={`xl:h-[50vh]`} />
                         </MotionDiv>
 
@@ -88,16 +89,16 @@ const CustomSoftwareDevelopmentDynamic: React.FC<DynamicSectionProps> = ({
                             }}
                         >
                             <MotionDiv className='blur-wrapper'
-                            initial={{ opacity: 0, x: 250 }}
-                            whileInView={{
-                                opacity: 1,
-                                x: 0,
-                                transition: { duration: 2.25 }
-                            }}
+                                initial={{ opacity: 0, x: 250 }}
+                                whileInView={{
+                                    opacity: 1,
+                                    x: 0,
+                                    transition: { duration: 2.25 }
+                                }}
                             >
                                 <MotionImg src={exFactor?.photo} className={`${styles.dynamicImg}`} />
                             </MotionDiv>
-                            
+
                         </MotionDiv>
                     </MotionDiv>
 

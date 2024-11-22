@@ -71,7 +71,7 @@ export const programmerDigitalSolutionsMotion = (scrollY: MotionValue, homeEvent
     ];
 
     const matrix_scale = [
-        6,0,0,0,0,
+        rv([12,6,6]),0,0,0,0,
         0,0,0,0,0,
         0,0,0,0,0,
         0,0,0,0,0,
@@ -80,7 +80,7 @@ export const programmerDigitalSolutionsMotion = (scrollY: MotionValue, homeEvent
         0,0,0,0,0,
     ];
     const matrix_x = [
-        1,0,0,0,0,
+        rv([2,1,1]),0,0,0,0,
         0,0,0,0,0,
         0,0,0,0,0,
         0,0,0,0,0,
@@ -89,7 +89,7 @@ export const programmerDigitalSolutionsMotion = (scrollY: MotionValue, homeEvent
         0,0,0,0,0,
     ];
     const matrix_y = [
-        -1.5,0,0,0,0,
+        rv([-15,-1.5,-1.5]),0,0,0,0,
         0,0,0,0,0,
         0,0,0,0,0,
         0,0,0,0,0,
@@ -135,7 +135,7 @@ export const programmerDigitalSolutionsMotion = (scrollY: MotionValue, homeEvent
     ];
 
     const chip_scale = [
-        0,0,0,0,0,
+        0.01,0,0,0,0,
         0,0,0,0,0,
         0,0,0,0,0,
         0,0,0,0,0,
@@ -149,8 +149,8 @@ export const programmerDigitalSolutionsMotion = (scrollY: MotionValue, homeEvent
         0,0,0,0,0,
         0,0,0,0,0,
         0,0,0,0,0,
-        0,24,72,21,72,
-        19,72,20,72,0,
+        0,rv([0,0,24]),72,rv([0,0,21]),72,
+        rv([0,0,19]),72,rv([0,0,20]),72,0,
     ];
     const chip_y = [
         0,0,0,0,0,
@@ -200,8 +200,8 @@ export const programmerDigitalSolutionsMotion = (scrollY: MotionValue, homeEvent
 
 
     const ghostInShell_scale = [
-        0,0,0,0,0,
-        0,0,0,0,0,
+        0.01,0,0,0,0,
+        0,0,0,0,0.01,
         30,15,30,10,25,
         12.5,25,0,0,0,
         0,0,0,0,0,
@@ -211,8 +211,8 @@ export const programmerDigitalSolutionsMotion = (scrollY: MotionValue, homeEvent
     const ghostInShell_x = [
         0,0,0,0,0,
         0,0,0,0,75,
-        0,5,25,-75,25,
-        75,25,0,0,0,
+        0,5,rv([0,0,25]),-75,rv([0,0,25]),
+        75,rv([0,0,25]),0,0,0,
         0,0,0,0,0,
         0,0,0,0,0,
         0,0,0,0,0,
@@ -220,7 +220,7 @@ export const programmerDigitalSolutionsMotion = (scrollY: MotionValue, homeEvent
     const ghostInShell_y = [
         0,0,0,0,0,
         0,0,0,0,0,
-        -10,0,-15,0,-10,
+        rv([0,0,-10]),0,-15,0,-10,
         0,-10,0,0,0,
         0,0,0,0,0,
         0,0,0,0,0,
@@ -330,7 +330,7 @@ export const programmerDigitalSolutionsMotion = (scrollY: MotionValue, homeEvent
     ];
 
     const webMobile_scale = [
-        0,0,0,0,0,
+        0.01,0,0,0,0,
         0,0,0,0,0,
         0,0,0,0,0,
         0,0,0,1,1,
@@ -342,7 +342,7 @@ export const programmerDigitalSolutionsMotion = (scrollY: MotionValue, homeEvent
         0,0,-15,0,0,
         0,0,0,0,0,
         0,0,0,0,0,
-        0,0,0,0,-100,
+        0,0,0,25,-100,
         0,-150,0,-150,-25,
         0,0,0,0,0,
         0,0,0,0,0,
@@ -395,7 +395,7 @@ export const programmerDigitalSolutionsMotion = (scrollY: MotionValue, homeEvent
 
 
     const iPhone_scale = [
-        0,0,0,0,0,
+        0.02,0,0,0,0,
         0,0,0,0,0,
         0,0,0,0,0,
         0,0,0,15,0,
@@ -459,7 +459,7 @@ export const programmerDigitalSolutionsMotion = (scrollY: MotionValue, homeEvent
     ];
 
     const iPad_scale = [
-        0,0,0.45,0,0,
+        0.01,0,0.45,0,0,
         0,0,0,0,0,
         0,0,0,0,0,
         0,0,0,0.5,0,
@@ -524,7 +524,7 @@ export const programmerDigitalSolutionsMotion = (scrollY: MotionValue, homeEvent
 
 
     const macbook_scale = [
-        0,0,0,0,0,
+        0.01,0,0,0,0,
         0,0,0,0,0,
         0,0,0,0,0,
         0,0,0,250,0,
