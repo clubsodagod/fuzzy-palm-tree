@@ -349,7 +349,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
                                     <MemoizedRubiksCube
                                         rotation-y={3.75}
-                                        scale={3}
+                                        scale={rv([2.25,3,3])}
                                     />
                                 </Float>
                             </MotionGroup>
@@ -358,7 +358,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
                         {/* pumping heart */}
                         <MotionGroup
-                            position={[-3, 39, 5]}
+                            position={[rv([0,-3,-3]), 39, 5]}
                             visible={visible.pumpingHeart}
                         >
 
@@ -382,7 +382,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
                         {/* diamonds */}
                         <MotionGroup
-                            position={[-5, -5, 5]}
+                            position={[rv([0,-5,-5]), -5, 5]}
                             visible={visible.diamonds}
                             ref={diamondsRef}
                         >
@@ -408,7 +408,9 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
 
                         {/* bee and hive */}
-                        <MotionGroup>
+                        <MotionGroup
+                        position-x={rv([7,0,0])}
+                        >
 
                             <Float
                                 floatIntensity={0.5}
@@ -453,8 +455,6 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
                                 </MotionGroup>
 
                             </Float>
-                        </MotionGroup>
-
                         {/* bee buddy */}
                         <MotionGroup
                             position={[-14, 52, 5]}
@@ -474,12 +474,14 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
                             </MotionGroup>
 
                         </MotionGroup>
+                        </MotionGroup>
+
 
 
 
                         {/* city */}
                         <MotionGroup
-                            position={[-10, 45, 15]}
+                            position={[rv([0,-1,-10]), 45, 15]}
                             rotation-x={0.45}
                             rotation-y={0.45}
                             visible={visible.city}
@@ -496,7 +498,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
                                     <MemoizedCity
                                         animation='Main'
                                         props={{
-                                            scale: 0.0375
+                                            scale:rv([0.03, 0.0375, 0.0375]),
                                         }}
                                     />
                                 </MotionGroup>

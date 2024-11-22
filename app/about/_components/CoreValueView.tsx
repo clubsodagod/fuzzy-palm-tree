@@ -37,8 +37,6 @@ const CoreValueView: React.FC<CoreValuesCarouselProps> = ({
             {...rest}
         >
 
-{
-                !(['xs', 'sm', 'md']).includes(currentBreakpoint) &&
                 <MotionDiv
                     initial={{
                         opacity: 0,
@@ -63,15 +61,12 @@ const CoreValueView: React.FC<CoreValuesCarouselProps> = ({
                         />
                     </MotionDiv>
                 </MotionDiv>
-            }
 
             <div ref={scrollCtnRef} className={styles.aboutChildWrapper} >
                 {children}
             </div>
 
 
-            {
-                !(['xs', 'sm', 'md']).includes(currentBreakpoint) &&
                 <MotionDiv
                     initial={{
                         opacity: 0,
@@ -97,7 +92,6 @@ const CoreValueView: React.FC<CoreValuesCarouselProps> = ({
                     </MotionDiv>
 
                 </MotionDiv>
-            }
 
         </MotionDiv>
     );
