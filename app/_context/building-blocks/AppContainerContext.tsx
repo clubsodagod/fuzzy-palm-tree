@@ -1,3 +1,4 @@
+'use client'
 import { useAnimationControls } from "framer-motion";
 import React, { useState } from 'react';
 

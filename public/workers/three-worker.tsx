@@ -3,7 +3,7 @@ import { render } from "@react-three/offscreen";
 
 import dynamic from 'next/dynamic';
 
-const AboutExperience = dynamic(() => import('../_components/scenes/mission-statement/AboutExperience'), {
+const AboutExperience = dynamic(() => import('../../app/about/_components/scenes/mission-statement/AboutExperience'), {
   ssr: false, // Optional: Disable server-side rendering for this component
 });
 

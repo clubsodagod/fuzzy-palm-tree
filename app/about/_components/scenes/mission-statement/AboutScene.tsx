@@ -2,12 +2,8 @@
 import React, { Suspense, useEffect, lazy, useState, StrictMode } from 'react'
 import MissionStatementExperience from './AboutExperience'
 import { Canvas } from '@react-three/offscreen'
-import AppProvider from '@/app/_context/AppContext'
 import dynamic from 'next/dynamic';
 
-const AboutExperience = dynamic(() => import('./AboutExperience'), {
-  ssr: false, // Optional: Disable server-side rendering for this component
-});
 
 
 
@@ -20,15 +16,17 @@ const AboutScene: React.FC<{
 }) => {
 
 
+
         const [worker, setWorker] = useState<Worker | null>(null);
-        console.debug('Experience')
+
 
         useEffect(() => {
             // Only initialize the worker in the browser
             if (typeof window !== 'undefined') {
+                
                 const newWorker = new Worker(
-                    new URL('../../../_utils/three-worker.tsx', import.meta.url),
-                    { type: 'module' }
+                    new URL('/public/workers/three-worker.tsx', import.meta.url),
+                    { type: 'module' },
                 );
                 setWorker(newWorker);
 
@@ -41,31 +39,34 @@ const AboutScene: React.FC<{
 
 
         return (
-            <StrictMode>
-                <Suspense fallback={null}>
+            <Suspense fallback={
+                <div className="w-full flex items-center justify-center h-[calc(100vh-300px)] font-bold text-[30px] font-mono text-white">
+                  loading...
+                </div>}>
 
-                    {worker && (
-                        <Canvas
-                            worker={worker}
-                            fallback={<AboutExperience value={value} />}
-                            dpr={[1, 1.5]}
-                            style={{
-                                pointerEvents: 'none',
-                                position: 'fixed',
-                                top: 0,
-                                zIndex: -1,
-                            }}
-                            shadows
-                            camera={{
-                                position: [0, 0, 60],
-                                fov: 50,
-                            }}
-                        />
-
-                    )}
-
-                </Suspense>
-            </StrictMode>
+                {worker && (
+                    <Canvas
+                        worker={worker}
+                        fallback={
+                            <MissionStatementExperience
+                                value={value}
+                            />
+                        }
+                        dpr={[1, 1.5]}
+                        style={{
+                            pointerEvents: 'none',
+                            position: 'fixed',
+                            top: 0,
+                            zIndex: -1,
+                        }}
+                        shadows
+                        camera={{
+                            position: [0, 0, 60],
+                            fov: 50,
+                        }}
+                    />
+                )}
+            </Suspense>
 
 
         )

@@ -4,7 +4,6 @@ import { MotionValue, useMotionValueEvent } from 'framer-motion';
 import { RefObject, useEffect } from 'react'
 
 const ThreeWindowUpdater = (scrollRef: RefObject<HTMLDivElement>,scrollY:MotionValue) => {
-
     const { scroll: { windowHeight, windowScrollHeight, setWindowScrollHeight, setWindowHeight,  } } = useAppContext()
     return (
         useMotionValueEvent(scrollY, "change", () => {

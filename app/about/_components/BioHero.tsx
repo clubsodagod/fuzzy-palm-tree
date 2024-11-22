@@ -61,7 +61,6 @@ const BioHero: React.FC<HeroProps> = ({
                     >
 
                         <MotionImg
-                        fetchPriority='high'
                             className={`${styles.bioImgMain}`} src={bioImg} alt='image of me'
                             variants={variants}
                             animate={storyTime ? 'storyTime' : 'other'}
