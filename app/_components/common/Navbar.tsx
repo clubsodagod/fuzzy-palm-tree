@@ -18,13 +18,14 @@ import Button from '@mui/material/Button';
 import { NavItem } from '@/app/_library/types/common';
 import { navItems } from '@/app/_library/const/nav';
 import { MotionDiv } from './framer/MotionDiv';
+import { useAppContext } from '@/app/_context/AppContext';
 
 
 
 
-const drawerWidth = 240;
 
 export default function DrawerAppBar() {
+    const {screen:{currentBreakpoint}} = useAppContext();
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [childPaths, setChildPaths] = React.useState<NavItem | null>();
 
@@ -32,6 +33,7 @@ export default function DrawerAppBar() {
         setMobileOpen((prevState) => !prevState);
     };
 
+const drawerWidth = (['lg','xl','2xl']).includes(currentBreakpoint) ? 400 : 240;
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'left', color:'whitesmoke' }} id="navbar-drawer">
             <MotionDiv
@@ -92,12 +94,12 @@ export default function DrawerAppBar() {
                     marginTop: '8vh',
                 }}>
                     <Toolbar>
-                        <Box sx={{ display: { xs: 'none', sm: 'flex' }, }}
+                        <Box sx={{ display: { xs: 'none', lg: 'flex' }, }}
                             className={`justify-center w-full gap-[3vw]`}
                         >
 
                             <Button
-                                sx={{ display: { xs: 'none', sm: 'block', color: 'white' } }}
+                                sx={{ display: { xs: 'none', lg: 'block', color: 'white' } }}
                                 href={childPaths.path}
                             >
                                 {childPaths.label}
@@ -106,7 +108,7 @@ export default function DrawerAppBar() {
                                 childPaths.children.map((item,) => (
                                     <Button
                                         key={item.label}
-                                        sx={{ display: { xs: 'none', sm: 'block', color: 'white' } }}
+                                        sx={{ display: { xs: 'none', lg: 'block', color: 'white' } }}
                                         href={item.path}
                                     >
                                         {item.label}
@@ -123,24 +125,24 @@ export default function DrawerAppBar() {
                 <Toolbar
                     className={`items-center`}
                 >
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        onClick={handleDrawerToggle}
-                        sx={{ ml: 'auto', display: { sm: 'none' }, border: '2px solid white', borderRadius: '7.5px', }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
                     <Box
-                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block', color: 'white' } }}
+                        sx={{ flexGrow: 1, display: { xs: 'block', lg: 'block', color: 'white' } }}
                     >
                         <Typography component='div' variant='h4'>
                             Maliek Davis
                         </Typography>
                     </Box>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        edge="start"
+                        onClick={handleDrawerToggle}
+                        sx={{ ml: 'auto', display: { lg: 'none' }, border: '2px solid white', borderRadius: '7.5px', }}
+                    >
+                        <MenuIcon />
+                    </IconButton>
 
-                    <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                    <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
                         {navItems.map((item) => (
                             <Button key={item.label} sx={{ color: '#fff' }} href={!item.children ? item.path : ''}
                                 onClick={() => { handleClick(item) }}
@@ -162,7 +164,7 @@ export default function DrawerAppBar() {
                         keepMounted: true, // Better open performance on mobile.
                     }}
                     sx={{
-                        display: { xs: 'block', sm: 'none' },
+                        display: { xs: 'block', lg: 'none' },
                         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                     }}
                 >

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import AppProvider from "./_context/AppContext";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
@@ -12,9 +12,15 @@ export const metadata: Metadata = {
   appleWebApp: {
     statusBarStyle: 'black-translucent',
     capable: true,
-  }
+
+  },
+
 };
 
+
+export const viewport: Viewport = {
+  themeColor: '#3494E6',
+}
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,9 +34,9 @@ export default function RootLayout({
           options={{ key: 'css', enableCssLayer: true }}
         >
           <AnimatePresencePro>
-              <DefaultLayout>
-                {children}
-              </DefaultLayout>
+            <DefaultLayout>
+              {children}
+            </DefaultLayout>
           </AnimatePresencePro>
 
         </AppRouterCacheProvider>
