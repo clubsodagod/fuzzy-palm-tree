@@ -261,10 +261,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
                 <MotionGroup
                     initial={{
-                        scale: powerTowerMotion().scale.get()
-                    }}
-                    animate={{
-                        scale: powerTowerMotion().scale.get()
+                        scale: 0.001
                     }}
                     position={[powerTowerMotion().x, powerTowerMotion().y, powerTowerMotion().z]}
                     rotation={[powerTowerMotion().rotationX, powerTowerMotion().rotationY, powerTowerMotion().rotationZ]}
