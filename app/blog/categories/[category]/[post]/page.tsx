@@ -6,31 +6,38 @@ import { MotionImg } from '@/app/_hide/_components/framer/MotionImg';
 import { MotionP } from '@/app/_hide/_components/framer/MotionP';
 import { useScreenContext } from '@/app/_hide/_context/sub-context/ScreenContext';
 import { getAllPosts, getPostBySlug } from '@/library/db/controllers/blog';
-import { getAllCategoriesClient, getAllPostsClient, getAllPostsSlugClient, getPostBySlugClient } from '@/utility/blog-section/blog-page-functions';
+import { getAllPostsClient, getAllPostsSlugClient, getPostBySlugClient } from '@/utility/blog-section/blog-page-functions';
 import { Avatar } from '@mui/material';
 import React from 'react';
 import parse from "html-react-parser";
 import { getAllIdentifiers } from '@/library/db/controllers/identifiers';
 import { CategoryModel } from '@/app/_database/models';
 import { IBlog, IBlogPopulated } from '@/app/_database/models/blog';
-import { ICategory, ICategoryPopulated } from '@/app/_database/models/category';
+import { ICategory } from '@/app/_database/models/category';
 import SlugPageModule from './_components/SlugPageModule';
 
 
 // Next.js will invalidate the cache when a
 // request comes in, at most once every 60 seconds.
 
+// Next.js will invalidate the cache when a
+// request comes in, at most once every 60 seconds.
+export const revalidate = 3600;
+
+// Next.js will server-render the page on-demand.
+export const dynamicParams = false // or false, to 404 on unknown paths
+
+
 // Generate static paths for categories.
 export async function generateStaticParams() {
-    'use server'
-    const postsResponse = await getAllPostsClient()
+    const postsResponse = await getAllPosts()
     const posts = postsResponse;
-    const categoryResponse = await getAllCategoriesClient()
+    const categoryResponse = await getAllIdentifiers(CategoryModel)
     const categories = categoryResponse
 
     
     return [
-        categories?.map((c:ICategoryPopulated)=>{
+        categories?.map((c:ICategory)=>{
             posts?.map((p:IBlogPopulated)=>(
                 {category:c.slug, post:p.slug}
             ))
