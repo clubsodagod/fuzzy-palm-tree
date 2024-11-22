@@ -30,14 +30,14 @@ export async function generateStaticParams() {
 export default async function Page({ params }: { params: { category: string } }) {
 
     const categoryResponse = await fetch(
-        `http://localhost:3000/api/blog/identifiers/category/get-one?slug=${params.category}`,
+        `https://fuzzy-palm-tree.vercel.app/api/blog/identifiers/category/get-one?slug=${params.category}`,
         { cache: 'no-store', method: "GET" } // To ensure fresh data is fetched
     );
     const data = await categoryResponse.json();
     const category = data.category;
 
     const featuredBlogResponse = await fetch(
-        `http://localhost:3000/api/blog/get/category?id=${category._id as unknown as string}&featured=true`,
+        `https://fuzzy-palm-tree.vercel.app/api/blog/get/category?id=${category._id as unknown as string}&featured=true`,
         {
             cache: 'no-store',
             method: "GET",
@@ -47,7 +47,7 @@ export default async function Page({ params }: { params: { category: string } })
     const featuredPosts = ftData.postsOfCategory;
 
     const allBlogResponse = await fetch(
-        `http://localhost:3000/api/blog/get/category?id=${category._id as unknown as string}&featured=false`,
+        `https://fuzzy-palm-tree.vercel.app/api/blog/get/category?id=${category._id as unknown as string}&featured=false`,
         {
             cache: 'no-store',
             method: "GET",
