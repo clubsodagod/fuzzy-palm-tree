@@ -1,17 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
-import { Header, HeroButtonCtn, OuterSceneWrapper, PageWrapper } from '@/app/_hide/_components';
-import React, { RefObject, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './styles.module.css';
 import { bio, bioImg } from '@/library/const';
-import { Button, Typography } from '@mui/material';
-import { animate, motion } from 'framer-motion';
-import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv';
-import ButtonPro from '@/app/_hide/_components/common/buttons/ButtonPro';
-import { MotionImg } from '@/app/_hide/_components/framer/MotionImg';
-import { VoidOneParameterFunction } from '@/app/_hide/im-a-programmer/_components/DigitalSolutionsHeroMain';
-import { useResponsiveValues as rv } from '@/utility/functions';
+import { Typography } from '@mui/material';
 import { HeroProps } from '@/app/_library/types/common';
+import Header from '@/app/_components/common/Header';
+import MotionPageWrapper from '@/app/_components/common/MotionPageWrapper';
+import ButtonPro from '@/app/_components/common/ButtonPro';
+import { MotionDiv } from '@/app/_components/common/framer/MotionDiv';
+import { MotionImg } from '@/app/_components/common/framer/MotionImg';
+import HeroButtonCtn from '@/app/_components/common/HeroButtonCtn';
 
 
 
@@ -38,22 +37,10 @@ const BioHero: React.FC<HeroProps> = ({
         storyTimeText: { opacity: 1, scale: 1 },
         hideStoryTimeText: { opacity: 0, scale: 0 },
     }
-let check = scalingFactor
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
 
-            const mainScalingFactor = window && Math.min(Math.max(window?.innerWidth / 480, 0.2), 100);
-            if (mainScalingFactor !== scalingFactor) {
-                setScalingFactor(mainScalingFactor);
-            }
-            
-
-        }
-
-    }, [scalingFactor])
 
     return (
-        <PageWrapper
+        <MotionPageWrapper
             ctnRef={ctnRef}
             id={id}
         >
@@ -147,7 +134,7 @@ let check = scalingFactor
                 </MotionDiv>
 
             </MotionDiv>
-        </PageWrapper>
+        </MotionPageWrapper>
     )
 
 }
