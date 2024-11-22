@@ -10,9 +10,6 @@ const WindowUpdater = (scrollRef:RefObject<HTMLDivElement>) => {
           if (windowScrollHeight === 0 && scrollRef.current && window) {
             setWindowScrollHeight(scrollRef.current.scrollHeight - window.innerHeight);
           }
-          if (window && windowHeight === 0) {
-            setWindowHeight(window.innerHeight);
-          }
           if (window && windowHeight !== window.innerHeight) {
             setWindowHeight(window.innerHeight);
           }

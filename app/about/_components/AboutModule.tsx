@@ -18,10 +18,9 @@ const AboutModule = () => {
     const [currentSection, setCurrentSection] = useState<string>('');
     const [coreValue, setCoreValue] = useState<number>(0);
 
-    const controls = useAnimationControls();
 
     const {
-        bioRef, coreValuesRef, missionStatementRef, bodyRef, refs, ctnRef, scrollRef
+        bioRef, coreValuesRef, missionStatementRef, refs, scrollRef
     } = useAboutSectionRefs();
 
 
@@ -51,6 +50,7 @@ const AboutModule = () => {
     };
 
     WindowUpdater(scrollRef);
+    
     IntersectionWatcher({ refs });
 
     return (

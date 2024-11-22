@@ -86,7 +86,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
     const [previousValue, setPreviousValue] = useState<number>(coreValues.length - 1);
     const {
-        scroll: { scrollYProgress, windowScrollHeight, dynamicIncrement: dI, scrollY, },
+        scroll: { scrollYProgress, dynamicIncrement: dI, scrollY, },
         appContainer: { scrollRef }
     } = useAppContext();
 
@@ -173,15 +173,12 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
 
     useFrame(() => {
-        setScalingFactor(mainScalingFactor);
-        let ref = mainRef as RefObject<THREE.Group>
-        let refDiamonds = diamondsRef as RefObject<THREE.Group>
-        if (ref.current?.rotation && scrollYProgress.get() < 0.75) {
+        const ref = mainRef as RefObject<THREE.Group>
+        const refDiamonds = diamondsRef as RefObject<THREE.Group>
+        if (ref.current?.rotation && scrollYProgress.get() > 0.25 && scrollYProgress.get() < 0.75) {
             ref.current.rotation.y += 0.0025
         }
-        if (refDiamonds.current?.rotation && scrollYProgress.get() > 0.75) {
-            refDiamonds.current.rotation.y += 0.0025
-        }
+        
     });
 
 
