@@ -11,10 +11,11 @@ import { Avatar } from '@mui/material';
 import React from 'react';
 import parse from "html-react-parser";
 import { getAllIdentifiers } from '@/library/db/controllers/identifiers';
-import { CategoryModel } from '@/app/_database/models';
-import { IBlog, IBlogPopulated } from '@/app/_database/models/blog';
+import { CategoryModel, UserModel } from '@/app/_database/models';
+import Blog, { IBlog, IBlogPopulated } from '@/app/_database/models/blog';
 import { ICategory } from '@/app/_database/models/category';
 import SlugPageModule from './_components/SlugPageModule';
+import { connectToMongoDB } from '@/app/_database/db';
 
 
 // Next.js will invalidate the cache when a
@@ -25,20 +26,21 @@ import SlugPageModule from './_components/SlugPageModule';
 export const revalidate = 3600;
 
 // Next.js will server-render the page on-demand.
-export const dynamicParams = false // or false, to 404 on unknown paths
 
 
 // Generate static paths for categories.
 export async function generateStaticParams() {
-    const postsResponse = await getAllPosts()
+    
+    await connectToMongoDB();
+    const postsResponse = await Blog.find();
     const posts = postsResponse;
-    const categoryResponse = await getAllIdentifiers(CategoryModel)
-    const categories = categoryResponse
+    const categoryResponse = await CategoryModel.find();
+    const categories = categoryResponse;
 
     
     return [
         categories?.map((c:ICategory)=>{
-            posts?.map((p:IBlogPopulated)=>(
+            posts?.map((p:IBlog)=>(
                 {category:c.slug, post:p.slug}
             ))
         })
