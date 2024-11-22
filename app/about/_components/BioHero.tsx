@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles.module.css';
 import { bio, bioImg } from '@/library/const';
 import { Typography } from '@mui/material';
@@ -38,7 +38,18 @@ const BioHero: React.FC<HeroProps> = ({
         hideStoryTimeText: { opacity: 0, scale: 0 },
     }
 
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
 
+            const mainScalingFactor = window && Math.min(Math.max(window?.innerWidth / 480, 0.2), 100);
+
+            if (mainScalingFactor !== scalingFactor) {
+                setScalingFactor(mainScalingFactor);
+            }
+        }
+
+    }, [scalingFactor])
+    
     return (
         <MotionPageWrapper
             ctnRef={ctnRef}

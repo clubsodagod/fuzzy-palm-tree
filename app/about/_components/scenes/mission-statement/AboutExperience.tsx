@@ -5,7 +5,7 @@ import { Atom, Bee, Book, City, Compass, Diamonds, Hive, MarbleColumn, Moon, Pow
 import { Float } from '@react-three/drei'
 import {  useFrame } from '@react-three/fiber'
 import { Variants } from 'framer-motion'
-import React, { RefObject, useRef, useState } from 'react'
+import React, { RefObject, useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { useResponsiveValues as rv } from '@/utility/functions';
 import { useAppContext } from '@/app/_context/AppContext'
@@ -178,6 +178,9 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
         if (ref.current?.rotation && scrollYProgress.get() > 0.25 && scrollYProgress.get() < 0.75) {
             ref.current.rotation.y += 0.0025
         }
+        if (refDiamonds.current?.rotation && scrollYProgress.get() > 0.75) {
+            refDiamonds.current.rotation.y += 0.0015
+        }
         
     });
 
@@ -205,7 +208,12 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
 
 
-
+    useEffect(()=> {
+        if (mainScalingFactor !== scalingFactor) {
+            setScalingFactor(mainScalingFactor);
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
 
     // update scaling factor when it changes
     ScalingFactorManager({ scalingFactor, setScalingFactor, mainScalingFactor });
