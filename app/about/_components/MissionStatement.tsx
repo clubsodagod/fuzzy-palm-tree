@@ -19,22 +19,11 @@ const MissionVision: React.FC<HeroProps> = ({
     scrollTo,
 }) => {
     const {
-        scroll: { scrollY, windowScrollHeight, scrollYProgress },
         screen: { currentBreakpoint }
     } = useAppContext()
 
-    const [scrollYPro, setScrollYPro] = useState(scrollY.get())
 
-    useEffect(() => {
-        if (scrollY)
-            console.log(scrollY.get(), scrollYProgress.get());
-
-
-
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [scrollY.get(), scrollYProgress.get()])
-
+    
     return (
         <MotionPageWrapper
             ctnRef={ctnRef}

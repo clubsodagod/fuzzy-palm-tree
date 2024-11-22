@@ -19,18 +19,18 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
         }
     } = useAppContext()
 
-    const { scrollY } = useScroll({ target: scrollRef });
+    // const { scrollY } = useScroll({ target: scrollRef });
 
 
 
-    const scrollYPro = scrollY.get();
-    const scrollYProPrevious = scrollY.getPrevious();
+    // const scrollYPro = scrollY.get();
+    // const scrollYProPrevious = scrollY.getPrevious();
 
-    useEffect(() => {
-        if (scrollYPro !== scrollYProPrevious) {
-            console.log(scrollYPro);
-        }
-    }, [scrollYPro, scrollYProPrevious])
+    // useEffect(() => {
+    //     if (scrollYPro !== scrollYProPrevious) {
+    //         console.log(scrollYPro);
+    //     }
+    // }, [scrollYPro, scrollYProPrevious])
 
     useEffect(() => {
         window.scrollTo(0, 1)

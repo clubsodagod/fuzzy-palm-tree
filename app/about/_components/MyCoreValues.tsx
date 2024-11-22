@@ -45,11 +45,7 @@ const MyCoreValues: React.FC<HeroPropsExtended> = ({
     ctnRef, id, scrollTo, value, carouselHandler, 
 }) => {
 
-    const {
-        scroll:{
-            scrollY
-        }
-    } = useAppContext();
+
 
     const [previousValue, setPreviousValue] = useState(0);
 
@@ -95,22 +91,8 @@ const MyCoreValues: React.FC<HeroPropsExtended> = ({
     }, [value, previousValue, variant]);
 
 
-    const prime = scrollY.get();
-    const pastPrime = scrollY.getPrevious();
-    const scalingFactor = () => Math.min(Math.max(window?.innerWidth / 1920, window?.innerWidth > 700 && window?.innerWidth < window?.innerHeight ? 0.8 : 0.6), 3);
 
-    useEffect(() => {
 
-        const functionHandler = () => {
-            if (prime !== pastPrime) {
-
-                console.log(scalingFactor());
-            }
-        };
-
-        functionHandler();
-
-    }, [pastPrime, prime, scalingFactor])
 
     return (
         <MotionPageWrapper
