@@ -6,14 +6,14 @@ import { MotionImg } from '@/app/_hide/_components/framer/MotionImg';
 import { MotionP } from '@/app/_hide/_components/framer/MotionP';
 import { useScreenContext } from '@/app/_hide/_context/sub-context/ScreenContext';
 import { getAllPosts, getPostBySlug } from '@/library/db/controllers/blog';
-import { getAllPostsClient, getAllPostsSlugClient, getPostBySlugClient } from '@/utility/blog-section/blog-page-functions';
+import { getAllCategoriesClient, getAllPostsClient, getAllPostsSlugClient, getPostBySlugClient } from '@/utility/blog-section/blog-page-functions';
 import { Avatar } from '@mui/material';
 import React from 'react';
 import parse from "html-react-parser";
 import { getAllIdentifiers } from '@/library/db/controllers/identifiers';
 import { CategoryModel } from '@/app/_database/models';
 import { IBlog, IBlogPopulated } from '@/app/_database/models/blog';
-import { ICategory } from '@/app/_database/models/category';
+import { ICategory, ICategoryPopulated } from '@/app/_database/models/category';
 import SlugPageModule from './_components/SlugPageModule';
 
 
@@ -23,14 +23,14 @@ import SlugPageModule from './_components/SlugPageModule';
 // Generate static paths for categories.
 export async function generateStaticParams() {
     'use server'
-    const postsResponse = await getAllPosts()
+    const postsResponse = await getAllPostsClient()
     const posts = postsResponse;
-    const categoryResponse = await getAllIdentifiers(CategoryModel)
+    const categoryResponse = await getAllCategoriesClient()
     const categories = categoryResponse
 
     
     return [
-        categories?.map((c:ICategory)=>{
+        categories?.map((c:ICategoryPopulated)=>{
             posts?.map((p:IBlogPopulated)=>(
                 {category:c.slug, post:p.slug}
             ))
