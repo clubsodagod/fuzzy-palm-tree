@@ -64,7 +64,7 @@ export async function getAllPostsSlugClient() {
 export async function getPostBySlugClient(slug: string) {
 
     const postResponse = await fetch(`https://fuzzy-palm-tree.vercel.app/api/blog/get/slug?slug=${slug}`,
-        { cache: 'no-store', method: "GET" });
+        { method: "GET" });
     const post = await postResponse.json().then((res) => res.post);
     console.log(post);
 

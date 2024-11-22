@@ -53,17 +53,12 @@ export default async function BlogSlugPage ({ params }: { params: { post: string
     // Fetch the post data based on the slug
     const post: IBlogPopulated | null = await getPostBySlugClient(params.post);
     
-    // If post data doesn’t exist, Next.js will automatically handle 404 based on `dynamicParams`
-    if (!post) {
-        return {
-            notFound: true,
-        };
-    }
+ 
     
    
     
     // Parse the HTML content only if post content exists
-    const parsedContent = post.content ? parse(post.content) : null;
+    const parsedContent = post?.content ? parse(post.content) : null;
 
     return (
         <SlugPageModule

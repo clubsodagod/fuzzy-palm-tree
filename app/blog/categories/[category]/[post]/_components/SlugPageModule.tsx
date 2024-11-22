@@ -15,32 +15,23 @@ import { ISubcategory } from '@/app/_database/models/subcategory'
 import { useAppContext } from '@/app/_context/AppContext'
 
 interface SlugPageModuleProps {
-    post: IBlogPopulated;
+    post: IBlogPopulated | null;
 }
 
 const SlugPageModule: React.FC<SlugPageModuleProps> = ({
-    post: {
-        featuredImg,
-        title,
-        content,
-        author,
-        createdAt,
-        subcategories,
-        category
-    }
+    post
 }) => {
-    console.log(category, subcategories);
 
     const {
         screen:{isMobile},
     } = useAppContext();
     
     // Parse the HTML content only if post content exists
-    const parsedContent = content ? parse(content) : null;
+    const parsedContent = post?.content ? parse(post?.content) : null;
     return (
         <MotionPageWrapper>
             <MotionDiv className={`${styles.slugFtImgWrapper}`}>
-                <MotionImg className={`object-cover w-full h-full ${styles.slugFtImg}`} src={featuredImg.portrait} />
+                <MotionImg className={`object-cover w-full h-full ${styles.slugFtImg}`} src={post?.featuredImg.portrait} />
             </MotionDiv>
 
             <MotionDiv className='hero-wrapper mt-[38dvh] z-30 gap-3 md:px-[12vw] text-left'>
@@ -53,7 +44,7 @@ const SlugPageModule: React.FC<SlugPageModuleProps> = ({
                         >
                             
                             {
-                                subcategories.map((sc: ISubcategory, i: number) => {
+                                post?.subcategories.map((sc: ISubcategory, i: number) => {
 
                                     if (i % 2 == 0) {
                                         return (
@@ -81,16 +72,16 @@ const SlugPageModule: React.FC<SlugPageModuleProps> = ({
                 </MotionDiv>
                 <MotionDiv className={`flex flex-row gap-[2vw] justify-center items-center text-center`}>
                     <MotionDiv>
-                        <Avatar label={`${author.firstName[0]}`} />
+                        <Avatar label={`${post?.author.firstName[0]}`} />
                     </MotionDiv>
                     <MotionDiv>
-                        <MotionP>{author.firstName} {author.lastName}</MotionP>
-                        <MotionP>{new Date(createdAt).toLocaleString()}</MotionP>
+                        <MotionP>{post?.author.firstName} {post?.author.lastName}</MotionP>
+                        <MotionP>{new Date(post?.createdAt!).toLocaleString()}</MotionP>
                     </MotionDiv>
                 </MotionDiv>
 
                 <Typography variant='h3'>
-                    {title}
+                    {post?.title}
                 </Typography>
 
                 {/* Content component */}
