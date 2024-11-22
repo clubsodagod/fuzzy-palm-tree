@@ -17,7 +17,7 @@ export const useAboutMotionLogic = (scrollY: MotionValue, homeEventPoints: numbe
 
 
     // Define your animation arrays here
-    const powerTower_scale = [0,0,0.4,0,0,];
+    const powerTower_scale = [0,0.1,0.4,0,0,];
     const powerTower_x = [0,0,0,0,0,];
     const powerTower_y = [62,32,40,25,25,];
     const powerTower_z = [0,0,5,5,5,];
