@@ -62,7 +62,9 @@ export default function IntersectionWatcher(props: IntersectionWatcherProps) {
                     }
                 });
             };
-        }, [controls, refs, setCurrentSection, snapToTop])
+            
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, [controls, refs,])
 
     )
 }

@@ -1,15 +1,14 @@
 'use client'
 
 import { coreValues } from '@/library/const'
-import { Atom, Bee, Book, City, Compass, Diamonds, Hive, MarbleColumn, Moon, PowerTower, PumpingHeart, RubiksCube, Scale, SolarPanel, TropicalIsland } from '@/public/3d-objects'
-import { BBAnchor, Box, Float } from '@react-three/drei'
-import { GroupProps, useFrame } from '@react-three/fiber'
-import { MotionValue, Variants } from 'framer-motion'
-import React, { RefObject, useEffect, useMemo, useRef, useState } from 'react'
+import { Atom, Bee, Book, City, Compass, Diamonds, Hive, MarbleColumn, Moon, PowerTower, PumpingHeart, RubiksCube, Scale, TropicalIsland } from '@/public/3d-objects'
+import { Float } from '@react-three/drei'
+import {  useFrame } from '@react-three/fiber'
+import { Variants } from 'framer-motion'
+import React, { RefObject, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { useResponsiveValues as rv } from '@/utility/functions';
 import { useAppContext } from '@/app/_context/AppContext'
-import { useAboutSectionRefs } from '@/app/about/_utils/refs'
 import { MotionGroup } from '@/app/_components/common/framer/MotionGroup'
 import { useAboutMotionLogic } from '@/app/about/_utils/about-motion'
 import ScaleManager from '@/app/_utility/three/ScaleManager'
@@ -85,6 +84,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
 
     const [previousValue, setPreviousValue] = useState<number>(coreValues.length - 1);
+
     const {
         scroll: { scrollYProgress, dynamicIncrement: dI, scrollY, },
         appContainer: { scrollRef }
