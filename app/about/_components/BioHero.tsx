@@ -11,7 +11,7 @@ import ButtonPro from '@/app/_components/common/ButtonPro';
 import { MotionDiv } from '@/app/_components/common/framer/MotionDiv';
 import { MotionImg } from '@/app/_components/common/framer/MotionImg';
 import HeroButtonCtn from '@/app/_components/common/HeroButtonCtn';
-
+import { useResponsiveValues as rv } from '@/utility/functions';
 
 
 
@@ -30,7 +30,7 @@ const BioHero: React.FC<HeroProps> = ({
     }
 
     const variants = {
-        storyTime: { opacity: 0.25, scale: 0.75, y: 65 * scalingFactor },
+        storyTime: { opacity: 0.25, scale: 0.75, y: rv([25,65,65]) },
         other: { opacity: 1, scale: 1 },
         clampedText: { opacity: 1, scale: 1 },
         hideClampedText: { opacity: 0, scale: 0 },
@@ -38,17 +38,7 @@ const BioHero: React.FC<HeroProps> = ({
         hideStoryTimeText: { opacity: 0, scale: 0 },
     }
 
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
 
-            const mainScalingFactor = window && Math.min(Math.max(window?.innerWidth / 480, 0.2), 100);
-
-            if (mainScalingFactor !== scalingFactor) {
-                setScalingFactor(mainScalingFactor);
-            }
-        }
-
-    }, [scalingFactor])
     
     return (
         <MotionPageWrapper
