@@ -10,10 +10,11 @@ interface ScalingFactorManagerProps {
 const ScalingFactorManager = ({scalingFactor,setScalingFactor, mainScalingFactor}:ScalingFactorManagerProps) => {
     return (
         useEffect(()=> {
-            if (mainScalingFactor != scalingFactor) {
+            if (mainScalingFactor !== scalingFactor) {
                 setScalingFactor(mainScalingFactor);
             }
-        })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        },[mainScalingFactor, scalingFactor, ])
     )
 }
 

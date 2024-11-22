@@ -4,7 +4,6 @@ import { AppContainer } from '@/app/_hide/_components';
 import CaseStudies from './CaseStudies';
 import PortfolioMainHero from './PortfolioMainHero';
 import PortfolioScene from './scene/PortfolioScene';
-import { useScroll } from '@/app/_hide/_context/sub-context/ScrollContext';
 import { scrollToSection } from '@/utility/common/scrollToSection';
 import { useAnimationControls } from 'framer-motion';
 import ScrollGradientUtil from '@/utility/common/ScrollGradientUtil';
@@ -13,6 +12,8 @@ import { ITechnicalApplication } from '@/app/_database/models/technicalApplicati
 import { usePortfolioPageRefs } from '../_utils/refs';
 import { portfolioPageGradientAnimations } from '../_utils/animation-gradients';
 import { useAppContext } from '@/app/_context/AppContext';
+import IntersectionWatcher from '@/app/_utility/window/IntersectionWatcher';
+import WindowUpdater from '@/app/_utility/window/WindowUpdater';
 
 interface PortfolioModuleProps {
     technicalApplications: ITechnicalApplication[]|undefined|null;
@@ -23,43 +24,34 @@ const PortfolioModule: React.FC<PortfolioModuleProps> = ({
     technicalApplications, caseStudies
 }) => {
 
-    const [currentSection, setCurrentSection] = useState<string>('portfolio-main');
     const [caseStudy, setCaseStudy] = useState<ICaseStudy|undefined|null>(caseStudies && caseStudies[0]);
 
     const [index, setIndex] = useState<number>(0);
     const [link, setLink] = useState<string>('/images/desktop-pearl-box.png');
 
+
+
     const {
-        scroll: { windowScrollHeight, setWindowScrollHeight, scrollY, windowHeight, setWindowHeight, scrollYProgress }
+        appContainer:{
+            currentSection, scrollRef
+        }
     } = useAppContext();
 
-    const controls = useAnimationControls();
+
 
     const {
-        mainRef, caseStudiesRef, refs, ctnRef, bodyRef
+        mainRef, caseStudiesRef, refs, ctnRef, bodyRef, 
     } = usePortfolioPageRefs();
 
     function scrollToSectionHandler(id: string) {
         scrollToSection(id, refs, currentSection);
     };
 
-    ScrollGradientUtil({
-        currentSection, setCurrentSection, refs, controls
-    });
 
-    useEffect(() => {
-        if (windowScrollHeight === 0) {
-            setWindowScrollHeight(ctnRef?.current?.scrollHeight! - window.innerHeight);
-        }
-        if (windowHeight === 0) {
-            setWindowHeight(window?.innerHeight);
-            console.log(window.innerHeight);
 
-        }
-        { windowScrollHeight && windowScrollHeight }
-        { windowHeight && windowHeight }
-    }, [windowScrollHeight, setWindowScrollHeight, ctnRef, windowHeight, setWindowHeight]);
-    console.log(caseStudy);
+
+    WindowUpdater(scrollRef);
+    IntersectionWatcher({ refs });
 
     return (
         <>
@@ -68,7 +60,6 @@ const PortfolioModule: React.FC<PortfolioModuleProps> = ({
                 scrollTo={scrollToSectionHandler}
                 ctnRef={mainRef}
                 technicalApplications={technicalApplications ? technicalApplications : undefined}
-                scrollY={scrollY}
                 index={index}
                 setIndex={setIndex}
                 link={link}
@@ -86,7 +77,6 @@ const PortfolioModule: React.FC<PortfolioModuleProps> = ({
 
             <PortfolioScene
                 link={link}
-                scrollY={scrollY}
                 caseStudy={caseStudy ? caseStudy : undefined}
             />
 

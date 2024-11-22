@@ -11,11 +11,11 @@ import Header from '@/app/_components/common/Header'
 import ScrollableItemCtn from '@/app/_components/common/ScrollableItemCtn'
 import HeroButtonCtn from '@/app/_components/common/HeroButtonCtn'
 import ScrollCtnWrapper from '@/app/_components/common/ScrollCtnWrapper'
+import { useAppContext } from '@/app/_context/AppContext'
 
 
 interface PortfolioMainProps extends HeroProps {
     technicalApplications: ITechnicalApplication[]|undefined|null;
-    scrollY:MotionValue;
     link:string;
     setLink:React.Dispatch<string>;
     index:number;
@@ -26,11 +26,15 @@ interface PortfolioMainProps extends HeroProps {
 const PortfolioMainHero: React.FC<PortfolioMainProps> = ({
     ctnRef,
     technicalApplications, scrollTo,
-    scrollY,
     index,
     setIndex,
     link, setLink
 }) => {
+
+    const {
+        scroll:{scrollY},
+        screen:{currentBreakpoint}
+    } = useAppContext();
 
     let technicalApplicationsIndexTotal = technicalApplications && technicalApplications.length - 1;
     const scrollRef = useRef(null);
@@ -51,9 +55,10 @@ const PortfolioMainHero: React.FC<PortfolioMainProps> = ({
             >
 
                 <Header
+                    className=''
                     headerLabel={`Portfolio`}
                     tagLine='My Collection of Digital Gems'
-                    size='lg'
+                    size={(['xs',]).includes(currentBreakpoint) ? 'md' : 'lg'}
                 />
 
                 <ScrollCtnWrapper>

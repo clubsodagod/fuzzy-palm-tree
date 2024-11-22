@@ -7,15 +7,15 @@ interface AnimationHandlerProps {
     visible: VisibilityThreeType;
     setVisible: React.Dispatch<React.SetStateAction<VisibilityThreeType>>;
     setVariantStatus: React.Dispatch<React.SetStateAction<VariantType>>;
-    setPreviousValue:React.Dispatch<number>;
-    value:number;
-    previousValue:number;
+    setPreviousValue: React.Dispatch<number>;
+    value: number;
+    previousValue: number;
 }
 
 const CoreValueAnimationHandler = ({
     visible, setVisible,
     setVariantStatus, setPreviousValue, value, previousValue
-}:AnimationHandlerProps) => {
+}: AnimationHandlerProps) => {
     return (
         useEffect(() => {
             const handleIndex = (index: number) => {
@@ -49,7 +49,7 @@ const CoreValueAnimationHandler = ({
                         return "pumpingHeart";
                     case 9:
 
-                        return "powerTower";
+                        return "tropicalIsland";
 
                     default:
                         return "atom";
@@ -87,7 +87,26 @@ const CoreValueAnimationHandler = ({
                                 }))
                             }, 1000);
                             break;
+                        case 9:
 
+                            setVisible((prev: VisibilityThreeType) => ({
+                                ...prev,
+                                powerTowerCoreValue: true,
+                                tropicalIsland: true
+                            }))
+                            setVariantStatus((prev: VariantType) => ({
+                                ...prev,
+                                [handleIndex(pv)]: "exit",
+                                powerTowerCoreValue: "enter",
+                                tropicalIsland: "enter",
+                            }));
+                            setTimeout(() => {
+                                setVisible((prev) => ({
+                                    ...prev,
+                                    [handleIndex(pv)]: false,
+                                }))
+                            }, 1000);
+                            break;
                         default:
 
                             switch (pv) {
@@ -105,6 +124,22 @@ const CoreValueAnimationHandler = ({
                                             bee: false,
                                             beeBuddy: false,
                                             hive: false
+                                        }));
+                                    }, 1000);
+                                    break;
+
+                                case 9:
+                                    setVariantStatus((prev: VariantType) => ({
+                                        ...prev,
+                                        [handleIndex(v)]: "enter",
+                                        powerTowerCoreValue: "exit",
+                                        tropicalIsland: "exit",
+                                    }));
+                                    setTimeout(() => {
+                                        setVisible((prev) => ({
+                                            ...prev,
+                                            powerTowerCoreValue: false,
+                                            tropicalIsland: false,
                                         }));
                                     }, 1000);
                                     break;
@@ -144,8 +179,8 @@ const CoreValueAnimationHandler = ({
             if (value != previousValue) {
                 animationHandler(value, previousValue);
             }
-            
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+
+            // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [previousValue, value])
     )
 }

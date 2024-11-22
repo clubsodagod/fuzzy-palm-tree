@@ -6,11 +6,10 @@ import PortfolioExperience from './PortfolioExperience'
 import { ICaseStudy } from '@/app/_database/models/case-study'
 
 const PortfolioScene: React.FC<{
-    scrollY: MotionValue;
     link:string;
     caseStudy:ICaseStudy|undefined|null;
 }> = ({
-    scrollY, link, caseStudy
+    link, caseStudy
 }) => {
 
     
@@ -34,7 +33,6 @@ const PortfolioScene: React.FC<{
 
                 <PortfolioExperience 
                 link={link ? link : '/images/desktop-pearl-box.png'}
-                scrollY={scrollY}
                 caseStudy={caseStudy ? caseStudy : undefined}
                 />
 

@@ -7,18 +7,19 @@ import MacBook from '@/public/3d-objects/macbook/Macbook';
 import { MotionGroup } from '@/app/_components/common/framer/MotionGroup';
 import { useMotionValueEvent, useScroll } from 'framer-motion';
 import VisibilityManager from '@/app/_utility/three/VisibilityManager';
-import { VisibilityThreeType } from '@/app/_library/types/common';
+import { ScalesThreeType, VisibilityThreeType } from '@/app/_library/types/common';
 import NewspaperBox from '@/public/3d-objects/newspaper-box/Scene';
 import { useFrame } from '@react-three/fiber';
 import ThreeWindowUpdater from '@/app/_utility/window/ThreeWindowUpdater';
+import ScaleManager from '@/app/_utility/three/ScaleManager';
+import ScalingFactorManager from '@/app/_utility/three/ScalingFactorManager';
 
 const HomeExperience = () => {
 
     // 3D objects
     const CachedMacBook = React.memo(MacBook);
 
-    const { scroll: { dynamicIncrement: dI, windowHeight, windowScrollHeight, setWindowScrollHeight, setWindowHeight }, appContainer: { scrollRef } } = useAppContext();
-    const { scrollY, } = useScroll({ container: scrollRef, });
+    const { scroll: { dynamicIncrement: dI, scrollY }, appContainer: { scrollRef, } } = useAppContext();
     // create event points for handling scroll animations
     const homeEventPoints = [
         0, (dI(0.5)),
@@ -40,20 +41,22 @@ const HomeExperience = () => {
     const macbook = programmerMotion().scale.get() * mainScalingFactor;
     const newspaper = programmerMotion().scale.get() * mainScalingFactor;
 
-    const [scales,] = useState({
+    const [scales, setScales] = useState<ScalesThreeType>({
         macbook, newspaper
     });
 
 
+    // update scaling factor when it changes
+    ScalingFactorManager({ scalingFactor, setScalingFactor, mainScalingFactor });
+    
     // Visibility manager
     VisibilityManager({ scales, visible, setVisible })
 
-    useEffect(() => {
-        if (scalingFactor) {
-            setScalingFactor(mainScalingFactor);
-        }
 
-    }, [mainScalingFactor, scalingFactor]);
+    // manage scales of object for scroll changes
+    ScaleManager({
+        scrollY, setScales, scalesPayload: scales
+    });
 
     ThreeWindowUpdater(scrollRef, scrollY)
 
@@ -61,7 +64,7 @@ const HomeExperience = () => {
     return (
 
         <MotionGroup
-            scale={mainScalingFactor}
+            scale={scalingFactor}
         >
 
 

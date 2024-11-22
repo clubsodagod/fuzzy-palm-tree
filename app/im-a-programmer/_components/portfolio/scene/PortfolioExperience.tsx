@@ -77,7 +77,9 @@ const PortfolioExperience: React.FC<{
 
 
         return (
-            <MotionGroup>
+            <MotionGroup
+            scale={scalingFactor}
+            >
 
                 {/* MacBook Pro */}
                 <MotionGroup

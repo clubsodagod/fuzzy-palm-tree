@@ -46,7 +46,7 @@ const calculateScalingHeightFactor = (width: number) => {
     // As the window gets smaller, the scaling factor increases
     if (width >= 1920) return 1; // Max width, smallest scaling factor
     if (width > 700) return Math.min(Math.max(1920 / width, 0.3), 0.7); // Moderate scaling for medium screens
-    return Math.min(Math.max(1920 / width, 0.5), 5); // Higher scaling for very small screens
+    return Math.min(Math.max(1920 / width, 0.5), 1); // Higher scaling for very small screens
 };
 
 const [scalingFactor, setScalingFactor] = useState(() =>

@@ -42,6 +42,7 @@ type VariantType = {
     coreValue: string,
     moon: string,
     powerTower: string,
+    powerTowerCoreValue: string,
     atom: string,
     diamonds: string,
     book: string,
@@ -85,7 +86,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
     const [previousValue, setPreviousValue] = useState<number>(coreValues.length - 1);
     const {
-        scroll: { scrollYProgress, windowScrollHeight, dynamicIncrement: dI, scrollY,  }, 
+        scroll: { scrollYProgress, windowScrollHeight, dynamicIncrement: dI, scrollY, },
         appContainer: { scrollRef }
     } = useAppContext();
 
@@ -111,6 +112,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
     const MemoizedCity = React.memo(City);
     const MemoizedPumpingHeart = React.memo(PumpingHeart);
     const MemoizedAtom = React.memo(Atom);
+    const MemoizedPowerTowerCoreValue = React.memo(PowerTower);
     const MemoizedTropicalIsland = React.memo(TropicalIsland);
 
 
@@ -120,6 +122,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
     const [visible, setVisible] = useState<VisibilityThreeType>({
         moon: true,
         powerTower: true,
+        powerTowerCoreValue: true,
         atom: false,
         scale: false,
         beeBuddy: false,
@@ -140,6 +143,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
         coreValue: "enter",
         moon: "enter",
         powerTower: "none",
+        powerTowerCoreValue: "none",
         atom: "none",
         scale: "none",
         beeBuddy: "none",
@@ -164,7 +168,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
         0, dI(0.5), dI(1), dI(1.5), dI(2),
     ];
 
-    const { moonMotion, powerTowerMotion, mainMotion, columnMotion, coreValueMotion } = useAboutMotionLogic(scrollY, homeEventPoints)
+    const { moonMotion, powerTowerMotion, mainMotion, columnMotion, coreValueMotion, mainCoreValueMotion } = useAboutMotionLogic(scrollY, homeEventPoints)
 
 
 
@@ -183,6 +187,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
     const moon = moonMotion().scale.get() * scalingFactor;
     const powerTower = powerTowerMotion().scale.get() * scalingFactor;
+    const powerTowerCoreValue = powerTowerMotion().scale.get() * scalingFactor;
     const atom = 10 * scalingFactor;
     const scale = 0.5 * scalingFactor;
     const diamonds = 18 * scalingFactor;
@@ -198,7 +203,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
     const [scales, setScales] = useState<ScalesThreeType>({
         moon, powerTower, atom, scale, diamonds, book, hive, bee, beeBuddy, rubiksCube,
-        pumpingHeart, city, tropicalIsland, compass
+        pumpingHeart, city, tropicalIsland, compass, powerTowerCoreValue
     });
 
 
@@ -213,9 +218,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
     // manage scales of object for scroll changes
     ScaleManager({
-        scrollY, setScales, scalesPayload: {
-            moon, powerTower, atom, scale, diamonds, book, hive, bee, beeBuddy, rubiksCube, pumpingHeart, city, tropicalIsland, compass
-        }
+        scrollY, setScales, scalesPayload: scales
     });
 
     // Core Value Animation Handler 
@@ -278,8 +281,9 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
                 {/* column */}
                 <MotionGroup
                     visible={visible.marbleColumn}
+                    scale={mainCoreValueMotion().scale}
                 >
-                    <MemoizedMarbleColumn scale={33} />
+                    <MemoizedMarbleColumn />
                 </MotionGroup>
 
                 <MotionGroup
@@ -331,7 +335,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
                         {/* rubiks cube */}
                         <MotionGroup
-                            position={[-5, 45, 0]}
+                            position={[rv([0,-5,-5]), 45, 0]}
                             visible={visible.rubiksCube}
                         >
 
@@ -388,7 +392,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
                                 animate={variantStatus.diamonds}
                             >
                                 <Float
-                                floatIntensity={3}
+                                    floatIntensity={3}
                                 >
                                     <MemoizedDiamonds
                                         rotation-y={3.75}
@@ -475,46 +479,79 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
                         {/* city */}
                         <MotionGroup
-                            position={[-10, 52, 15]}
+                            position={[-10, 45, 15]}
                             rotation-x={0.45}
                             rotation-y={0.45}
                             visible={visible.city}
                         >
 
-                            <MotionGroup
-                                variants={variants}
-                                animate={variantStatus.city}
+                            <Float
+                                floatIntensity={2}
+                                rotationIntensity={2}
                             >
-                                <MemoizedCity
-                                    animation='Main'
-                                    props={{
-                                        scale: 0.0375
-                                    }}
-                                />
-                            </MotionGroup>
+                                <MotionGroup
+                                    variants={variants}
+                                    animate={variantStatus.city}
+                                >
+                                    <MemoizedCity
+                                        animation='Main'
+                                        props={{
+                                            scale: 0.0375
+                                        }}
+                                    />
+                                </MotionGroup>
+                            </Float>
+
 
                         </MotionGroup>
 
-                        {/* tropical island */}
+                        {/* sustainability */}
                         <MotionGroup
-                            rotation-y={0}
-                            position={[0, 0, 25]}
                             visible={visible.tropicalIsland}
                         >
-
+                            {/* tropical island */}
                             <MotionGroup
-                                variants={variants}
-                                animate={variantStatus.tropicalIsland}
+                                rotation-y={0}
+                                position={[0, 0, 65]}
+                                visible={visible.tropicalIsland}
                             >
-                                <MemoizedTropicalIsland
-                                    animation='ArmatureAction'
-                                    props={{
-                                        scale: 45
-                                    }}
-                                />
+
+                                <MotionGroup
+                                    variants={variants}
+                                    animate={variantStatus.tropicalIsland}
+                                    rotation-y={5.75}
+                                >
+                                    <MemoizedTropicalIsland
+                                        animation='ArmatureAction'
+                                        props={{
+                                            scale: 15
+                                        }}
+                                    />
+                                </MotionGroup>
+
                             </MotionGroup>
 
+                            {/* power tower*/}
+                            <MotionGroup
+                                rotation-y={0}
+                                position={[0, 40, 0]}
+                                visible={visible.powerTowerCoreValue}
+                            >
+
+                                <MotionGroup
+                                    variants={variants}
+                                    animate={variantStatus.powerTowerCoreValue}
+                                >
+                                    <MemoizedPowerTowerCoreValue
+                                        scale={0.35}
+                                        rotation-y={2.75}
+                                        rotation-x={0.25}
+                                    />
+                                </MotionGroup>
+
+                            </MotionGroup>
                         </MotionGroup>
+
 
                         {/* compass */}
                         <MotionGroup
@@ -566,6 +603,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
 
                         </MotionGroup>
+
 
                     </MotionGroup>
 

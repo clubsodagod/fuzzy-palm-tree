@@ -17,16 +17,16 @@ export const usePortfolioMotionLogic = (scrollY: MotionValue, homeEventPoints: n
 
     let desk_scale = [0.001, 0.125, 1,];
     let desk_x = [ -125, -10, 25,];
-    let desk_y = [-15, 0, -70,];
+    let desk_y = [-15, 0, -70 ,];
     let desk_z = [0, 0, 25,];
     let desk_rotation_x = [-1, 0, 0.5,];
     let desk_rotation_y = [0, 0, 0,];
     let desk_rotation_z = [0, 0, 0,];
 
 
-    let paper_scale = [0, 0.015, 1.25,];
+    let paper_scale = [0, 0.015, rv([1.1,1.25,1.25]),];
     let paper_x = [0, 0, rv([0,0,-35])];
-    let paper_y = [0, 0, -5,];
+    let paper_y = [0, 0, rv([-11,-5,-5]),];
     let paper_z = [0, 0, 0,];
     let paper_rotation_x = [0, 0,rv([1.75,1.75,2.5]),];
     let paper_rotation_y = [0, 0, 0,];

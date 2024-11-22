@@ -8,6 +8,7 @@ import { ScalesThreeType, VisibilityThreeType } from '@/app/_library/types/commo
 import ScaleManager from '@/app/_utility/three/ScaleManager';
 import ScalingFactorManager from '@/app/_utility/three/ScalingFactorManager';
 import VisibilityManager from '@/app/_utility/three/VisibilityManager';
+import ThreeWindowUpdater from '@/app/_utility/window/ThreeWindowUpdater';
 import Desk from '@/public/3d-objects/desk/Desk';
 import MacBook from '@/public/3d-objects/macbook/Macbook';
 import Paper from '@/public/3d-objects/paper/Paper';
@@ -16,29 +17,27 @@ import { MotionValue } from 'framer-motion';
 import React from 'react'
 
 const PortfolioExperience: React.FC<{
-    scrollY: MotionValue;
     link: string;
-    caseStudy: ICaseStudy|undefined|null;
+    caseStudy: ICaseStudy | undefined | null;
 }> = ({
-    scrollY, link, caseStudy
+    link, caseStudy
 }) => {
-
         // memoized 3D assets
         const MemoizedMacBook = React.memo(MacBook);
         const MemoizedDesk = React.memo(Desk);
         const MemoizedPaper = React.memo(Paper);
 
 
-    // create visible states
-    const [scalingFactor, setScalingFactor] = React.useState<number>(1);
+        // create visible states
+        const [scalingFactor, setScalingFactor] = React.useState<number>(1);
 
-    const [visible, setVisible] = React.useState<VisibilityThreeType>({
-        macbook: true,
-        desk: false,
-        paper: false,
-    });
+        const [visible, setVisible] = React.useState<VisibilityThreeType>({
+            macbook: true,
+            desk: false,
+            paper: false,
+        });
 
-        const { scroll:{dynamicIncrement: dI, windowScrollHeight} } = useAppContext();
+        const { scroll: { dynamicIncrement: dI, scrollY}, appContainer: { scrollRef,  } } = useAppContext();
 
         // event points for calculating 3d assets
         const homeEventPoints = [
@@ -48,31 +47,31 @@ const PortfolioExperience: React.FC<{
         const { macbookMotion, deskMotion, paperMotion } = usePortfolioMotionLogic(scrollY, homeEventPoints)
 
 
-    // Scaling value for responsive experience
-    const mainScalingFactor = window ? Math.min(Math.max(window.innerWidth / 1920, window.innerWidth > 700 && window.innerWidth < window.innerHeight ? 0.4 : 0.5), 3) : 1;
+        // Scaling value for responsive experience
+        const mainScalingFactor = window ? Math.min(Math.max(window.innerWidth / 1920, window.innerWidth > 700 && window.innerWidth < window.innerHeight ? 0.4 : 0.2), 3) : 1;
 
-    // scale const for managing visibility
-    const macbook = macbookMotion().scale.get() * mainScalingFactor;
-    const desk = deskMotion().scale.get() * mainScalingFactor;
-    const paper = paperMotion().scale.get() * mainScalingFactor;
+        // scale const for managing visibility
+        const macbook = macbookMotion().scale.get() * mainScalingFactor;
+        const desk = deskMotion().scale.get() * mainScalingFactor;
+        const paper = paperMotion().scale.get() * mainScalingFactor;
 
-    // scales object for visibility manager
-    const [scales, setScales] = React.useState<ScalesThreeType>({
-        macbook, desk, paper, 
-    });
+        // scales object for visibility manager
+        const [scales, setScales] = React.useState<ScalesThreeType>({
+            macbook, desk, paper,
+        });
 
-    // update scaling factor when it changes
-    ScalingFactorManager({ scalingFactor, setScalingFactor, mainScalingFactor });
+        // update scaling factor when it changes
+        ScalingFactorManager({ scalingFactor, setScalingFactor, mainScalingFactor });
 
-    // manage visibility of 3d  models
-    VisibilityManager({ scales, visible, setVisible });
+        // manage visibility of 3d  models
+        VisibilityManager({ scales, visible, setVisible });
 
-    // manage scales of object for scroll changes
-    ScaleManager({
-        scrollY, setScales, scalesPayload: {
-            macbook,desk,paper
-        }
-    });
+        // manage scales of object for scroll changes
+        ScaleManager({
+            scrollY, setScales, scalesPayload: scales
+        });
+
+        ThreeWindowUpdater(scrollRef, scrollY)
 
 
         return (
@@ -119,7 +118,7 @@ const PortfolioExperience: React.FC<{
                     scale={paperMotion().scale}
                 >
                     {/* <OrbitControls /> */}
-                    <MemoizedPaper props={{scale:paperMotion().scale.get()}} caseStudy={caseStudy && caseStudy} />
+                    <MemoizedPaper props={{ scale: paperMotion().scale.get() }} caseStudy={caseStudy && caseStudy} />
                 </MotionGroup>
             </MotionGroup>
 
