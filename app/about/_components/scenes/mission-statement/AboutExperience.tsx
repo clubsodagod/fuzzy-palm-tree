@@ -17,6 +17,8 @@ import VisibilityManager from '@/app/_utility/three/VisibilityManager'
 import { ScalesThreeType, VisibilityThreeType } from '@/app/_library/types/common'
 import CoreValueAnimationHandler from '@/app/about/_utils/CoreValueAnimationHandler'
 import ThreeWindowUpdater from '@/app/_utility/window/ThreeWindowUpdater'
+import StandardLights from '@/app/_components/common/three/lights/StandardLights'
+import ShadowCatcher from '@/app/_components/common/three/lights/ShadowCatcher'
 
 export type VisibleType = {
     coreValue: boolean,
@@ -235,7 +237,8 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
         <group
         >
 
-
+            <StandardLights />
+            <ShadowCatcher />
             <MotionGroup
                 ref={mainRef}
                 position={[mainMotion().x, mainMotion().y, mainMotion().z]}
@@ -332,7 +335,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
                         {/* rubiks cube */}
                         <MotionGroup
-                            position={[rv([0, -5, -5]), 45, 0]}
+                            position={[rv([0, 0, 0]), 45, 0]}
                             visible={visible.rubiksCube}
                         >
 
@@ -346,7 +349,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
 
                                     <MemoizedRubiksCube
                                         rotation-y={3.75}
-                                        scale={rv([2.25, 3, 3])}
+                                        scale={2.25}
                                     />
                                 </Float>
                             </MotionGroup>
@@ -555,7 +558,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
                         {/* compass */}
                         <MotionGroup
                             rotation-x={1}
-                            position={[rv([0, 0, -15]), rv([45, 45, 50]), 25]}
+                            position={[rv([0, 0, -15]), 45, 25]}
                             visible={visible.compass}
                         >
 
@@ -569,7 +572,7 @@ const MissionStatementExperience: React.FC<{ value: number }> = ({ value }) => {
                                     <MemoizedCompass
                                         animation={['rotating cylinderAction', 'needleAction']}
                                         props={{
-                                            scale: rv([0.25, 0.25, 0.35])
+                                            scale: 0.25
                                         }}
                                     />
                                 </Float>
