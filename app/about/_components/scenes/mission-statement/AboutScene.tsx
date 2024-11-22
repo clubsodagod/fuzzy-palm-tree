@@ -15,6 +15,7 @@ const AboutScene: React.FC<{
 
 
         return (
+                <Suspense fallback={null}>
             <Canvas
                 dpr={[1, 1.5]}
                 style={{
@@ -29,7 +30,6 @@ const AboutScene: React.FC<{
                     fov: 50,
                 }}
             >
-                <Suspense fallback={null}>
 
 
                     <MissionStatementExperience
@@ -57,8 +57,8 @@ const AboutScene: React.FC<{
                             opacity={0.3}
                         />
                     </mesh>
-                </Suspense>
             </Canvas>
+                </Suspense>
         )
     }
 
