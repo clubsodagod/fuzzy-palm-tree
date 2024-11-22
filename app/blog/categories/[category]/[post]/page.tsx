@@ -1,21 +1,12 @@
-import MotionPageWrapper from '@/app/_hide/_components/common/MotionPageWrapper';
-import MotionSectionWrapper from '@/app/_hide/_components/common/MotionSectionWrapper';
-import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv';
-import { MotionH1 } from '@/app/_hide/_components/framer/MotionH1';
-import { MotionImg } from '@/app/_hide/_components/framer/MotionImg';
-import { MotionP } from '@/app/_hide/_components/framer/MotionP';
-import { useScreenContext } from '@/app/_hide/_context/sub-context/ScreenContext';
-import { getAllPosts, getPostBySlug } from '@/library/db/controllers/blog';
+
 import { getAllPostsClient, getAllPostsSlugClient, getPostBySlugClient } from '@/utility/blog-section/blog-page-functions';
-import { Avatar } from '@mui/material';
 import React from 'react';
 import parse from "html-react-parser";
-import { getAllIdentifiers } from '@/library/db/controllers/identifiers';
-import { CategoryModel, UserModel } from '@/app/_database/models';
+import { CategoryModel } from '@/app/_database/models';
 import Blog, { IBlog, IBlogPopulated } from '@/app/_database/models/blog';
 import { ICategory } from '@/app/_database/models/category';
 import SlugPageModule from './_components/SlugPageModule';
-import { connectToMongoDB } from '@/app/_database/db';
+import { connectToMongoDB } from '@/library/db/db';
 
 
 // Next.js will invalidate the cache when a
