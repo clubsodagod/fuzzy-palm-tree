@@ -9,7 +9,9 @@ interface VisibilityManagerProps {
 
 const VisibilityManager  = ({scales,visible, setVisible}:VisibilityManagerProps) => {
     const prevScalesRef = useRef<typeof scales | null>(null);
-
+    console.log(prevScalesRef);
+    console.log(scales);
+    
 
     return (
     // Assuming scales is a prop or state
@@ -24,6 +26,8 @@ const VisibilityManager  = ({scales,visible, setVisible}:VisibilityManagerProps)
 
         // If scales object has changed, update the visibility
         if (hasScalesChanged(prevScalesRef.current, scales)) {
+            console.log("test");
+            
             Object.keys(scales).forEach((key) => {
                 const value = scales[key as keyof typeof scales];
 
@@ -43,8 +47,11 @@ const VisibilityManager  = ({scales,visible, setVisible}:VisibilityManagerProps)
 
             // Update the ref to the latest scales
             prevScalesRef.current = scales;
-
+            console.log(prevScalesRef.current);
+            
         }
+        console.log(visible);
+        
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [scales, setVisible])
     )

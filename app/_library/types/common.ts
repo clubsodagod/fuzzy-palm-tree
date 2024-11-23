@@ -55,6 +55,11 @@ export interface ScalesThreeType {
     [key:string]:number
 }
 
+
+export interface WorkerThreeType {
+    [key:string]:WorkerType
+}
+
 export type VoidOneParameterFunction = (id: string) => void;
 
 export type VoidTwoParameterFunction = (event: MouseEvent, id: string) => void;
