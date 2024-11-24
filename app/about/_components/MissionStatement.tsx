@@ -35,6 +35,7 @@ const MissionVision: React.FC<HeroProps> = ({
                     headerLabel="My Mission"
                     tagLine='My Guide Forward'
                     size={(['xs', 'sm',]).includes(currentBreakpoint) ? 'md' : 'lg'}
+                    right
                 />
 
                 <MotionDiv className={`${styles.missionText} `}>

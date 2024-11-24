@@ -1,7 +1,7 @@
 'use client'
 import { coreValues } from '@/library/const'
 import { Atom, Bee, Book, City, Compass, Diamonds, Hive, MarbleColumn, Moon, PowerTower, PumpingHeart, RubiksCube, Scale, TropicalIsland } from '@/public/3d-objects'
-import { Float, useMotion } from '@react-three/drei'
+import { Float, PerformanceMonitor, useMotion } from '@react-three/drei'
 import { motionValue, MotionValue, useMotionValue, useScroll, Variants } from 'framer-motion'
 import React, { RefObject, useEffect, useRef, useState } from 'react'
 import { useResponsiveValues as rv } from '@/utility/functions';
@@ -19,6 +19,9 @@ import Dynamic3DLoader from '@/app/_components/common/three/DynamicModelLoader'
 import dynamic from 'next/dynamic'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
+import { Perf } from 'r3f-perf'
+import zIndex from '@mui/material/styles/zIndex'
+
 
 const MoonDynamic = dynamic(() => import('../../../../../public/3d-objects/core-values/moon/Moon'), {
     ssr: false, // Optional: Disable server-side rendering for this component
@@ -256,10 +259,18 @@ useEffect(()=> {
     }
 },[visible])
 
-
     return (
+         
         <group
         >
+
+<Perf 
+deepAnalyze
+position='top-left'
+style={{zIndex:200, marginTop:'15vh',
+    position:'absolute'
+}}
+/>
 
             <StandardLights />
             <ShadowCatcher />
