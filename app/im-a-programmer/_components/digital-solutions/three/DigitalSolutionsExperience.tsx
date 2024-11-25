@@ -17,7 +17,7 @@ import dynamic from 'next/dynamic';
 
 
 
-const IdeaLamp = dynamic(() => import('../../../../../public/3d-objects/digital-solutions/idea-lamp/Scene'), {
+const IdeaLamp = dynamic(() => import('../../../../../public/3d-objects/light-bulb/LightBulb'), {
     ssr: false, // Optional: Disable server-side rendering for this component
 });
 const Chip = dynamic(() => import('../../../../../public/3d-objects/digital-solutions/chip/Scene'), {
@@ -79,14 +79,14 @@ const DigitalSolutionsExperience = () => {
     const mainScalingFactor = window ? Math.min(Math.max(window.innerWidth / 1920, window.innerWidth > 700 && window.innerWidth < window.innerHeight ? 0.4 : 0.6), 3) : 1;
 
     // scale const for managing visibility
-    const matrix = matrixMotion().scale.get() * mainScalingFactor;
-    const ideaLamp = ideaLampMotion().scale.get() * mainScalingFactor;
-    const chip = chipMotion().scale.get() * mainScalingFactor;
-    const iPad = iPadMotion().scale.get() * mainScalingFactor;
-    const iPhone = iPhoneMotion().scale.get() * mainScalingFactor;
-    const webMobile = webMobileMotion().scale.get() * mainScalingFactor;
-    const macbook = macbookMotion().scale.get() * mainScalingFactor;
-    const ghostInShell = ghostInShellMotion().scale.get() * mainScalingFactor;
+    const matrix = matrixMotion().scale.get() * scalingFactor;
+    const ideaLamp = ideaLampMotion().scale.get() * scalingFactor;
+    const chip = chipMotion().scale.get() * scalingFactor;
+    const iPad = iPadMotion().scale.get() * scalingFactor;
+    const iPhone = iPhoneMotion().scale.get() * scalingFactor;
+    const webMobile = webMobileMotion().scale.get() * scalingFactor;
+    const macbook = macbookMotion().scale.get() * scalingFactor;
+    const ghostInShell = ghostInShellMotion().scale.get() * scalingFactor;
 
     // scales object for visibility manager
     const [scales, setScales] = React.useState<ScalesThreeType>({
@@ -102,7 +102,9 @@ const DigitalSolutionsExperience = () => {
 
     // manage scales of object for scroll changes
     ScaleManager({
-        scrollY, setScales, scalesPayload: scales
+        scrollY, setScales, scalesPayload: {
+            matrix, ideaLamp, chip, iPad, iPhone, webMobile, macbook, ghostInShell
+        }
     });
 
     ThreeWindowUpdater(scrollRef, scrollY)
@@ -110,7 +112,7 @@ const DigitalSolutionsExperience = () => {
 
     return (
         <MotionGroup
-            scale={scalingFactor}
+            // scale={scalingFactor}
         >
             <MotionGroup
                 visible={visible.matrix}
@@ -131,7 +133,7 @@ const DigitalSolutionsExperience = () => {
                     floatIntensity={2}
                     rotationIntensity={5}
                 >
-                    <CachedIdeaLamp />
+                    <IdeaLamp visible={visible.ideaLamp}  />
                 </Float>
             </MotionGroup>
 

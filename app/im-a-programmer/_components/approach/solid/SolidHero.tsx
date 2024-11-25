@@ -6,20 +6,19 @@ import SolidCard from './SolidCard';
 import ArrowCircleDownRoundedIcon from '@mui/icons-material/ArrowCircleDownRounded';
 import ButtonPro from '@/app/_components/common/ButtonPro';
 import { motion } from 'framer-motion';
-import ScrollableItemCtn, { MotionDivProps } from '@/app/_components/common/ScrollableItemCtn';
+import ScrollableItemCtn from '@/app/_components/common/ScrollableItemCtn';
 import ScrollCtnWrapper from '@/app/_components/common/ScrollCtnWrapper';
 import { MotionDiv } from '@/app/_components/common/framer/MotionDiv';
 import { PageWrapper } from '@/app/_hide/_components';
 import Header from '@/app/_components/common/Header';
+import { HeroProps } from '@/app/_library/types/common';
 
-export interface SolidHeroProps extends MotionDivProps {
-    ctnRef: RefObject<HTMLDivElement>;
-    scrollTo: (id: string) => void;
-}
 
-const SolidHero: React.FC<SolidHeroProps> = ({
+
+const SolidHero: React.FC<HeroProps> = ({
     ctnRef,
     scrollTo,
+    id,
     ...props
 }) => {
 
@@ -46,6 +45,7 @@ const SolidHero: React.FC<SolidHeroProps> = ({
     return (
         <PageWrapper
             ctnRef={ctnRef}
+            id={id}
             {...props}
         >
             <MotionDiv

@@ -93,7 +93,9 @@ const AboutModule = () => {
                 coreValues:false,
             }))
         }
-    },[scrollprogress])
+    },[scrollprogress]);
+
+    
     return (
         <>
             <BioHero

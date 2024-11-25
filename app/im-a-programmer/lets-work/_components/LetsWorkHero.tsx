@@ -5,14 +5,17 @@ import { MotionDivProps } from '@/app/_hide/_components/common/ScrollableItemCtn
 import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv';
 import LetsWorkForm from './contact-form/LetsWorkForm';
 import { useAppContext } from '@/app/_context/AppContext';
+import { HeroProps } from '@/app/_library/types/common';
 
 
-interface LetsWorkHeroProps extends MotionDivProps {
+interface LetsWorkHeroProps {
     ctnRef: RefObject<HTMLDivElement>,
+    id?:string;
 }
 
 const LetsWorkHero: React.FC<LetsWorkHeroProps> = ({
     ctnRef,
+    id
 }) => {
 
     const {
@@ -22,6 +25,7 @@ const LetsWorkHero: React.FC<LetsWorkHeroProps> = ({
     return (
         <PageWrapper
             ctnRef={ctnRef}
+            id={id ? id : 'lets-work-main'}
         >
 
             <MotionDiv

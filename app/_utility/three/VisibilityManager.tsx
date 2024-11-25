@@ -9,8 +9,8 @@ interface VisibilityManagerProps {
 
 const VisibilityManager  = ({scales,visible, setVisible}:VisibilityManagerProps) => {
     const prevScalesRef = useRef<typeof scales | null>(null);
-    console.log(prevScalesRef);
-    console.log(scales);
+    // console.log(prevScalesRef);
+    // console.log(scales);
     
 
     return (

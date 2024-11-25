@@ -36,13 +36,13 @@ const WebMobileApplications: React.FC<DynamicSectionProps> = ({
 
 
 
-            <MotionDiv className=' '>
+            <MotionDiv className=' btm-hero-ctn-wrapper right'>
 
 
-                <MotionH5 className={'right'}>
+                <MotionH5 className={''}>
                     Whether you need a tailored CRM, ERP, or any other business application, our custom software solutions deliver functionality that enhances efficiency and scales with your growth.
                 </MotionH5>
-                <HeroButtonCtn className={`right-btn-ctn`}>
+                <HeroButtonCtn className={` btn-ctn right-btn-ctn`}>
                     <ButtonPro
                         variant='outlined'
                         label={<KeyboardDoubleArrowUpRoundedIcon />}

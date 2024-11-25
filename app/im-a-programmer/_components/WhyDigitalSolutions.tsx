@@ -38,7 +38,7 @@ const WhyDigitalSolutions: React.FC<HeroProps> = ({
             {/*  Bottom Container for navigation buttons */}
             <MotionDiv className={`btm-hero-ctn-wrapper left`} id='investments'>
 
-                <MotionP className={` left`} id='programmer'>
+                <MotionP className={` `} id='programmer'>
                     Discover how digital solutions can be just what you need.
                 </MotionP>
 

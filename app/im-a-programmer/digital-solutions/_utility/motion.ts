@@ -7,8 +7,8 @@ export const programmerDigitalSolutionsMotion = (scrollY: MotionValue, homeEvent
 
 
     const ideaLamp_scale = [
-        0,0.01,0.5,0.6,0.75,
-        0,0.5,0,0.55,0,
+        0,0.01,12,0.6,7,
+        0,7,0,7,0,
         0,0,0,0,0,
         0,0,0,0,0,
         0,0,0,0,0,

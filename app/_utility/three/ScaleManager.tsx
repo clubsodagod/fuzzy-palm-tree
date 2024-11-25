@@ -16,6 +16,8 @@ const ScaleManager = ({ scrollY,setScales, scalesPayload }: ScaleManagerProps) =
     return (
         React.useEffect(() => {
             if (scrollFactor != scrollFactorPrevious) {
+                console.log(scalesPayload);
+                
                 setScales(scalesPayload);
             }
         // eslint-disable-next-line react-hooks/exhaustive-deps

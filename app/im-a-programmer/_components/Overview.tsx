@@ -73,7 +73,7 @@ const Overview: React.FC<HeroProps> = ({
 
             <MotionDiv className={`btm-hero-ctn-wrapper right`} >
 
-                <MotionP className={` right`} id='programmer'>
+                <MotionP className={``} id='programmer'>
                     Bringing Your Ideas to Life with Innovation and Expertise
                 </MotionP>
                 <HeroButtonCtn  className=' right-btn-ctn'>

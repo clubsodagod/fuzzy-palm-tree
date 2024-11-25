@@ -59,7 +59,7 @@ const OverViewTwo: React.FC<DynamicSectionProps> = ({
                     <ButtonPro
                         variant='outlined'
                         label={`Why Digital Solutions`}
-                        color='primary'
+                        color='secondary'
                         onClick={() => { scrollTo('programmer-why-digital') }}
                     />
                     <IconButton

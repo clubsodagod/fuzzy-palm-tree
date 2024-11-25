@@ -1,9 +1,6 @@
 'use client'
-import React, { RefObject, useRef } from 'react'
-import { motion } from 'framer-motion'
+import React, {  useRef } from 'react'
 import styles from './styles.module.css'
-import { Typography } from '@mui/material'
-import ArrowCircleDownRoundedIcon from '@mui/icons-material/ArrowCircleDownRounded';
 import { designPatterns } from '@/library/const'
 import ButtonPro from '@/app/_components/common/ButtonPro'
 import HeroButtonCtn from '@/app/_components/common/HeroButtonCtn'
@@ -13,13 +10,12 @@ import DesignPatternCard from './approach/design-patterns/DesignPatternCard'
 import MotionPageWrapper from '@/app/_components/common/MotionPageWrapper'
 import { MotionDiv } from '@/app/_components/common/framer/MotionDiv'
 import { Header } from '@/app/_hide/_components'
+import { HeroProps } from '@/app/_library/types/common'
 
-const DesignPatterns: React.FC<{
-    ctnRef: RefObject<HTMLDivElement>,
-    scrollTo: (id: string) => void;
-}> = ({
+const DesignPatterns: React.FC<HeroProps> = ({
     ctnRef,
     scrollTo,
+    id,
 }) => {
         const scrollCtnRef = useRef<HTMLDivElement>(null);
         // Function to scroll the container by the window width
@@ -43,7 +39,7 @@ const DesignPatterns: React.FC<{
         return (
             <MotionPageWrapper
                 ctnRef={ctnRef}
-                id='approach-design-thinking'
+                id={id}
             >
 
                 <MotionDiv

@@ -264,13 +264,13 @@ useEffect(()=> {
         <group
         >
 
-<Perf 
+{/* <Perf 
 deepAnalyze
 position='top-left'
 style={{zIndex:200, marginTop:'15vh',
     position:'absolute'
 }}
-/>
+/> */}
 
             <StandardLights />
             <ShadowCatcher />

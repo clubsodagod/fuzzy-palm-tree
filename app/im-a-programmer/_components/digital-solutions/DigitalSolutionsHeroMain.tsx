@@ -33,10 +33,10 @@ const DigitalSolutionsHeroMain: React.FC<HeroProps> = ({
 
             </MotionDiv>
             <MotionDiv
-                className={`${styles.btmHeroCtn} btm-hero-ctn left mt-auto`}
+                className={` btm-hero-ctn-wrapper left `}
             >
 
-                <MotionDiv className={`${styles.btnCtn} btn-ctn leftBtn flex gap-3`}>
+                <MotionDiv className={`btn-ctn left-btn-ctn`}>
 
                     <ButtonPro
                         variant='contained'

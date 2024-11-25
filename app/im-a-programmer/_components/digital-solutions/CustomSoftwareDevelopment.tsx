@@ -31,7 +31,8 @@ const CustomSoftwareDevelopment: React.FC<HeroProps> = ({
 
 
             </MotionDiv>
-            <MotionDiv className={`${styles.btnCtn} btn-ctn rightBtn flex gap-3`}>
+            
+            <MotionDiv className={` btn-ctn right-btn-ctn `}>
 
 
 

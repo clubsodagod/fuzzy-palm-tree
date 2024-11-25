@@ -55,6 +55,10 @@ const PortfolioModule: React.FC<PortfolioModuleProps> = ({
 
     return (
         <>
+            <PortfolioScene
+                link={link}
+                caseStudy={caseStudy ? caseStudy : undefined}
+            />
             <PortfolioMainHero
                 id='portfolio-main'
                 scrollTo={scrollToSectionHandler}
@@ -75,10 +79,6 @@ const PortfolioModule: React.FC<PortfolioModuleProps> = ({
                 setCaseStudy={setCaseStudy}
             />
 
-            <PortfolioScene
-                link={link}
-                caseStudy={caseStudy ? caseStudy : undefined}
-            />
 
             {/* <Demos /> */}
             {/* <SocialValidation /> */}

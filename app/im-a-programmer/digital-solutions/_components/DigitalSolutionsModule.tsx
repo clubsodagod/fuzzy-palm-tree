@@ -39,9 +39,7 @@ const DigitalSolutionsModule = () => {
 
     IntersectionWatcher({ refs });
 
-    function goToPage() {
 
-    }
 
     return (
         <>

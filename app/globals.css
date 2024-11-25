@@ -125,7 +125,7 @@ main {
 
 .btm-hero-ctn-wrapper {
   z-index: 1;
-  color: #b1b1b1;
+  color: whitesmoke;
   display: flex;
   flex-direction: column;
   gap: 2vh;
@@ -219,6 +219,7 @@ div.snap-x-wrapper#programmer-approach-solid-hero {
   align-items: center;
   justify-content: center;
   max-height: 100%;
+  cursor:pointer;
 }
 
 .blur-wrapper {
@@ -235,6 +236,7 @@ div.snap-x-wrapper#programmer-approach-solid-hero {
 .left {
   text-align: left;
   justify-content: start;
+  padding-inline-end: 60%;
 }
 
 .left-btn-ctn {
@@ -247,6 +249,7 @@ div.snap-x-wrapper#programmer-approach-solid-hero {
 
   text-align: right !important;
   justify-content: end !important;
+  padding-inline-start: 60%;
 }
 
 .right-btn-ctn {

@@ -33,12 +33,12 @@ const DataScienceAI: React.FC<HeroProps> = ({
 
             </MotionDiv>
             <MotionDiv
-                className='flex flex-col gap-6 text-left'
+                className='btm-hero-ctn-wrapper  left'
             >
                 <MotionH5 className={styles.excerpt}>
                     Whether you need a tailored CRM, ERP, or any other business application, our custom software solutions deliver functionality that enhances efficiency and scales with your growth.
                 </MotionH5>
-                <MotionDiv className={`${styles.btnCtn} btn-ctn  flex gap-3`}>
+                <MotionDiv className={`btn-ctn left-btn-ctn`}>
 
                     <ButtonPro
                         variant='outlined'

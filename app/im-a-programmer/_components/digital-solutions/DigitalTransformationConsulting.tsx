@@ -34,12 +34,12 @@ const DigitalTransformationConsulting: React.FC<HeroProps> = ({
 
 
             <MotionDiv
-                className={`left`}
+                className={`btm-hero-ctn-wrapper left`}
             >
                 <MotionH5 className={styles.excerpt}>
                     Digital transformation is not just about technology. It&apos;s about changing the way you do business. Our digital transformation services help you modernize operations, improve customer engagement, and drive innovation.
                 </MotionH5>
-                <HeroButtonCtn className={` left-btn-ctn`}>
+                <HeroButtonCtn className={`btn-ctn left-btn-ctn`}>
 
                     <ButtonPro
                         variant='outlined'

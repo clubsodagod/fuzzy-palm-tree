@@ -10,14 +10,13 @@ import SDLCCard from './SDLCCard'
 import { sdlc } from '@/library/const'
 import ScrollCtnWrapper from '@/app/_components/common/ScrollCtnWrapper'
 import ScrollableItemCtn from '@/app/_components/common/ScrollableItemCtn'
+import { HeroProps } from '@/app/_library/types/common'
 
-export interface SDLCHeroProps extends MotionDivProps {
-    ctnRef: RefObject<HTMLDivElement>;
-    scrollTo: (id: string) => void;
-}
-const SDLCHero: React.FC<SDLCHeroProps> = ({
+
+const SDLCHero: React.FC<HeroProps> = ({
     ctnRef,
-    scrollTo
+    scrollTo,
+    id,
 }) => {
 
     const scrollCtnRef = useRef<HTMLDivElement>(null);
@@ -44,6 +43,7 @@ const SDLCHero: React.FC<SDLCHeroProps> = ({
     return (
         <PageWrapper
             ctnRef={ctnRef}
+            id={id}
         >
 
             <MotionDiv

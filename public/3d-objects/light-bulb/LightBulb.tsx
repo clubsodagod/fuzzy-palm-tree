@@ -14,6 +14,7 @@ import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 import { MotionGroup } from '@/app/_hide/_components/framer/MotionGroup'
 import type { HTMLMotionProps } from 'framer-motion';
+import { EffectComposer, Bloom } from '@react-three/postprocessing';
 
 
 
@@ -30,10 +31,19 @@ type GLTFResult = GLTF & {
 
 export default function LightBulbModel(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF('/3d-objects/light-bulb/lightBulb-transformed.glb') as GLTFResult
+
+  const visible = props.visible
   return (
     <group {...props} dispose={null}>
       <MotionGroup name="Sketchfab_Scene">
-        <mesh name="Object_2" geometry={nodes.Object_2.geometry} material={materials.Material} rotation={[-Math.PI / 2, 0, 0]} />
+        <mesh name="Object_2" geometry={nodes.Object_2.geometry} material={materials.Material} rotation={[-Math.PI / 2, 0, 0]} >
+          {
+            visible &&
+            <EffectComposer>
+              <Bloom luminanceThreshold={0.5} luminanceSmoothing={0.9} intensity={15} />
+            </EffectComposer>
+          }
+        </mesh>
         <mesh name="Object_3" geometry={nodes.Object_3.geometry} material={materials.transparente_del_foco} rotation={[-Math.PI / 2, 0, 0]} />
       </MotionGroup>
     </group>

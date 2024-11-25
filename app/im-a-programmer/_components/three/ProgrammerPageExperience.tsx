@@ -181,14 +181,14 @@ const ProgrammerPageExperience = () => {
         <group
             scale={mainScalingFactor}
         >
-            <Perf
+            {/* <Perf
                 deepAnalyze
                 position='top-left'
                 style={{
                     zIndex: 200, marginTop: '15vh',
                     position: 'absolute'
                 }}
-            />
+            /> */}
 
             {/* light bulb model */}
             <MotionGroup
@@ -202,7 +202,8 @@ const ProgrammerPageExperience = () => {
                     floatIntensity={1.5}
                     rotationIntensity={3}
                 >
-                    <CachedLightBulb />
+                    <LightBulb
+                visible={visible.lightBulb} />
                 </Float>
             </MotionGroup>
 

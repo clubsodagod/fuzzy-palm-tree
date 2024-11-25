@@ -44,10 +44,10 @@ const ProgrammerApproachModule: React.FC<ProgrammerApproachModuleProps> = ({
     return (
         <>
 
-            <ApproachHero posts={posts} ctnRef={approachMainRef} scrollTo={scrollToSectionHandler} id='programmer-approach-main' />
-            <SolidHero ctnRef={approachSolidRef} scrollTo={scrollToSectionHandler} />
-            <DesignPatterns ctnRef={designPatternsRef} scrollTo={scrollToSectionHandler} />
-            <SDLCHero ctnRef={sdlcRef} scrollTo={scrollToSectionHandler} />
+            <ApproachHero posts={posts} ctnRef={approachMainRef} scrollTo={scrollToSectionHandler} id='approach-main' />
+            <SolidHero ctnRef={approachSolidRef} scrollTo={scrollToSectionHandler} id='approach-solid-principles' />
+            <DesignPatterns ctnRef={designPatternsRef} scrollTo={scrollToSectionHandler} id='approach-design-patterns' />
+            <SDLCHero ctnRef={sdlcRef} scrollTo={scrollToSectionHandler} id='approach-sdlc' />
         </>
     )
 }
