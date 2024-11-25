@@ -2,8 +2,6 @@
 import { useAppContext } from '@/app/_context/AppContext';
 import { ICaseStudy } from '@/app/_database/models/case-study';
 import { MotionGroup } from '@/app/_hide/_components/framer/MotionGroup';
-import { useScroll } from '@/app/_hide/_context/sub-context/ScrollContext';
-import { usePortfolioMotionLogic } from '@/app/_hide/im-a-programmer/portfolio/_utils/portfolio-motion';
 import { ScalesThreeType, VisibilityThreeType } from '@/app/_library/types/common';
 import ScaleManager from '@/app/_utility/three/ScaleManager';
 import ScalingFactorManager from '@/app/_utility/three/ScalingFactorManager';
@@ -12,9 +10,8 @@ import ThreeWindowUpdater from '@/app/_utility/window/ThreeWindowUpdater';
 import Desk from '@/public/3d-objects/desk/Desk';
 import MacBook from '@/public/3d-objects/macbook/Macbook';
 import Paper from '@/public/3d-objects/paper/Paper';
-import { OrbitControls } from '@react-three/drei';
-import { MotionValue } from 'framer-motion';
 import React from 'react'
+import { usePortfolioMotionLogic } from '../../_utils/portfolio-motion';
 
 const PortfolioExperience: React.FC<{
     link: string;

@@ -9,8 +9,8 @@ import { animate, motion } from 'framer-motion';
 import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv';
 import ButtonPro from '@/app/_hide/_components/common/buttons/ButtonPro';
 import { MotionImg } from '@/app/_hide/_components/framer/MotionImg';
-import { VoidOneParameterFunction } from '@/app/_hide/im-a-programmer/_components/DigitalSolutionsHeroMain';
 import { useResponsiveValues as rv } from '@/utility/functions';
+import { VoidOneParameterFunction } from '@/app/_library/types/common';
 
 
 export interface HeroProps {

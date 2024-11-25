@@ -38,13 +38,14 @@ const HomeProgrammerSection: React.FC<HeroProps> = ({
             </MotionDiv>
 
 
-            <MotionDiv className={`btm-hero-ctn-wrapper`} id='investments'>
+            <MotionDiv className={`btm-hero-ctn-wrapper right`} id='investments'>
 
-                <MotionP className={`${styles.heroP} right`} id='programmer'>
+                <MotionP className={``} id='programmer'>
                     {missionStatement}
                 </MotionP>
 
                 <HeroButtonCtn
+                className='right-btn-ctn'
                 >
                     <IconButton
                         label={<ArrowCircleDownRoundedIcon />}

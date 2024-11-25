@@ -3,8 +3,8 @@ import React, { useRef } from 'react'
 import { ScrollableItemCtnProps } from '@/app/_hide/_components/common/ScrollableItemCtn';
 import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv';
 import ArrowCircleDownRoundedIcon from '@mui/icons-material/ArrowCircleDownRounded';
-import { VoidOneParameterFunction } from '@/app/_hide/im-a-programmer/_components/DigitalSolutionsHeroMain';
 import styles from '../../_components/common/styles.module.css';
+import { VoidOneParameterFunction } from '@/app/_library/types/common';
 
 
 interface CoreValuesCarouselProps extends ScrollableItemCtnProps {

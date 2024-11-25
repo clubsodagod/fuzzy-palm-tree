@@ -10,8 +10,8 @@ import { CoreValue, coreValues, missionStatement } from '@/library/const'
 import { duration, Typography } from '@mui/material'
 import styles from './styles.module.css'
 import CoreValueView from './CoreValueView'
-import { VoidOneParameterFunction } from '@/app/_hide/im-a-programmer/_components/DigitalSolutionsHeroMain'
 import { MotionValue, Variant, Variants } from 'framer-motion'
+import { VoidOneParameterFunction } from '@/app/_library/types/common'
 
 interface HeroPropsExtended extends HeroProps {
     value: number;

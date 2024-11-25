@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from '../../styles.module.css'
-import { SolidHeroProps } from './SolidHero';
 import MotionPageWrapper from '@/app/_components/common/MotionPageWrapper';
+import { HeroProps } from '@/app/_library/types/common';
 
 
-const DynamicSolidHero: React.FC<SolidHeroProps> = ({
+const DynamicSolidHero: React.FC<HeroProps> = ({
     ctnRef,
     ...props
 }) => {
