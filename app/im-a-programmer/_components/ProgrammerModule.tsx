@@ -7,11 +7,15 @@ import { scrollToSection } from '@/utility/common/scrollToSection';
 import { numberToWord } from '@/utility/functions';
 import { useProgrammerPageSectionRefs } from '@/utility/refs/programmer-page-refs';
 import React from 'react'
-import ProgrammerScene from './three/ProgrammerScene';
 import OverviewDynamic from './OverviewDynamic';
 import Overview from './Overview';
 import WhyDigitalSolutions from './WhyDigitalSolutions';
 import WhyDigitalSolutionsDynamic from './WhyDigitalSolutionsDynamic';
+import dynamic from 'next/dynamic';
+
+const ProgrammerScene = dynamic(() => import('./three/ProgrammerScene'), {
+    ssr: false, // Optional: Disable server-side rendering for this component
+});
 
 const ProgrammerModule = () => {
 

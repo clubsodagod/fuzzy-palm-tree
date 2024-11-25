@@ -190,22 +190,15 @@ const CoreValuesExperience: React.FC<{ value: number, scrollY: MotionValue, }> =
             position={[columnMotion().x, columnMotion().y, columnMotion().z]}
         >
 
-            <Perf
-                deepAnalyze
-                position='top-left'
-                style={{
-                    zIndex: 200, marginTop: '15vh',
-                    position: 'absolute'
-                }}
-            />
 
-                {/* column */}
-                <MotionGroup
-                    visible={visible.marbleColumn}
-                    scale={mainCoreValueMotion().scale}
-                >
-                    <MarbleColumnDynamic scale={33} />
-                </MotionGroup>
+
+            {/* column */}
+            <MotionGroup
+                visible={visible.marbleColumn}
+                scale={mainCoreValueMotion().scale}
+            >
+                <MarbleColumnDynamic scale={33} />
+            </MotionGroup>
 
             <MotionGroup
                 scale={coreValueMotion().scale}
@@ -402,103 +395,103 @@ const CoreValuesExperience: React.FC<{ value: number, scrollY: MotionValue, }> =
             </MotionGroup>
 
 
-                        {/* sustainability */}
-                        <MotionGroup
-                            visible={visible.tropicalIsland}
-                        >
-                            {/* tropical island */}
-                            <MotionGroup
-                                rotation-y={0}
-                                position={[0, 0, 65]}
-                                visible={visible.tropicalIsland}
-                            >
+            {/* sustainability */}
+            <MotionGroup
+                visible={visible.tropicalIsland}
+            >
+                {/* tropical island */}
+                <MotionGroup
+                    rotation-y={0}
+                    position={[0, 0, 65]}
+                    visible={visible.tropicalIsland}
+                >
 
-                                <MotionGroup
-                                    variants={variants}
-                                    animate={variantStatus.tropicalIsland}
-                                    rotation-y={5.75}
-                                >
-                                    <TropicalIslandDynamic
-                                        animation='ArmatureAction'
-                                        props={{
-                                            scale: 15
-                                        }}
-                                    />
-                                </MotionGroup>
+                    <MotionGroup
+                        variants={variants}
+                        animate={variantStatus.tropicalIsland}
+                        rotation-y={5.75}
+                    >
+                        <TropicalIslandDynamic
+                            animation='ArmatureAction'
+                            props={{
+                                scale: 15
+                            }}
+                        />
+                    </MotionGroup>
 
-                            </MotionGroup>
+                </MotionGroup>
 
-                            {/* power tower*/}
-                            <MotionGroup
-                                rotation-y={0}
-                                position={[0, 40, 0]}
-                                visible={visible.powerTowerCoreValue}
-                            >
+                {/* power tower*/}
+                <MotionGroup
+                    rotation-y={0}
+                    position={[0, 40, 0]}
+                    visible={visible.powerTowerCoreValue}
+                >
 
-                                <MotionGroup
-                                    variants={variants}
-                                    animate={variantStatus.powerTowerCoreValue}
-                                >
-                                    <PowerTowerDynamic
-                                        scale={0.35}
-                                        rotation-y={2.75}
-                                        rotation-x={0.25}
-                                    />
-                                </MotionGroup>
+                    <MotionGroup
+                        variants={variants}
+                        animate={variantStatus.powerTowerCoreValue}
+                    >
+                        <PowerTowerDynamic
+                            scale={0.35}
+                            rotation-y={2.75}
+                            rotation-x={0.25}
+                        />
+                    </MotionGroup>
 
-                                </MotionGroup>
-                        </MotionGroup>
+                </MotionGroup>
+            </MotionGroup>
 
-                        {/* compass */}
-                        <MotionGroup
-                            rotation-x={1}
-                            position={[rv([0, 0, -15]), rv([45, 45, 50]), 25]}
-                            visible={visible.compass}
-                        >
+            {/* compass */}
+            <MotionGroup
+                rotation-x={1}
+                position={[rv([0, 0, -15]), rv([45, 45, 50]), 25]}
+                visible={visible.compass}
+            >
 
-                            <MotionGroup
-                                variants={variants}
-                                animate={variantStatus.compass}
-                            >
-                                <Float
-                                    floatIntensity={1}
-                                >
-                                    <CompassDynamic
-                                        animation={['rotating cylinderAction', 'needleAction']}
-                                        props={{
-                                            scale: rv([0.25, 0.25, 0.35])
-                                        }}
-                                    />
-                                </Float>
-                            </MotionGroup>
+                <MotionGroup
+                    variants={variants}
+                    animate={variantStatus.compass}
+                >
+                    <Float
+                        floatIntensity={1}
+                    >
+                        <CompassDynamic
+                            animation={['rotating cylinderAction', 'needleAction']}
+                            props={{
+                                scale: rv([0.25, 0.25, 0.35])
+                            }}
+                        />
+                    </Float>
+                </MotionGroup>
 
-                        </MotionGroup>
+            </MotionGroup>
 
-                        {/* book */}
-                        <MotionGroup
-                            rotation-y={0}
-                            position={[-5, 49, 0]}
-                            visible={visible.book}
-                        >
+            {/* book */}
+            <MotionGroup
+                rotation-y={0}
+                position={[-5, 49, 0]}
+                visible={visible.book}
+            >
 
-                            <MotionGroup
-                                variants={variants}
-                                animate={variantStatus.book}
-                            >
-                                <Float
-                                    floatIntensity={0.5}
-                                >
-                                    <BookDynamic
-                                        animation='Take 001'
-                                        props={{
-                                            scale: 2
-                                        }}
-                                    />
-                                </Float>
-                            </MotionGroup>
+                <MotionGroup
+                    variants={variants}
+                    animate={variantStatus.book}
+                >
+                    <Float
+                        floatIntensity={0.5}
+                    >
+                        <BookDynamic
+                            animation='Take 001'
+                            props={{
+                                scale: 2
+                            }}
+                        />
+                    </Float>
+                </MotionGroup>
 
 
-                        </MotionGroup>
+            </MotionGroup>
 
         </MotionGroup>
 

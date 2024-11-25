@@ -5,19 +5,34 @@ import ScaleManager from '@/app/_utility/three/ScaleManager';
 import ScalingFactorManager from '@/app/_utility/three/ScalingFactorManager';
 import VisibilityManager from '@/app/_utility/three/VisibilityManager';
 import { programmerDigitalSolutionsMotion } from '@/app/im-a-programmer/digital-solutions/_utility/motion';
-import IdeaLamp from '@/public/3d-objects/digital-solutions/idea-lamp/Scene';
 import { useScroll } from 'framer-motion';
 import React from 'react'
 import { MotionGroup } from '@/app/_components/common/framer/MotionGroup';
 import Matrix from '@/public/3d-objects/digital-solutions/matrix/Scene';
 import GhostInShell from '@/public/3d-objects/digital-solutions/ghost-in-shell/Scene';
 
-import IPhoneProMax from '@/public/3d-objects/iPhone-pro-max/IPhoneProMax';
-import IpadPro from '@/public/3d-objects/iPad-Pro/IPadPro';
 import { Float, OrbitControls } from '@react-three/drei';
-import MacBook from '@/public/3d-objects/macbook/Macbook';
-import Chip from '@/public/3d-objects/digital-solutions/chip/Scene';
 import ThreeWindowUpdater from '@/app/_utility/window/ThreeWindowUpdater';
+import dynamic from 'next/dynamic';
+
+
+
+const IdeaLamp = dynamic(() => import('../../../../../public/3d-objects/digital-solutions/idea-lamp/Scene'), {
+    ssr: false, // Optional: Disable server-side rendering for this component
+});
+const Chip = dynamic(() => import('../../../../../public/3d-objects/digital-solutions/chip/Scene'), {
+    ssr: false, // Optional: Disable server-side rendering for this component
+});
+const IPhoneProMax = dynamic(() => import('../../../../../public/3d-objects/iPhone-pro-max/IPhoneProMax'), {
+    ssr: false, // Optional: Disable server-side rendering for this component
+});
+const IpadPro = dynamic(() => import('../../../../../public/3d-objects/iPad-Pro/IPadPro'), {
+    ssr: false, // Optional: Disable server-side rendering for this component
+});
+const MacBook = dynamic(() => import('../../../../../public/3d-objects/macbook/Macbook'), {
+    ssr: false, // Optional: Disable server-side rendering for this component
+});
+
 
 const DigitalSolutionsExperience = () => {
 
@@ -31,6 +46,7 @@ const DigitalSolutionsExperience = () => {
     const CachedChip = React.memo(Chip);
     const CachediPhone = React.memo(IPhoneProMax);
     const CachediPad = React.memo(IpadPro);
+    const CachedMacBook = React.memo(MacBook);
 
     // create visible states
     const [scalingFactor, setScalingFactor] = React.useState<number>(1);

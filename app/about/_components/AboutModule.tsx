@@ -1,21 +1,20 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useAboutSectionRefs } from '../_utils/refs';
 import { scrollToSection } from '@/app/_utility/scroll/scroll-to-section';
 import IntersectionWatcher from '@/app/_utility/window/IntersectionWatcher';
 import WindowUpdater from '@/app/_utility/window/WindowUpdater';
 import BioHero from './BioHero';
 import MyCoreValues from './MyCoreValues';
-import { coreValues, missionStatement } from '@/library/const';
+import { coreValues } from '@/library/const';
 import MissionVision from './MissionStatement';
 import dynamic from 'next/dynamic';
 import ThreeWindowUpdater from '@/app/_utility/window/ThreeWindowUpdater';
 import { useScroll } from 'framer-motion';
-import { Canvas } from '@react-three/offscreen';
-import { Html } from '@react-three/drei';
+
 import { VisibilityThreeType } from '@/app/_library/types/common';
 
-const AboutScene = dynamic(() => import('./scenes/mission-statement/AboutScene'), {
+const MissionStatementScene = dynamic(() => import('./scenes/mission-statement/AboutScene'), {
     ssr: false, // Optional: Disable server-side rendering for this component
 });
 const CoreValueScene = dynamic(() => import('./scenes/core-values/CoreValuesScene'), {
@@ -116,7 +115,7 @@ const AboutModule = () => {
             />
             {
                 visible.missionStatement  &&
-                <AboutScene
+                <MissionStatementScene
                     value={coreValue}
                     scrollY={scrollY}
                 />

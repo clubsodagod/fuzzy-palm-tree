@@ -8,8 +8,11 @@ import WindowUpdater from '@/app/_utility/window/WindowUpdater';
 import { customSoftware, dataScienceAI, digitalTransformation, ExtendedPointUseCase, webMobileApp } from '@/library/const';
 import { CustomSoftware, CustomSoftwareDynamic, DataScienceAI, DataScienceAIDynamic, WebMobileApplications, WebMobileApplicationsDynamic, DigitalTransformation, DigitalTransformationDynamic } from '../../_components/digital-solutions';
 import DigitalSolutionsHeroMain from '../../_components/digital-solutions/DigitalSolutionsHeroMain';
-import DigitalSolutionsScene from '../../_components/digital-solutions/three/DigitalSolutionsScene';
+import dynamic from 'next/dynamic';
 
+const DigitalSolutionsScene = dynamic(() => import('../../_components/digital-solutions/three/DigitalSolutionsScene'), {
+    ssr: false, // Optional: Disable server-side rendering for this component
+});
 const DigitalSolutionsModule = () => {
     const {
         appContainer: {
@@ -42,7 +45,7 @@ const DigitalSolutionsModule = () => {
 
     return (
         <>
-        <DigitalSolutionsScene />
+            <DigitalSolutionsScene />
             <DigitalSolutionsHeroMain
                 ctnRef={digitalSolutionsRef}
                 scrollTo={scrollToSectionHandler}

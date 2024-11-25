@@ -2,9 +2,12 @@
 import ShadowCatcher from '@/app/_components/common/three/lights/ShadowCatcher'
 import StandardLights from '@/app/_components/common/three/lights/StandardLights'
 import { Canvas } from '@react-three/fiber'
+import dynamic from 'next/dynamic'
 import React, { Suspense } from 'react'
-import DigitalSolutionsExperience from './DigitalSolutionsExperience'
 
+const DigitalSolutionsExperience = dynamic(() => import('./DigitalSolutionsExperience'),{
+    ssr: false, // Optional: Disable server-side rendering for this component
+});
 const DigitalSolutionsScene = () => {
     return (
         <Canvas

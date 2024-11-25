@@ -26,79 +26,79 @@ export const gradientVariants = {
         animation: 'animate-main-bg 10s infinite alternate',
     },
     'programmer-main': {
-        background: `radial-gradient(#f12711, #f5af19)`,
+        background: `radial-gradient(#434343, #000, #202020)`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 0%',
         animation: 'animate-main-bg 10s infinite alternate',
     },
     'programmer-overview-dynamic-zero': {
-        background: "radial-gradient( #ffefba, #ffffff)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: "radial-gradient( #0f0c29, #302b63, #24243e)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         backgroundBlendMode:   `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-overview-dynamic-one': {
-        background: "radial-gradient( #434343, #000000)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: "radial-gradient( #434343, #000000, #000000)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         backgroundBlendMode:   `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-overview-dynamic-two': {
-        background: "radial-gradient( #52c234, #061700)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: "radial-gradient( #434343, #434343, #000000)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         backgroundBlendMode:   `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-overview-dynamic-three': {
-        background: "radial-gradient( #1f1c2c, #928dab)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: "radial-gradient( #0f0c29, #302b63, #24243e)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         backgroundBlendMode:   `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-overview-dynamic-four': {
-        background: "radial-gradient( #434343, #000000)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: "radial-gradient(  #434343, #000000, #000000)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         backgroundBlendMode:   `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-overview-dynamic-five': {
-        background: "radial-gradient( #fceabb, #f8b500)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: "radial-gradient(#1cb5e0, #000046, #1cb5e0 )", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         backgroundBlendMode:   `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-overview-dynamic-six': {
-        background: "radial-gradient(#f8b500, #fceabb)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: "radial-gradient(  #434343, #000000, #000000)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         backgroundBlendMode:   `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-overview-dynamic-seven': {
-        background: "radial-gradient( #434343, #000000)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: "radial-gradient( #434343,#434343, #000000)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         backgroundBlendMode:   `multiply`,
         backgroundSize: '250% 250%',
-        backgroundPosition: '50% 50%',
+        backgroundPosition: '125% 125%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-overview-dynamic-eight': {
-        background: "radial-gradient( #be93c5, #7bc6cc)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: "radial-gradient( #be93c5, #7bc6cc, #be93c5)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         backgroundBlendMode:   `multiply`,
-        backgroundSize: '125% 125%',
-        backgroundPosition: '25% 50%',
+        backgroundSize: '200% 200%',
+        backgroundPosition: '100% 62.5%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-overview-dynamic-nine': {
-        background: "radial-gradient(#16bffd, #cb3066)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: "radial-gradient(#16bffd,#16bffd, #cb3066)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         backgroundBlendMode:   `multiply`,
-        backgroundSize: '125% 125%',
-        backgroundPosition: '50% 0%',
+        backgroundSize: '400% 400%',
+        backgroundPosition: '200% 200%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-why-digital': {

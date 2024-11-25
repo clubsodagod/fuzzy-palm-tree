@@ -1,20 +1,6 @@
 'use client'
 import { useAppContext } from '@/app/_context/AppContext';
 import { ScalesThreeType, VisibilityThreeType } from '@/app/_library/types/common';
-import { Atom } from '@/public/3d-objects';
-import CoinGrowth from '@/public/3d-objects/coin-growth/CoinGrowth';
-import CombinationLock from '@/public/3d-objects/combination-lock/CombinationLock';
-import DigitalDataHighway from '@/public/3d-objects/digital-data-highway/DigitalDataHighway';
-import DollarSign from '@/public/3d-objects/dollar-sign/DollarSign';
-import SmilingEmojiOne from '@/public/3d-objects/emoji-smile-one/SmilingEmojiOne';
-import SmilingEmojiTwo from '@/public/3d-objects/emoji-smile-two/SmilingEmojiTwo';
-import IPhone from '@/public/3d-objects/iphone/IPhone';
-import LightBulb from '@/public/3d-objects/light-bulb/LightBulb';
-import Macbook from '@/public/3d-objects/macbook/Macbook';
-import POSMachine from '@/public/3d-objects/pos-machine/POSMachine';
-import Puzzle from '@/public/3d-objects/puzzle/Puzzle';
-import SphereBot from '@/public/3d-objects/sphere-bot/SphereBot';
-import SwissArmyKnife from '@/public/3d-objects/swiss-army-knife/SwissArmyKnife';
 import React from 'react'
 import { programmerPageMotionLogic } from '../../_utility/motion';
 import { useScroll } from 'framer-motion';
@@ -24,6 +10,64 @@ import ScaleManager from '@/app/_utility/three/ScaleManager';
 import { MotionGroup } from '@/app/_components/common/framer/MotionGroup';
 import { Float } from '@react-three/drei';
 import ThreeWindowUpdater from '@/app/_utility/window/ThreeWindowUpdater';
+import { Perf } from 'r3f-perf';
+import dynamic from 'next/dynamic';
+
+
+const LightBulb = dynamic(() => import('../../../../public/3d-objects/light-bulb/LightBulb'), {
+    ssr: false, // Optional: Disable server-side rendering for this component
+});
+const SphereBot = dynamic(() => import('../../../../public/3d-objects/sphere-bot/SphereBot'), {
+    ssr: false, // Optional: Disable server-side rendering for this component
+});
+
+const POSMachine = dynamic(() => import('../../../../public/3d-objects/pos-machine/POSMachine'), {
+    ssr: false, // Optional: Disable server-side rendering for this component
+});
+
+const IPhone = dynamic(() => import('../../../../public/3d-objects/iPhone-pro-max/IPhoneProMax'), {
+    ssr: false, // Optional: Disable server-side rendering for this component
+});
+
+const Puzzle = dynamic(() => import('../../../../public/3d-objects/puzzle/Puzzle'), {
+    ssr: false, // Optional: Disable server-side rendering for this component
+});
+
+const SmilingEmojiTwo = dynamic(() => import('../../../../public/3d-objects/emoji-smile-two/SmilingEmojiTwo'), {
+    ssr: false, // Optional: Disable server-side rendering for this component
+});
+
+const SwissArmyKnife = dynamic(() => import('../../../../public/3d-objects/swiss-army-knife/SwissArmyKnife'), {
+    ssr: false, // Optional: Disable server-side rendering for this component
+});
+
+const MacBook = dynamic(() => import('../../../../public/3d-objects/macbook/Macbook'), {
+    ssr: false, // Optional: Disable server-side rendering for this component
+});
+
+const CoinGrowth = dynamic(() => import('../../../../public/3d-objects/coin-growth/CoinGrowth'), {
+    ssr: false, // Optional: Disable server-side rendering for this component
+});
+
+const DigitalDataHighway = dynamic(() => import('../../../../public/3d-objects/digital-data-highway/DigitalDataHighway'), {
+    ssr: false, // Optional: Disable server-side rendering for this component
+});
+
+const SmilingEmojiOne = dynamic(() => import('../../../../public/3d-objects/emoji-smile-one/SmilingEmojiOne'), {
+    ssr: false, // Optional: Disable server-side rendering for this component
+});
+
+const DollarSign = dynamic(() => import('../../../../public/3d-objects/dollar-sign/DollarSign'), {
+    ssr: false, // Optional: Disable server-side rendering for this component
+});
+
+const CombinationLock = dynamic(() => import('../../../../public/3d-objects/combination-lock/CombinationLock'), {
+    ssr: false, // Optional: Disable server-side rendering for this component
+});
+
+const Atom = dynamic(() => import('../../../../public/3d-objects/atom/Atom'), {
+    ssr: false, // Optional: Disable server-side rendering for this component
+});
 
 const ProgrammerPageExperience = () => {
 
@@ -41,7 +85,7 @@ const ProgrammerPageExperience = () => {
     const CachedPuzzle = React.memo(Puzzle);
     const CachedEmoji = React.memo(SmilingEmojiTwo);
     const CachedSwissArmyKnife = React.memo(SwissArmyKnife);
-    const CachedMacbook = React.memo(Macbook);
+    const CachedMacbook = React.memo(MacBook);
     const CachedCoinGrowth = React.memo(CoinGrowth);
     const CachedDataHighway = React.memo(DigitalDataHighway);
     const CachedEmojiTwo = React.memo(SmilingEmojiOne);
@@ -137,7 +181,14 @@ const ProgrammerPageExperience = () => {
         <group
             scale={mainScalingFactor}
         >
-
+            <Perf
+                deepAnalyze
+                position='top-left'
+                style={{
+                    zIndex: 200, marginTop: '15vh',
+                    position: 'absolute'
+                }}
+            />
 
             {/* light bulb model */}
             <MotionGroup
