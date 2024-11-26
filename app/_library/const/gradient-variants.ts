@@ -14,7 +14,7 @@ export const gradientVariants = {
     },
     'home-investment': {
         background: 'radial-gradient(#101010, #0ba360, #3cba92)',
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 200%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
@@ -33,63 +33,63 @@ export const gradientVariants = {
     },
     'programmer-overview-dynamic-zero': {
         background: "radial-gradient( #0f0c29, #302b63, #24243e)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-overview-dynamic-one': {
         background: "radial-gradient( #434343, #000000, #000000)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-overview-dynamic-two': {
         background: "radial-gradient( #434343, #434343, #000000)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-overview-dynamic-three': {
         background: "radial-gradient( #0f0c29, #302b63, #24243e)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-overview-dynamic-four': {
         background: "radial-gradient(  #434343, #000000, #000000)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-overview-dynamic-five': {
         background: "radial-gradient(#3b41c5,#a981bb,#ffc8a9 )", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-overview-dynamic-six': {
         background: "radial-gradient(  #434343, #000000, #000000)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-overview-dynamic-seven': {
         background: "radial-gradient( #434343,#434343, #000000)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '250% 250%',
         backgroundPosition: '125% 125%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-overview-dynamic-eight': {
         background: "radial-gradient( #5433FF,#20BDFF,#A5FECB)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '100% 62.5%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
@@ -97,35 +97,35 @@ export const gradientVariants = {
     'programmer-overview-dynamic-nine': {
         // science blue dodger blue malibu
         background: "radial-gradient(#0052D4,#4364F7,#6FB1FC)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '400% 400%',
         backgroundPosition: '200% 200%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-why-digital': {
         background: 'radial-gradient(#22E1FF,#1D8FE1,#625EB1)',
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 100%',
         animation: 'animate-approach-bg 8s ease-in-out infinite alternate',
     },
     'programmer-why-digital-dynamic-one': {
         background: 'radial-gradient( #000000, #000000, #434343)',
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-why-digital-dynamic-two': {
         background: 'radial-gradient(#65379B,#886AEA,#6457C6)',
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-why-digital-dynamic-three': {
         background: 'radial-gradient(#000000, #0f9b0f, #0f9b0f)',
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '400% 400%',
         backgroundPosition: '0% 0%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
@@ -138,21 +138,21 @@ export const gradientVariants = {
     },
     'programmer-why-digital-dynamic-five': {
         background: 'radial-gradient(#69EACB,#EACCF8,#6654F1)',
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '100% 0%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-why-digital-dynamic-six': {
         background: 'radial-gradient(#6654F1, #EACCF8,#69EACB)',
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '100% 0%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'programmer-why-digital-dynamic-zero': {
         background: 'radial-gradient(#1c92d2, #f2fcfe)',
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
@@ -196,7 +196,7 @@ export const gradientVariants = {
     },
     'lets-work-location-information': {
         background: 'radial-gradient(circle at center,#1f4037, #99f2c8, #99f2c8)',
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
@@ -215,7 +215,7 @@ export const gradientVariants = {
     },
     'custom-software-dynamic-zero': {
         background: 'radial-gradient(circle at center,#000000, #000000, #434343)',
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
@@ -234,14 +234,14 @@ export const gradientVariants = {
     },
     'data-science-ai': {
         background: 'radial-gradient( #59C173,#a17fe0,#5D26C1)',
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
     },
     'data-science-ai-dynamic-zero': {
         background: 'radial-gradient(circle at center, #59C173,#a17fe0,#5D26C1)',
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
@@ -266,7 +266,7 @@ export const gradientVariants = {
     },
     'web-mobile-application-dynamic-zero': {
         background: 'radial-gradient( #0052D4,#4364F7,#6FB1FC)',
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
@@ -291,7 +291,7 @@ export const gradientVariants = {
     },
     'digital-transformation-zero': {
         background: 'radial-gradient(#2CD8D5,#6B8DD6,#8E37D7)',
-        backgroundBlendMode:   `multiply`,
+        backgroundBlendMode: `multiply`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 50%',
         animation: 'animate-area-bg 6s ease-in-out infinite alternate',
@@ -355,6 +355,44 @@ export const gradientVariants = {
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 0%',
         animation: 'animate-main-bg 10s infinite alternate',
+    },
+    'blog-categories-main': {
+        background: `radial-gradient(#434343,#434343, #000000)`,
+        backgroundSize: '200% 200%',
+        backgroundPosition: '0% 0%',
+        animation: 'animate-main-bg 10s infinite alternate',
+    },
+    'blog-category-main': {
+        background: `radial-gradient(#12c2e9,#c471ed,#f64f59)`,
+        backgroundSize: '200% 200%',
+        backgroundPosition: '0% 0%',
+        animation: 'animate-main-bg 10s infinite alternate',
+    },
+    'blog-category-finance': {
+        background: `radial-gradient(#000000,#0f9b0f,#0f9b0f )`,
+        backgroundSize: '400% 200%',
+        backgroundPosition: '150% 0%',
+        animation: 'animate-main-bg 10s infinite alternate',
+        animate: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 1.5, // Set the duration to 1.5 seconds
+            },
+        },
+    },
+    'blog-slug-page': {
+        background: `radial-gradient(#434343,#434343, #000000 )`,
+        backgroundSize: '400% 200%',
+        backgroundPosition: '150% 0%',
+        animation: 'animate-main-bg 10s infinite alternate',
+        animate: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 1.5, // Set the duration to 1.5 seconds
+            },
+        },
     },
 
 };

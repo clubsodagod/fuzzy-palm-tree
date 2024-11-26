@@ -9,6 +9,10 @@ import ScrollCtnWrapper from '@/app/_components/common/ScrollCtnWrapper';
 import ScrollableItemCtn from '@/app/_components/common/ScrollableItemCtn';
 import { Typography } from '@mui/material';
 import { MotionDiv } from '@/app/_components/common/framer/MotionDiv';
+import { useAppContext } from '@/app/_context/AppContext';
+import { useBlogPageSectionRefs } from '../../_utility/refs';
+import IntersectionWatcher from '@/app/_utility/window/IntersectionWatcher';
+import WindowUpdater from '@/app/_utility/window/WindowUpdater';
 
 interface CategoryHeroProps {
     category: ICategory;
@@ -18,13 +22,27 @@ interface CategoryHeroProps {
 
 const CategoryHero: React.FC<CategoryHeroProps> = ({ category, featuredPosts, allPosts }) => {
 
+    const {
+        screen:{currentBreakpoint},
+    } = useAppContext();
+
+    const {
+        blogCategoryFinanceRef, categoryFinanceRefs:refs, scrollRef
+    } = useBlogPageSectionRefs()
+
+
+    WindowUpdater(scrollRef);
+    IntersectionWatcher({ refs });
     return (
 
-        <MotionPageWrapper>
+        <MotionPageWrapper
+            id={`blog-category-${category.slug}`}
+            ctnRef={blogCategoryFinanceRef}
+        >
 
             <Header
                 headerLabel={`The Daily Davis`}
-                size='lg'
+                size={(['xs','sm']).includes(currentBreakpoint) ? 'md' : 'lg'}
             />
 
             <MotionDiv className='hero-wrapper mt-[3vh] gap-3'>

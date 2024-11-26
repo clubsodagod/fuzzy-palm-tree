@@ -236,7 +236,14 @@ div.snap-x-wrapper#programmer-approach-solid-hero {
 .left {
   text-align: left;
   justify-content: start;
-  padding-inline-end: 60%;
+  @media screen and (min-width:769px) {
+    padding-inline-end: 60%;
+  }
+  
+}
+.left-header {
+  text-align: left;
+  justify-content: start;
 }
 
 .left-btn-ctn {
@@ -249,7 +256,15 @@ div.snap-x-wrapper#programmer-approach-solid-hero {
 
   text-align: right !important;
   justify-content: end !important;
-  padding-inline-start: 60%;
+  @media screen and (min-width:769px) {
+    padding-inline-start: 60%;
+  }
+  
+}
+.right-header {
+
+  text-align: right !important;
+  justify-content: end !important;
 }
 
 .right-btn-ctn {

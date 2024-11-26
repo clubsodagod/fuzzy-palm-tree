@@ -1,16 +1,16 @@
 import React, { RefObject } from 'react'
 import styles from '../../_components/styles.module.css'
-import { Header, PageWrapper } from '@/app/_hide/_components';
-import { MotionDivProps } from '@/app/_hide/_components/common/ScrollableItemCtn';
-import { MotionDiv } from '@/app/_hide/_components/framer/MotionDiv';
 import LetsWorkForm from './contact-form/LetsWorkForm';
 import { useAppContext } from '@/app/_context/AppContext';
 import { HeroProps } from '@/app/_library/types/common';
+import MotionPageWrapper from '@/app/_components/common/MotionPageWrapper';
+import { MotionDiv } from '@/app/_components/common/framer/MotionDiv';
+import Header from '@/app/_components/common/Header';
 
 
 interface LetsWorkHeroProps {
     ctnRef: RefObject<HTMLDivElement>,
-    id?:string;
+    id?: string;
 }
 
 const LetsWorkHero: React.FC<LetsWorkHeroProps> = ({
@@ -19,17 +19,17 @@ const LetsWorkHero: React.FC<LetsWorkHeroProps> = ({
 }) => {
 
     const {
-        screen:{currentBreakpoint},
+        screen: { currentBreakpoint },
     } = useAppContext();
 
     return (
-        <PageWrapper
+        <MotionPageWrapper
             ctnRef={ctnRef}
             id={id ? id : 'lets-work-main'}
         >
 
             <MotionDiv
-                className={`${styles.letsWorkHeroWrapper}`}
+                className={`hero-wrapper`}
             >
 
                 <Header
@@ -38,18 +38,12 @@ const LetsWorkHero: React.FC<LetsWorkHeroProps> = ({
                     size={("xs").includes(currentBreakpoint) ? 'md' : 'lg'}
                 />
 
-
                 <MotionDiv
-                className={`${styles.btmLetsWorkCtn} `}
+                    className={`${styles.btmLetsWorkCtn} `}
                 >
-                    {/* <MotionDiv
-                        className={`${styles.threeScenePro} `}
-                    >
-                        <LetsWorkScene />
-                    </MotionDiv> */}
 
                     <MotionDiv
-                    className={`${styles.contactFormColumn}`}
+                        className={`${styles.contactFormColumn}`}
                     >
                         <LetsWorkForm />
                     </MotionDiv>
@@ -57,7 +51,7 @@ const LetsWorkHero: React.FC<LetsWorkHeroProps> = ({
                 </MotionDiv>
 
             </MotionDiv>
-        </PageWrapper>
+        </MotionPageWrapper>
     )
 }
 

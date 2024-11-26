@@ -13,6 +13,9 @@ import Header from '@/app/_components/common/Header'
 import ScrollCtnWrapper from '@/app/_components/common/ScrollCtnWrapper'
 import ScrollableItemCtn from '@/app/_components/common/ScrollableItemCtn'
 import { useAppContext } from '@/app/_context/AppContext'
+import { useBlogPageSectionRefs } from '../../_utility/refs'
+import IntersectionWatcher from '@/app/_utility/window/IntersectionWatcher'
+import WindowUpdater from '@/app/_utility/window/WindowUpdater'
 
 interface CategoriesModuleProps {
     categories: ICategoryPopulated[] | null;
@@ -30,9 +33,19 @@ const CategoriesModule: React.FC<CategoriesModuleProps> = ({ categories }) => {
         screen:{currentBreakpoint},
     } = useAppContext();
 
+    const {
+        mainCategoriesRef,categoriesRefs:refs,scrollRef
+    } = useBlogPageSectionRefs();
+
+    WindowUpdater(scrollRef);
+    IntersectionWatcher({ refs });
+
 
     return (
-        <MotionPageWrapper>
+        <MotionPageWrapper
+            id='blog-categories-main'
+            ctnRef={mainCategoriesRef}
+        >
 
             {/* main hero component */}
 
@@ -52,7 +65,7 @@ const CategoriesModule: React.FC<CategoriesModuleProps> = ({ categories }) => {
                 <ScrollCtnWrapper>
 
                     <ScrollableItemCtn
-                        id='categories-ctn'
+                        id='blog-posts-ctn'
                         >
                         {
                             categories && categories.length > 0 &&

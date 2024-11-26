@@ -91,7 +91,34 @@ const ScrollableItemCtn: React.FC<ScrollableItemCtnProps> = ({
             {...rest}
         >
             {
-                !(['xs', 'sm', 'md']).includes(currentBreakpoint) &&
+                portfolio &&
+                <MotionDiv
+                    initial={{
+                        opacity: 0,
+                    }}
+                    whileInView={{
+                        opacity: "100%",
+                        transition: {
+                            duration: 2,
+                        }
+                    }}
+                    whileHover={{
+                        scale: 1.25
+                    }}
+                    className={`${styles.leftArrowCtn} ${styles.bottomBtn}`}
+                    onClick={() => scrollContainer('left')} // Scroll left on click
+                >
+                    <MotionDiv
+                        className={`${styles.arrowWrapper}`}
+                    >
+                        <ArrowCircleDownRoundedIcon
+                            className={`${styles.leftArrow}`}
+                        />
+                    </MotionDiv>
+                </MotionDiv>
+            }
+            {
+                !(['xs', 'sm', 'md']).includes(currentBreakpoint) && !portfolio &&
                 <MotionDiv
                     initial={{
                         opacity: 0,
@@ -119,19 +146,47 @@ const ScrollableItemCtn: React.FC<ScrollableItemCtnProps> = ({
             }
 
 
-            <div ref={scrollCtnRef} id={rest.id ? rest.id : '' } 
-            className={ 
-                rest.id == 'programmer-approach-solid-hero' || rest.id == 'programmer-approach-sdlc-section' ? styles['solidChildWrapper'] 
-                : rest.id == 'programmer-approach-design-section' || rest.id == 'programmer-portfolio-main' ? styles['designPatternsChildWrapper'] 
-                :  rest.id == 'blog-posts-ctn' ? styles['blogChildWrapper'] :styles.childWrapper
-            } 
+            <div ref={scrollCtnRef} id={rest.id ? rest.id : ''}
+                className={
+                    rest.id == 'programmer-approach-solid-hero' || rest.id == 'programmer-approach-sdlc-section' ? styles['solidChildWrapper']
+                        : rest.id == 'programmer-approach-design-section'  ? styles['designPatternsChildWrapper']
+                            : rest.id == 'blog-posts-ctn' ? styles['blogChildWrapper'] : rest.id == 'programmer-portfolio-main' ? styles['portfolioChildWrapper'] :styles.childWrapper
+                }
             >
                 {children}
             </div>
 
 
             {
-                !(['xs', 'sm', 'md']).includes(currentBreakpoint) &&
+                portfolio &&
+                <MotionDiv
+                    initial={{
+                        opacity: 0,
+                    }}
+                    whileInView={{
+                        opacity: "100%",
+                        transition: {
+                            duration: 2.5,
+                        }
+                    }}
+                    whileHover={{
+                        scale: 1.25
+                    }}
+                    className={`${styles.rightArrowCtn} ${styles.bottomBtn}`}
+                    onClick={() => scrollContainer('right')} // Scroll right on click
+                >
+                    <MotionDiv
+                        className={`${styles.arrowWrapper}`}
+                    >
+                        <ArrowCircleDownRoundedIcon
+                            className={`${styles.rightArrow}`}
+                        />
+                    </MotionDiv>
+
+                </MotionDiv>
+            }
+            {
+                !(['xs', 'sm', 'md']).includes(currentBreakpoint) && !portfolio &&
                 <MotionDiv
                     initial={{
                         opacity: 0,

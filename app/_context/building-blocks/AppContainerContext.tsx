@@ -12,6 +12,8 @@ const AppContainerContext = () => {
 
     const controls = useAnimationControls();
 
+    
+
 
     return {
         currentSection, setCurrentSection,

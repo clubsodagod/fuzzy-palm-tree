@@ -33,7 +33,7 @@ export default function IntersectionWatcher(props: IntersectionWatcherProps) {
             const observerOptions = {
                 root: null, // Use the viewport as the root
                 rootMargin: '0px',
-                threshold: 0.5, // Trigger when 50% of the element is in view
+                threshold: 0.25, // Trigger when 50% of the element is in view
             };
 
             const observer = new IntersectionObserver((entries) => {

@@ -12,21 +12,50 @@ export type RefIDObject = {
 export const useBlogPageSectionRefs = (): {
     scrollRef: RefObject<HTMLDivElement>;
     bodyRef: RefObject<HTMLBodyElement>;
-    blogRef: RefObject<HTMLDivElement>;
     ctnRef: RefObject<HTMLDivElement>;
+    blogRef: RefObject<HTMLDivElement>;
     refs: RefIDObject[];
+    mainCategoriesRef: RefObject<HTMLDivElement>;
+    categoriesRefs: RefIDObject[];
+    blogCategoryFinanceRef: RefObject<HTMLDivElement>;
+    categoryFinanceRefs: RefIDObject[];
+    slugPageRef: RefObject<HTMLDivElement>;
+    slugPageRefs: RefIDObject[];
+
 } => {
     // Static Refs
 
-    // /im-a-programmer refs static
-    const scrollRef = useRef<HTMLDivElement>(null);
-    const blogRef = useRef<HTMLDivElement>(null);
     const bodyRef = useRef<HTMLBodyElement>(null);
     const ctnRef = useRef<HTMLDivElement>(null);
+    const scrollRef = useRef<HTMLDivElement>(null);
 
+    // /blog refs static
+    const blogRef = useRef<HTMLDivElement>(null);
     const refs = [
         { ref: blogRef, id: 'blog-main' },
     ];
+
+    // /blog/categories refs static
+    const mainCategoriesRef = useRef<HTMLDivElement>(null);
+    const categoriesRefs = [
+        { ref: mainCategoriesRef, id: 'blog-categories-main' },
+    ];
+
+
+    // /blog/categories refs static
+    const blogCategoryFinanceRef = useRef<HTMLDivElement>(null);
+    const categoryFinanceRefs = [
+        { ref: blogCategoryFinanceRef, id: 'blog-category-finance' },
+    ];
+
+
+    // /blog slug page refs static
+    const slugPageRef = useRef<HTMLDivElement>(null);
+    const slugPageRefs = [
+        { ref: slugPageRef, id: 'blog-slug-page' },
+    ];
+
+
 
     return {
         scrollRef,
@@ -34,5 +63,11 @@ export const useBlogPageSectionRefs = (): {
         ctnRef,
         blogRef,
         refs,
+        categoriesRefs,
+        mainCategoriesRef,
+        blogCategoryFinanceRef,
+        categoryFinanceRefs,
+        slugPageRef,
+        slugPageRefs,
     };
 };

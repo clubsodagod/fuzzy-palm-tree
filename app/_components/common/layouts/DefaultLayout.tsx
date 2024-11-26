@@ -48,6 +48,7 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
                     id='default-body'
                     animate={controls}
                     variants={gradientVariants}
+                    
                 >
                     <Navbar />
                     {/* <main

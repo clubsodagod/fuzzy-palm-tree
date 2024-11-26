@@ -15,7 +15,7 @@ const Header: React.FC<HeaderProps> = (
     { headerLabel, tagLine, right, size, ...props }
 ) => {
 
-    const className = right ? "right" : "left";
+    const className = right ? "right-header" : "left-header";
 
     const variant = size == 'sm' ? 'h3' : size == 'md' ? 'h2' : 'h1'
 

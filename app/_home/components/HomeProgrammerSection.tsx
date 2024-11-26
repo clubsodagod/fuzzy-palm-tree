@@ -59,7 +59,7 @@ const HomeProgrammerSection: React.FC<HeroProps> = ({
                         className={`learn-more-btn`}
                         id={'home-investment-hero'}
                         href={'/im-a-programmer'}
-                        label={`Learn More`}
+                        label={`More`}
                         color='primary'
                     />
                     <ButtonPro

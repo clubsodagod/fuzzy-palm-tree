@@ -13,6 +13,9 @@ import author from '@/app/_database/models/author'
 import { grey } from '@mui/material/colors'
 import { ISubcategory } from '@/app/_database/models/subcategory'
 import { useAppContext } from '@/app/_context/AppContext'
+import { useBlogPageSectionRefs } from '@/app/blog/_utility/refs'
+import IntersectionWatcher from '@/app/_utility/window/IntersectionWatcher'
+import WindowUpdater from '@/app/_utility/window/WindowUpdater'
 
 interface SlugPageModuleProps {
     post: IBlogPopulated | null;
@@ -25,11 +28,22 @@ const SlugPageModule: React.FC<SlugPageModuleProps> = ({
     const {
         screen:{isMobile},
     } = useAppContext();
+
+    const {
+        slugPageRef, slugPageRefs:refs, scrollRef
+    } = useBlogPageSectionRefs();
     
+    
+    WindowUpdater(scrollRef);
+    IntersectionWatcher({ refs });
+
     // Parse the HTML content only if post content exists
     const parsedContent = post?.content ? parse(post?.content) : null;
     return (
-        <MotionPageWrapper>
+        <MotionPageWrapper
+        id={`blog-slug-page`}
+        ctnRef={slugPageRef}
+        >
             <MotionDiv className={`${styles.slugFtImgWrapper}`}>
                 <MotionImg className={`object-cover w-full h-full ${styles.slugFtImg}`} src={post?.featuredImg.portrait} />
             </MotionDiv>

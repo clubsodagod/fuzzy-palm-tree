@@ -57,29 +57,6 @@ export default async function BlogSlugPage ({ params }: { params: { post: string
         <SlugPageModule
          post={post}
         />
-        // <MotionPageWrapper>
-        //     <MotionDiv className={`w-full h-[45vh] overflow-hidden`}>
-        //         <MotionImg className={`object-cover w-full h-full`} src={featuredImg.portrait} />
-        //     </MotionDiv>
-        //     <MotionSectionWrapper>
-        //         <MotionDiv>
-        //             <MotionH1>{title} Page</MotionH1>
 
-        //             {/* Author component */}
-        //             <MotionDiv className={`flex flex-row gap-[1vw] justify-center items-center`}>
-        //                 <MotionDiv>
-        //                     <Avatar label={`${author.firstName}`} />
-        //                 </MotionDiv>
-        //                 <MotionDiv>
-        //                     <MotionP>{author.firstName} {author.lastName}</MotionP>
-        //                     <MotionP>{new Date(createdAt).toLocaleString()}</MotionP>
-        //                 </MotionDiv>
-        //             </MotionDiv>
-
-        //             {/* Content component */}
-        //             <MotionDiv>{parsedContent}</MotionDiv>
-        //         </MotionDiv>
-        //     </MotionSectionWrapper>
-        // </MotionPageWrapper>
     );
 }
