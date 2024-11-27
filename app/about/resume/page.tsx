@@ -14,6 +14,8 @@ import { grey } from '@mui/material/colors'
 import { useAboutSectionRefs } from '../_utils/refs'
 import IntersectionWatcher from '@/app/_utility/window/IntersectionWatcher'
 import WindowUpdater from '@/app/_utility/window/WindowUpdater'
+import { useAppContext } from '@/app/_context/AppContext'
+import Resume from '@/app/_components/Resume'
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
@@ -21,6 +23,9 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/b
 
 
 const ResumePage = () => {
+    const {
+        screen:{currentBreakpoint}
+    } = useAppContext()
     const handleDownload = (uri: string) => {
         const link = document.createElement('a');
         link.href = uri;
@@ -67,12 +72,21 @@ const ResumePage = () => {
                 />
 
                 <MotionDiv
-                    className='flex w-full gap-3'
+                    className='flex flex-col md:flex-row w-full gap-3'
                 >
 
                     <MotionDiv
-                        className='text-left w-1/2 flex flex-col gap-6'
+                        className='text-left md:w-1/2 flex flex-col gap-6'
                     >
+                        {
+                            (['xs', 'sm']).includes(currentBreakpoint) && 
+                            <MotionDiv
+                            className='mt-10'
+                            >
+                                <Resume />
+                            </MotionDiv>
+                            
+                        }
                         <MotionDiv
 
                             className='flex flex-col gap-3 mt-10'
@@ -137,30 +151,11 @@ const ResumePage = () => {
                         </MotionDiv>
                     </MotionDiv>
 
-                    <MotionDiv
-                        className='w-1/2 flex flex-col gap-3 justify-center items-center '
-                    >
-                        <ButtonPro
-                            onClick={() => handleDownload(docs[0].uri)}
-                            label='Download Resume'
-                            variant='contained'
-                            size='small'
-                            color='secondary'
-                        />
-                        <MotionDiv
-                        className='h-full flex flex-col items-center'
-                        >
-                            <Box
-                                className='w-fit h-fit p-3  flex justify-center items-center blur-wrapper'
-                                sx={{ bgcolor: grey[900], borderRadius: '12.5px' }}
-                            >
-                                <Document file={docs[0].uri} renderMode='canvas' className={`rounded`}  >
-                                    <Page className={`rounded-md`} pageNumber={1} renderTextLayer={false} renderAnnotationLayer={false} renderMode='canvas' canvasBackground='white' width={800} scale={scalingFactor} />
-                                </Document>
-                            </Box>
-                        </MotionDiv>
-
-                    </MotionDiv>
+                    
+                    {
+                            !(['xs', 'sm']).includes(currentBreakpoint) && 
+                            <Resume />
+                        }
 
                 </MotionDiv>
                 <MotionDiv className='w-full '>
@@ -195,9 +190,9 @@ const ResumePage = () => {
 
 
                     </MotionDiv>
-                    <MotionDiv className='flex gap-10'>
+                    <MotionDiv className='flex flex-col md:flex-row gap-10'>
                         <MotionDiv
-                            className='flex flex-col gap-3 w-[50%] text-left pr-[10%]'
+                            className='flex flex-col gap-3 w-full md:w-[50%] text-left md:pr-[10%]'
                         >
                             <Typography variant='h5'>
                                 Processes & Philosophies
@@ -241,7 +236,7 @@ const ResumePage = () => {
 
                         </MotionDiv>
                         <MotionDiv
-                            className='flex flex-col gap-3 w-[50%] text-right pl-[10%]'
+                            className='flex flex-col gap-3 w-full md:w-[50%] md:text-right md:pl-[10%]'
                         >
                             <Typography variant='h5'>
                                 Soft Skills
