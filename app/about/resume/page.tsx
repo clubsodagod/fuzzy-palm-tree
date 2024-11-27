@@ -15,8 +15,7 @@ import { useAboutSectionRefs } from '../_utils/refs'
 import IntersectionWatcher from '@/app/_utility/window/IntersectionWatcher'
 import WindowUpdater from '@/app/_utility/window/WindowUpdater'
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist/legacy/build/pdf.js`;
-
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 
 
