@@ -5,12 +5,9 @@ import MotionPageWrapper from '@/app/_components/common/MotionPageWrapper'
 import React, { useState } from 'react'
 import { Document, Page, } from 'react-pdf';
 import { pdfjs } from "react-pdf";
-import path from 'node:path';
-import fs from 'node:fs';
 import { Avatar, Box, Stack, Typography } from '@mui/material'
 import { technologies } from '@/app/_library/const/resume'
 import { MotionImg } from '@/app/_components/common/framer/MotionImg'
-import ScrollCtnWrapper from '@/app/_components/common/ScrollCtnWrapper'
 import ScrollableItemCtn from '@/app/_components/common/ScrollableItemCtn'
 import ButtonPro from '@/app/_components/common/ButtonPro'
 import { grey } from '@mui/material/colors'
@@ -20,7 +17,18 @@ import WindowUpdater from '@/app/_utility/window/WindowUpdater'
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
-
+if (typeof Promise.withResolvers === 'undefined') {
+    if (window)
+        // @ts-expect-error This does not exist outside of polyfill which this is doing
+        window.Promise.withResolvers = function () {
+            let resolve, reject;
+            const promise = new Promise((res, rej) => {
+                resolve = res;
+                reject = rej;
+            });
+            return { promise, resolve, reject };
+        };
+}
 
 
 
@@ -38,7 +46,7 @@ const ResumePage = () => {
     ];
     const [currentSection, setCurrentSection] = useState<string>('');
     const {
-        resumeMainRef, resumeRefs:refs, scrollRef
+        resumeMainRef, resumeRefs: refs, scrollRef
     } = useAboutSectionRefs();
 
     WindowUpdater(scrollRef);
@@ -48,8 +56,8 @@ const ResumePage = () => {
 
     return (
         <MotionPageWrapper
-        ctnRef={resumeMainRef}
-        id={`about-resume-main`}
+            ctnRef={resumeMainRef}
+            id={`about-resume-main`}
         >
             <MotionDiv
                 className='hero-wrapper'
@@ -142,7 +150,7 @@ const ResumePage = () => {
                         />
                         <Box
                             className='w-fit h-full p-3  flex justify-center items-center blur-wrapper'
-                            sx={{bgcolor:grey[900], borderRadius:'12.5px'}}
+                            sx={{ bgcolor: grey[900], borderRadius: '12.5px' }}
                         >
                             <Document file={docs[0].uri} renderMode='canvas' className={`rounded`}  >
                                 <Page className={`rounded-md`} pageNumber={1} renderTextLayer={false} renderAnnotationLayer={false} renderMode='canvas' canvasBackground='white' scale={1} />
