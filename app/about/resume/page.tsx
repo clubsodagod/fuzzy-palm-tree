@@ -16,6 +16,7 @@ import IntersectionWatcher from '@/app/_utility/window/IntersectionWatcher'
 import WindowUpdater from '@/app/_utility/window/WindowUpdater'
 import { useAppContext } from '@/app/_context/AppContext'
 import Resume from '@/app/_components/Resume'
+import ScrollCtnWrapper from '@/app/_components/common/ScrollCtnWrapper'
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
@@ -24,7 +25,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/b
 
 const ResumePage = () => {
     const {
-        screen:{currentBreakpoint}
+        screen: { currentBreakpoint }
     } = useAppContext()
     const handleDownload = (uri: string) => {
         const link = document.createElement('a');
@@ -48,9 +49,9 @@ const ResumePage = () => {
 
     IntersectionWatcher({ refs });
 
-    useEffect(()=> {
-    // Scaling value for responsive experience
-    const mainScalingFactor = window ? Math.min(Math.max(window.innerWidth / 1920, window.innerWidth > 700 && window.innerWidth < window.innerHeight ? 0.1 : 0.1), 3) : 1;
+    useEffect(() => {
+        // Scaling value for responsive experience
+        const mainScalingFactor = window ? Math.min(Math.max(window.innerWidth / 1920, window.innerWidth > 700 && window.innerWidth < window.innerHeight ? 0.1 : 0.1), 3) : 1;
 
         if (mainScalingFactor !== scalingFactor) {
             setScalingFactor(mainScalingFactor)
@@ -79,13 +80,13 @@ const ResumePage = () => {
                         className='text-left md:w-1/2 flex flex-col gap-6'
                     >
                         {
-                            (['xs', 'sm']).includes(currentBreakpoint) && 
+                            (['xs', 'sm']).includes(currentBreakpoint) &&
                             <MotionDiv
-                            className='mt-10'
+                                className='mt-10'
                             >
                                 <Resume />
                             </MotionDiv>
-                            
+
                         }
                         <MotionDiv
 
@@ -151,41 +152,77 @@ const ResumePage = () => {
                         </MotionDiv>
                     </MotionDiv>
 
-                    
+
                     {
-                            !(['xs', 'sm']).includes(currentBreakpoint) && 
-                            <Resume />
-                        }
+                        !(['xs', 'sm']).includes(currentBreakpoint) &&
+                        <Resume />
+                    }
 
                 </MotionDiv>
                 <MotionDiv className='w-full '>
                     <MotionDiv
-                        className='w-full my-[10vh]'
+                        className='w-full my-[7vh]'
                     >
                         <Typography variant='h5'>
                             Technologies
                         </Typography>
 
                         <MotionDiv className='' >
-                            <ScrollableItemCtn>
-                                {
-                                    technologies.map((t, i) => (
-                                        <MotionDiv key={`${t.label} ${i}`} className='py-6' >
-                                            <MotionDiv className='min-w-[15vw] flex flex-col justify-center items-center h-full'>
-                                                <MotionDiv className='w-fit'>
-                                                    <MotionImg src={t.svg} width={100} />
+                            {
+                                (['xs', 'sm']).includes(currentBreakpoint) &&
+                                <MotionDiv
+                                className='posts-ctn h-[20vh]'
+                                >
+                                    <ScrollCtnWrapper
+                                        className=' '
+                                    >
+                                        <ScrollableItemCtn>
+                                            {
+                                                technologies.map((t, i) => (
+                                                    <MotionDiv key={`${t.label} ${i}`} className={`py-6 flex flex-col justify-center items-center ${i==0 && 'ml-[24vw]'} ${i==technologies.length-1?'mr-[24vw]' :'mr-[12vw]'}`} >
+                                                        <MotionDiv className='w-[42vw] flex flex-col justify-center items-center  blur-wrapper h-[42vw]'
+                                                        style={{borderRadius:'100%'}}
+                                                        >
+                                                            <MotionDiv className='w-fit '>
+                                                                <MotionImg src={t.svg} width={100} height={100} />
+                                                            </MotionDiv>
+
+                                                        </MotionDiv>
+                                                            <Typography variant='caption' className={` text-center`}>
+                                                                {t.label}
+                                                            </Typography>
+
+                                                    </MotionDiv>
+                                                ))
+                                            }
+                                            <MotionDiv className='min-w-[12vw] min-h-full' />
+                                        </ScrollableItemCtn>
+                                    </ScrollCtnWrapper>
+                                </MotionDiv>
+
+                            }
+                            {
+                                !(['xs', 'sm']).includes(currentBreakpoint) &&
+                                <ScrollableItemCtn>
+                                    {
+                                        technologies.map((t, i) => (
+                                            <MotionDiv key={`${t.label} ${i}`} className='py-6' >
+                                                <MotionDiv className='min-w-[15vw] flex flex-col justify-center items-center h-full'>
+                                                    <MotionDiv className='w-fit'>
+                                                        <MotionImg src={t.svg} width={100} />
+                                                    </MotionDiv>
+
+                                                    <Typography variant='caption' className={` text-center`}>
+                                                        {t.label}
+                                                    </Typography>
                                                 </MotionDiv>
 
-                                                <Typography variant='caption' className={` text-center`}>
-                                                    {t.label}
-                                                </Typography>
                                             </MotionDiv>
-
-                                        </MotionDiv>
-                                    ))
-                                }
-                                <MotionDiv className='min-w-[12vw] min-h-full' />
-                            </ScrollableItemCtn>
+                                        ))
+                                    }
+                                    <MotionDiv className='min-w-[12vw] min-h-full' />
+                                </ScrollableItemCtn>
+                            }
                         </MotionDiv>
 
 

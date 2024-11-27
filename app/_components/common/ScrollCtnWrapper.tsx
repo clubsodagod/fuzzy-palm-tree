@@ -11,7 +11,7 @@ const ScrollCtnWrapper: React.FC<ScrollCtnWrapperProps> = ({
     ...props
 }) => {
 
-    const classNames = props.className ? props.className : 'scroll-ctn-wrapper';
+    const classNames = props.className ? `scroll-ctn-wrapper ${props.className }`: 'scroll-ctn-wrapper';
 
     return (
         <MotionDiv
