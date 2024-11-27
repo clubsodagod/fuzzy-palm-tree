@@ -2,7 +2,7 @@
 import { MotionDiv } from '@/app/_components/common/framer/MotionDiv'
 import Header from '@/app/_components/common/Header'
 import MotionPageWrapper from '@/app/_components/common/MotionPageWrapper'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Document, Page, } from 'react-pdf';
 import { pdfjs } from "react-pdf";
 import { Avatar, Box, Stack, Typography } from '@mui/material'
@@ -15,7 +15,7 @@ import { useAboutSectionRefs } from '../_utils/refs'
 import IntersectionWatcher from '@/app/_utility/window/IntersectionWatcher'
 import WindowUpdater from '@/app/_utility/window/WindowUpdater'
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
 
 if (typeof Promise.withResolvers === 'undefined') {
     if (window)
@@ -45,6 +45,8 @@ const ResumePage = () => {
         { uri: "/documents/Maliek_Davis_CV.pdf" }, // Local File
     ];
     const [currentSection, setCurrentSection] = useState<string>('');
+    // create visible states
+    const [scalingFactor, setScalingFactor] = React.useState<number>(1);
     const {
         resumeMainRef, resumeRefs: refs, scrollRef
     } = useAboutSectionRefs();
@@ -52,6 +54,15 @@ const ResumePage = () => {
     WindowUpdater(scrollRef);
 
     IntersectionWatcher({ refs });
+
+    useEffect(()=> {
+    // Scaling value for responsive experience
+    const mainScalingFactor = window ? Math.min(Math.max(window.innerWidth / 1920, window.innerWidth > 700 && window.innerWidth < window.innerHeight ? 0.1 : 0.1), 3) : 1;
+
+        if (mainScalingFactor !== scalingFactor) {
+            setScalingFactor(mainScalingFactor)
+        }
+    }, [scalingFactor])
 
 
     return (
@@ -148,14 +159,19 @@ const ResumePage = () => {
                             size='small'
                             color='secondary'
                         />
-                        <Box
-                            className='w-fit h-full p-3  flex justify-center items-center blur-wrapper'
-                            sx={{ bgcolor: grey[900], borderRadius: '12.5px' }}
+                        <MotionDiv
+                        className='h-full flex flex-col items-center'
                         >
-                            <Document file={docs[0].uri} renderMode='canvas' className={`rounded`}  >
-                                <Page className={`rounded-md`} pageNumber={1} renderTextLayer={false} renderAnnotationLayer={false} renderMode='canvas' canvasBackground='white' scale={1} />
-                            </Document>
-                        </Box>
+                            <Box
+                                className='w-fit h-fit p-3  flex justify-center items-center blur-wrapper'
+                                sx={{ bgcolor: grey[900], borderRadius: '12.5px' }}
+                            >
+                                <Document file={docs[0].uri} renderMode='canvas' className={`rounded`}  >
+                                    <Page className={`rounded-md`} pageNumber={1} renderTextLayer={false} renderAnnotationLayer={false} renderMode='canvas' canvasBackground='white' width={800} scale={scalingFactor} />
+                                </Document>
+                            </Box>
+                        </MotionDiv>
+
                     </MotionDiv>
 
                 </MotionDiv>
