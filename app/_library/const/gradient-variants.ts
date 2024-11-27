@@ -309,25 +309,25 @@ export const gradientVariants = {
         animation: 'animate-main-bg 10s infinite alternate',
     },
     'portfolio-main': {
-        background: `radial-gradient(circle at center, #833ab4,#fd1d1d,#fcb045)`,
+        background: `radial-gradient(circle at center, #0f0c29,#302b63,#24243e)`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 0%',
         animation: 'animate-main-bg 10s infinite alternate',
     },
     'portfolio-case-studies': {
         background: `radial-gradient(circle at center,#2CD8D5,#6B8DD6,#8E37D7)`,
-        backgroundSize: '200% 200%',
+        backgroundSize: '150% 150%',
         backgroundPosition: '0% 0%',
         animation: 'animate-main-bg 10s infinite alternate',
     },
     'lets-work-main': {
-        background: `radial-gradient(#FEAC5E,#C779D0,#4BC0C8)`,
+        background: `radial-gradient(#0f0c29,#302b63,#24243e)`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 0%',
         animation: 'animate-main-bg 10s infinite alternate',
     },
     'lets-work-main-pro': {
-        background: `radial-gradient(#12c2e9,#c471ed,#f64f59)`,
+        background: `radial-gradient(#0f0c29,#302b63,#24243e)`,
         backgroundSize: '200% 200%',
         backgroundPosition: '0% 0%',
         animation: 'animate-main-bg 10s infinite alternate',
@@ -383,6 +383,19 @@ export const gradientVariants = {
     },
     'blog-slug-page': {
         background: `radial-gradient(#434343,#434343, #000000 )`,
+        backgroundSize: '400% 200%',
+        backgroundPosition: '150% 0%',
+        animation: 'animate-main-bg 10s infinite alternate',
+        animate: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 1.5, // Set the duration to 1.5 seconds
+            },
+        },
+    },
+    'about-resume-main': {
+        background: `radial-gradient(#000000, #000000, #434343 )`,
         backgroundSize: '400% 200%',
         backgroundPosition: '150% 0%',
         animation: 'animate-main-bg 10s infinite alternate',

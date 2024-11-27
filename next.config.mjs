@@ -21,13 +21,13 @@ const nextConfig = {
     defaultLocale: "en-US",
   },
 
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.node/,
-      use: "raw-loader",
-    });
-return config;
-  },
+
+   webpack: (config) => {
+       config.resolve.alias.canvas = false;
+    
+       return config;
+     },
+     
 };
 
 export default nextConfig;
