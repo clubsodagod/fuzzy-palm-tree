@@ -244,7 +244,7 @@ const CoreValuesExperience: React.FC<{ value: number, scrollY: MotionValue, }> =
 
                 {/* rubiks cube */}
                 <MotionGroup
-                    position={[rv([0, -5, -5]), 45, 0]}
+                    position={[rv([1, -5, -5]), 45, 0]}
                     visible={visible.rubiksCube}
                 >
 
@@ -316,15 +316,18 @@ const CoreValuesExperience: React.FC<{ value: number, scrollY: MotionValue, }> =
 
 
                 {/* bee and hive */}
-                <MotionGroup>
+                <MotionGroup
+                        variants={variants}
+                        animate={variantStatus.bee}>
                     <Float
                         floatIntensity={0.5}
+                        position={[rv([7,0,0]), 0, 0]}
                     >
 
                         {/* bee */}
                         <MotionGroup
                             position={[-7, 48, 0]}
-                            visible={false}
+                            visible={visible.bee}
                             rotation-y={-1}
                         >
                             <BeeDynamic
@@ -338,7 +341,7 @@ const CoreValuesExperience: React.FC<{ value: number, scrollY: MotionValue, }> =
                         {/* hive */}
                         <MotionGroup
                             position={[0, 53, 0]}
-                            visible={false}
+                            visible={visible.hive}
                             rotation-y={3.75}
                         >
                             <HiveDynamic
@@ -348,7 +351,7 @@ const CoreValuesExperience: React.FC<{ value: number, scrollY: MotionValue, }> =
                         {/* bee buddy */}
                         <MotionGroup
                             position={[-14, 52, 5]}
-                            visible={false}
+                            visible={visible.beeBuddy}
                         >
                             <BeeBuddyDynamic
                                 animation='_bee_hover'

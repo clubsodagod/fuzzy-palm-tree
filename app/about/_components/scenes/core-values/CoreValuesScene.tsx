@@ -40,7 +40,7 @@ const CoreValueScene: React.FC<{
                         pointerEvents: "none",
                         position: "fixed",
                         top: 0,
-                        zIndex: 500,
+                        zIndex: 0,
                     }}
                     shadows
                     camera={{

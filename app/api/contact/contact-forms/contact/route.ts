@@ -1,9 +1,14 @@
+import ThanksForContactingMe from "@/app/emails/ThanksForContactingMe";
 import { newContactForm } from "@/library/db/controllers/contact-form";
 import { NextRequest, NextResponse } from "next/server";
+import { Resend } from 'resend';
 
 
+const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
 
 export async function POST(req: NextRequest, res: NextResponse) {
+    console.log(process.env.NEXT_PUBLIC_RESEND_API_KEY);
+    
 
     if (req.method === "POST") {
 
@@ -20,7 +25,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
             !firstName || !lastName || !email || !reason || !message
         ) {
 
-            return NextResponse.json({message: "Please provide all required fields."}, {status:500})
+            return NextResponse.json({ message: "Please provide all required fields." }, { status: 500 })
         } else {
 
             const form = {
@@ -29,17 +34,25 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
             const contactForm = await newContactForm(form);
 
-            if (contactForm) {
-                
+            // send email to recipient
+            const { data, error } = await resend.emails.send({
+                from: 'continuous-innovation@maliek-davis.com',
+                to: [`${email}`],
+                subject: `${firstName}, We'll chat soon!`,
+                react: ThanksForContactingMe(firstName) as React.ReactElement,
+            });
+
+            if (contactForm && data) {
+
                 return NextResponse.json(
-                    {message:"Contact form successfully submitted. Looking forward to speaking with you!", contactForm}, 
-                    { status: 200}
+                    { message: "Contact form successfully submitted. Looking forward to speaking with you!", contactForm, email:data },
+                    { status: 200 }
                 )
             } else {
-                
+                return NextResponse.json({ message: "There was an error fulfilling your request.", error }, { status: 500 })
             }
         }
     } else {
-        return NextResponse.json({ message: "Your request is unauthorized." }, { status: 500})
+        return NextResponse.json({ message: "Your request is unauthorized." }, { status: 500 })
     }
 }

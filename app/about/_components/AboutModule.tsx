@@ -98,6 +98,20 @@ const AboutModule = () => {
     
     return (
         <>
+            {
+                visible.missionStatement  &&
+                <MissionStatementScene
+                    value={coreValue}
+                    scrollY={scrollY}
+                />
+            }
+            {
+                visible.coreValues && 
+                <CoreValueScene 
+                value={coreValue}
+                scrollY={scrollY}
+                />
+            }
             <BioHero
                 ctnRef={bioRef}
                 id='about-bio'
@@ -115,20 +129,6 @@ const AboutModule = () => {
                 value={coreValue}
                 carouselHandler={carouselHandler}
             />
-            {
-                visible.missionStatement  &&
-                <MissionStatementScene
-                    value={coreValue}
-                    scrollY={scrollY}
-                />
-            }
-            {
-                visible.coreValues && 
-                <CoreValueScene 
-                value={coreValue}
-                scrollY={scrollY}
-                />
-            }
 
         </>
 

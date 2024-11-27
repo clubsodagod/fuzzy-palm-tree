@@ -87,6 +87,12 @@ export const navItems: NavItem[] = [
     {
         label: 'about',
         path: '/about',
+        children: [
+            {
+                label: 'resume',
+                path: '/about/resume'
+            }
+        ]
     },
     {
         label: 'contact',
