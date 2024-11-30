@@ -1,7 +1,7 @@
 'use client'
 import { useAppContext } from '@/app/_context/AppContext';
 import { ScalesThreeType, VisibilityThreeType } from '@/app/_library/types/common';
-import React from 'react'
+import React, { Suspense } from 'react'
 import { programmerPageMotionLogic } from '../../_utility/motion';
 import { useScroll } from 'framer-motion';
 import ScalingFactorManager from '@/app/_utility/three/ScalingFactorManager';
@@ -191,205 +191,253 @@ const ProgrammerPageExperience = () => {
             /> */}
 
             {/* light bulb model */}
-            <MotionGroup
-                visible={visible.lightBulb}
-                castShadow
-                scale={lightBulbMotion().scale}
-                position={[lightBulbMotion().x, lightBulbMotion().y, lightBulbMotion().z]}
-                rotation={[lightBulbMotion().rotationX, lightBulbMotion().rotationY, lightBulbMotion().rotationZ]}
-            >
-                <Float
-                    floatIntensity={1.5}
-                    rotationIntensity={3}
+            <Suspense>
+                <MotionGroup
+                    visible={visible.lightBulb}
+                    castShadow
+                    scale={lightBulbMotion().scale}
+                    position={[lightBulbMotion().x, lightBulbMotion().y, lightBulbMotion().z]}
+                    rotation={[lightBulbMotion().rotationX, lightBulbMotion().rotationY, lightBulbMotion().rotationZ]}
                 >
-                    <LightBulb
-                visible={visible.lightBulb} />
-                </Float>
-            </MotionGroup>
+                    <Float
+                        floatIntensity={1.5}
+                        rotationIntensity={3}
+                    >
+                        <LightBulb
+                            visible={visible.lightBulb} />
+                    </Float>
+                </MotionGroup>
+            </Suspense>
+
 
             {/* sphere bot model */}
-            <MotionGroup
-                visible={visible.bot}
-                castShadow
-                scale={robotMotion().scale}
-                position={[robotMotion().x, robotMotion().y, robotMotion().z]}
-                rotation={[robotMotion().rotationX, robotMotion().rotationY, robotMotion().rotationZ]}
-            >
-                <CachedSphereBot />
+            <Suspense>
+                <MotionGroup
+                    visible={visible.bot}
+                    castShadow
+                    scale={robotMotion().scale}
+                    position={[robotMotion().x, robotMotion().y, robotMotion().z]}
+                    rotation={[robotMotion().rotationX, robotMotion().rotationY, robotMotion().rotationZ]}
+                >
+                    <CachedSphereBot />
 
-            </MotionGroup>
+                </MotionGroup>
+            </Suspense>
+
+
 
             {/* pos machine model */}
-            <MotionGroup
-                visible={visible.pos}
-                castShadow
-                scale={posMachineMotion().scale}
-                position={[posMachineMotion().x, posMachineMotion().y, posMachineMotion().z]}
-                rotation={[posMachineMotion().rotationX, posMachineMotion().rotationY, posMachineMotion().rotationZ]}
-            >
-                <CachedPOSMachine />
-            </MotionGroup>
+            <Suspense>
+                <MotionGroup
+                    visible={visible.pos}
+                    castShadow
+                    scale={posMachineMotion().scale}
+                    position={[posMachineMotion().x, posMachineMotion().y, posMachineMotion().z]}
+                    rotation={[posMachineMotion().rotationX, posMachineMotion().rotationY, posMachineMotion().rotationZ]}
+                >
+                    <CachedPOSMachine />
+                </MotionGroup>
+            </Suspense>
+
+
 
             {/* iPhone model */}
-            <MotionGroup
-                visible={visible.iPhone}
-                castShadow
-                scale={iPhoneMotion().scale}
-                position={[iPhoneMotion().x, iPhoneMotion().y, iPhoneMotion().z]}
-                rotation={[iPhoneMotion().rotationX, iPhoneMotion().rotationY, iPhoneMotion().rotationZ]}
-            >
-                <Float
-                    floatIntensity={1.5}
-                    rotationIntensity={1.5}
+            <Suspense>
+                <MotionGroup
+                    visible={visible.iPhone}
+                    castShadow
+                    scale={iPhoneMotion().scale}
+                    position={[iPhoneMotion().x, iPhoneMotion().y, iPhoneMotion().z]}
+                    rotation={[iPhoneMotion().rotationX, iPhoneMotion().rotationY, iPhoneMotion().rotationZ]}
                 >
-                    <CachedIPhone />
-                </Float>
-            </MotionGroup>
+                    <Float
+                        floatIntensity={1.5}
+                        rotationIntensity={1.5}
+                    >
+                        <CachedIPhone />
+                    </Float>
+                </MotionGroup>
+            </Suspense>
+
+
 
             {/* puzzle model */}
-            <MotionGroup
-                visible={visible.puzzle}
-                castShadow
-                scale={puzzleMotion().scale}
-                position={[puzzleMotion().x, puzzleMotion().y, puzzleMotion().z]}
-                rotation={[puzzleMotion().rotationX, puzzleMotion().rotationY, puzzleMotion().rotationZ]}
-            >
-                <CachedPuzzle />
-            </MotionGroup>
+            <Suspense>
+                <MotionGroup
+                    visible={visible.puzzle}
+                    castShadow
+                    scale={puzzleMotion().scale}
+                    position={[puzzleMotion().x, puzzleMotion().y, puzzleMotion().z]}
+                    rotation={[puzzleMotion().rotationX, puzzleMotion().rotationY, puzzleMotion().rotationZ]}
+                >
+                    <CachedPuzzle />
+                </MotionGroup>
+            </Suspense>
+
+
 
             {/* emoji model */}
-            <MotionGroup
-                visible={visible.emoji}
-                castShadow
-                scale={emojiMotion().scale}
-                position={[emojiMotion().x, emojiMotion().y, emojiMotion().z]}
-                rotation={[emojiMotion().rotationX, emojiMotion().rotationY, emojiMotion().rotationZ]}
-            >
-                <Float
-                // floatIntensity={1.5}
-                // rotationIntensity={1.5}
+            <Suspense>
+                <MotionGroup
+                    visible={visible.emoji}
+                    castShadow
+                    scale={emojiMotion().scale}
+                    position={[emojiMotion().x, emojiMotion().y, emojiMotion().z]}
+                    rotation={[emojiMotion().rotationX, emojiMotion().rotationY, emojiMotion().rotationZ]}
                 >
-                    <CachedEmoji />
-                </Float>
-            </MotionGroup>
+                    <Float
+                    // floatIntensity={1.5}
+                    // rotationIntensity={1.5}
+                    >
+                        <CachedEmoji />
+                    </Float>
+                </MotionGroup>
+            </Suspense>
+
+
 
             {/* swiss army knife model */}
-            <MotionGroup
-                visible={visible.swiss}
-                castShadow
-                scale={swissMotion().scale}
-                position={[swissMotion().x, swissMotion().y, swissMotion().z]}
-                rotation={[swissMotion().rotationX, swissMotion().rotationY, swissMotion().rotationZ]}
-            >
-                {/* <Float
+            <Suspense>
+                <MotionGroup
+                    visible={visible.swiss}
+                    castShadow
+                    scale={swissMotion().scale}
+                    position={[swissMotion().x, swissMotion().y, swissMotion().z]}
+                    rotation={[swissMotion().rotationX, swissMotion().rotationY, swissMotion().rotationZ]}
+                >
+                    {/* <Float
                             // floatIntensity={1.5}
                             // rotationIntensity={1.5}
                             > */}
-                <CachedSwissArmyKnife />
-                {/* </Float> */}
-            </MotionGroup>
+                    <CachedSwissArmyKnife />
+                    {/* </Float> */}
+                </MotionGroup>
+            </Suspense>
+
+
 
             {/* macbook model */}
-            <MotionGroup
-                visible={visible.macbook}
-                castShadow
-                scale={macbookMotion().scale}
-                position={[macbookMotion().x, macbookMotion().y, macbookMotion().z]}
-                rotation={[macbookMotion().rotationX, macbookMotion().rotationY, macbookMotion().rotationZ]}
-            >
-                <Float
-                    floatIntensity={0.25}
-                    rotationIntensity={1.5}
+            <Suspense>
+                <MotionGroup
+                    visible={visible.macbook}
+                    castShadow
+                    scale={macbookMotion().scale}
+                    position={[macbookMotion().x, macbookMotion().y, macbookMotion().z]}
+                    rotation={[macbookMotion().rotationX, macbookMotion().rotationY, macbookMotion().rotationZ]}
                 >
-                    <CachedMacbook />
-                </Float>
-            </MotionGroup>
+                    <Float
+                        floatIntensity={0.25}
+                        rotationIntensity={1.5}
+                    >
+                        <CachedMacbook />
+                    </Float>
+                </MotionGroup>
+            </Suspense>
+
 
             {/* coin growth model */}
-            <MotionGroup
-                visible={visible.coin}
-                castShadow
-                scale={coinGrowthMotion().scale}
-                position={[coinGrowthMotion().x, coinGrowthMotion().y, coinGrowthMotion().z]}
-                rotation={[coinGrowthMotion().rotationX, coinGrowthMotion().rotationY, coinGrowthMotion().rotationZ]}
-            >
-                <Float
-                    floatIntensity={0.25}
-                    rotationIntensity={1.5}
+            <Suspense>
+                <MotionGroup
+                    visible={visible.coin}
+                    castShadow
+                    scale={coinGrowthMotion().scale}
+                    position={[coinGrowthMotion().x, coinGrowthMotion().y, coinGrowthMotion().z]}
+                    rotation={[coinGrowthMotion().rotationX, coinGrowthMotion().rotationY, coinGrowthMotion().rotationZ]}
                 >
-                    <CachedCoinGrowth />
-                </Float>
-            </MotionGroup>
+                    <Float
+                        floatIntensity={0.25}
+                        rotationIntensity={1.5}
+                    >
+                        <CachedCoinGrowth />
+                    </Float>
+                </MotionGroup>
+            </Suspense>
+
 
             {/* data highway model */}
-            <MotionGroup
-                visible={visible.dataHighway}
-                castShadow
-                scale={dataHighwayMotion().scale}
-                position={[dataHighwayMotion().x, dataHighwayMotion().y, dataHighwayMotion().z]}
-                rotation={[dataHighwayMotion().rotationX, dataHighwayMotion().rotationY, dataHighwayMotion().rotationZ]}
-            >
-                <Float
-                    floatIntensity={0.25}
-                    rotationIntensity={1.5}
+            <Suspense>
+                <MotionGroup
+                    visible={visible.dataHighway}
+                    castShadow
+                    scale={dataHighwayMotion().scale}
+                    position={[dataHighwayMotion().x, dataHighwayMotion().y, dataHighwayMotion().z]}
+                    rotation={[dataHighwayMotion().rotationX, dataHighwayMotion().rotationY, dataHighwayMotion().rotationZ]}
                 >
-                    <CachedDataHighway />
-                </Float>
-            </MotionGroup>
+                    <Float
+                        floatIntensity={0.25}
+                        rotationIntensity={1.5}
+                    >
+                        <CachedDataHighway />
+                    </Float>
+                </MotionGroup>
+            </Suspense>
+
 
             {/* emoji two model */}
-            <MotionGroup
-                visible={visible.emojiTwo}
-                castShadow
-                scale={emojiTwoMotion().scale}
-                position={[emojiTwoMotion().x, emojiTwoMotion().y, emojiTwoMotion().z]}
-                rotation={[emojiTwoMotion().rotationX, emojiTwoMotion().rotationY, emojiTwoMotion().rotationZ]}
-            >
-                <Float
-                    floatIntensity={0.25}
-                    rotationIntensity={1.5}
+            <Suspense>
+                <MotionGroup
+                    visible={visible.emojiTwo}
+                    castShadow
+                    scale={emojiTwoMotion().scale}
+                    position={[emojiTwoMotion().x, emojiTwoMotion().y, emojiTwoMotion().z]}
+                    rotation={[emojiTwoMotion().rotationX, emojiTwoMotion().rotationY, emojiTwoMotion().rotationZ]}
                 >
-                    <CachedEmojiTwo />
-                </Float>
-            </MotionGroup>
+                    <Float
+                        floatIntensity={0.25}
+                        rotationIntensity={1.5}
+                    >
+                        <CachedEmojiTwo />
+                    </Float>
+                </MotionGroup>
+            </Suspense>
+
 
             {/* dollar sign model */}
-            <MotionGroup
-                visible={visible.dollar}
-                castShadow
-                scale={dollarSignMotion().scale}
-                position={[dollarSignMotion().x, dollarSignMotion().y, dollarSignMotion().z]}
-                rotation={[dollarSignMotion().rotationX, dollarSignMotion().rotationY, dollarSignMotion().rotationZ]}
-            >
-                <Float
-                    floatIntensity={0.25}
-                    rotationIntensity={1.5}
+            <Suspense>
+                <MotionGroup
+                    visible={visible.dollar}
+                    castShadow
+                    scale={dollarSignMotion().scale}
+                    position={[dollarSignMotion().x, dollarSignMotion().y, dollarSignMotion().z]}
+                    rotation={[dollarSignMotion().rotationX, dollarSignMotion().rotationY, dollarSignMotion().rotationZ]}
                 >
-                    <CachedDollarSign />
-                </Float>
-            </MotionGroup>
+                    <Float
+                        floatIntensity={0.25}
+                        rotationIntensity={1.5}
+                    >
+                        <CachedDollarSign />
+                    </Float>
+                </MotionGroup>
+            </Suspense>
+
 
             {/* pad lock model */}
-            <MotionGroup
-                visible={visible.lock}
-                castShadow
-                scale={combinationLockMotion().scale}
-                position={[combinationLockMotion().x, combinationLockMotion().y, combinationLockMotion().z]}
-                rotation={[combinationLockMotion().rotationX, combinationLockMotion().rotationY, combinationLockMotion().rotationZ]}
-            >
-                <CachedCombinationLock />
-            </MotionGroup>
+            <Suspense>
+                <MotionGroup
+                    visible={visible.lock}
+                    castShadow
+                    scale={combinationLockMotion().scale}
+                    position={[combinationLockMotion().x, combinationLockMotion().y, combinationLockMotion().z]}
+                    rotation={[combinationLockMotion().rotationX, combinationLockMotion().rotationY, combinationLockMotion().rotationZ]}
+                >
+                    <CachedCombinationLock />
+                </MotionGroup>
+            </Suspense>
+
 
             {/* atom model */}
-            <MotionGroup
-                visible={visible.atom}
-                castShadow
-                scale={atomMotion().scale}
-                position={[atomMotion().x, atomMotion().y, atomMotion().z]}
-                rotation={[atomMotion().rotationX, atomMotion().rotationY, atomMotion().rotationZ]}
-            >
-                <CachedAtom />
-            </MotionGroup>
+            <Suspense>
+                <MotionGroup
+                    visible={visible.atom}
+                    castShadow
+                    scale={atomMotion().scale}
+                    position={[atomMotion().x, atomMotion().y, atomMotion().z]}
+                    rotation={[atomMotion().rotationX, atomMotion().rotationY, atomMotion().rotationZ]}
+                >
+                    <CachedAtom />
+                </MotionGroup>
+            </Suspense>
+
         </group>
     )
 }

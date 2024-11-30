@@ -6,7 +6,7 @@ import ScalingFactorManager from '@/app/_utility/three/ScalingFactorManager';
 import VisibilityManager from '@/app/_utility/three/VisibilityManager';
 import { programmerDigitalSolutionsMotion } from '@/app/im-a-programmer/digital-solutions/_utility/motion';
 import { useScroll } from 'framer-motion';
-import React from 'react'
+import React, { Suspense } from 'react'
 import { MotionGroup } from '@/app/_components/common/framer/MotionGroup';
 import Matrix from '@/public/3d-objects/digital-solutions/matrix/Scene';
 import GhostInShell from '@/public/3d-objects/digital-solutions/ghost-in-shell/Scene';
@@ -37,7 +37,7 @@ const MacBook = dynamic(() => import('../../../../../public/3d-objects/macbook/M
 const DigitalSolutionsExperience = () => {
 
     // app context values and functions
-    const { scroll: { dynamicIncrement: dI, scrollY}, appContainer: { scrollRef, } } = useAppContext();
+    const { scroll: { dynamicIncrement: dI, scrollY }, appContainer: { scrollRef, } } = useAppContext();
 
     // scroll motion values for scroll animations
 
@@ -112,102 +112,123 @@ const DigitalSolutionsExperience = () => {
 
     return (
         <MotionGroup
-            // scale={scalingFactor}
+        // scale={scalingFactor}
         >
-            <MotionGroup
-                visible={visible.matrix}
-                position={[matrixMotion().x, matrixMotion().y, matrixMotion().z]}
-                rotation={[matrixMotion().rotationX, matrixMotion().rotationY, matrixMotion().rotationZ]}
-                scale={matrixMotion().scale}
-            >
-                <Matrix />
-            </MotionGroup>
 
-            <MotionGroup
-                visible={visible.ideaLamp}
-                position={[ideaLampMotion().x, ideaLampMotion().y, ideaLampMotion().z]}
-                rotation={[ideaLampMotion().rotationX, ideaLampMotion().rotationY, ideaLampMotion().rotationZ]}
-                scale={ideaLampMotion().scale}
-            >
-                <Float
-                    floatIntensity={2}
-                    rotationIntensity={5}
+            <Suspense>
+                <MotionGroup
+                    visible={visible.matrix}
+                    position={[matrixMotion().x, matrixMotion().y, matrixMotion().z]}
+                    rotation={[matrixMotion().rotationX, matrixMotion().rotationY, matrixMotion().rotationZ]}
+                    scale={matrixMotion().scale}
                 >
-                    <IdeaLamp visible={visible.ideaLamp}  />
-                </Float>
-            </MotionGroup>
+                    <Matrix />
+                </MotionGroup>
+            </Suspense>
 
 
 
-            <MotionGroup
-                visible={visible.ghostInShell}
-                position={[ghostInShellMotion().x, ghostInShellMotion().y, ghostInShellMotion().z]}
-                rotation={[ghostInShellMotion().rotationX, ghostInShellMotion().rotationY, ghostInShellMotion().rotationZ]}
-                scale={ghostInShellMotion().scale}
-            >
-                <GhostInShell />
-            </MotionGroup>
+            <Suspense>
+                <MotionGroup
+                    visible={visible.ideaLamp}
+                    position={[ideaLampMotion().x, ideaLampMotion().y, ideaLampMotion().z]}
+                    rotation={[ideaLampMotion().rotationX, ideaLampMotion().rotationY, ideaLampMotion().rotationZ]}
+                    scale={ideaLampMotion().scale}
+                >
+                    <Float
+                        floatIntensity={2}
+                        rotationIntensity={5}
+                    >
+                        <IdeaLamp visible={visible.ideaLamp} />
+                    </Float>
+                </MotionGroup>
+            </Suspense>
+
+
+
+
+
+            <Suspense>
+                <MotionGroup
+                    visible={visible.ghostInShell}
+                    position={[ghostInShellMotion().x, ghostInShellMotion().y, ghostInShellMotion().z]}
+                    rotation={[ghostInShellMotion().rotationX, ghostInShellMotion().rotationY, ghostInShellMotion().rotationZ]}
+                    scale={ghostInShellMotion().scale}
+                >
+                    <GhostInShell />
+                </MotionGroup>
+            </Suspense>
+
+
+
+
 
             {/* web and mobile apps experience */}
-            <MotionGroup
-                visible={visible.webMobile}
-                position={[webMobileMotion().x, webMobileMotion().y, webMobileMotion().z]}
-                rotation={[webMobileMotion().rotationX, webMobileMotion().rotationY, webMobileMotion().rotationZ]}
-                scale={webMobileMotion().scale}
-            >
-                <Float
-                    floatIntensity={2}
-                    rotationIntensity={1}
+            <Suspense>
+                <MotionGroup
+                    visible={visible.webMobile}
+                    position={[webMobileMotion().x, webMobileMotion().y, webMobileMotion().z]}
+                    rotation={[webMobileMotion().rotationX, webMobileMotion().rotationY, webMobileMotion().rotationZ]}
+                    scale={webMobileMotion().scale}
                 >
-                    <MotionGroup
-                        position={[iPhoneMotion().x, iPhoneMotion().y, iPhoneMotion().z]}
-                        rotation={[iPhoneMotion().rotationX, iPhoneMotion().rotationY, iPhoneMotion().rotationZ]}
-                        scale={iPhoneMotion().scale}
+                    <Float
+                        floatIntensity={2}
+                        rotationIntensity={1}
                     >
-                        <Float
-                            floatIntensity={5}
+                        <MotionGroup
+                            position={[iPhoneMotion().x, iPhoneMotion().y, iPhoneMotion().z]}
+                            rotation={[iPhoneMotion().rotationX, iPhoneMotion().rotationY, iPhoneMotion().rotationZ]}
+                            scale={iPhoneMotion().scale}
                         >
-                            <CachediPhone />
-                        </Float>
-                    </MotionGroup>
+                            <Float
+                                floatIntensity={5}
+                            >
+                                <CachediPhone />
+                            </Float>
+                        </MotionGroup>
 
-                    <MotionGroup
-                        position={[iPadMotion().x, iPadMotion().y, iPadMotion().z]}
-                        rotation={[iPadMotion().rotationX, iPadMotion().rotationY, iPadMotion().rotationZ]}
-                        scale={iPadMotion().scale}
-                    >
-                        <Float
-                            floatIntensity={5}
+                        <MotionGroup
+                            position={[iPadMotion().x, iPadMotion().y, iPadMotion().z]}
+                            rotation={[iPadMotion().rotationX, iPadMotion().rotationY, iPadMotion().rotationZ]}
+                            scale={iPadMotion().scale}
                         >
-                            <CachediPad />
-                        </Float>
-                    </MotionGroup>
+                            <Float
+                                floatIntensity={5}
+                            >
+                                <CachediPad />
+                            </Float>
+                        </MotionGroup>
 
-                    <MotionGroup
-                        position={[macbookMotion().x, macbookMotion().y, macbookMotion().z]}
-                        rotation={[macbookMotion().rotationX, macbookMotion().rotationY, macbookMotion().rotationZ]}
-                        scale={macbookMotion().scale}
-                    >
-                        <MacBook />
-                    </MotionGroup>
-                </Float>
+                        <MotionGroup
+                            position={[macbookMotion().x, macbookMotion().y, macbookMotion().z]}
+                            rotation={[macbookMotion().rotationX, macbookMotion().rotationY, macbookMotion().rotationZ]}
+                            scale={macbookMotion().scale}
+                        >
+                            <MacBook />
+                        </MotionGroup>
+                    </Float>
 
 
-            </MotionGroup>
+                </MotionGroup>
+            </Suspense>
 
-            <MotionGroup
-                visible={visible.chip}
-                position={[chipMotion().x, chipMotion().y, chipMotion().z]}
-                rotation={[chipMotion().rotationX, chipMotion().rotationY, chipMotion().rotationZ]}
-                scale={chipMotion().scale}
-            >
-                <Float
-                    floatIntensity={5}
-                    rotationIntensity={5}
+            <Suspense>
+                <MotionGroup
+                    visible={visible.chip}
+                    position={[chipMotion().x, chipMotion().y, chipMotion().z]}
+                    rotation={[chipMotion().rotationX, chipMotion().rotationY, chipMotion().rotationZ]}
+                    scale={chipMotion().scale}
                 >
-                    <CachedChip />
-                </Float>
-            </MotionGroup>
+                    <Float
+                        floatIntensity={5}
+                        rotationIntensity={5}
+                    >
+                        <CachedChip />
+                    </Float>
+                </MotionGroup>
+            </Suspense>
+
+
 
 
 
