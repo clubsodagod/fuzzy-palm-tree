@@ -1,9 +1,8 @@
-import { Router } from "next/router";
-import { InitDataFunction } from "../admin/identifiers/create-card";
-import parse from "html-react-parser";
+
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { IBlogPopulated } from "@/app/_database/models/blog";
 import { ICategoryPopulated } from "@/app/_database/models/category";
+import { baseUrl } from "@/app/_library/const/nav";
 
 
 export type InitBlogHomePageFunction = () => Promise<{
@@ -14,11 +13,11 @@ export type InitBlogHomePageFunction = () => Promise<{
 // Initialize the blog home page data.
 export const initBlogHomePage: InitBlogHomePageFunction = async () => {
     try {
-        const featuredResponse = await fetch('https://fuzzy-palm-tree.vercel.app//api/blog/get/featured', {
+        const featuredResponse = await fetch(`${baseUrl}/api/blog/get/featured`, {
             method: 'GET', cache:'no-store'
         });
 
-        const allPostsResponse = await fetch('https://fuzzy-palm-tree.vercel.app/api/blog/get/all', {
+        const allPostsResponse = await fetch(`${baseUrl}/api/blog/get/all`, {
             method: 'GET', cache:'no-store'
         });
 
@@ -44,7 +43,7 @@ export const initBlogHomePage: InitBlogHomePageFunction = async () => {
 // get all posts
 export async function getAllPostsClient() {
 
-    const postsResponse = await fetch('https://fuzzy-palm-tree.vercel.app/api/blog/get/all',
+    const postsResponse = await fetch(`${baseUrl}/api/blog/get/all`,
         { cache: 'no-store', method: "GET" });
     const posts = await postsResponse.json().then((res) => res.posts);
 
@@ -53,7 +52,7 @@ export async function getAllPostsClient() {
 // get all posts
 export async function getAllPostsSlugClient() {
 
-    const postsResponse = await fetch('https://fuzzy-palm-tree.vercel.app/api/blog/get/all',
+    const postsResponse = await fetch(`${baseUrl}/api/blog/get/all`,
         {  method: "GET", cache:'force-cache' });
     const posts = await postsResponse.json().then((res) => res.posts);
 
@@ -63,7 +62,7 @@ export async function getAllPostsSlugClient() {
 // get post by slug
 export async function getPostBySlugClient(slug: string) {
 
-    const postResponse = await fetch(`https://fuzzy-palm-tree.vercel.app/api/blog/get/slug?slug=${slug}`,
+    const postResponse = await fetch(`${baseUrl}/api/blog/get/slug?slug=${slug}`,
         { method: "GET" });
     const post = await postResponse.json().then((res) => res.post);
     console.log(post);
@@ -75,7 +74,7 @@ export async function getPostBySlugClient(slug: string) {
 export async function getAllCategoriesClient() {
 
     // use fetch request to get categories
-    const categoriesResponse = await fetch('http://localhost:3000/api/blog/identifiers/category/get-all', {
+    const categoriesResponse = await fetch(`${baseUrl}/api/blog/identifiers/category/get-all`, {
         method: "GET", cache: "no-store",
     });
 
@@ -93,7 +92,7 @@ export async function getAllCategoriesClient() {
 export async function getAllCategories() {
 
     // use fetch request to get categories
-    const categoriesResponse = await fetch('https://fuzzy-palm-tree.vercel.app/api/blog/identifiers/category/get-all', {
+    const categoriesResponse = await fetch(`${baseUrl}/api/blog/identifiers/category/get-all`, {
         method: "GET"
     });
 
@@ -111,7 +110,7 @@ export async function getAllCategories() {
 export async function getAllCategoriesDynamicClient() {
 
     // use fetch request to get categories
-    const categoriesResponse = await fetch('https://fuzzy-palm-tree.vercel.app/api/blog/identifiers/category/get-all', {
+    const categoriesResponse = await fetch(`${baseUrl}/api/blog/identifiers/category/get-all`, {
         method: "GET", cache: "no-store",
     });
 
