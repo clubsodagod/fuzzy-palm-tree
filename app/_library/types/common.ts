@@ -54,6 +54,9 @@ export interface VisibilityThreeType {
 export interface ScalesThreeType {
     [key:string]:number
 }
+export interface VariantThreeType {
+    [key:string]:string
+}
 
 
 export interface WorkerThreeType {

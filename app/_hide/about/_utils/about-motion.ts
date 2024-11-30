@@ -26,7 +26,7 @@ export const useAboutMotionLogic = (scrollY: MotionValue, homeEventPoints: numbe
     let powerTower_rotation_z = [0,0,0.15,0,0,];
 
     // Define your animation arrays here
-    const main_scale = [1,1,1,1,1,];
+    const main_scale = [0,0,1,1,1,];
     const main_x = [0,-75,rv([0,0,35]),70,rv([0,0,140]),];
     const main_y = [0,0,-45,0,0,];
     const main_z = [0,0,0,0,0,];
@@ -53,7 +53,7 @@ export const useAboutMotionLogic = (scrollY: MotionValue, homeEventPoints: numbe
     let coreValue_rotation_z = [0,0,0,0,0,];
 
     // Define your animation arrays here
-    const column_scale = [0,0,0,1,1,];
+    const column_scale = [0,0,1,1,1,];
     const column_x = [0,0,60,60,rv([0,0,30]),];
     const column_y = [0,0,0,0,-40,];
     const column_z = [0,0,0,0,0,];

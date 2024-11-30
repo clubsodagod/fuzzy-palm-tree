@@ -6,8 +6,7 @@ import { Scale, Book, Hive } from '@mui/icons-material';
 import { Float } from '@react-three/drei'
 import { MotionValue, Variants } from 'framer-motion';
 import React, { Suspense, useState } from 'react'
-import { VisibleType } from '../mission-statement/AboutExperience';
-import { ScalesThreeType, VisibilityThreeType } from '@/app/_library/types/common';
+import { ScalesThreeType, VariantThreeType, VisibilityThreeType } from '@/app/_library/types/common';
 import dynamic from 'next/dynamic';
 import { Perf } from 'r3f-perf';
 import { VariantType } from '@/library/types/three-model';
@@ -96,11 +95,10 @@ const CoreValuesExperience: React.FC<{ value: number, scrollY: MotionValue, }> =
         }
     };
 
-    const { moonMotion, powerTowerMotion, mainMotion, columnMotion, coreValueMotion, mainCoreValueMotion } = useAboutMotionLogic(scrollY, homeEventPoints)
+    const { moonMotion, powerTowerMotion, mainMotion, columnMotion, coreValueMotion, mainCoreValueMotion,  } = useAboutMotionLogic(scrollY, homeEventPoints)
 
 
-    const [variantStatus, setVariantStatus] = useState<VariantType>({
-        coreValue: "enter",
+    const [variantStatus, setVariantStatus] = useState<VariantThreeType>({
         moon: "enter",
         powerTower: "none",
         powerTowerCoreValue: "none",
@@ -117,6 +115,7 @@ const CoreValuesExperience: React.FC<{ value: number, scrollY: MotionValue, }> =
         pumpingHeart: "none",
         marbleColumn: "enter",
         tropicalIsland: "none",
+        experience:'enter'
     });
 
     const mainScalingFactor = Math.min(Math.max(window?.innerWidth / 1920, window?.innerWidth > 700 && window?.innerWidth < window?.innerHeight ? 0.8 : 0.6), 3);
@@ -124,9 +123,6 @@ const CoreValuesExperience: React.FC<{ value: number, scrollY: MotionValue, }> =
     // initialize state variables
     const [scalingFactor, setScalingFactor] = React.useState<number>(1);
     const [previousValue, setPreviousValue] = useState<number>(coreValues.length - 1);
-
-
-
 
     const [visible, setVisible] = useState<VisibilityThreeType>({
         powerTower: true,
@@ -145,7 +141,9 @@ const CoreValuesExperience: React.FC<{ value: number, scrollY: MotionValue, }> =
         marbleColumn: true,
         tropicalIsland: false,
         coreValue: false,
+        experience: false
     });
+
     const powerTower = powerTowerMotion().scale.get() * scalingFactor;
     const powerTowerCoreValue = powerTowerMotion().scale.get() * scalingFactor;
     const atom = 10 * scalingFactor;
@@ -160,10 +158,11 @@ const CoreValuesExperience: React.FC<{ value: number, scrollY: MotionValue, }> =
     const city = 0.0375 * scalingFactor;
     const tropicalIsland = 45 * scalingFactor;
     const compass = 35 * scalingFactor;
+    const experience = mainMotion().scale.get() * scalingFactor;
 
     const [scales, setScales] = useState<ScalesThreeType>({
         powerTower, atom, scale, diamonds, book, hive, bee, beeBuddy, rubiksCube,
-        pumpingHeart, city, tropicalIsland, compass, powerTowerCoreValue
+        pumpingHeart, city, tropicalIsland, compass, powerTowerCoreValue, experience
     });
 
     // update scaling factor when it changes

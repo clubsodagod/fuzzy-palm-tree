@@ -33,6 +33,7 @@ const AboutScene: React.FC<{
 
             <>
                 <Canvas
+                
                     dpr={[1, 1.5]}
                     style={{
                         pointerEvents: "none",

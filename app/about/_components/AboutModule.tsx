@@ -31,6 +31,7 @@ const AboutModule = () => {
     });
     const [currentSection, setCurrentSection] = useState<string>('');
     const [coreValue, setCoreValue] = useState<number>(0);
+    const [progress, setProgress] = useState<number>(0);
     const [worker, setWorker] = useState<Worker | null>(null);
 
 
@@ -70,46 +71,51 @@ const AboutModule = () => {
     IntersectionWatcher({ refs });
 
     const scrollprogress = scrollYProgress.get()
- 
+
 
 
 
 
     ThreeWindowUpdater(scrollRef, scrollY);
 
-    React.useEffect(()=>{
+    React.useEffect(() => {
         console.log(scrollprogress);
-        
-        if ( scrollprogress && scrollprogress>0.55) {
-            setVisible((prev)=>({
-                ...prev,
-                missionStatement:false,
-                coreValues:true
-            }))
-        }  if (scrollprogress > 0.1 && scrollprogress <= 0.75) {
-            setVisible((prev)=>({
-                ...prev,
-                missionStatement:true,
-                coreValues:false,
-            }))
-        }
-    },[scrollprogress]);
 
-    
+        if (scrollprogress !== progress) {
+            if (scrollprogress && scrollprogress > 0.55) {
+                setVisible((prev) => ({
+                    ...prev,
+                    coreValues: true
+                }))
+                setProgress(progress)
+            } if (scrollprogress > 0.1 && scrollprogress <= 0.75) {
+                setVisible((prev) => ({
+                    ...prev,
+                    missionStatement: true,
+                    coreValues: false,
+                }))
+                setProgress(progress)
+            }
+        }
+
+
+    }, [scrollprogress, progress]);
+
+
     return (
         <>
             {
-                visible.missionStatement  &&
+                visible.missionStatement &&
                 <MissionStatementScene
                     value={coreValue}
                     scrollY={scrollY}
                 />
             }
             {
-                visible.coreValues && 
-                <CoreValueScene 
-                value={coreValue}
-                scrollY={scrollY}
+                visible.coreValues &&
+                <CoreValueScene
+                    value={coreValue}
+                    scrollY={scrollY}
                 />
             }
             <BioHero

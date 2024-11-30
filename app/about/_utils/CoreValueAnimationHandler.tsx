@@ -1,12 +1,11 @@
 'use client'
 import React, { useEffect } from 'react'
-import { VisibilityThreeType } from '@/app/_library/types/common';
-import { VariantType } from '@/library/types/three-model';
+import { VariantThreeType, VisibilityThreeType } from '@/app/_library/types/common';
 
 interface AnimationHandlerProps {
     visible: VisibilityThreeType;
     setVisible: React.Dispatch<React.SetStateAction<VisibilityThreeType>>;
-    setVariantStatus: React.Dispatch<React.SetStateAction<VariantType>>;
+    setVariantStatus: React.Dispatch<React.SetStateAction<VariantThreeType>>;
     setPreviousValue: React.Dispatch<number>;
     value: number;
     previousValue: number;
@@ -73,7 +72,7 @@ const CoreValueAnimationHandler = ({
                                 beeBuddy: true,
                                 hive: true
                             }))
-                            setVariantStatus((prev: VariantType) => ({
+                            setVariantStatus((prev: VariantThreeType) => ({
                                 ...prev,
                                 [handleIndex(pv)]: "exit",
                                 bee: "enter",
@@ -94,7 +93,7 @@ const CoreValueAnimationHandler = ({
                                 powerTowerCoreValue: true,
                                 tropicalIsland: true
                             }))
-                            setVariantStatus((prev: VariantType) => ({
+                            setVariantStatus((prev: VariantThreeType) => ({
                                 ...prev,
                                 [handleIndex(pv)]: "exit",
                                 powerTowerCoreValue: "enter",
@@ -111,7 +110,7 @@ const CoreValueAnimationHandler = ({
 
                             switch (pv) {
                                 case 4:
-                                    setVariantStatus((prev: VariantType) => ({
+                                    setVariantStatus((prev: VariantThreeType) => ({
                                         ...prev,
                                         [handleIndex(v)]: "enter",
                                         bee: "exit",
@@ -129,7 +128,7 @@ const CoreValueAnimationHandler = ({
                                     break;
 
                                 case 9:
-                                    setVariantStatus((prev: VariantType) => ({
+                                    setVariantStatus((prev: VariantThreeType) => ({
                                         ...prev,
                                         [handleIndex(v)]: "enter",
                                         powerTowerCoreValue: "exit",
@@ -145,7 +144,7 @@ const CoreValueAnimationHandler = ({
                                     break;
 
                                 default:
-                                    setVariantStatus((prev: VariantType) => ({
+                                    setVariantStatus((prev: VariantThreeType) => ({
                                         ...prev,
                                         [handleIndex(pv)]: "exit",
                                         [handleIndex(v)]: "enter",

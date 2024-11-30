@@ -71,21 +71,7 @@ export type VisibleType = {
 };
 
 export type VariantType = {
-    coreValue: string,
+    missionStatement: string,
     moon: string,
     powerTower: string,
-    powerTowerCoreValue: string,
-    atom: string,
-    diamonds: string,
-    book: string,
-    bee: string,
-    beeBuddy: string,
-    hive: string,
-    rubiksCube: string,
-    compass: string,
-    city: string,
-    pumpingHeart: string,
-    marbleColumn: string,
-    scale: string,
-    tropicalIsland: string,
 }

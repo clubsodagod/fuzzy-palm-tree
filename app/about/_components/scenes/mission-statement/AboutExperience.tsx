@@ -1,5 +1,5 @@
 'use client'
-import { coreValues } from '@/library/const'
+import { coreValues, missionStatement } from '@/library/const'
 import { Atom, Bee, Book, City, Compass, Diamonds, Hive, MarbleColumn, Moon, PowerTower, PumpingHeart, RubiksCube, Scale, TropicalIsland } from '@/public/3d-objects'
 import { Float, PerformanceMonitor, useMotion } from '@react-three/drei'
 import { motionValue, MotionValue, useMotionValue, useScroll, Variants } from 'framer-motion'
@@ -10,7 +10,7 @@ import { useAboutMotionLogic } from '@/app/about/_utils/about-motion'
 import ScaleManager from '@/app/_utility/three/ScaleManager'
 import ScalingFactorManager from '@/app/_utility/three/ScalingFactorManager'
 import VisibilityManager from '@/app/_utility/three/VisibilityManager'
-import { ScalesThreeType, VisibilityThreeType, WorkerThreeType } from '@/app/_library/types/common'
+import { ScalesThreeType, VariantThreeType, VisibilityThreeType, WorkerThreeType } from '@/app/_library/types/common'
 import CoreValueAnimationHandler from '@/app/about/_utils/CoreValueAnimationHandler'
 import ThreeWindowUpdater from '@/app/_utility/window/ThreeWindowUpdater'
 import StandardLights from '@/app/_components/common/three/lights/StandardLights'
@@ -29,65 +29,12 @@ const MoonDynamic = dynamic(() => import('../../../../../public/3d-objects/core-
 const PowerTowerDynamic = dynamic(() => import('../../../../../public/3d-objects/core-values/power-tower/PowerTower'), {
     ssr: false, // Optional: Disable server-side rendering for this component
 });
-// const MoonDynamic = dynamic(() => import('../../../../../public/3d-objects/core-values/moon/Moon'), {
-//     ssr: false, // Optional: Disable server-side rendering for this component
-// });
-// const MoonDynamic = dynamic(() => import('../../../../../public/3d-objects/core-values/moon/Moon'), {
-//     ssr: false, // Optional: Disable server-side rendering for this component
-// });
-// const MoonDynamic = dynamic(() => import('../../../../../public/3d-objects/core-values/moon/Moon'), {
-//     ssr: false, // Optional: Disable server-side rendering for this component
-// });
-// const MoonDynamic = dynamic(() => import('../../../../../public/3d-objects/core-values/moon/Moon'), {
-//     ssr: false, // Optional: Disable server-side rendering for this component
-// });
-// const MoonDynamic = dynamic(() => import('../../../../../public/3d-objects/core-values/moon/Moon'), {
-//     ssr: false, // Optional: Disable server-side rendering for this component
-// });
-// const MoonDynamic = dynamic(() => import('../../../../../public/3d-objects/core-values/moon/Moon'), {
-//     ssr: false, // Optional: Disable server-side rendering for this component
-// });
-// const MoonDynamic = dynamic(() => import('../../../../../public/3d-objects/core-values/moon/Moon'), {
-//     ssr: false, // Optional: Disable server-side rendering for this component
-// });
 
-export type VisibleType = {
-    coreValue: boolean,
-    moon: boolean,
-    powerTower: boolean,
-    atom: boolean,
-    diamonds: boolean,
-    book: boolean,
-    bee: boolean,
-    beeBuddy: boolean,
-    hive: boolean,
-    rubiksCube: boolean,
-    compass: boolean,
-    city: boolean,
-    pumpingHeart: boolean,
-    marbleColumn: boolean,
-    scale: boolean,
-    tropicalIsland: boolean,
-};
 
 type VariantType = {
-    coreValue: string,
+    missionStatement: string,
     moon: string,
     powerTower: string,
-    powerTowerCoreValue: string,
-    atom: string,
-    diamonds: string,
-    book: string,
-    bee: string,
-    beeBuddy: string,
-    hive: string,
-    rubiksCube: string,
-    compass: string,
-    city: string,
-    pumpingHeart: string,
-    marbleColumn: string,
-    scale: string,
-    tropicalIsland: string,
 }
 
 const MissionStatementExperience: React.FC<{ value: number, scrollY: MotionValue }> = ({
@@ -130,62 +77,19 @@ const MissionStatementExperience: React.FC<{ value: number, scrollY: MotionValue
     const mainRef = useRef(null)
     const moonRef = useRef(null)
     const powerTowerRef = useRef(null)
-    const diamondsRef = useRef(null)
 
-    // core value assets
-    // const MemoizedMarbleColumn = React.memo(MarbleColumn);
-    // const MemoizedScale = React.memo(Scale);
-    // const MemoizedDiamonds = React.memo(Diamonds);
-    // const MemoizedBook = React.memo(Book);
-    // const MemoizedBee = React.memo(Bee);
-    // const MemoizedBeeBuddy = React.memo(Bee);
-    // const MemoizedHive = React.memo(Hive);
-    // const MemoizedRubiksCube = React.memo(RubiksCube);
-    // const MemoizedCompass = React.memo(Compass);
-    // const MemoizedCity = React.memo(City);
-    // const MemoizedPumpingHeart = React.memo(PumpingHeart);
-    // const MemoizedAtom = React.memo(Atom);
-    // const MemoizedPowerTowerCoreValue = React.memo(PowerTower);
-    // const MemoizedTropicalIsland = React.memo(TropicalIsland);
+
 
     const [visible, setVisible] = useState<VisibilityThreeType>({
         moon: true,
         powerTower: true,
-        powerTowerCoreValue: true,
-        atom: false,
-        scale: false,
-        beeBuddy: false,
-        diamonds: false,
-        book: false,
-        bee: false,
-        hive: false,
-        rubiksCube: false,
-        compass: false,
-        city: false,
-        pumpingHeart: false,
-        marbleColumn: true,
-        tropicalIsland: false,
-        coreValue: false,
+        missionStatement:false
     });
 
     const [variantStatus, setVariantStatus] = useState<VariantType>({
-        coreValue: "enter",
+        powerTower: "enter",
         moon: "enter",
-        powerTower: "none",
-        powerTowerCoreValue: "none",
-        atom: "none",
-        scale: "none",
-        beeBuddy: "none",
-        diamonds: "none",
-        book: "none",
-        bee: "none",
-        hive: "none",
-        rubiksCube: "none",
-        compass: "none",
-        city: "none",
-        pumpingHeart: "none",
-        marbleColumn: "enter",
-        tropicalIsland: "none",
+        missionStatement:"enter",
     });
 
     const mainScalingFactor = Math.min(Math.max(window?.innerWidth / 1920, window?.innerWidth > 700 && window?.innerWidth < window?.innerHeight ? 0.8 : 0.6), 3);
@@ -201,37 +105,19 @@ const MissionStatementExperience: React.FC<{ value: number, scrollY: MotionValue
 
     useFrame(() => {
         const ref = mainRef as RefObject<THREE.Group>
-        const refDiamonds = diamondsRef as RefObject<THREE.Group>
         if (ref.current?.rotation && scrollYProgress.get() > 0.25 && scrollYProgress.get() < 0.75) {
             ref.current.rotation.y += 0.0025
-        }
-        if (refDiamonds.current?.rotation && scrollYProgress.get() > 0.75) {
-            refDiamonds.current.rotation.y += 0.0015
         }
 
     });
 
     
     const moon = moonMotion().scale.get() * scalingFactor;
-    console.log(moon);
     const powerTower = powerTowerMotion().scale.get() * scalingFactor;
-    const powerTowerCoreValue = powerTowerMotion().scale.get() * scalingFactor;
-    const atom = 10 * scalingFactor;
-    const scale = 0.5 * scalingFactor;
-    const diamonds = 18 * scalingFactor;
-    const book = 2 * scalingFactor;
-    const hive = 0.02 * scalingFactor;
-    const bee = 0.25 * scalingFactor;
-    const beeBuddy = 0.25 * scalingFactor;
-    const rubiksCube = 0.5 * scalingFactor;
-    const pumpingHeart = 0.5 * scalingFactor;
-    const city = 0.0375 * scalingFactor;
-    const tropicalIsland = 45 * scalingFactor;
-    const compass = 35 * scalingFactor;
+    const missionStatementScale = moonMotion().scale.get() * scalingFactor;
 
     const [scales, setScales] = useState<ScalesThreeType>({
-        moon, powerTower, atom, scale, diamonds, book, hive, bee, beeBuddy, rubiksCube,
-        pumpingHeart, city, tropicalIsland, compass, powerTowerCoreValue
+        moon, powerTower, missionStatementScale
     });
 
     // update scaling factor when it changes
@@ -242,26 +128,43 @@ const MissionStatementExperience: React.FC<{ value: number, scrollY: MotionValue
 
     // manage scales of object for scroll changes
     ScaleManager({
-        scrollY, setScales, scalesPayload: scales
+        scrollY, setScales, scalesPayload: {
+            moon, powerTower, missionStatementScale
+        }
     });
 
-    // Core Value Animation Handler 
-    CoreValueAnimationHandler({
-        visible, setVisible,
-        previousValue, setPreviousValue,
-        setVariantStatus, value
-    })
 
-useEffect(()=> {
-    if (visible) {
-        console.log(visible);
-        
+
+
+const scrollprogress = scrollYProgress.get()
+const [progress, setProgress] = useState<number>(0);
+
+React.useEffect(() => {
+    console.log(scrollprogress);
+
+    if (scrollprogress !== progress) {
+        if (scrollprogress && scrollprogress > 0.55) {
+            setVisible((prev) => ({
+                ...prev,
+                coreValues: true
+            }))
+            setProgress(progress)
+        } if (scrollprogress > 0.1 && scrollprogress <= 0.75) {
+            setVisible((prev) => ({
+                ...prev,
+                missionStatement: true,
+                coreValues: false,
+            }))
+            setProgress(progress)
+        }
     }
-},[visible])
 
+
+}, [scrollprogress, progress]);
     return (
          
         <group
+        visible={visible.missionStatement}
         >
 
 {/* <Perf 
