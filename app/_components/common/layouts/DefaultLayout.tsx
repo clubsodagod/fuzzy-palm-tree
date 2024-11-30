@@ -12,6 +12,7 @@ import { SessionProvider } from "next-auth/react";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
 import { AnimatePresencePro } from '../framer/AnimatePresencePro'
 import ContextLayer from './AppContextLayer'
+import Footer from '../Footer'
 
 const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
 
@@ -60,7 +61,7 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
                     > */}
                         {children}
                         {/* </main> */}
-
+                            <Footer />
                     </MotionBody>
                 </ThemeProvider>
 
