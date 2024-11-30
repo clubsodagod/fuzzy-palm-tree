@@ -9,14 +9,31 @@ import { MotionH6 } from '@/app/_components/common/framer/MotionH6'
 import MotionPageWrapper from '@/app/_components/common/MotionPageWrapper'
 import MotionSectionWrapper from '@/app/_components/common/SectionWrapper'
 import CategoriesModule from './_components/CategoriesModule'
+import { ResolvingMetadata, Metadata } from 'next'
+
+
+
+export const metadata: Metadata = {
+    title: 'Categories | Maliek Davis',
+    description: "Browse blog categories by Maliek Davis, featuring posts on technology and business.",
+    alternates: {
+        canonical: '/blog/categories',
+        languages: {
+            'en-US': '/en-US',
+        },
+    },
+    category: 'blog'
+}
+
 
 export default async function CategoriesPage() {
 
     const res = await getAllCategoriesClient();
 
-    const categories = res 
+    const categories = res
 
 
+    console.log(res);
 
 
 

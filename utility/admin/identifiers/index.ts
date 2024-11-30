@@ -190,7 +190,7 @@ export type HandleManageSubcategoryFunction = (subcategoryId:string,category?:Pa
 export const handleAddSubcategory:HandleManageSubcategoryFunction = (subcategoryId,identifierDocument) => {
     
     const handleAPI = async()=> {
-        await fetch(`/api/blog/identifiers/category/update/${identifierDocument?.slug}/subcategories/add`, {
+        await fetch(`http://localhost:3000/api/blog/identifiers/category/update/subcategories/add`, {
             method:"PUT",
             body:JSON.stringify({
                 categoryId:identifierDocument?._id,
@@ -206,7 +206,7 @@ export const handleAddSubcategory:HandleManageSubcategoryFunction = (subcategory
 export const handleRemoveSubcategory:HandleManageSubcategoryFunction = (subcategoryId,identifierDocument) => {
     
     const handleAPI = async()=> {
-        await fetch(`/api/blog/identifiers/category/update/${identifierDocument?.slug}/subcategories/remove`, {
+        await fetch(`http://localhost:3000/api/blog/identifiers/category/update/subcategories/remove`, {
             method:"PUT",
             body:JSON.stringify({
                 categoryId:identifierDocument?._id,

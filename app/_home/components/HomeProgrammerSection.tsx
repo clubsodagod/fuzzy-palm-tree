@@ -66,7 +66,7 @@ const HomeProgrammerSection: React.FC<HeroProps> = ({
                         variant='contained'
                         className={`learn-more-btn`}
                         id={'home-investment-hero'}
-                        href={'/im-a-programmer'}
+                        href={'/im-a-programmer/lets-work'}
                         label={`Let's Work`}
                         color='secondary'
                     />

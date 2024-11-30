@@ -4,16 +4,17 @@ import AppProvider from "./_context/AppContext";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
 import DefaultLayout from "./_components/common/layouts/DefaultLayout";
 import { AnimatePresencePro } from "./_components/common/framer/AnimatePresencePro";
+import { SessionProvider } from "next-auth/react";
+import ContextLayer from "./_components/common/layouts/AppContextLayer";
+import { baseUrl } from "./_library/const/nav";
+
+console.log(baseUrl);
 
 
 export const metadata: Metadata = {
   title: "Maliek Davis",
   description: "The Future",
-  appleWebApp: {
-    statusBarStyle: 'black-translucent',
-    capable: true,
-
-  },
+  metadataBase: new URL(`${baseUrl}`),
 
 };
 
@@ -28,22 +29,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en"
-    
+
     >
+      <ContextLayer>
+        <DefaultLayout>
+          {children}
+        </DefaultLayout>
+      </ContextLayer>
 
-      <AppProvider>
-        <AppRouterCacheProvider
-          options={{ key: 'css', enableCssLayer: true }}
-        >
-          <AnimatePresencePro>
-            <DefaultLayout>
-              {children}
-            </DefaultLayout>
-          </AnimatePresencePro>
-
-        </AppRouterCacheProvider>
-
-      </AppProvider>
 
     </html>
   );

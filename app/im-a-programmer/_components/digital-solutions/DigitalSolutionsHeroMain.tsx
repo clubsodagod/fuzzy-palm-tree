@@ -46,7 +46,7 @@ const DigitalSolutionsHeroMain: React.FC<HeroProps> = ({
                     />
 
                     <ButtonPro
-                        variant='contained'
+                        variant='outlined'
                         label='Custom Software'
                         color='secondary'
                         onClick={() => { scrollTo('custom-software') }}

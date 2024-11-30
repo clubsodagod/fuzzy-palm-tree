@@ -1,5 +1,11 @@
 import { NavItem } from "../types/common";
 
+import { env } from "process";
+
+
+export const baseUrl = process.env.NEXT_PUBLIC_NODE_ENV == 'development' ? process.env.NEXT_PUBLIC_DEVELOPMENT_URL :process.env.NEXT_PUBLIC_NODE_ENV == 'production-test' ? process.env.NEXT_PUBLIC_PRODUCTION_TEST_URL : process.env.NEXT_PUBLIC_PRODUCTION_URL 
+
+
 export const navItems: NavItem[] = [
     {
         label: 'home',

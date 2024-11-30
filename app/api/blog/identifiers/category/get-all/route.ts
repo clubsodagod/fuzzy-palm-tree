@@ -18,6 +18,7 @@ export async function GET (req:NextRequest, res:NextResponse) {
             if (categories) {
                 // console.log("backend",await categories);
                 // console.log(categories, "backend");
+                console.log(categories);
                 
                 return NextResponse.json(
                     {message:"Categories fetched successfully!", categories}, 

@@ -52,8 +52,9 @@ const WebMobileApplications: React.FC<DynamicSectionProps> = ({
 
                     <ButtonPro
                         variant='contained'
-                        label="Consultation"
+                        label="Free Consultation"
                         color='primary'
+                        href='/im-a-programmer/lets-work'
                     />
 
                     <ButtonPro

@@ -40,6 +40,8 @@ const CategoriesModule: React.FC<CategoriesModuleProps> = ({ categories }) => {
     WindowUpdater(scrollRef);
     IntersectionWatcher({ refs });
 
+    console.log(categories);
+    
 
     return (
         <MotionPageWrapper

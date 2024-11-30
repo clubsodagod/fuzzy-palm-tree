@@ -1,23 +1,24 @@
-'use client'
-import React, { useEffect, useState } from 'react'
-import LetsWorkHero from '../im-a-programmer/lets-work/_components/LetsWorkHero'
-import { useProgrammerPageSectionRefs } from '@/utility/refs/programmer-page-refs';
-import { useScroll, useAnimationControls } from 'framer-motion';
-import IntersectionWatcher from '../_utility/window/IntersectionWatcher';
-import WindowUpdater from '../_utility/window/WindowUpdater';
+import React from 'react'
+import ContactModule from './_components/ContactModule'
+import { ResolvingMetadata, Metadata } from 'next'
+import { baseUrl } from '../_library/const/nav'
+
+
+
+
+export const metadata: Metadata = {
+    title: 'Contact | Maliek Davis',
+    description: 'Get in touch with Maliek Davis for inquiries about technology solutions, real estate investment, or collaboration.',
+    alternates: {
+        canonical: '/contact',
+        languages: {
+            'en-US': '/en-US',
+        },
+    },
+    category: 'maliek'
+}
 
 const ContactPage = () => {
-
-    const {
-        scrollRef, bodyRef, ctaRefs: refs,
-        ctaConsultationRef, contactInfoRef, locationInfoRef,
-    } = useProgrammerPageSectionRefs();
-
-
-
-    WindowUpdater(scrollRef);
-
-    IntersectionWatcher({ refs });
 
 
 
@@ -25,7 +26,7 @@ const ContactPage = () => {
 
     return (
         <>
-            <LetsWorkHero id='lets-work-main-pro'  ctnRef={ctaConsultationRef} />
+            <ContactModule />
         </>
     )
 }

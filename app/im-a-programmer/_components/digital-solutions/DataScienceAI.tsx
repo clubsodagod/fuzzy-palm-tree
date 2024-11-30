@@ -50,6 +50,7 @@ const DataScienceAI: React.FC<HeroProps> = ({
                         variant='contained'
                         label="AI Solutions?"
                         color='primary'
+                        href='/im-a-programmer/lets-work'
                     />
 
                     <ButtonPro

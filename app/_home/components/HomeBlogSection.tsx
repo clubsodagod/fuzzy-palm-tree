@@ -93,14 +93,14 @@ const HomeBlogSection: React.FC<HomeBlogSectionProps> = ({
 
                     <ButtonPro
                         variant='contained'
-                        // href={'/blog/categories'}
-                        label={`Categories`}
+                        href={'/blog'}
+                        label={`All Posts`}
                         color='primary'
                     />
                     <ButtonPro
                         variant='contained'
-                        id={'subscribe'}
-                        label={`Subscribe`}
+                        href={'/blog/categories'}
+                        label={`Categories`}
                         color='secondary'
                     />
 

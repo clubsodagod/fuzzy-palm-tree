@@ -43,11 +43,10 @@ const MainHomeHero: React.FC<HeroProps> = ({
                         variant='contained'
                         label={`About`}
                         color='secondary'
-                        onClick={() => { scrollTo('home-blog') }}
+                        href='/about'
                     />
                     <IconButton
                         label={<ArrowCircleDownRoundedIcon onClick={() => { scrollTo('next') }} />}
-                        onClick={() => { scrollTo('next') }}
                     />
                 </HeroButtonCtn>
             </MotionDiv>

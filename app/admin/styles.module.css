@@ -1,0 +1,132 @@
+
+.adminSectionWrapper {
+    padding: 10vh 6vw 2vh;
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+.identifierCardModWrapper {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 2.5px 7.5px 2.5px lightgrey;
+}
+
+.imgWrapper {
+    height: 10vh;
+}
+
+.identifierModCardImg {
+    width: 100%;
+    height:100%;
+    object-fit: cover;
+}
+
+
+.identifierCardModWrapper, .identifierModCardImg {
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    
+}
+
+.identifierCardModWrapper {
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.nameWrapper {
+    padding-inline: 6vw;
+}
+
+.identifierCardNameText {
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+
+    @media screen and (min-width:769px) {
+        font-size: 1rem;
+    }
+}
+
+
+
+.actionsCtn {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 6vw;
+}
+
+.clickedCtnWrapper, .clickedIdentifierForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.clickedIdentifierForm {
+    gap: 2vh;
+}
+
+.photoInputElementWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 6vw;
+}
+.catFormCheckbox {
+    width: 100%;
+    height: 33vh;
+    overflow-y: auto;
+    padding: 2vh 3vw;
+}
+
+.moduleWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+    @media screen and (min-width:780px) {
+        flex-direction: row;
+    }
+}
+
+.sectionCtn {
+    gap: 2vh;
+    @media screen and (min-width:780px) {
+        width:50%;
+    }
+}
+
+.cardCtn {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+.identifierForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.createIdentifierCardWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.identifierModuleCtn {
+    
+}
+
+.identifierModificationModuleWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6vh;
+
+    @media screen and (min-width:769px) {
+        flex-direction: row;
+    }
+}

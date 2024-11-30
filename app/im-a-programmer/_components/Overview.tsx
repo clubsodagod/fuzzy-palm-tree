@@ -58,16 +58,15 @@ const Overview: React.FC<HeroProps> = ({
                 <Header
                 size='sm'
                     headerLabel={<Typography variant='h2'
-                        className={`right`}
                     >
                         I&apos;m <span className={`my-name`}>Maliek Davis</span>
 
                     </Typography>}
                     tagLine={<MotionH4
-                        className={`right`}
                     >
                         Much More Than Just Another <span className={`dynamic-text`}>Developer</span>
                     </MotionH4>}
+                    right
                 />
             </MotionDiv>
 

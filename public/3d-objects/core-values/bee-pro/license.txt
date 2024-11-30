@@ -1,0 +1,11 @@
+Model Information:
+* title:	Honey Bee | 🦟
+* source:	https://sketchfab.com/3d-models/honey-bee-4d0142c47688483caba624c9bf55b963
+* author:	Shrikant (https://sketchfab.com/kfivedrag)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Honey Bee | 🦟" (https://sketchfab.com/3d-models/honey-bee-4d0142c47688483caba624c9bf55b963) by Shrikant (https://sketchfab.com/kfivedrag) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

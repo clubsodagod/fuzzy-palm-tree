@@ -1,0 +1,78 @@
+.formWrapper {
+    border-radius: 25px;
+    background-color: rgb(239, 239, 239);
+    padding: 25px
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    background-color: rgb(250, 250, 250);
+    padding: 25px;
+    border-radius: 25px;
+
+    @media screen and (min-width:769px) {
+        width: 50%;
+    }
+}
+
+.richHeader {
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
+    @media screen and (min-width:769px) {
+        width: auto;
+    }
+}
+
+.choiceCtn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2vw;
+}
+
+.radioCtn {
+    display: flex;
+    flex-direction: row;
+}
+
+.tagInputCtn {
+    display: flex;
+    flex-direction: row;
+    gap: 2vw;
+}
+
+.tagsCtn {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    align-items: center;
+
+    @media screen and (min-width:768px) {
+        flex-direction: row;
+        gap: 2vw;
+    }
+}
+
+.alertCtn {
+    min-height: 10vh;
+}
+
+.formModuleWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+.btnCtn {
+    display: flex;
+    flex-direction: row;
+    gap: 2vw;
+    align-items: center;
+}
+
+.captionText {
+    font-size: 0.6rem;
+}

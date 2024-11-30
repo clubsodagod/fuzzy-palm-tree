@@ -9,7 +9,11 @@ import { IBlogPopulated } from '@/app/_database/models/blog'
 import { MotionDiv } from '../framer/MotionDiv'
 import { MotionP } from '../framer/MotionP'
 import CardWrapper from '../CardWrapper'
-import ButtonPro from '../ButtonPro'
+import dayjs from 'dayjs'
+import relativeTime from "dayjs/plugin/relativeTime"
+import { MotionImg } from '../framer/MotionImg'
+
+dayjs.extend(relativeTime)
 
 
 const BlogCard: React.FC<{
@@ -44,20 +48,21 @@ const BlogCard: React.FC<{
             <CardWrapper>
 
                 <MotionDiv
-                    className={id && id == 'blog-page-featured' ? styles.blogCardFeatured : styles.blogCard}
+                    className={id && id == 'blog-page-featured ' ? styles.blogCardFeatured : styles.blogCard}
                 >
 
                     <MotionDiv
-                        className={`${styles.blogCardFtImgWrapper}`}
+                        className={`${styles.blogCardFtImgWrapper} cursor-pointer`}
                     >
-                        <motion.img
+                        <MotionImg
+                            onClick={(e) => { blogSlugRouter(e); }}
                             className={`${styles.blogCardFtImg}`}
                             src={featuredImg.portrait}
                         />
                     </MotionDiv>
 
                     <MotionDiv
-                        className={`${styles.blogCardInfoCtn}`}
+                        className={`${styles.blogCardInfoCtn} mt-3 gap-3 `}
                     >
 
                         <MotionDiv
@@ -75,7 +80,7 @@ const BlogCard: React.FC<{
                             >
                                 <motion.p
                                     className={`${styles.authorTxt}`}
-                                >{date}</motion.p>
+                                >{dayjs(createdAt).fromNow()}</motion.p>
                                 <motion.p
                                     className={`${styles.authorTxt} font-bold`}
                                 >{author.firstName} {author.lastName}</motion.p>
@@ -83,7 +88,7 @@ const BlogCard: React.FC<{
                         </MotionDiv>
 
                         <MotionP
-                            className={`${styles.titleTxt} font-bold`}
+                            className={`${styles.titleTxt} font-bold cursor-pointer`}
                             onClick={(e) => { blogSlugRouter(e); }}
                         >
                             {title}

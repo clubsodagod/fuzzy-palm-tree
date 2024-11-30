@@ -75,13 +75,15 @@ export async function getPostBySlugClient(slug: string) {
 export async function getAllCategoriesClient() {
 
     // use fetch request to get categories
-    const categoriesResponse = await fetch('https://fuzzy-palm-tree.vercel.app/api/blog/identifiers/category/get-all', {
+    const categoriesResponse = await fetch('http://localhost:3000/api/blog/identifiers/category/get-all', {
         method: "GET", cache: "no-store",
     });
 
     // validate response
     if (categoriesResponse.ok) {
         const categories = await categoriesResponse.json().then((res) => res.categories);
+        console.log(categories);
+        
         return categories as ICategoryPopulated[]
     } else {
         return null

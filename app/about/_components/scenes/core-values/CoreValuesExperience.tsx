@@ -5,7 +5,7 @@ import { MarbleColumn, Diamonds, Bee, RubiksCube, Compass, City, PumpingHeart, A
 import { Scale, Book, Hive } from '@mui/icons-material';
 import { Float } from '@react-three/drei'
 import { MotionValue, Variants } from 'framer-motion';
-import React, { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import { VisibleType } from '../mission-statement/AboutExperience';
 import { ScalesThreeType, VisibilityThreeType } from '@/app/_library/types/common';
 import dynamic from 'next/dynamic';
@@ -34,10 +34,10 @@ const DiamondsDynamic = dynamic(() => import('../../../../../public/3d-objects/c
 const BookDynamic = dynamic(() => import('../../../../../public/3d-objects/core-values/book/Book'), {
     ssr: false, // Optional: Disable server-side rendering for this component
 });
-const BeeDynamic = dynamic(() => import('../../../../../public/3d-objects/core-values/bee/Bee'), {
+const BeeDynamic = dynamic(() => import('../../../../../public/3d-objects/core-values/bee-pro/BeePro'), {
     ssr: false, // Optional: Disable server-side rendering for this component
 });
-const BeeBuddyDynamic = dynamic(() => import('../../../../../public/3d-objects/core-values/bee/Bee'), {
+const BeeBuddyDynamic = dynamic(() => import('../../../../../public/3d-objects/core-values/bee-pro/BeePro'), {
     ssr: false, // Optional: Disable server-side rendering for this component
 });
 const HiveDynamic = dynamic(() => import('../../../../../public/3d-objects/core-values/hive/Hive'), {
@@ -205,294 +205,315 @@ const CoreValuesExperience: React.FC<{ value: number, scrollY: MotionValue, }> =
                 position={[coreValueMotion().x, coreValueMotion().y, coreValueMotion().z]}
             >
 
-                {/* atom */}
-                <MotionGroup
-                    visible={visible.atom}
-                    position={[rv([0, 0, 25]), 65, 0]}
-                >
+                <Suspense fallback={null}>
 
+                    {/* atom */}
                     <MotionGroup
-                        variants={variants}
-                        animate={variantStatus.atom}
+                        visible={visible.atom}
+                        position={[rv([0, 0, 25]), 65, 0]}
                     >
-                        <AtomDynamic scale={10} />
-                    </MotionGroup>
 
-                </MotionGroup>
-                {/* scale */}
-                <MotionGroup
-                    position={[0, 40, 0]}
-                    visible={visible.scale}
-                >
-
-                    <MotionGroup
-                        variants={variants}
-                        animate={variantStatus.scale}
-                    >
-                        <Float
-                            floatIntensity={0.5}
+                        <MotionGroup
+                            variants={variants}
+                            animate={variantStatus.atom}
                         >
+                            <AtomDynamic scale={10} />
+                        </MotionGroup>
 
-                            <ScaleDynamic
-                                rotation-y={3.75}
-                                scale={50}
-                            />
-                        </Float>
                     </MotionGroup>
+                </Suspense>
 
-                </MotionGroup>
 
-                {/* rubiks cube */}
-                <MotionGroup
-                    position={[rv([1, -5, -5]), 45, 0]}
-                    visible={visible.rubiksCube}
-                >
-
+                <Suspense fallback={null}>
+                    {/* scale */}
                     <MotionGroup
-                        variants={variants}
-                        animate={variantStatus.rubiksCube}
+                        position={[0, 40, 0]}
+                        visible={visible.scale}
                     >
-                        <Float
-                            floatIntensity={0.5}
+
+                        <MotionGroup
+                            variants={variants}
+                            animate={variantStatus.scale}
                         >
+                            <Float
+                                floatIntensity={0.5}
+                            >
 
-                            <RubiksCubeDynamic
-                                rotation-y={3.75}
-                                scale={rv([2.25, 3, 3])}
-                            />
-                        </Float>
+                                <ScaleDynamic
+                                    rotation-y={3.75}
+                                    scale={50}
+                                />
+                            </Float>
+                        </MotionGroup>
+
                     </MotionGroup>
+                </Suspense>
 
-                </MotionGroup>
 
-                {/* pumping heart */}
-                <MotionGroup
-                    position={[rv([0, -3, -3]), 39, 5]}
-                    visible={visible.pumpingHeart}
-                >
-
+                <Suspense fallback={null}>
+                    {/* rubiks cube */}
                     <MotionGroup
-                        variants={variants}
-                        animate={variantStatus.pumpingHeart}
+                        position={[rv([1, -5, -5]), 45, 0]}
+                        visible={visible.rubiksCube}
                     >
-                        <Float
-                            floatIntensity={0.5}
+
+                        <MotionGroup
+                            variants={variants}
+                            animate={variantStatus.rubiksCube}
                         >
+                            <Float
+                                floatIntensity={0.5}
+                            >
 
-                            <PumpingHeartDynamic
-                                rotation-y={3.75}
-                                scale={0.25}
-                            />
-                        </Float>
+                                <RubiksCubeDynamic
+                                    rotation-y={3.75}
+                                    scale={rv([2.25, 3, 3])}
+                                />
+                            </Float>
+                        </MotionGroup>
+
                     </MotionGroup>
+                </Suspense>
 
-                </MotionGroup>
 
-
-                {/* diamonds */}
-                <MotionGroup
-                    position={[rv([0, -5, -5]), -5, 5]}
-                    visible={visible.diamonds}
-                >
-
+                <Suspense fallback={null}>
+                    {/* pumping heart */}
                     <MotionGroup
-                        variants={variants}
-                        animate={variantStatus.diamonds}
+                        position={[rv([0, -3, -3]), 39, 5]}
+                        visible={visible.pumpingHeart}
                     >
-                        <Float
-                            floatIntensity={3}
-                        >
-                            <DiamondsDynamic
-                                rotation-y={3.75}
-                                scale={18}
-                            />
 
-                        </Float>
+                        <MotionGroup
+                            variants={variants}
+                            animate={variantStatus.pumpingHeart}
+                        >
+                            <Float
+                                floatIntensity={0.5}
+                            >
+
+                                <PumpingHeartDynamic
+                                    rotation-y={3.75}
+                                    scale={0.25}
+                                />
+                            </Float>
+                        </MotionGroup>
 
                     </MotionGroup>
-
-                </MotionGroup>
-
+                </Suspense>
 
 
-                {/* bee and hive */}
-                <MotionGroup
+                <Suspense fallback={null}>
+
+                    {/* diamonds */}
+                    <MotionGroup
+                        position={[rv([0, -5, -5]), -5, 5]}
+                        visible={visible.diamonds}
+                    >
+
+                        <MotionGroup
+                            variants={variants}
+                            animate={variantStatus.diamonds}
+                        >
+                            <Float
+                                floatIntensity={3}
+                            >
+                                <DiamondsDynamic
+                                    rotation-y={3.75}
+                                    scale={18}
+                                />
+
+                            </Float>
+
+                        </MotionGroup>
+
+                    </MotionGroup>
+                </Suspense>
+
+
+                <Suspense fallback={null}>
+                    {/* bee and hive */}
+                    <MotionGroup
                         variants={variants}
                         animate={variantStatus.bee}>
-                    <Float
-                        floatIntensity={0.5}
-                        position={[rv([7,0,0]), 0, 0]}
-                    >
-
-                        {/* bee */}
-                        <MotionGroup
-                            position={[-7, 48, 0]}
-                            visible={visible.bee}
-                            rotation-y={-1}
+                        <Float
+                            floatIntensity={0.5}
+                            position={[rv([7, 0, 0]), 0, 0]}
                         >
-                            <BeeDynamic
-                                animation='_bee_idle'
-                                props={{
-                                    scale: 0.25
-                                }}
 
-                            />
-                        </MotionGroup>
-                        {/* hive */}
-                        <MotionGroup
-                            position={[0, 53, 0]}
-                            visible={visible.hive}
-                            rotation-y={3.75}
+                            {/* bee */}
+                            <MotionGroup
+                                position={[-7, 48, 0]}
+                                visible={visible.bee}
+                                rotation-y={-1}
+                            >
+                                <BeeDynamic
+                                    animation='_bee_idle'
+                                    props={{
+                                        scale: 0.25
+                                    }}
+
+                                />
+                            </MotionGroup>
+                            {/* hive */}
+                            <MotionGroup
+                                position={[0, 53, 0]}
+                                visible={visible.hive}
+                                rotation-y={3.75}
+                            >
+                                <HiveDynamic
+                                    scale={0.02}
+                                />
+                            </MotionGroup>
+                            {/* bee buddy */}
+                            <MotionGroup
+                                position={[-14, 52, 5]}
+                                visible={visible.beeBuddy}
+                            >
+                                <BeeBuddyDynamic
+                                    animation='_bee_hover'
+                                    props={{
+                                        scale: 0.25
+                                    }}
+                                />
+                            </MotionGroup>
+
+                        </Float>
+                    </MotionGroup>
+                </Suspense>
+
+                <Suspense fallback={null}>
+                    {/* city */}
+                    <MotionGroup
+                        position={[rv([0, -1, -10]), 45, 15]}
+                        rotation-x={0.45}
+                        rotation-y={0.45}
+                        visible={visible.city}
+                    >
+
+                        <Float
+                            floatIntensity={2}
+                            rotationIntensity={2}
                         >
-                            <HiveDynamic
-                                scale={0.02}
-                            />
-                        </MotionGroup>
-                        {/* bee buddy */}
+                            <MotionGroup
+                                variants={variants}
+                                animate={variantStatus.city}
+                            >
+                                <CityDynamic
+                                    animation='Main'
+                                    props={{
+                                        scale: rv([0.03, 0.0375, 0.0375]),
+                                    }}
+                                />
+                            </MotionGroup>
+                        </Float>
+
+
+                    </MotionGroup>
+                </Suspense>
+
+                <Suspense fallback={null}>
+                    {/* sustainability */}
+                    <MotionGroup
+                        visible={visible.tropicalIsland}
+                    >
+                        {/* tropical island */}
                         <MotionGroup
-                            position={[-14, 52, 5]}
-                            visible={visible.beeBuddy}
+                            rotation-y={0}
+                            position={[0, 0, 65]}
+                            visible={visible.tropicalIsland}
                         >
-                            <BeeBuddyDynamic
-                                animation='_bee_hover'
-                                props={{
-                                    scale: 0.25
-                                }}
-                            />
+
+                            <MotionGroup
+                                variants={variants}
+                                animate={variantStatus.tropicalIsland}
+                                rotation-y={5.75}
+                            >
+                                <TropicalIslandDynamic
+                                    animation='ArmatureAction'
+                                    props={{
+                                        scale: 15
+                                    }}
+                                />
+                            </MotionGroup>
+
                         </MotionGroup>
 
-                    </Float>
-                </MotionGroup>
-            </MotionGroup>
+                        {/* power tower*/}
+                        <MotionGroup
+                            rotation-y={0}
+                            position={[0, 40, 0]}
+                            visible={visible.powerTowerCoreValue}
+                        >
 
+                            <MotionGroup
+                                variants={variants}
+                                animate={variantStatus.powerTowerCoreValue}
+                            >
+                                <PowerTowerDynamic
+                                    scale={0.35}
+                                    rotation-y={2.75}
+                                    rotation-x={0.25}
+                                />
+                            </MotionGroup>
 
-
-
-
-            {/* city */}
-            <MotionGroup
-                position={[rv([0, -1, -10]), 45, 15]}
-                rotation-x={0.45}
-                rotation-y={0.45}
-                visible={visible.city}
-            >
-
-                <Float
-                    floatIntensity={2}
-                    rotationIntensity={2}
-                >
-                    <MotionGroup
-                        variants={variants}
-                        animate={variantStatus.city}
-                    >
-                        <CityDynamic
-                            animation='Main'
-                            props={{
-                                scale: rv([0.03, 0.0375, 0.0375]),
-                            }}
-                        />
+                        </MotionGroup>
                     </MotionGroup>
-                </Float>
+                </Suspense>
 
-
-            </MotionGroup>
-
-
-            {/* sustainability */}
-            <MotionGroup
-                visible={visible.tropicalIsland}
-            >
-                {/* tropical island */}
-                <MotionGroup
-                    rotation-y={0}
-                    position={[0, 0, 65]}
-                    visible={visible.tropicalIsland}
-                >
-
+                <Suspense fallback={null}>
+                    {/* compass */}
                     <MotionGroup
-                        variants={variants}
-                        animate={variantStatus.tropicalIsland}
-                        rotation-y={5.75}
+                        rotation-x={1}
+                        position={[rv([0, 0, -15]), rv([45, 45, 50]), 25]}
+                        visible={visible.compass}
                     >
-                        <TropicalIslandDynamic
-                            animation='ArmatureAction'
-                            props={{
-                                scale: 15
-                            }}
-                        />
+
+                        <MotionGroup
+                            variants={variants}
+                            animate={variantStatus.compass}
+                        >
+                            <Float
+                                floatIntensity={1}
+                            >
+                                <CompassDynamic
+                                    animation={['rotating cylinderAction', 'needleAction']}
+                                    props={{
+                                        scale: rv([0.25, 0.25, 0.35])
+                                    }}
+                                />
+                            </Float>
+                        </MotionGroup>
+
                     </MotionGroup>
+                </Suspense>
 
-                </MotionGroup>
-
-                {/* power tower*/}
-                <MotionGroup
-                    rotation-y={0}
-                    position={[0, 40, 0]}
-                    visible={visible.powerTowerCoreValue}
-                >
-
+                <Suspense fallback={null}>
+                    {/* book */}
                     <MotionGroup
-                        variants={variants}
-                        animate={variantStatus.powerTowerCoreValue}
+                        rotation-y={0}
+                        position={[-5, 49, 0]}
+                        visible={visible.book}
                     >
-                        <PowerTowerDynamic
-                            scale={0.35}
-                            rotation-y={2.75}
-                            rotation-x={0.25}
-                        />
+
+                        <MotionGroup
+                            variants={variants}
+                            animate={variantStatus.book}
+                        >
+                            <Float
+                                floatIntensity={0.5}
+                            >
+                                <BookDynamic
+                                    animation='Take 001'
+                                    props={{
+                                        scale: 2
+                                    }}
+                                />
+                            </Float>
+                        </MotionGroup>
+
+
                     </MotionGroup>
-
-                </MotionGroup>
-            </MotionGroup>
-
-            {/* compass */}
-            <MotionGroup
-                rotation-x={1}
-                position={[rv([0, 0, -15]), rv([45, 45, 50]), 25]}
-                visible={visible.compass}
-            >
-
-                <MotionGroup
-                    variants={variants}
-                    animate={variantStatus.compass}
-                >
-                    <Float
-                        floatIntensity={1}
-                    >
-                        <CompassDynamic
-                            animation={['rotating cylinderAction', 'needleAction']}
-                            props={{
-                                scale: rv([0.25, 0.25, 0.35])
-                            }}
-                        />
-                    </Float>
-                </MotionGroup>
-
-            </MotionGroup>
-
-            {/* book */}
-            <MotionGroup
-                rotation-y={0}
-                position={[-5, 49, 0]}
-                visible={visible.book}
-            >
-
-                <MotionGroup
-                    variants={variants}
-                    animate={variantStatus.book}
-                >
-                    <Float
-                        floatIntensity={0.5}
-                    >
-                        <BookDynamic
-                            animation='Take 001'
-                            props={{
-                                scale: 2
-                            }}
-                        />
-                    </Float>
-                </MotionGroup>
-
+                </Suspense>
 
             </MotionGroup>
 

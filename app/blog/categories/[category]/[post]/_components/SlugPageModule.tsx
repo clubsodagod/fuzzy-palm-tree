@@ -16,7 +16,10 @@ import { useAppContext } from '@/app/_context/AppContext'
 import { useBlogPageSectionRefs } from '@/app/blog/_utility/refs'
 import IntersectionWatcher from '@/app/_utility/window/IntersectionWatcher'
 import WindowUpdater from '@/app/_utility/window/WindowUpdater'
+import dayjs from 'dayjs'
+import relativeTime from "dayjs/plugin/relativeTime"
 
+dayjs.extend(relativeTime)
 interface SlugPageModuleProps {
     post: IBlogPopulated | null;
 }
@@ -90,7 +93,7 @@ const SlugPageModule: React.FC<SlugPageModuleProps> = ({
                     </MotionDiv>
                     <MotionDiv>
                         <MotionP>{post?.author.firstName} {post?.author.lastName}</MotionP>
-                        <MotionP>{new Date(post?.createdAt!).toLocaleString()}</MotionP>
+                        <MotionP>{dayjs(post?.createdAt).fromNow()}</MotionP>
                     </MotionDiv>
                 </MotionDiv>
 

@@ -1,5 +1,5 @@
 'use client'
-import { useMDSession } from '@/app/_hide/_context/sub-context/SessionContext';
+import { useAppContext } from '@/app/_context/AppContext';
 import { redirect } from 'next/navigation';
 import React, { ReactElement, useEffect } from 'react'
 
@@ -10,8 +10,8 @@ const loginProtection = (WrappedComponent: React.ElementType) => {
     return function LoginProtection (props:any) {
 
         const {
-            isAuthenticated,
-        } = useMDSession();
+            session:{isAuthenticated},
+        } = useAppContext();
         
         useEffect(()=>{
             if(isAuthenticated){

@@ -1,0 +1,32 @@
+.formWrapper {
+    padding: 1vw;
+
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1vh;
+}
+
+.alertWrapper {
+    width: 100%;
+    height: 10vh;
+}
+
+.btnTextCtn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding-block: 1vh;
+}
+
+.header, .subheader {
+    color: black;
+}
+
+.authQuestionText {
+    text-align: center;
+}

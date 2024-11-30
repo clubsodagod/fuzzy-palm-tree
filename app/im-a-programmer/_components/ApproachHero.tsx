@@ -96,16 +96,16 @@ const ApproachHero: React.FC<ApproachHeroProps> = ({
 
                         <ButtonPro
                             variant='contained'
-                            label="Let's Work"
+                            label="Blog"
                             color='primary'
-                            href={'/im-a-programmer/lets-work'}
+                            href={'/blog'}
                         />
 
                         <ButtonPro
                             variant='contained'
                             label='Free Consultation'
                             color='secondary'
-                            onClick={() => { console.log('Free consultation!'); alert('Free consultation!') }}
+                            href={'/im-a-programmer/lets-work'}
                         />
 
                         <IconButton

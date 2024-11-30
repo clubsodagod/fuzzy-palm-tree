@@ -1,4 +1,6 @@
 
+
+
 interface Technology {
     label:string;
     svg:string;

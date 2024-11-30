@@ -50,10 +50,9 @@ const WhyDigitalSolutions: React.FC<HeroProps> = ({
                     />
                     <ButtonPro
                         variant='contained'
-                        label={`Consultation`}
+                        label={`Portfolio`}
                         color='primary'
-                        onClick={() => {console.log('Free Consultation!');
-                        }}
+                        href={`/im-a-programmer/portfolio`}
                     />
                     <ButtonPro
                         variant='contained'
