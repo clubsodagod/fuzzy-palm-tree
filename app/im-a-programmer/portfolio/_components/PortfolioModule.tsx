@@ -25,9 +25,8 @@ const PortfolioModule: React.FC<PortfolioModuleProps> = ({
 }) => {
 
     const [caseStudy, setCaseStudy] = useState<ICaseStudy|undefined|null>(caseStudies && caseStudies[0]);
-
-    const [index, setIndex] = useState<number>(0);
     const [link, setLink] = useState<string>('/images/desktop-pearl-box.png');
+
 
 
 
@@ -48,7 +47,9 @@ const PortfolioModule: React.FC<PortfolioModuleProps> = ({
     };
 
 
-
+    function handleSetLink(value:string) {
+        setLink(value);
+    }
 
     WindowUpdater(scrollRef);
     IntersectionWatcher({ refs });
@@ -60,14 +61,12 @@ const PortfolioModule: React.FC<PortfolioModuleProps> = ({
                 caseStudy={caseStudy ? caseStudy : undefined}
             />
             <PortfolioMainHero
+                link={link}
+                setLink={handleSetLink}
                 id='portfolio-main'
                 scrollTo={scrollToSectionHandler}
                 ctnRef={mainRef}
                 technicalApplications={technicalApplications ? technicalApplications : undefined}
-                index={index}
-                setIndex={setIndex}
-                link={link}
-                setLink={setLink}
 
             />
             <CaseStudies

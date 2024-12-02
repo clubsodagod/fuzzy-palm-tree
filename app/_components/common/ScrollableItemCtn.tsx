@@ -13,9 +13,9 @@ export interface ScrollableItemCtnProps extends MotionDivProps {
     children: React.ReactNode,
     elementRef?: React.RefObject<HTMLDivElement>,
     portfolio?: boolean;
-    setIndex?: React.Dispatch<number>;
-    index?: number;
-    totalIndex?: number;
+    setIndex?: (value: number) => void|null;
+    index?: number|null;
+    totalIndex?: number|null;
 }
 
 const ScrollableItemCtn: React.FC<ScrollableItemCtnProps> = ({
@@ -46,12 +46,16 @@ const ScrollableItemCtn: React.FC<ScrollableItemCtnProps> = ({
             if (direction === 'left') {
 
                 if (portfolio) {
-                    if (index && totalIndex && setIndex) {
-                        if (index == 0) {
+                    console.log('left portfolio');
 
-                            setIndex(totalIndex);
-                        } else {
-                            setIndex(index - 1);
+
+                    if (index == 0) {
+                        if (setIndex) {
+                            setIndex(totalIndex!)!;
+                        }
+                    } else {
+                        if (setIndex) {
+                            setIndex(index! - 1);
                         }
                     }
                 }
@@ -64,15 +68,18 @@ const ScrollableItemCtn: React.FC<ScrollableItemCtnProps> = ({
             } else {
 
                 if (portfolio) {
-                    if (index && totalIndex && setIndex) {
-                        if (index == totalIndex) {
+                    if (index == totalIndex) {
+                        console.log(index, 'index');
+                        if (setIndex) {
                             setIndex(0);
-                        } else {
-                            setIndex(index + 1);
+                        }
+                    } else {
+                        console.log(index, 'index');
+                        if (setIndex) {
+                            setIndex(index! + 1);
                         }
                     }
                 }
-
                 scrollCtnRef.current.scrollBy({
                     left: scrollAmount,
                     behavior: 'smooth',
@@ -147,10 +154,9 @@ const ScrollableItemCtn: React.FC<ScrollableItemCtnProps> = ({
 
 
             <div ref={scrollCtnRef} id={rest.id ? rest.id : ''}
-                className={
-                    rest.id == 'programmer-approach-solid-hero' || rest.id == 'programmer-approach-sdlc-section' ? styles['solidChildWrapper']
-                        : rest.id == 'programmer-approach-design-section'  ? styles['designPatternsChildWrapper']
-                            : rest.id == 'blog-posts-ctn' ? styles['blogChildWrapper'] : rest.id == 'programmer-portfolio-main' ? styles['portfolioChildWrapper'] :styles.childWrapper
+                className={` ${rest.id == 'programmer-approach-solid-hero' || rest.id == 'programmer-approach-sdlc-section' ? styles['solidChildWrapper']
+                        : rest.id == 'programmer-approach-design-section' ? styles['designPatternsChildWrapper']
+                            : rest.id == 'blog-posts-ctn' ? styles['blogChildWrapper'] : rest.id == 'programmer-portfolio-main' ? styles['portfolioChildWrapper'] : styles.childWrapper} overflow-x-hidden`
                 }
             >
                 {children}

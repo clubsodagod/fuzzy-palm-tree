@@ -6,44 +6,49 @@ import { ITechnicalApplication } from '@/app/_database/models/technicalApplicati
 import ButtonPro from '@/app/_components/common/ButtonPro'
 import { MotionDiv } from '@/app/_components/common/framer/MotionDiv'
 import { HeroProps } from '@/app/_library/types/common'
-import MotionPageWrapper from '@/app/_hide/_components/common/MotionPageWrapper'
 import Header from '@/app/_components/common/Header'
 import ScrollableItemCtn from '@/app/_components/common/ScrollableItemCtn'
 import HeroButtonCtn from '@/app/_components/common/HeroButtonCtn'
 import ScrollCtnWrapper from '@/app/_components/common/ScrollCtnWrapper'
 import { useAppContext } from '@/app/_context/AppContext'
+import MotionPageWrapper from '@/app/_components/common/MotionPageWrapper'
 
 
 interface PortfolioMainProps extends HeroProps {
-    technicalApplications: ITechnicalApplication[]|undefined|null;
-    link:string;
-    setLink:React.Dispatch<string>;
-    index:number;
-    setIndex:React.Dispatch<number>;
+    technicalApplications: ITechnicalApplication[] | undefined | null;
+    link: string;
+    setLink: React.Dispatch<string>;
 };
 
 
 const PortfolioMainHero: React.FC<PortfolioMainProps> = ({
     ctnRef,
-    technicalApplications, scrollTo,
-    index,
-    setIndex,
-    link, setLink
+    technicalApplications, scrollTo, link, setLink
 }) => {
 
+    const [index, setIndex] = useState<number>(0);
     const {
-        scroll:{scrollY},
-        screen:{currentBreakpoint}
+        scroll: { scrollY },
+        screen: { currentBreakpoint }
     } = useAppContext();
 
     let technicalApplicationsIndexTotal = technicalApplications && technicalApplications.length - 1;
     const scrollRef = useRef(null);
 
+    function handleSetIndex(value:number) {
+        setIndex(value);
+        console.log(index);
+        
+    }
+
     useEffect(() => {
         if (index >= 0 && technicalApplications) {
             setLink(technicalApplications[index].photos[0])
         }
-    }, [index, technicalApplications, setLink])
+        console.log(`index:${index}`);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [index])
 
     return (
         <MotionPageWrapper
@@ -62,27 +67,22 @@ const PortfolioMainHero: React.FC<PortfolioMainProps> = ({
                 />
 
                 <ScrollCtnWrapper>
-                                        <ScrollableItemCtn
+                    <ScrollableItemCtn
                         elementRef={scrollRef}
                         portfolio
                         index={index}
-                        setIndex={setIndex}
+                        setIndex={handleSetIndex}
                         id='programmer-portfolio-main'
                         totalIndex={technicalApplicationsIndexTotal ? technicalApplicationsIndexTotal : 0}
                     >
-                        {
-                            technicalApplications?.map((tA, i: number) => {
-                                return (
-                                    <MotionDiv key={`${tA._id}: ${i}`}
-                                        className='min-w-full  snap-x snap-mandatory px-2 pb-6 sm:px-[16.5vw] pt-[3vh]  flex flex-col gap-3'
-                                    >
-                                        <PortfolioCard
-                                            project={tA}
-                                        />
-                                    </MotionDiv>
-                                )
-                            })
-                        }
+
+                        <MotionDiv
+                            className='min-w-full  snap-x snap-mandatory px-2 pb-6 sm:px-[16.5vw] pt-[3vh]  flex flex-col gap-3'
+                        >
+                            <PortfolioCard
+                                project={(technicalApplications!)[index]}
+                            />
+                        </MotionDiv>
                     </ScrollableItemCtn>
                 </ScrollCtnWrapper>
 

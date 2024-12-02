@@ -7,6 +7,7 @@ import { ICategory } from '@/app/_database/models/category';
 import { getPostBySlugClient } from '@/utility/blog-section/blog-page-functions';
 import { ResolvingMetadata, Metadata } from 'next';
 import { getIdentifier } from '@/library/db/controllers/identifiers';
+import { baseUrl } from '@/app/_library/const/nav';
 
 
 // Next.js will invalidate the cache when a
@@ -59,18 +60,18 @@ export async function generateStaticParams() {
     }));
 }
 
-// Page component for the category.
-export default async function Page({ params }: { params: { category: string } }) {
+// DynamicCategoryPage component for the category.
+export default async function DynamicCategoryPage({ params }: { params: { category: string } }) {
 
     const categoryResponse = await fetch(
-        `https://fuzzy-palm-tree.vercel.app/api/blog/identifiers/category/get-one?slug=${params.category}`,
+        `${baseUrl}/api/blog/identifiers/category/get-one?slug=${params.category}`,
         { cache: 'no-store', method: "GET" } // To ensure fresh data is fetched
     );
     const data = await categoryResponse.json();
     const category = data.category;
 
     const featuredBlogResponse = await fetch(
-        `https://fuzzy-palm-tree.vercel.app/api/blog/get/category?id=${category._id as unknown as string}&featured=true`,
+        `${baseUrl}/api/blog/get/category?id=${category._id as unknown as string}&featured=true`,
         {
             cache: 'no-store',
             method: "GET",
@@ -80,7 +81,7 @@ export default async function Page({ params }: { params: { category: string } })
     const featuredPosts = ftData.postsOfCategory;
 
     const allBlogResponse = await fetch(
-        `https://fuzzy-palm-tree.vercel.app/api/blog/get/category?id=${category._id as unknown as string}&featured=false`,
+        `${baseUrl}/api/blog/get/category?id=${category._id as unknown as string}&featured=false`,
         {
             cache: 'no-store',
             method: "GET",

@@ -16,6 +16,8 @@ export async function GET (req:NextRequest) {
 
         // validate all posts object
         if (allPosts) {
+            console.log(allPosts);
+            
             return NextResponse.json({message:"All posts fetched successfully!", posts:allPosts}, {status:200})
         } else {
             return NextResponse.json({message:"There was an error fetching posts."}, {status:500})

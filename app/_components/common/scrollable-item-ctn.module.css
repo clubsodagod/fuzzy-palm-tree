@@ -23,6 +23,7 @@
     /* min-height: 100%; */
     scroll-behavior: smooth;
     scroll-snap-type: proximity;
+    overflow-x: hidden;
 
     @media screen and (min-width:769px) {
         padding-inline: 12vw;
@@ -93,9 +94,13 @@
     /* height: min-content; */
     scroll-snap-type: x mandatory;
     scroll-snap-align: start;
-
+    
+    @media screen and (min-width:769px) {
+        padding-inline: 12vw;
+    }
     @media screen and (min-width:1025px) {
         overflow-x: hidden;
+        
     }
 }
 

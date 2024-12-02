@@ -5,6 +5,7 @@ import Blog, { IBlogPopulated } from "../models/blog";
 import CategoryModel from "../models/category";
 import Subcategory from "../models/subcategory";
 import User from "../models/user";
+import { baseUrl } from "@/app/_library/const/nav";
 
 // GET featured blog post
 export const getAllPosts = async() => {
@@ -44,24 +45,24 @@ export const getBlogs: InitBlogHomePageFunction = async () => {
 
     await connectToMongoDB()
     try {
-        const featuredResponse = await fetch('https://fuzzy-palm-tree.vercel.app/api/blog/get/featured',);
+        const featuredResponse = await fetch(`${baseUrl}/api/blog/get/featured`, {cache:'no-store'});
 
-        const allPostsResponse = await fetch('https://fuzzy-palm-tree.vercel.app/api/blog/get/all',);
+        const allPostsResponse = await fetch(`${baseUrl}/api/blog/get/all`, {cache:'no-store'});
 
-        const slugResponse = await fetch('https://fuzzy-palm-tree.vercel.app/api/blog/get/slug?slug=sample-one',);
+        const slugResponse = await fetch(`${baseUrl}/api/blog/get/slug?slug=sample-one`, {cache:'no-store'});
 
         // Validate responses by checking their status.
         if (featuredResponse.ok && allPostsResponse.ok && slugResponse.ok) {
             const featuredPosts = await featuredResponse.json().then((res) => res.featuredPosts as IBlogPopulated[]);
             const allPostsUnfiltered = await allPostsResponse.json().then((res) => res.posts as IBlogPopulated[]);
             const slugPost = await slugResponse.json().then((res) => res.post as IBlogPopulated);
-            console.log(featuredPosts, '&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&');
             
             // Filter out posts that are already featured.
-            const allPostsFiltered = allPostsUnfiltered.filter((p) => !p.featured);
+            const allPostsFiltered = allPostsUnfiltered.filter((p) => p.featured == false);
 
-
-            return { featuredPosts, allPosts:allPostsFiltered, slugPost };
+            console.log(allPostsFiltered);
+            
+            return { featuredPosts, allPosts:allPostsUnfiltered, slugPost };
         } else {
             return null;
         }

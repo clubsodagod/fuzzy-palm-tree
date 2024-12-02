@@ -13,6 +13,7 @@ import { useAppContext } from '@/app/_context/AppContext';
 import { useBlogPageSectionRefs } from '../../_utility/refs';
 import IntersectionWatcher from '@/app/_utility/window/IntersectionWatcher';
 import WindowUpdater from '@/app/_utility/window/WindowUpdater';
+import PostComingSoonCard from '@/app/_components/common/blog/PostComingSoonCard';
 
 interface CategoryHeroProps {
     category: ICategory;
@@ -23,11 +24,11 @@ interface CategoryHeroProps {
 const CategoryHero: React.FC<CategoryHeroProps> = ({ category, featuredPosts, allPosts }) => {
 
     const {
-        screen:{currentBreakpoint},
+        screen: { currentBreakpoint },
     } = useAppContext();
 
     const {
-        blogCategoryFinanceRef, categoryFinanceRefs:refs, scrollRef
+        blogCategoryFinanceRef, categoryFinanceRefs: refs, scrollRef
     } = useBlogPageSectionRefs()
 
 
@@ -42,7 +43,7 @@ const CategoryHero: React.FC<CategoryHeroProps> = ({ category, featuredPosts, al
 
             <Header
                 headerLabel={`The Daily Davis`}
-                size={(['xs','sm']).includes(currentBreakpoint) ? 'md' : 'lg'}
+                size={(['xs', 'sm']).includes(currentBreakpoint) ? 'md' : 'lg'}
             />
 
             <MotionDiv className='hero-wrapper mt-[3vh] gap-3'>
@@ -68,17 +69,32 @@ const CategoryHero: React.FC<CategoryHeroProps> = ({ category, featuredPosts, al
                         >
                             <MotionDiv className='md:min-w-[12vw] h-full' />
                             {
-                                featuredPosts.map((fP: IBlogPopulated, i: number) => {
-                                    return (
-                                        <MotionDiv key={`${fP._id}: ${i} ${fP.title}`}
+                                featuredPosts.length > 0 ?
+                                    <>
+                                        {
+                                            featuredPosts.map((fP: IBlogPopulated, i: number) => {
+                                                return (
+                                                    <MotionDiv key={`${fP._id}: ${i} ${fP.title}`}
+                                                        className={`snap-x-wrapper `}
+                                                    >
+                                                        <BlogCard
+                                                            post={fP}
+                                                        />
+                                                    </MotionDiv>
+                                                )
+                                            })
+                                        }
+                                    </>
+                                    :
+                                    <>
+                                        <MotionDiv
                                             className={`snap-x-wrapper `}
                                         >
-                                            <BlogCard
-                                                post={fP}
+                                            <PostComingSoonCard
                                             />
                                         </MotionDiv>
-                                    )
-                                })
+                                    </>
+
                             }
                         </ScrollableItemCtn>
                     </ScrollCtnWrapper>
@@ -98,19 +114,33 @@ const CategoryHero: React.FC<CategoryHeroProps> = ({ category, featuredPosts, al
 
                             <MotionDiv className='md:min-w-[12vw] h-full' />
                             {
-                                allPosts.map((fP: IBlogPopulated, i: number) => {
-                                    return (
+                                allPosts.length > 0 ?
+                                    <>
+                                        {
+                                            allPosts.map((fP: IBlogPopulated, i: number) => {
+                                                return (
 
-                                        <MotionDiv key={`${fP._id}: ${i} ${fP.title}`}
-                                            className={`snap-x-wrapper lg:min-w-[25vw]`}
-                                            id='category-card'
+                                                    <MotionDiv key={`${fP._id}: ${i} ${fP.title}`}
+                                                        className={`snap-x-wrapper lg:min-w-[25vw]`}
+                                                        id='category-card'
+                                                    >
+                                                        <BlogCard
+                                                            post={fP}
+                                                        />
+                                                    </MotionDiv>
+                                                )
+                                            })
+                                        }
+                                    </>
+                                    :
+                                    <>
+                                        <MotionDiv
+                                            className={`snap-x-wrapper `}
                                         >
-                                            <BlogCard
-                                                post={fP}
+                                            <PostComingSoonCard
                                             />
                                         </MotionDiv>
-                                    )
-                                })
+                                    </>
                             }
 
                         </ScrollableItemCtn>

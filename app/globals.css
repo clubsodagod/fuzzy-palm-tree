@@ -21,6 +21,13 @@ div.code-toolbar{position:relative}div.code-toolbar>.toolbar{position:absolute;z
   }
 }
 
+html {
+  overflow-x: hidden;
+}
+
+a:any-link {
+  color: currentColor;
+}
 /* Keyframes for gradient animation */
 
 h1,
@@ -97,7 +104,10 @@ main {
     padding-block: 10vh;
   }
 }
-
+.sdlc-section {
+  min-height: 125dvh;
+  max-height: 150dvh;
+}
 .hero-wrapper {
   display: flex;
   flex-direction: column;
@@ -334,10 +344,11 @@ div.snap-x-wrapper#programmer-approach-solid-hero {
 }
 .current-path::after {
   /* text-shadow: 0 0 9px #fff, 0 0 12px #e5e5e5, 0 0 15px #82e6fd; */
+  /* padding-left: 5vw; */
   top: 0;
-  left: 0;
+  /* left: 0; */
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   filter: blur(1px);
   z-index: -1;
@@ -346,6 +357,9 @@ div.snap-x-wrapper#programmer-approach-solid-hero {
   position: absolute;
   content: attr(data-content);
   animation: glow-animation 2s ease-in-out infinite alternate;
+  @media screen and (min-width:768){
+    left: 0;
+  }
 }
 
 @keyframes textShine {

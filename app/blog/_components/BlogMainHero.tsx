@@ -126,10 +126,10 @@ const BlogMainHero: React.FC<BlogMainHeroProps> = ({
                                         allPosts.map((p: IBlogPopulated, i: number) => {
                                             return (
                                                 <MotionDiv
+                                                    className='snap-x-wrapper lg:min-w-[25vw] lg:max-w-[25vw]'
                                                     key={`${p._id}`}
                                                 >
                                                     <BlogCard
-                                                        id='blog-page-latest'
                                                         post={p}
                                                     />
                                                 </MotionDiv>

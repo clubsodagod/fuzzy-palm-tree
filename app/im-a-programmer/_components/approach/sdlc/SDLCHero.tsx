@@ -11,6 +11,7 @@ import { sdlc } from '@/library/const'
 import ScrollCtnWrapper from '@/app/_components/common/ScrollCtnWrapper'
 import ScrollableItemCtn from '@/app/_components/common/ScrollableItemCtn'
 import { HeroProps } from '@/app/_library/types/common'
+import MotionPageWrapper from '@/app/_components/common/MotionPageWrapper'
 
 
 const SDLCHero: React.FC<HeroProps> = ({
@@ -41,9 +42,10 @@ const SDLCHero: React.FC<HeroProps> = ({
 
 
     return (
-        <PageWrapper
+        <MotionPageWrapper
             ctnRef={ctnRef}
             id={id}
+            className='sdlc-section'
         >
 
             <MotionDiv
@@ -109,7 +111,7 @@ const SDLCHero: React.FC<HeroProps> = ({
 
                 </MotionDiv>
             </MotionDiv>
-        </PageWrapper>
+        </MotionPageWrapper>
     )
 }
 
