@@ -84,12 +84,15 @@
 }
 
 .storyTimeTextBox {
+    text-align: left;
     position: absolute;
     left: 0;
-    top: 30vh;
+    top: 30dvh;
     padding-inline: 6vw;
-    max-height: 60vh;
+    max-height: 40dvh;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
     @media screen and (min-width:769px) {
         padding-inline: 16.5vw;
     } @media screen and (min-width:1025px) {

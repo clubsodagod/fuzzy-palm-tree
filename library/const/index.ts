@@ -28,13 +28,19 @@ export const missionStatement: string = "Increasing the quality of life through 
 
 export const bioImg: string = "/images/suited.png"
 
-export const bio: string = `Maliek Davis is a dedicated real estate investor with a passion for revitalizing communities through strategic multifamily investments. With a focus on properties that offer significant value-add potential, Maliek is committed to creating positive change in Metro Detroit, Grand Rapids, and Lansing, Michigan. His approach to real estate is driven by a deep understanding of market dynamics, an eye for underperforming properties, and a commitment to long-term value creation.
+export const bio: string[] = [`From a young age, I was fascinated by the worlds of science and technology. I remember being endlessly curious about how things worked, constantly taking things apart and tinkering to understand their mechanisms. But despite my passion, school was a challenge. I struggled to focus, often feeling like the structured environment didn’t align with the way my mind worked. \n
+`,
 
-Growing up in Rochester Hills, Michigan, Maliek has always had a strong connection to the local communities. This connection fuels his desire to not only achieve financial success but also to make a meaningful impact on the neighborhoods he invests in. By targeting multifamily properties with 20+ units, Maliek aims to provide quality, affordable housing while generating sustainable returns for his investors.
-
-Maliek's background in software engineering and project management has equipped him with a unique skill set that he leverages in his real estate ventures. His analytical mindset, attention to detail, and ability to manage complex projects ensure that every investment is thoroughly vetted and strategically executed.
-
-Beyond real estate, Maliek is a lifelong learner who is constantly seeking ways to improve his craft and expand his knowledge. He believes in the power of collaboration and is always looking to build strong relationships with like-minded investors, partners, and community leaders. Maliek's ultimate goal is to leave a lasting legacy by helping to build thriving, resilient communities across Michigan.`;
+`As a teenager, I found myself drifting. I ran from my potential, from my passions in science and technology, and ultimately from myself. Without a clear purpose, I veered off course, making choices that landed me in trouble more times than I’d like to admit. My life began to spiral until I hit rock bottom and found myself incarcerated, facing the consequences of those decisions.
+`,
+`Prison was undeniably one of the hardest periods of my life, but it also became a turning point. Stripped of distractions and excuses, I was forced to confront myself—my pain, my fears, and my potential. I took that time to heal mentally, emotionally, and spiritually. I reconnected with my family, friends, and others who brought out the best in me. And I returned to what had always given me inspiration: books.
+`,
+`Through reading, I rediscovered my purpose and reignited my passion for science, technology, and the power they hold to transform lives. I made a vow to myself: to dedicate my life to improving the quality of living through innovation in technology. With that commitment, I began teaching myself computer science—starting with starting with the basics and slowly building a foundation that would allow me to dream bigger than I ever had before, fueled by a relentless drive to learn and create.
+`,
+`Today, I look back on my journey and see how the transformative power of computer science has mirrored the transformation in my own life. What began as a negative chapter has become one of the greatest things to ever happen to me. Through hard work, resilience, and a belief in the potential of technology to make a difference, I’ve not only rebuilt my life but also redefined its purpose.
+`,
+`I stand as a testament to the resilience of the human spirit and the boundless opportunities that science and technology offer for personal and societal growth. My journey has taught me that innovation isn't just about creating new tools—it's about transforming lives, starting with my own. I’m now on a mission to use my story, my skills, and my passion to show that even in the toughest circumstances, innovation and determination can lead to incredible growth and change.
+`];
 
 export const navItems: NavItem[] = [
     {

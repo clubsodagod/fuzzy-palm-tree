@@ -38,12 +38,16 @@ const MainHomeHero: React.FC<HeroProps> = ({
                         label={`I'm A Programmer`}
                         color='primary'
                         href='/im-a-programmer'
+                            className={`learn-more-btn`}
+                            id={'home-investment-hero'}
                     />
                     <ButtonPro
                         variant='contained'
                         label={`About`}
                         color='secondary'
                         href='/about'
+                            className={`learn-more-btn`}
+                            id={'home-investment-hero'}
                     />
                     <IconButton
                         label={<ArrowCircleDownRoundedIcon onClick={() => { scrollTo('next') }} />}

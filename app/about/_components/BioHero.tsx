@@ -30,7 +30,7 @@ const BioHero: React.FC<HeroProps> = ({
     }
 
     const variants = {
-        storyTime: { opacity: 0.25, scale: 0.75, y: rv([25,65,65]) },
+        storyTime: { opacity: 0.25, scale: 0.75, y: rv([25, 65, 65]) },
         other: { opacity: 1, scale: 1 },
         clampedText: { opacity: 1, scale: 1 },
         hideClampedText: { opacity: 0, scale: 0 },
@@ -39,7 +39,7 @@ const BioHero: React.FC<HeroProps> = ({
     }
 
 
-    
+
     return (
         <MotionPageWrapper
             ctnRef={ctnRef}
@@ -70,13 +70,20 @@ const BioHero: React.FC<HeroProps> = ({
                     {
                         storyTime &&
                         <MotionDiv
-                            className={`${styles.storyTimeTextBox}`}
+                            className={`${styles.storyTimeTextBox} gap-6`}
                             variants={variants}
                             animate={storyTime ? 'storyTimeText' : 'hideStoryTimeText'}
                         >
-                            <Typography variant='body2'>
-                                {bio}
-                            </Typography>
+                            {
+                                bio.map((s) => (
+                                    <Typography variant='body2'
+                                        key={s}
+                                    >
+                                        {s}
+                                    </Typography>
+                                ))
+                            }
+
                         </MotionDiv>
                     }
 
@@ -92,7 +99,7 @@ const BioHero: React.FC<HeroProps> = ({
             >
 
                 <MotionDiv
-                    className={`${styles.bioTextBox} `}
+                    className={`${styles.bioTextBox} mb-3`}
                     variants={variants}
                     animate={!storyTime ? 'clampedText' : 'hideClampedText'}
                 >

@@ -34,7 +34,7 @@ const ButtonPro: React.FC<ButtonProps> = ({
             className={`z-50 relative`}
             href={href && href}
             variant={variant}
-            color={color}
+            // color={color}
             type={type ? type : 'button'}
             size={size ? size : 'small'}
             >

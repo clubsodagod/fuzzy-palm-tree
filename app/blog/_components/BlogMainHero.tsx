@@ -115,7 +115,6 @@ const BlogMainHero: React.FC<BlogMainHeroProps> = ({
             >
 
                 <ScrollCtnWrapper>
-                    <MotionDiv></MotionDiv>
                     <ScrollableItemCtn
                         id='blog-posts-ctn'
                     >
