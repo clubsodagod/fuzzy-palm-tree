@@ -156,7 +156,7 @@ const ScrollableItemCtn: React.FC<ScrollableItemCtnProps> = ({
             <div ref={scrollCtnRef} id={rest.id ? rest.id : ''}
                 className={` ${rest.id == 'programmer-approach-solid-hero' || rest.id == 'programmer-approach-sdlc-section' ? styles['solidChildWrapper']
                         : rest.id == 'programmer-approach-design-section' ? styles['designPatternsChildWrapper']
-                            : rest.id == 'blog-posts-ctn' ? styles['blogChildWrapper'] : rest.id == 'programmer-portfolio-main' ? styles['portfolioChildWrapper'] : styles.childWrapper} overflow-x-hidden`
+                            : rest.id == 'blog-posts-ctn' ? styles['blogChildWrapper'] : rest.id == 'programmer-portfolio-main' ? styles['portfolioChildWrapper'] : rest.id == 'about-resume-main' ? styles['technologiesChildWrapper'] : styles.childWrapper} overflow-x-hidden`
                 }
             >
                 {children}

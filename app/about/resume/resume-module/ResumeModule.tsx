@@ -6,7 +6,6 @@ import MotionPageWrapper from "@/app/_components/common/MotionPageWrapper";
 import ScrollCtnWrapper from "@/app/_components/common/ScrollCtnWrapper";
 import Resume from "@/app/_components/Resume";
 import { useAppContext } from "@/app/_context/AppContext";
-import { Header, ScrollableItemCtn } from "@/app/_hide/_components";
 import { technologies } from "@/app/_library/const/resume";
 import IntersectionWatcher from "@/app/_utility/window/IntersectionWatcher";
 import WindowUpdater from "@/app/_utility/window/WindowUpdater";
@@ -14,6 +13,8 @@ import { Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { pdfjs } from "react-pdf";
 import { useAboutSectionRefs } from "../../_utils/refs";
+import Header from "@/app/_components/common/Header";
+import ScrollableItemCtn from "@/app/_components/common/ScrollableItemCtn";
 
 
 
@@ -172,7 +173,9 @@ const ResumeModule = () => {
                                     <ScrollCtnWrapper
                                         className=' '
                                     >
-                                        <ScrollableItemCtn>
+                                        <ScrollableItemCtn
+                                        id="about-resume-main"
+                                        >
                                             {
                                                 technologies.map((t, i) => (
                                                     <MotionDiv key={`${t.label} ${i}`} className={`py-6 flex flex-col justify-center items-center ${i==0 && 'ml-[24vw]'} ${i==technologies.length-1?'mr-[24vw]' :'mr-[12vw]'}`} >
