@@ -1,3 +1,4 @@
+import { ContactDocumentType } from "@/app/_database/models/contact";
 import ContactDetails from "@/app/emails/ContactDetails";
 import ThanksForContactingMe from "@/app/emails/ThanksForContactingMe";
 import { newContactForm } from "@/library/db/controllers/contact-form";
@@ -29,7 +30,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
             return NextResponse.json({ message: "Please provide all required fields." }, { status: 500 })
         } else {
 
-            const form = {
+            const form: ContactDocumentType = {
                 firstName, lastName, company, email, phone, reason, message,
             }
 
@@ -48,7 +49,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
                 from: 'continuous-innovation@maliek-davis.com',
                 to: [`continuous-innovation@maliek-davis.com`, `maliekjdavis24@gmail.com`],
                 subject: `${firstName} ${lastName} just contacted you for ${reason}! Follow-up soon.`,
-                react: ContactDetails(firstName) as React.ReactElement,
+                react: ContactDetails({form}) as React.ReactElement,
             });
 
             // 
