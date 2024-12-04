@@ -32,7 +32,7 @@ const ResumeModule = () => {
         document.body.removeChild(link);
     };
     const docs = [
-        { uri: "/documents/Maliek_Davis_CV.pdf" }, // Local File
+        { uri: "/documents/Software Engineer_Maliek_Davis_nextjs_reactjs_typescript_api_ai.pdf" }, // Local File
     ];
     const [currentSection, setCurrentSection] = useState<string>('');
     // create visible states
