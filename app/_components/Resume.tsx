@@ -24,7 +24,7 @@ const Resume = () => {
     };
     
     const docs = [
-        { uri: "/documents/Maliek_Davis_CV.pdf" }, // Local File
+        { uri: "/documents/Software_Engineer_Maliek_Davis_nextjs_reactjs_typescript_api_ai.pdf" }, // Local File
     ];
 
     useEffect(() => {
