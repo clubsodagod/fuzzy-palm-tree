@@ -1,3 +1,4 @@
+import ContactDetails from "@/app/emails/ContactDetails";
 import ThanksForContactingMe from "@/app/emails/ThanksForContactingMe";
 import { newContactForm } from "@/library/db/controllers/contact-form";
 import { NextRequest, NextResponse } from "next/server";
@@ -42,7 +43,17 @@ export async function POST(req: NextRequest, res: NextResponse) {
                 react: ThanksForContactingMe(firstName) as React.ReactElement,
             });
 
-            if (contactForm && data) {
+            // send response to maliek
+            const { data:data2, error:error2 } = await resend.emails.send({
+                from: 'continuous-innovation@maliek-davis.com',
+                to: [`continuous-innovation@maliek-davis.com`, `maliekjdavis24@gmail.com`],
+                subject: `${firstName} ${lastName} just contacted you for ${reason}! Follow-up soon.`,
+                react: ContactDetails(firstName) as React.ReactElement,
+            });
+
+            // 
+
+            if (contactForm && data && data2) {
 
                 return NextResponse.json(
                     { message: "Contact form successfully submitted. Looking forward to speaking with you!", contactForm, email:data },
